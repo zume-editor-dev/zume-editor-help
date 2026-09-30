@@ -1,3 +1,14 @@
+⚠️ Do NOT post:
+
+- License Key
+- Activation Code
+- Password
+- Credit Card Information
+- Microsoft Account Information
+- OneDrive Personal Information
+- Access Token
+- API Key
+- Private files
 ## Question
 
 <!-- 質問内容 -->
