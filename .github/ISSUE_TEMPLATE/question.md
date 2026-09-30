@@ -1,8 +1,8 @@
 ---
-name: Feature Request
-about: Suggest an improvement or new feature for Zume Editor
-title: "[Feature] "
-labels: enhancement
+name: Question
+about: Ask a question about Zume Editor
+title: "[Question] "
+labels: question
 assignees: ''
 ---
 ⚠️ Do NOT post:
