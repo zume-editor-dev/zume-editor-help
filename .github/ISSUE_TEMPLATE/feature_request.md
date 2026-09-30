@@ -1,3 +1,10 @@
+---
+name: Feature Request
+about: Suggest an improvement or new feature for Zume Editor
+title: "[Feature] "
+labels: enhancement
+assignees: ''
+---
 ⚠️ Do NOT post:
 
 - License Key
