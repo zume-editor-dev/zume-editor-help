@@ -1,3 +1,11 @@
+---
+name: Bug Report
+about: Report a problem with Zume Editor
+title: "[Bug] "
+labels: bug
+assignees: ''
+---
+
 # Bug Report
 
 ⚠️ **Do NOT post sensitive information in this issue.**
@@ -14,9 +22,7 @@ Do not post:
 - API Key
 - Private files
 
-For private matters such as licenses, subscriptions,
-billing, accounts, or personal information,
-please contact support directly.
+For private matters such as licenses, subscriptions, billing, accounts, or personal information, please contact support directly.
 
 ## Zume Editor Version
 
