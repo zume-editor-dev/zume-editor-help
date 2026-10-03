@@ -1,0 +1,4 @@
+# Keep text LF in the repo (the site builds on Linux CI); mark binaries.
+* text=auto eol=lf
+*.png binary
+*.ico binary
