@@ -797,6 +797,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -813,6 +831,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported databases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-a-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with a connection
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1162,6 +1232,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported databases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-a-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with a connection
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1186,20 +1297,92 @@
 
 
 <h1 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h1>
-<p>Connect to a database, browse it and run queries from inside the editor.</p>
+<p>Connect to a database, browse its schema and run queries from inside the editor,
+with results shown in a grid.</p>
+<h2 id="supported-databases">Supported databases<a class="headerlink" href="#supported-databases" title="Permanent link">&para;</a></h2>
+<p><strong>SQL</strong></p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Notes</th>
+<th>Default port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>Local database file, or a new / in-memory database</td>
+<td>— (file)</td>
+</tr>
+<tr>
+<td><strong>MySQL / MariaDB</strong></td>
+<td>Also MySQL-compatible servers (e.g. TiDB)</td>
+<td>3306</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Also PostgreSQL-compatible servers</td>
+<td>5432</td>
+</tr>
+<tr>
+<td><strong>Microsoft SQL Server</strong></td>
+<td>Over the native TDS protocol</td>
+<td>1433</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NoSQL</strong></p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Notes</th>
+<th>Default port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Redis</strong></td>
+<td>RESP protocol</td>
+<td>6379</td>
+</tr>
+<tr>
+<td><strong>MongoDB</strong></td>
+<td>MongoDB wire protocol</td>
+<td>27017</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connecting">Connecting<a class="headerlink" href="#connecting" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Create a connection (host, port, user, password - stored in your OS secure store).</li>
-<li>Browse databases, tables and schema.</li>
-<li>Write and run SQL, and view the results in a grid.</li>
+<li><strong>SQLite</strong> - open a database file (e.g. <code>.db</code> / <code>.sqlite</code>), or create a new one.</li>
+<li><strong>Server engines</strong> - provide host, port (leave it at the default to use the
+  engine's standard port), user, password and, optionally, a default database.
+  <strong>TLS is used by default</strong> for networked engines.</li>
 </ul>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Credentials are kept in the operating system's secure credential store, never
-in plain settings or session files.</p>
+<p class="admonition-title">Credentials are protected</p>
+<p>Connection passwords are stored in your operating system's secure credential
+store (Windows Credential Manager, macOS Keychain, Linux Secret Service), never
+in plain settings or session files. See <a href="../privacy/">Privacy &amp; Security</a>.</p>
 </div>
+<h2 id="working-with-a-connection">Working with a connection<a class="headerlink" href="#working-with-a-connection" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Schema browser</strong> - tables and views with their columns, types, primary keys and
+  indexes; and, for engines that have them, functions, stored procedures, triggers
+  and sequences.</li>
+<li><strong>Run SQL</strong> - write a statement and run it; results appear in a grid (large result
+  sets are capped and marked <em>truncated</em>). For statements that change data, the
+  number of <strong>affected</strong> rows and the execution time are reported.</li>
+<li><strong>Inline edit</strong> - edit result cells; writes use parameterized statements, so
+  values (text, numbers, blobs, NULL) are bound safely without hand-quoting.</li>
+<li><strong>NoSQL</strong> - Redis and MongoDB connections run commands / queries and show the
+  results in the same panel.</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">TODO</p>
-<p>Add a screenshot here.</p>
+<p>Add a screenshot of the schema browser and the results grid.</p>
 </div>
 
 

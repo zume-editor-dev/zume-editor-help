@@ -797,6 +797,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    データベース
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -813,6 +831,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続できるデータベース
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続のしかた
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続後の操作
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1162,6 +1232,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続できるデータベース
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続のしかた
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続後の操作
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1186,20 +1297,90 @@
 
 
 <h1 id="_1">データベース<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>エディター内からデータベースへ接続し、参照・クエリ実行ができます。</p>
+<p>エディター内からデータベースへ接続し、スキーマの参照やクエリ実行ができます。結果は
+グリッドで表示されます。</p>
+<h2 id="_2">接続できるデータベース<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>SQL</strong></p>
+<table>
+<thead>
+<tr>
+<th>エンジン</th>
+<th>備考</th>
+<th>既定ポート</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>ローカルのデータベースファイル、または新規 / インメモリ</td>
+<td>— (ファイル)</td>
+</tr>
+<tr>
+<td><strong>MySQL / MariaDB</strong></td>
+<td>MySQL 互換サーバー（例: TiDB）も可</td>
+<td>3306</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>PostgreSQL 互換サーバーも可</td>
+<td>5432</td>
+</tr>
+<tr>
+<td><strong>Microsoft SQL Server</strong></td>
+<td>ネイティブ TDS プロトコル</td>
+<td>1433</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NoSQL</strong></p>
+<table>
+<thead>
+<tr>
+<th>エンジン</th>
+<th>備考</th>
+<th>既定ポート</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Redis</strong></td>
+<td>RESP プロトコル</td>
+<td>6379</td>
+</tr>
+<tr>
+<td><strong>MongoDB</strong></td>
+<td>MongoDB ワイヤプロトコル</td>
+<td>27017</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">接続のしかた<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
-<li>接続を作成（ホスト・ポート・ユーザー・パスワード。OSのセキュア保管領域に保存）。</li>
-<li>データベース・テーブル・スキーマを参照。</li>
-<li>SQLを書いて実行し、結果をグリッドで表示。</li>
+<li><strong>SQLite</strong> - データベースファイル（<code>.db</code> / <code>.sqlite</code> など）を開く、または新規作成。</li>
+<li><strong>サーバー系エンジン</strong> - ホスト・ポート（既定のままにするとエンジン標準ポートを使用）・
+  ユーザー・パスワード、任意で既定データベースを指定します。ネットワーク接続は
+  <strong>既定で TLS を使用</strong>します。</li>
 </ul>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>資格情報はOSのセキュアな資格情報ストアに保存され、設定やセッションの平文ファイルに
-保存されることはありません。</p>
+<p class="admonition-title">資格情報は保護されます</p>
+<p>接続パスワードは OS のセキュアな資格情報ストア（Windows資格情報マネージャー、macOS
+キーチェーン、Linux Secret Service）に保存され、平文の設定・セッションファイルには
+保存されません。<a href="../privacy/">プライバシー &amp; セキュリティ</a> を参照してください。</p>
 </div>
+<h2 id="_4">接続後の操作<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>スキーマブラウザー</strong> - テーブル / ビュー（列・型・主キー・インデックス）、および
+  対応エンジンでは関数・ストアドプロシージャ・トリガー・シーケンスを表示。</li>
+<li><strong>SQL 実行</strong> - 文を書いて実行すると、結果がグリッドに表示されます（大きな結果は上限で
+  打ち切られ <em>truncated</em> と表示）。データ変更文では <strong>影響行数</strong> と実行時間を表示します。</li>
+<li><strong>インライン編集</strong> - 結果セルを編集できます。書き込みはパラメータ化された文を使うため、
+  値（テキスト・数値・BLOB・NULL）が手動クオートなしで安全にバインドされます。</li>
+<li><strong>NoSQL</strong> - Redis / MongoDB 接続では、コマンド / クエリを実行し、同じパネルに結果を
+  表示します。</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">TODO</p>
-<p>ここにスクリーンショットを追加してください。</p>
+<p>スキーマブラウザーと結果グリッドのスクリーンショットを追加してください。</p>
 </div>
 
 

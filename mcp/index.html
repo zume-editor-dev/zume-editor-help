@@ -878,6 +878,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (AI Integration)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -894,6 +912,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-notes-cautions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage notes &amp; cautions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1162,6 +1232,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-notes-cautions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage notes &amp; cautions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1186,22 +1297,129 @@
 
 
 <h1 id="mcp-ai-integration">MCP (AI Integration)<a class="headerlink" href="#mcp-ai-integration" title="Permanent link">&para;</a></h1>
-<p>Zume Editor can act as an <strong>MCP (Model Context Protocol) server</strong>, letting a
-compatible AI client read and edit through the editor's commands.</p>
+<p>Zume Editor ships a separate program, <strong><code>zume-mcp</code></strong>, that acts as an
+<strong>MCP (Model Context Protocol) server</strong>. A compatible AI client (such as Claude
+Desktop or Claude Code) launches it and can then read, inspect and edit files
+through the editor's own, tested engines.</p>
+<p><code>zume-mcp</code> speaks JSON-RPC 2.0 over stdio (standard input / output) - it has no
+window and opens no network port of its own. It is installed alongside the app
+(next to the executable on Windows, in <code>bin/</code> on Linux, inside the app folder on
+macOS).</p>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<p><strong>Files, text, hex, search, diff</strong> (local, no network):</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_file_range</code></td>
+<td>Read a bounded byte range of a file (works on very large files)</td>
+</tr>
+<tr>
+<td><code>file_info</code></td>
+<td>Whether a file exists, and its size in bytes</td>
+</tr>
+<tr>
+<td><code>search_in_file</code></td>
+<td>Literal or regex search; returns matches with offsets / lines</td>
+</tr>
+<tr>
+<td><code>extract_strings</code></td>
+<td>Printable-ASCII runs with their byte offsets</td>
+</tr>
+<tr>
+<td><code>hex_dump</code></td>
+<td>A hex + ASCII dump of a byte range</td>
+</tr>
+<tr>
+<td><code>find_bytes</code></td>
+<td>Every offset of a hex byte pattern (first 64 MiB)</td>
+</tr>
+<tr>
+<td><code>patch_bytes</code></td>
+<td>Overwrite bytes at an offset <strong>in place</strong> (modifies the file)</td>
+</tr>
+<tr>
+<td><code>replace_in_file</code></td>
+<td>Replace all literal / regex matches and <strong>save</strong> (modifies the file)</td>
+</tr>
+<tr>
+<td><code>detect_encoding</code></td>
+<td>A file's text encoding and line ending</td>
+</tr>
+<tr>
+<td><code>diff_files</code></td>
+<td>A line diff of two files (added / removed lines per hunk)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gen-AI hub:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list_credentials</code></td>
+<td>List the <strong>names</strong> of API keys stored locally</td>
+</tr>
+<tr>
+<td><code>http_request</code></td>
+<td>Call any HTTPS API, injecting a stored key <strong>by name</strong></td>
+</tr>
+</tbody>
+</table>
+<p>With <code>http_request</code>, the AI names a stored key; the secret value is added to the
+request by <code>zume-mcp</code> and <strong>never crosses the MCP boundary</strong> to the AI. Store keys
+with <code>zume-cli aikey set</code> (see <a href="../cli/">CLI</a>).</p>
+<h2 id="usage-example">Usage example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
+<p>Point your MCP client at the <code>zume-mcp</code> command. For example, in a client that
+uses a JSON config (such as Claude Desktop):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume-editor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>On Windows, if <code>zume-mcp</code> is not on your <code>PATH</code>, use the full path, e.g.
+<code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code>.</p>
+<p>Once connected, you can ask the AI things like:</p>
 <ul>
-<li>Enable the MCP server in settings.</li>
-<li>Point your MCP-capable client at Zume Editor.</li>
-<li>The AI works through the same document and command pipeline you use, so edits are
-  undoable and safe.</li>
+<li>"Read the last 2&nbsp;KB of <code>C:\\logs\\huge.log</code>." → <code>read_file_range</code></li>
+<li>"Find the bytes <code>DE AD BE EF</code> in <code>firmware.bin</code>." → <code>find_bytes</code></li>
+<li>"What encoding and line ending does <code>legacy.txt</code> use?" → <code>detect_encoding</code></li>
+<li>"Replace every <code>http://</code> with <code>https://</code> in <code>config.ini</code>." → <code>replace_in_file</code></li>
+<li>"Diff <code>before.json</code> and <code>after.json</code>." → <code>diff_files</code></li>
 </ul>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>MCP is an open protocol for connecting AI assistants to tools and data sources.</p>
+<h2 id="usage-notes-cautions">Usage notes &amp; cautions<a class="headerlink" href="#usage-notes-cautions" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Some tools change files on disk</p>
+<p><code>patch_bytes</code> and <code>replace_in_file</code> <strong>modify / overwrite files in place</strong>, and
+these writes are <strong>not undoable</strong> from the MCP side (unlike edits made in the
+editor window). Only let the AI work on files you trust, and keep backups or use
+version control.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">TODO</p>
-<p>Add a screenshot here.</p>
-</div>
+<ul>
+<li><strong>It runs with your permissions.</strong> <code>zume-mcp</code> can read and write any file your
+  user account can. Only connect it in environments you control, and be mindful of
+  which folders you ask the AI to touch.</li>
+<li><strong>Outbound requests.</strong> <code>http_request</code> can reach any HTTPS URL. The AI chooses the
+  URL, so review what it does; the stored key's value is never revealed to the AI,
+  but the request is still made on your behalf.</li>
+<li><strong>Local only.</strong> The server itself listens on nothing - it communicates with the
+  client over stdio. Its only outbound network path is <code>http_request</code>.</li>
+<li><strong>No telemetry.</strong> <code>zume-mcp</code> sends nothing on its own; it only acts on the tool
+  calls the client makes.</li>
+</ul>
 
 
 

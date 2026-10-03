@@ -878,6 +878,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP（AI連携）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -894,6 +912,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ツール一覧
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        利用上の注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1162,6 +1232,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ツール一覧
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        利用上の注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1186,22 +1297,127 @@
 
 
 <h1 id="mcpai">MCP（AI連携）<a class="headerlink" href="#mcpai" title="Permanent link">&para;</a></h1>
-<p>Zume Editor は <strong>MCP（Model Context Protocol）サーバー</strong> として動作でき、対応する
-AIクライアントがエディターのコマンド経由で読み取り・編集できます。</p>
+<p>Zume Editor は <strong><code>zume-mcp</code></strong> という別プログラムを同梱しています。これは
+<strong>MCP（Model Context Protocol）サーバー</strong> として動作し、対応する AI クライアント
+（Claude Desktop や Claude Code など）が起動して、エディター本体の実績あるエンジン経由で
+ファイルの読み取り・調査・編集を行えます。</p>
+<p><code>zume-mcp</code> は stdio（標準入出力）上で JSON-RPC 2.0 を話します。ウィンドウは持たず、自身で
+ネットワークポートを開くこともありません。アプリと同じ場所にインストールされます
+（Windowsは実行ファイルの隣、Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。</p>
+<h2 id="_1">ツール一覧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>ファイル / テキスト / Hex / 検索 / 差分</strong>（ローカル・ネットワーク不要）:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_file_range</code></td>
+<td>ファイルの指定バイト範囲を読む（超大容量でも可）</td>
+</tr>
+<tr>
+<td><code>file_info</code></td>
+<td>ファイルの有無とバイトサイズ</td>
+</tr>
+<tr>
+<td><code>search_in_file</code></td>
+<td>リテラル / 正規表現検索。オフセット・行付きで一致を返す</td>
+</tr>
+<tr>
+<td><code>extract_strings</code></td>
+<td>印字可能ASCIIの連なりをバイトオフセット付きで抽出</td>
+</tr>
+<tr>
+<td><code>hex_dump</code></td>
+<td>指定バイト範囲の 16進 + ASCII ダンプ</td>
+</tr>
+<tr>
+<td><code>find_bytes</code></td>
+<td>16進バイト列の全出現オフセット（先頭 64 MiB）</td>
+</tr>
+<tr>
+<td><code>patch_bytes</code></td>
+<td>指定オフセットのバイトを<strong>その場で上書き</strong>（ファイルを変更）</td>
+</tr>
+<tr>
+<td><code>replace_in_file</code></td>
+<td>リテラル / 正規表現の一致を全置換し<strong>保存</strong>（ファイルを変更）</td>
+</tr>
+<tr>
+<td><code>detect_encoding</code></td>
+<td>文字コードと改行コードの判定</td>
+</tr>
+<tr>
+<td><code>diff_files</code></td>
+<td>2ファイルの行差分（ハンクごとの追加 / 削除行）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>生成AIハブ:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list_credentials</code></td>
+<td>ローカル保存された API キーの<strong>名前</strong>一覧</td>
+</tr>
+<tr>
+<td><code>http_request</code></td>
+<td>任意の HTTPS API を、保存済みキーを<strong>名前指定</strong>で付与して呼び出す</td>
+</tr>
+</tbody>
+</table>
+<p><code>http_request</code> では AI は保存済みキーの「名前」を指定するだけで、<strong>秘密値は <code>zume-mcp</code>
+側で付与され、AI 側（MCP境界）には渡りません</strong>。キーは <code>zume-cli aikey set</code> で保存します
+（<a href="../cli/">CLI</a> 参照）。</p>
+<h2 id="_2">使用例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>MCP クライアントの起動コマンドに <code>zume-mcp</code> を指定します。例として、JSON 設定を使う
+クライアント（Claude Desktop など）の場合:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume-editor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Windows で <code>zume-mcp</code> が <code>PATH</code> に無い場合はフルパスを指定します。例:
+<code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code></p>
+<p>接続後は、AI に次のように依頼できます:</p>
 <ul>
-<li>設定でMCPサーバーを有効化します。</li>
-<li>MCP対応クライアントの接続先を Zume Editor に設定します。</li>
-<li>AIは利用者と同じ文書・コマンドのパイプラインを通して動作するため、編集は取り消し
-  可能で安全です。</li>
+<li>「<code>C:\\logs\\huge.log</code> の末尾 2&nbsp;KB を読んで」→ <code>read_file_range</code></li>
+<li>「<code>firmware.bin</code> から <code>DE AD BE EF</code> のバイト列を探して」→ <code>find_bytes</code></li>
+<li>「<code>legacy.txt</code> の文字コードと改行は？」→ <code>detect_encoding</code></li>
+<li>「<code>config.ini</code> の <code>http://</code> を全部 <code>https://</code> に置換して」→ <code>replace_in_file</code></li>
+<li>「<code>before.json</code> と <code>after.json</code> の差分を見せて」→ <code>diff_files</code></li>
 </ul>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>MCPは、AIアシスタントをツールやデータソースに接続するためのオープンなプロトコルです。</p>
+<h2 id="_3">利用上の注意<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">一部のツールはディスク上のファイルを変更します</p>
+<p><code>patch_bytes</code> と <code>replace_in_file</code> は<strong>ファイルをその場で変更 / 上書き</strong>します。これらの
+書き込みは MCP 側からは<strong>取り消せません</strong>（エディター画面での編集とは異なります）。信頼
+できるファイルにのみ使い、バックアップやバージョン管理を併用してください。</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">TODO</p>
-<p>ここにスクリーンショットを追加してください。</p>
-</div>
+<ul>
+<li><strong>あなたの権限で動作します。</strong> <code>zume-mcp</code> は、あなたのアカウントが読み書きできるファイル
+  をすべて操作できます。管理下の環境でのみ接続し、どのフォルダーを触らせるかに注意して
+  ください。</li>
+<li><strong>外部リクエスト。</strong> <code>http_request</code> は任意の HTTPS URL に到達できます。URL は AI が選ぶ
+  ため、動作を確認してください。保存キーの値は AI に渡りませんが、リクエスト自体はあなたの
+  名義で実行されます。</li>
+<li><strong>ローカル専用。</strong> サーバー自体は何も待ち受けません（クライアントとは stdio で通信）。
+  外部へ出る唯一の経路は <code>http_request</code> です。</li>
+<li><strong>テレメトリなし。</strong> <code>zume-mcp</code> は自発的に何も送信せず、クライアントのツール呼び出しに
+  応じて動作するだけです。</li>
+</ul>
 
 
 
