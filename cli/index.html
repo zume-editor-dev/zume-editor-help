@@ -1039,10 +1039,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dropbox-dropbox-files" class="md-nav__link">
+  <a href="#cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        dropbox - Dropbox files
+        cloud - cloud drives
       
     </span>
   </a>
@@ -1444,10 +1444,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dropbox-dropbox-files" class="md-nav__link">
+  <a href="#cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        dropbox - Dropbox files
+        cloud - cloud drives
       
     </span>
   </a>
@@ -1623,13 +1623,27 @@ zume-cli aikey remove &lt;name&gt;          # delete a key (prints: removed '&lt
 </code></pre></div>
 If you omit <code>value</code> for <code>set</code>, the key is read from standard input so it is not
 left in your shell history.</p>
-<h2 id="dropbox-dropbox-files"><code>dropbox</code> - Dropbox files<a class="headerlink" href="#dropbox-dropbox-files" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>zume-cli dropbox login &lt;app_key&gt;        # authorize and save the token
-zume-cli dropbox ls [path]              # list a folder (root by default)
-zume-cli dropbox get &lt;remote&gt; &lt;local&gt;   # download a file
-zume-cli dropbox put &lt;local&gt; &lt;remote&gt;   # upload a file
-zume-cli dropbox logout                 # forget the saved token
+<h2 id="cloud"><code>cloud</code> - cloud drives<a class="headerlink" href="#cloud" title="Permanent link">&para;</a></h2>
+<p>Work with files on <strong>Dropbox, Google Drive, OneDrive and Box</strong>. The refresh
+token is kept in the OS credential store (never a file), and is shared with the
+editor - a login here or in the app works in both.</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud &lt;provider&gt; login ...          # authorize and save the token
+zume-cli cloud &lt;provider&gt; ls [path]          # list a folder (root by default)
+zume-cli cloud &lt;provider&gt; get &lt;remote&gt; &lt;local&gt;   # download a file
+zume-cli cloud &lt;provider&gt; put &lt;local&gt; &lt;remote&gt;   # upload a file
+zume-cli cloud &lt;provider&gt; logout             # forget the saved token
 </code></pre></div>
+<p><code>&lt;provider&gt;</code> is <code>dropbox</code>, <code>googledrive</code>, <code>onedrive</code> or <code>box</code>. The <code>login</code>
+arguments differ by provider (you supply your own OAuth app's credentials):</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud dropbox     login &lt;app_key&gt;
+zume-cli cloud googledrive login &lt;client_id&gt; &lt;client_secret&gt;
+zume-cli cloud onedrive    login &lt;client_id&gt;
+zume-cli cloud box         login &lt;client_id&gt; &lt;client_secret&gt;
+</code></pre></div>
+<p>Dropbox shows a code to paste back; Google / OneDrive / Box open a browser and
+capture the redirect on a local port (register <code>http://localhost:53682/callback</code>
+as the redirect URI in your OAuth app). <code>zume-cli dropbox ...</code> still works as an
+alias for <code>zume-cli cloud dropbox ...</code>.</p>
 <h2 id="geo-map-geospatial-data"><code>geo</code> - map / geospatial data<a class="headerlink" href="#geo-map-geospatial-data" title="Permanent link">&para;</a></h2>
 <p>Reuses the editor's geo engine (see <a href="../map/">MAP</a>). File conversions read a file
 and print the result to <strong>stdout</strong>; coordinates may be given as decimal degrees or

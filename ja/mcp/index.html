@@ -1377,9 +1377,9 @@
 <h1 id="mcpai">MCP（AI連携）<a class="headerlink" href="#mcpai" title="Permanent link">&para;</a></h1>
 <p>Zume Editor は <strong><code>zume-mcp</code></strong> という別プログラムを同梱しています。これは
 <strong>MCP（Model Context Protocol）サーバー</strong> として動作し、対応する AI クライアント
-（Claude Desktop や Claude Code など）が起動して、エディター本体の実績あるエンジン経由で
-ファイルの読み取り・調査・編集を行え、さらに<strong>アプリ内に保管した API キー</strong>を使って外部
-サービスへ HTTPS で到達できます。</p>
+（Claude Desktop や Claude Code など）が起動して、ファイルの読み取り・<strong>作成</strong>・編集、
+アプリで設定済みの<strong>データベースへの問い合わせ</strong>、保管した API キーでの外部サービスへの
+HTTPS 到達を、すべてエディター本体の実績あるエンジン経由で行えます。</p>
 <p><code>zume-mcp</code> は stdio（標準入出力）上で JSON-RPC 2.0 を話します。ウィンドウは持たず、自身で
 ネットワークポートを開くこともありません。アプリと同じ場所にインストールされます
 （Windowsは実行ファイルの隣、Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。</p>
@@ -1402,6 +1402,10 @@
 <td>ファイルの有無とバイトサイズ</td>
 </tr>
 <tr>
+<td><code>write_file</code></td>
+<td>新規作成、または既存ファイルの上書き / 追記（テキスト or hex）</td>
+</tr>
+<tr>
 <td><code>search_in_file</code></td>
 <td>リテラル / 正規表現検索。オフセット・行付きで一致を返す</td>
 </tr>
@@ -1419,11 +1423,11 @@
 </tr>
 <tr>
 <td><code>patch_bytes</code></td>
-<td><strong>既存</strong>ファイルの指定オフセットをバイト上書き（変更）</td>
+<td>既存ファイルの指定オフセットをバイト上書き</td>
 </tr>
 <tr>
 <td><code>replace_in_file</code></td>
-<td>既存ファイルのリテラル / 正規表現一致を全置換し<strong>保存</strong></td>
+<td>既存ファイルのリテラル / 正規表現一致を全置換し保存</td>
 </tr>
 <tr>
 <td><code>detect_encoding</code></td>
@@ -1432,6 +1436,29 @@
 <tr>
 <td><code>diff_files</code></td>
 <td>2ファイルの行差分（追加 / 削除行）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>データベース</strong>（アプリで設定済みの接続、または SQLite ファイル）:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db_list_connections</code></td>
+<td>保存済み SQL 接続の一覧（名前のみ・パスワードなし）</td>
+</tr>
+<tr>
+<td><code>db_schema</code></td>
+<td>接続のテーブル / ビューと列を一覧</td>
+</tr>
+<tr>
+<td><code>db_query</code></td>
+<td>接続に対して SQL を実行し結果行を返す</td>
 </tr>
 </tbody>
 </table>
@@ -1455,29 +1482,29 @@
 </tbody>
 </table>
 <h2 id="ai">AI にできること・できないこと<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
-<p>期待値を明確に。AI は上記ツール経由で<strong>のみ</strong>動作します。</p>
+<p>AI は上記ツール経由で<strong>のみ</strong>動作します。</p>
 <p><strong>できること:</strong></p>
 <ul>
 <li>あなたのアカウントが読めるファイルの<strong>読み取り・調査</strong>（テキスト・ログ・バイナリ）。</li>
-<li>既存ファイルの<strong>変更</strong>: <code>replace_in_file</code>（検索置換して保存）、<code>patch_bytes</code>（バイト
-  上書き）。実際の書き込みです。</li>
-<li><strong>HTTPS で外部へ送信・取得</strong>（<code>http_request</code>、GET/POST/PUT/PATCH/DELETE/HEAD、独自
-  ヘッダー・ボディ可）。<strong>アプリ内に保管した API キーで認証</strong>できます。キーは<strong>名前で
-  指定</strong>し、<code>zume-mcp</code> が秘密値を <code>Authorization</code> ヘッダーに付与します。秘密値が AI 側に
-  返ることは<strong>ありません</strong>。つまり AI は、あなたの代わりに外部 API・LLM・サービスを呼び、
-  内容の送信や結果の取得ができます。</li>
+<li>ファイルの<strong>作成・上書き・追記・バイト書き換え</strong>（<code>write_file</code> / <code>replace_in_file</code> /
+  <code>patch_bytes</code>）。実際の書き込みです。</li>
+<li><strong>データベースへの問い合わせ</strong>。アプリで設定済みの SQL 接続を一覧
+  （<code>db_list_connections</code>）、スキーマ参照（<code>db_schema</code>）、SQL 実行（<code>db_query</code>）できます。
+  保存済み接続は名前で、SQLite はファイルパスで指定します。パスワードは OS の資格情報
+  ストアから取得され、AI には見えません。</li>
+<li><strong>HTTPS で外部へ送信・取得</strong>（<code>http_request</code>、GET/POST/PUT/PATCH/DELETE/HEAD）。
+  <strong>ローカル保管の API キーで認証</strong>でき、キーは<strong>名前指定</strong>（秘密値は <code>zume-mcp</code> が付与し、
+  AI 側には返りません）。</li>
 </ul>
 <p><strong>できないこと（仕様）:</strong></p>
 <ul>
-<li><strong>ゼロからの新規ファイル作成</strong> - ファイル系ツールは<strong>既存</strong>ファイルの変更のみです。
-  （先にエディターで対象ファイルを作成・保存してから、AI に中身を書かせてください。）</li>
-<li><strong>データベースへのネイティブ接続</strong> - DB 用ツールはなく、<code>http_request</code> は HTTPS 専用の
-  ため、MySQL / PostgreSQL / SQL Server / Redis / MongoDB のワイヤプロトコルは話せません。
-  それはエディターの <a href="../database/">データベース</a> 機能で行ってください（データ源に HTTPS
-  API がある場合は <code>http_request</code> で可）。</li>
-<li><strong>専用のクラウドドライブ操作</strong> - クラウドの upload / download は、各社の HTTPS API を
-  <code>http_request</code> で叩く形でのみ可能です（下記）。ワンクリックの
-  <a href="../clouddrive/">クラウドドライブ</a> 参照はエディター機能です。</li>
+<li><strong>アプリに未設定の DB へ任意接続すること</strong> - <code>db_query</code> は保存済み接続か、指定された
+  SQLite パスのみを使います。</li>
+<li><strong>SQL 以外の経路での DB 到達</strong> - <code>http_request</code> は HTTPS API 用で、DB ツールはエディターの
+  SQL エンジン（SQLite / MySQL・MariaDB / PostgreSQL / SQL Server）を使います。</li>
+<li><strong>専用のクラウドドライブ操作</strong> - クラウドの upload / download は
+  <a href="../cli/#cloud"><code>zume-cli cloud</code></a> コマンドやエディターの
+  <a href="../clouddrive/">クラウドドライブ</a>、または各社 HTTPS API を <code>http_request</code> で叩く形で行います。</li>
 <li><strong><code>http://</code>・ループバック・ローカルネットワーク URL への到達</strong> - <code>https://</code> のみ許可。</li>
 </ul>
 <h2 id="_2">セットアップ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -1493,61 +1520,51 @@
 </code></pre></div>
 <p>Windows で <code>zume-mcp</code> が <code>PATH</code> に無い場合はフルパスを指定します。例:
 <code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code></p>
-<p>AI に使わせる API キーは <code>zume-cli aikey set &lt;name&gt;</code> で保存します
-（<a href="../cli/#aikey">CLI</a>）。AI 側は <code>list_credentials</code> で名前を
-確認できます。</p>
+<p>DB ツールは、アプリの <a href="../database/">データベース</a> ワークスペースで設定した接続を参照します。
+<code>http_request</code> 用の API キーは <code>zume-cli aikey set &lt;name&gt;</code> で保存します（<a href="../cli/#aikey">CLI</a>）。
+AI 側は <code>list_credentials</code> で名前を確認できます。</p>
 <h2 id="business-workflow">業務ワークフローの例<a class="headerlink" href="#business-workflow" title="Permanent link">&para;</a></h2>
 <p>いずれも AI への1つの依頼で、AI 自身がツールを組み合わせて実行します。</p>
 <p><strong>1. コードベース全体の検索と修正</strong></p>
 <blockquote>
 <p>「<code>src</code> 配下で <code>legacy_init(</code> を呼んでいるファイルをすべて見つけて、<code>init(</code> に変えて」</p>
 </blockquote>
-<p>AI は <code>search_in_file</code> で該当箇所を探し、<code>replace_in_file</code> で各ファイルを修正・保存します。</p>
-<p><strong>2. Web API からの情報でファイルを補完</strong></p>
+<p><code>search_in_file</code> + <code>replace_in_file</code> を使用。</p>
+<p><strong>2. DB のテーブルを CSV に出力</strong></p>
 <blockquote>
-<p>「<code>orders.csv</code> の各行について、REST API からステータスを取得して <code>status</code> 列に書いて」</p>
+<p>「<code>reporting</code> データベースに接続して、今月の <code>orders</code> を <code>orders.csv</code> に出力して」</p>
 </blockquote>
-<p>AI はファイルを読み（<code>read_file_range</code>）、保存キーで認証した <code>http_request</code>
-（例 <code>credential: "orders-api"</code>）で API を呼び、<code>replace_in_file</code> で書き戻します。
-<em>（対象ファイルは既存である必要があります。）</em></p>
-<p><strong>3. クラウドドライブへアップロード</strong></p>
+<p>AI は保存済みの <code>reporting</code> 接続に <code>db_query</code>（パスワードは資格情報ストアから）を実行し、
+<code>write_file</code> で <code>orders.csv</code> を作成します。アプリで<strong>読み取り専用</strong>に設定した接続では、
+読み取りクエリ以外は拒否されます。</p>
+<p><strong>3. Web API でファイルを補完</strong></p>
+<blockquote>
+<p>「<code>orders.csv</code> の各行について REST API からステータスを取得し、<code>orders_enriched.csv</code> に書いて」</p>
+</blockquote>
+<p>AI はファイルを読み、保存キーで認証した <code>http_request</code> で API を呼び、<code>write_file</code> で新しい
+ファイルを書き出します。</p>
+<p><strong>4. クラウドドライブへアップロード</strong></p>
 <blockquote>
 <p>「<code>report.pdf</code> を Dropbox の <code>/reports</code> にアップロードして」</p>
 </blockquote>
-<p>Dropbox のトークンを保存（<code>zume-cli aikey set dropbox</code>）しておけば、AI はファイルを読み、
-Dropbox のコンテンツ API へ <code>http_request</code> の <code>POST</code> を行います。<em>（専用クラウドツールは
-なく、各社 HTTPS API 経由です。対話的な参照はエディターの
-<a href="../clouddrive/">クラウドドライブ</a> で。）</em></p>
-<p><strong>4. HTTP データ源からレコードを取得して CSV へ</strong></p>
-<blockquote>
-<p>「分析 API から今月のサインアップを取得して <code>signups.csv</code> に入れて」</p>
-</blockquote>
-<p>AI は HTTPS のデータ API を <code>http_request</code> で呼び、行を整形し、既存の <code>signups.csv</code> へ
-<code>replace_in_file</code> で書き込みます。</p>
-<div class="admonition warning">
-<p class="admonition-title">DB には MCP から直接到達できません</p>
-<p><code>http_request</code> は HTTPS 専用のため、AI が MySQL / PostgreSQL / SQL Server / Redis /
-MongoDB サーバーへ<strong>直接接続することはできません</strong>。「DB に接続してテーブルを CSV に
-出力」は、エディターの <a href="../database/">データベース</a> ワークスペースの仕事です（接続 →
-クエリ実行 → グリッドを CSV 保存）。DB が HTTPS のデータ API を備える場合を除き、MCP
-では行えません。</p>
-</div>
+<p>AI はファイルを読み、Dropbox のコンテンツ API へ保存トークン付きで <code>http_request</code> します。
+（対話的な参照は <a href="../cli/#cloud"><code>zume-cli cloud</code></a> やエディターの
+<a href="../clouddrive/">クラウドドライブ</a> で。）</p>
 <p><strong>5. 保管キーで外部 LLM / API を呼ぶ</strong></p>
 <blockquote>
-<p>「<code>notes.md</code> を OpenAI で要約して、先頭に貼って」</p>
+<p>「<code>notes.md</code> を OpenAI で要約して <code>summary.md</code> に保存して」</p>
 </blockquote>
-<p>一度キーを保存（<code>zume-cli aikey set openai</code>）すれば、AI は <code>http_request</code>（<code>url</code>、
-<code>credential: "openai"</code>、<code>body</code>）で LLM を呼び、要約をファイルに書き込みます。キーの値は
-ローカルの資格情報ストアに留まり、AI には見えません。</p>
+<p>一度キーを保存（<code>zume-cli aikey set openai</code>）すれば、AI は <code>http_request</code> で LLM を呼び、
+<code>write_file</code> で結果を書き出します。キーの値はローカルの資格情報ストアに留まり、AI には
+見えません。</p>
 <h3 id="ai-lua">AI に Lua スクリプトを書かせる（エディターのカスタマイズ）<a class="headerlink" href="#ai-lua" title="Permanent link">&para;</a></h3>
 <p>強力な使い方: 繰り返し作業用の <strong>Zume <a href="../automation/">Luaスクリプト</a> を AI に書かせ</strong>、
 エディターで実行します。</p>
 <blockquote>
 <p>「選択行の <code>=</code> を揃える Zume の Lua スクリプトを書いて、<code>align_equals.lua</code> に保存して」</p>
 </blockquote>
-<p>AI は <code>zume</code> API を使ってスクリプトを作成し、<strong>既存</strong>の <code>align_equals.lua</code> に書き込みます
-（先に空ファイルを作るか、返ってきたスクリプトを貼り付け）。あとは <strong>Script → Run Lua
-File</strong> で実行し、思いどおりになるまで AI と調整します。</p>
+<p>AI は <code>zume</code> API を使ってスクリプトを作成し、<code>write_file</code> で <code>align_equals.lua</code> を作成します。
+あとは <strong>Script → Run Lua File</strong> で実行し、思いどおりになるまで AI と調整します。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>zume-mcp</code> は Lua を<strong>実行しません</strong>。実行するのはエディター（編集はすべて取り消し
@@ -1557,21 +1574,21 @@ File</strong> で実行し、思いどおりになるまで AI と調整しま�
 <h2 id="_3">利用上の注意<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">一部のツールはディスク上のファイルを変更します</p>
-<p><code>patch_bytes</code> と <code>replace_in_file</code> は<strong>ファイルをその場で変更 / 上書き</strong>します。これらの
-書き込みは MCP 側からは<strong>取り消せません</strong>（エディター画面での編集とは異なります）。信頼
-できるファイルにのみ使い、バックアップやバージョン管理を併用してください。</p>
+<p><code>write_file</code> / <code>patch_bytes</code> / <code>replace_in_file</code> はファイルを<strong>作成・上書き・変更</strong>します。
+これらの書き込みは MCP 側からは<strong>取り消せません</strong>（エディター画面での編集とは異なります）。
+信頼できるフォルダーでのみ使い、バックアップやバージョン管理を併用してください。</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">AI はあなたのデータを外部へ送信できます</p>
-<p><code>http_request</code> を通じて、AI は保管済みキーを使い、ファイル内容などを任意の HTTPS
-エンドポイントへ送信したり、外部データを取得したりできます。サーバー自体に
-<strong>テレメトリはなく</strong>、自発的に通信することはありませんが、<code>http_request</code> は AI が駆動する
-実際の外部送信経路です。到達させたいキーだけを保存し、信頼できるクライアントにのみ MCP を
-接続し、AI の動作を確認してください。</p>
+<p class="admonition-title">DB・ネットワークはあなたの名義で実行されます</p>
+<p><code>db_query</code> は設定済み DB の読み取りと（読み取り専用でなければ）<strong>書き込み</strong>ができ、
+<code>http_request</code> は保存キーを使って任意の HTTPS エンドポイントへの送受信ができます。
+パスワードやキーの値が AI に渡ることはありませんが、操作はあなたの資格情報で実行されます。
+到達させたい接続とキーだけを設定し、信頼できるクライアントにのみ MCP を接続し、AI の
+動作を確認してください。</p>
 </div>
 <ul>
-<li><strong>あなたの権限で動作します。</strong> <code>zume-mcp</code> は、あなたのアカウントが読み書きできるファイル
-  をすべて操作できます。どのフォルダー・ファイルを対象にするかに注意してください。</li>
+<li><strong>あなたの権限で動作します。</strong> <code>zume-mcp</code> は、あなたのアカウントが読み書きできるファイルを
+  すべて操作でき、設定済みの DB に到達できます。</li>
 <li><strong>HTTPS 専用・ボディ上限。</strong> <code>http_request</code> は <code>https://</code> 以外を拒否し、応答ボディは
   1 MiB で打ち切られます（<code>body_truncated</code> で通知）。</li>
 </ul>

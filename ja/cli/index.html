@@ -1039,10 +1039,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dropbox-dropbox" class="md-nav__link">
+  <a href="#cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        dropbox - Dropbox のファイル
+        cloud - クラウドドライブ
       
     </span>
   </a>
@@ -1444,10 +1444,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dropbox-dropbox" class="md-nav__link">
+  <a href="#cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        dropbox - Dropbox のファイル
+        cloud - クラウドドライブ
       
     </span>
   </a>
@@ -1618,13 +1618,27 @@ zume-cli aikey list                   # 名前を1行ずつ一覧
 zume-cli aikey remove &lt;name&gt;          # 削除（出力: removed '&lt;name&gt;'）
 </code></pre></div>
 <code>set</code> で <code>value</code> を省略すると、標準入力から読み取ります（シェル履歴に残さないため）。</p>
-<h2 id="dropbox-dropbox"><code>dropbox</code> - Dropbox のファイル<a class="headerlink" href="#dropbox-dropbox" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>zume-cli dropbox login &lt;app_key&gt;        # 認可してトークンを保存
-zume-cli dropbox ls [path]              # フォルダー一覧（既定はルート）
-zume-cli dropbox get &lt;remote&gt; &lt;local&gt;   # ダウンロード
-zume-cli dropbox put &lt;local&gt; &lt;remote&gt;   # アップロード
-zume-cli dropbox logout                 # 保存トークンを破棄
+<h2 id="cloud"><code>cloud</code> - クラウドドライブ<a class="headerlink" href="#cloud" title="Permanent link">&para;</a></h2>
+<p><strong>Dropbox / Google Drive / OneDrive / Box</strong> のファイルを操作します。リフレッシュ
+トークンは OS の資格情報ストアに保存され（ファイルには残りません）、エディターと共有
+されます（どちらでログインしても双方で有効）。</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud &lt;provider&gt; login ...          # 認可してトークンを保存
+zume-cli cloud &lt;provider&gt; ls [path]          # フォルダー一覧（既定はルート）
+zume-cli cloud &lt;provider&gt; get &lt;remote&gt; &lt;local&gt;   # ダウンロード
+zume-cli cloud &lt;provider&gt; put &lt;local&gt; &lt;remote&gt;   # アップロード
+zume-cli cloud &lt;provider&gt; logout             # 保存トークンを破棄
 </code></pre></div>
+<p><code>&lt;provider&gt;</code> は <code>dropbox</code> / <code>googledrive</code> / <code>onedrive</code> / <code>box</code>。<code>login</code> の引数は
+プロバイダーごとに異なります（ご自身の OAuth アプリの資格情報を指定）:</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud dropbox     login &lt;app_key&gt;
+zume-cli cloud googledrive login &lt;client_id&gt; &lt;client_secret&gt;
+zume-cli cloud onedrive    login &lt;client_id&gt;
+zume-cli cloud box         login &lt;client_id&gt; &lt;client_secret&gt;
+</code></pre></div>
+<p>Dropbox は表示されるコードを貼り付け、Google / OneDrive / Box はブラウザを開いてローカル
+ポートでリダイレクトを受け取ります（OAuth アプリに <code>http://localhost:53682/callback</code> を
+リダイレクト URI として登録してください）。<code>zume-cli dropbox ...</code> は
+<code>zume-cli cloud dropbox ...</code> の別名として引き続き使えます。</p>
 <h2 id="geo-"><code>geo</code> - 地図 / 地理空間データ<a class="headerlink" href="#geo-" title="Permanent link">&para;</a></h2>
 <p>エディターの地理エンジンを再利用します（<a href="../map/">地図</a> 参照）。形式変換はファイルを読み、
 結果を <strong>標準出力</strong> に出します。座標は10進度でも DMS（例 <code>35°41'N</code>）でも指定できます。</p>
