@@ -1,0 +1,35 @@
+/* Zume Editor Help - small branding tweaks over Material defaults. */
+
+:root {
+  --md-primary-fg-color:        #3b5bdb;
+  --md-primary-fg-color--light: #5c7cfa;
+  --md-primary-fg-color--dark:  #2b4acb;
+  --md-accent-fg-color:         #4263eb;
+}
+
+/* A little more breathing room in tables (shortcut/encoding lists). */
+.md-typeset table:not([class]) th {
+  white-space: nowrap;
+}
+
+/* Feature link cards on the home page (grid of <a> in a .md-grid). */
+.zume-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.zume-cards a {
+  display: block;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.4rem;
+  text-decoration: none;
+  transition: border-color 120ms, background-color 120ms;
+}
+.zume-cards a:hover {
+  border-color: var(--md-accent-fg-color);
+  background-color: var(--md-default-fg-color--lightest);
+}
+.zume-cards strong { display: block; }
+.zume-cards span { color: var(--md-default-fg-color--light); font-size: 0.75rem; }

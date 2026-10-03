@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/activation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/activation/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/activation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/automation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/automation/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/automation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/cli/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/cli/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/cli/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/clouddrive/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/clouddrive/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/clouddrive/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/compare/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/compare/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/compare/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/csv/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/csv/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/csv/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/customization/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/customization/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/customization/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/database/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/database/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/database/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/faq/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/faq/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/faq/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/getting-started/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/getting-started/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/getting-started/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/git/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/git/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/git/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/hex/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/hex/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/hex/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/installation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/installation/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/installation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/map/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/map/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/map/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/mcp/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/mcp/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/mcp/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/privacy/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/privacy/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/privacy/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/release-notes/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/release-notes/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/release-notes/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/remote/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/remote/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/remote/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/shortcuts/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/shortcuts/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/shortcuts/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/support/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/support/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/support/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/terminal-ssh/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/terminal-ssh/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/terminal-ssh/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/troubleshooting/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/updating/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/updating/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/updating/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/editing/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/editing/encodings/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/encodings/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/encodings/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/editing/large-files/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/large-files/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/large-files/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/editing/multi-cursor/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/multi-cursor/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/multi-cursor/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/editing/search/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/search/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/search/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/activation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/activation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/activation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/automation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/automation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/automation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/cli/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/cli/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/cli/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/clouddrive/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/clouddrive/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/clouddrive/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/compare/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/compare/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/compare/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/csv/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/csv/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/csv/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/customization/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/customization/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/customization/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/database/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/database/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/database/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/faq/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/faq/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/faq/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/getting-started/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/getting-started/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/getting-started/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/git/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/git/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/git/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/hex/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/hex/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/hex/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/installation/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/installation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/installation/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/map/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/map/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/map/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/mcp/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/mcp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/mcp/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/privacy/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/privacy/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/privacy/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/release-notes/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/release-notes/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/release-notes/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/remote/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/remote/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/remote/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/shortcuts/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/shortcuts/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/shortcuts/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/support/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/support/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/support/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/terminal-ssh/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/terminal-ssh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/terminal-ssh/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/troubleshooting/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/updating/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/updating/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/updating/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/editing/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/editing/encodings/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/encodings/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/encodings/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/editing/large-files/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/large-files/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/large-files/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/editing/multi-cursor/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/multi-cursor/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/multi-cursor/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/editing/search/</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/editing/search/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/editing/search/"/>
+    </url>
+</urlset>
