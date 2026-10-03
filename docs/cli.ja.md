@@ -65,15 +65,34 @@ zume-cli aikey remove <name>          # 削除（出力: removed '<name>'）
 ```
 `set` で `value` を省略すると、標準入力から読み取ります（シェル履歴に残さないため）。
 
-## `dropbox` - Dropbox のファイル
+## `cloud` - クラウドドライブ {#cloud}
+
+**Dropbox / Google Drive / OneDrive / Box** のファイルを操作します。リフレッシュ
+トークンは OS の資格情報ストアに保存され（ファイルには残りません）、エディターと共有
+されます（どちらでログインしても双方で有効）。
 
 ```text
-zume-cli dropbox login <app_key>        # 認可してトークンを保存
-zume-cli dropbox ls [path]              # フォルダー一覧（既定はルート）
-zume-cli dropbox get <remote> <local>   # ダウンロード
-zume-cli dropbox put <local> <remote>   # アップロード
-zume-cli dropbox logout                 # 保存トークンを破棄
+zume-cli cloud <provider> login ...          # 認可してトークンを保存
+zume-cli cloud <provider> ls [path]          # フォルダー一覧（既定はルート）
+zume-cli cloud <provider> get <remote> <local>   # ダウンロード
+zume-cli cloud <provider> put <local> <remote>   # アップロード
+zume-cli cloud <provider> logout             # 保存トークンを破棄
 ```
+
+`<provider>` は `dropbox` / `googledrive` / `onedrive` / `box`。`login` の引数は
+プロバイダーごとに異なります（ご自身の OAuth アプリの資格情報を指定）:
+
+```text
+zume-cli cloud dropbox     login <app_key>
+zume-cli cloud googledrive login <client_id> <client_secret>
+zume-cli cloud onedrive    login <client_id>
+zume-cli cloud box         login <client_id> <client_secret>
+```
+
+Dropbox は表示されるコードを貼り付け、Google / OneDrive / Box はブラウザを開いてローカル
+ポートでリダイレクトを受け取ります（OAuth アプリに `http://localhost:53682/callback` を
+リダイレクト URI として登録してください）。`zume-cli dropbox ...` は
+`zume-cli cloud dropbox ...` の別名として引き続き使えます。
 
 ## `geo` - 地図 / 地理空間データ
 

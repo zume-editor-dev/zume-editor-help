@@ -70,15 +70,34 @@ zume-cli aikey remove <name>          # delete a key (prints: removed '<name>')
 If you omit `value` for `set`, the key is read from standard input so it is not
 left in your shell history.
 
-## `dropbox` - Dropbox files
+## `cloud` - cloud drives {#cloud}
+
+Work with files on **Dropbox, Google Drive, OneDrive and Box**. The refresh
+token is kept in the OS credential store (never a file), and is shared with the
+editor - a login here or in the app works in both.
 
 ```text
-zume-cli dropbox login <app_key>        # authorize and save the token
-zume-cli dropbox ls [path]              # list a folder (root by default)
-zume-cli dropbox get <remote> <local>   # download a file
-zume-cli dropbox put <local> <remote>   # upload a file
-zume-cli dropbox logout                 # forget the saved token
+zume-cli cloud <provider> login ...          # authorize and save the token
+zume-cli cloud <provider> ls [path]          # list a folder (root by default)
+zume-cli cloud <provider> get <remote> <local>   # download a file
+zume-cli cloud <provider> put <local> <remote>   # upload a file
+zume-cli cloud <provider> logout             # forget the saved token
 ```
+
+`<provider>` is `dropbox`, `googledrive`, `onedrive` or `box`. The `login`
+arguments differ by provider (you supply your own OAuth app's credentials):
+
+```text
+zume-cli cloud dropbox     login <app_key>
+zume-cli cloud googledrive login <client_id> <client_secret>
+zume-cli cloud onedrive    login <client_id>
+zume-cli cloud box         login <client_id> <client_secret>
+```
+
+Dropbox shows a code to paste back; Google / OneDrive / Box open a browser and
+capture the redirect on a local port (register `http://localhost:53682/callback`
+as the redirect URI in your OAuth app). `zume-cli dropbox ...` still works as an
+alias for `zume-cli cloud dropbox ...`.
 
 ## `geo` - map / geospatial data
 
