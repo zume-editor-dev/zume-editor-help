@@ -8,6 +8,10 @@ Linuxは `bin/`、macOSはアプリフォルダー内）。エディター本体
 zume-cli <command> [引数] [フラグ]
 ```
 
+以下が**すべて**のコマンドです。`zume-cli` はエディターの機能を絞ったヘッドレス版
+（本体はアプリそのもの）で、`--version` はありません。引数なし、または未知のコマンドで
+実行すると usage を表示して終了コード `2` を返します。
+
 ## 共通フラグ
 
 | フラグ | 効果 | 対象 |
@@ -49,7 +53,7 @@ zume-cli replace <pattern> <replacement> <file> [--regex] [--ignore-case]
 すべての一致を置換してその場で保存します（`--regex` では `$1` などの後方参照が使えます）。
 `N replacement(s)` を出力します。1件以上置換したときのみファイルを書き込みます。
 
-## `aikey` - 生成AIの API キー（MCPハブ用）
+## `aikey` - 生成AIの API キー（MCPハブ用） {#aikey}
 
 [MCP](mcp.md) の `http_request` ツールが付与する、名前付き API キーを管理します。キーは OS の
 資格情報ストアに保存され、ファイルには残りません。

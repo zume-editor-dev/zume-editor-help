@@ -8,6 +8,11 @@ reuses the editor's own engines, so results match the GUI.
 zume-cli <command> [arguments] [flags]
 ```
 
+The commands below are the **complete** set. `zume-cli` is a deliberately small
+headless subset of the editor (the full tool is the app itself); there is no
+`--version`, and running it with no arguments or an unknown command prints the
+usage and exits with code `2`.
+
 ## Global flags
 
 | Flag | Effect | Applies to |
@@ -52,7 +57,7 @@ Replaces every match and saves the file in place (regex back-references like `$1
 work in `--regex` mode). Prints `N replacement(s)`. The file is written only when
 at least one replacement was made.
 
-## `aikey` - gen-AI API keys (for the MCP hub)
+## `aikey` - gen-AI API keys (for the MCP hub) {#aikey}
 
 Manage the named API keys that the [MCP](mcp.md) `http_request` tool injects. Keys
 are kept in the OS credential store, never in a file.
