@@ -38,6 +38,18 @@ macOS).
 | `db_schema` | List a connection's tables / views and their columns |
 | `db_query` | Run SQL on a connection and return the result rows |
 
+**Remote files (FTP / FTPS / SFTP)** (the connections configured in the app):
+
+| Tool | What it does |
+| --- | --- |
+| `remote_list_connections` | List the saved FTP / FTPS / SFTP connections (by name) |
+| `remote_ls` | List a remote directory |
+| `remote_get` | Download a remote file (to a local file, or return its content) |
+| `remote_put` | Upload a local file or inline text to a remote path |
+| `remote_delete` | Delete a remote file or empty directory |
+| `remote_rename` | Rename / move a remote file |
+| `remote_mkdir` | Create a remote directory |
+
 **Gen-AI hub:**
 
 | Tool | What it does |
@@ -58,6 +70,12 @@ The AI acts **only** through the tools above.
   app (`db_list_connections`), inspect a schema (`db_schema`) and run SQL
   (`db_query`) - against a saved connection by name, or a SQLite file by path.
   Passwords come from the OS credential store and are never shown to the AI.
+- **Operate on remote files over FTP / FTPS / SFTP** using the connections you
+  configured in the app (`remote_ls` / `remote_get` / `remote_put` /
+  `remote_delete` / `remote_rename` / `remote_mkdir`). Passwords come from the OS
+  credential store. For **SFTP**, the server's host key must already be trusted
+  (connect once in the editor); an unknown or changed key is refused, since there
+  is no way to confirm a fingerprint headlessly.
 - **Send data out and pull data in over HTTPS** (`http_request`,
   GET/POST/PUT/PATCH/DELETE/HEAD), **authenticated with an API key you store
   locally**, referenced **by name** (the secret is injected by `zume-mcp` and
@@ -144,6 +162,15 @@ Store the key once (`zume-cli aikey set openai`); the AI calls the LLM with
 `http_request` and writes the result with `write_file`. The key value stays in
 your local credential store and is never shown to the AI.
 
+**6. Work with files on a server**
+
+> "Download `/var/log/app.log` from the `staging` SFTP connection, find the
+> errors, and upload a cleaned copy back as `/var/log/app.clean.log`."
+
+The AI uses `remote_get` to download (over your saved `staging` connection),
+processes the text, and `remote_put` to upload the result. The `staging` host
+must already be trusted in the editor (SFTP).
+
 ### Let the AI write a Lua script (customise the editor) {#ai-lua}
 
 A powerful pattern: have the AI **write a Zume [Lua script](automation.md)** for
@@ -169,13 +196,14 @@ the AI until it does exactly what you want.
     (unlike edits made in the editor window). Only let the AI work in folders you
     trust, and keep backups or use version control.
 
-!!! warning "Database and network access act on your behalf"
+!!! warning "Database, remote and network access act on your behalf"
     `db_query` can read and (unless the connection is read-only) **write** to your
-    configured databases; `http_request` can send data to and fetch data from any
-    HTTPS endpoint using your stored keys. Passwords and key values never reach
-    the AI, but the actions run with your credentials. Configure only the
-    connections and keys you want reachable, connect MCP only to clients you
-    trust, and review what the AI does.
+    configured databases; the `remote_*` tools can read, **upload, delete and
+    rename** files on your configured FTP / SFTP servers; `http_request` can send
+    data to and fetch data from any HTTPS endpoint using your stored keys.
+    Passwords and key values never reach the AI, but the actions run with your
+    credentials. Configure only the connections and keys you want reachable,
+    connect MCP only to clients you trust, and review what the AI does.
 
 - **It runs with your permissions.** `zume-mcp` can read and write any file your
   user account can, and reach any database you configured.
