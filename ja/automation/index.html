@@ -921,10 +921,38 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Luaスクリプト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zume-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zume API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スクリプト例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         プロジェクトフック
@@ -1258,10 +1286,38 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Luaスクリプト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zume-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zume API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スクリプト例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         プロジェクトフック
@@ -1305,20 +1361,138 @@
 <li>マクロは編集可能なテキスト形式で保存されます。</li>
 </ul>
 <h2 id="lua_1">Luaスクリプト<a class="headerlink" href="#lua_1" title="Permanent link">&para;</a></h2>
-<p>現在の文書に対してLuaスクリプトを実行できます（<strong>Script → Run Lua File</strong>）。</p>
-<ul>
-<li>サンドボックス化した標準ライブラリと <code>zume</code> テーブル（text / caret / selection /
-  insert / replace / lines / log …）。編集はすべて取り消し可能です。</li>
-<li>テキスト / 大容量 / Hex のいずれのタブでも動作します。</li>
-<li>サンプルスクリプトを同梱（行のソート、重複除去、CSV→Markdown表 ほか）。</li>
-</ul>
-<h2 id="_2">プロジェクトフック<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>現在の文書に対してLuaスクリプトを実行できます（<strong>Script → Run Lua File</strong> / <strong>Run Last
+Script</strong>）。スクリプトはサンドボックス（ファイル・OS・ネットワークへのアクセス不可）で
+実行され、スクリプトによる編集は1回で取り消せる<strong>1ステップ</strong>になります。</p>
+<p>テキスト / 大容量 / Hex のいずれのタブでも動作します。サンプルスクリプトを同梱:
+<code>sort_lines</code>、<code>remove_duplicate_lines</code>、<code>trim_trailing_whitespace</code>、<code>count_words</code>、
+<code>list_todos</code>、<code>number_lines</code>、<code>uppercase_selection</code>、<code>fullwidth_to_ascii</code>、
+<code>csv_to_markdown_table</code> など。</p>
+<h3 id="zume-api"><code>zume</code> API<a class="headerlink" href="#zume-api" title="Permanent link">&para;</a></h3>
+<p>スクリプトはグローバルの <code>zume</code> テーブルを通して文書を操作します。バイトオフセットは
+0始まり、範囲は <code>[begin, end)</code> です。</p>
+<table>
+<thead>
+<tr>
+<th>関数</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zume.text()</code></td>
+<td>文書全体を文字列で取得</td>
+</tr>
+<tr>
+<td><code>zume.size()</code></td>
+<td>文書のバイトサイズ</td>
+</tr>
+<tr>
+<td><code>zume.caret()</code></td>
+<td>キャレットのバイトオフセット</td>
+</tr>
+<tr>
+<td><code>zume.set_caret(pos)</code></td>
+<td>キャレットを移動</td>
+</tr>
+<tr>
+<td><code>zume.selection()</code></td>
+<td>選択範囲の <code>begin, end</code>（2値）</td>
+</tr>
+<tr>
+<td><code>zume.select(begin, end)</code></td>
+<td>選択範囲を設定</td>
+</tr>
+<tr>
+<td><code>zume.selected_text()</code></td>
+<td>選択テキスト</td>
+</tr>
+<tr>
+<td><code>zume.insert(pos, text)</code></td>
+<td>指定位置にテキスト挿入</td>
+</tr>
+<tr>
+<td><code>zume.replace(begin, end, text)</code></td>
+<td>バイト範囲を置換</td>
+</tr>
+<tr>
+<td><code>zume.line_count()</code></td>
+<td>行数</td>
+</tr>
+<tr>
+<td><code>zume.line(i)</code></td>
+<td>i 行目（0始まり、改行なし）</td>
+</tr>
+<tr>
+<td><code>zume.read(offset, len)</code></td>
+<td>範囲限定の読み取り（大容量タブ用）</td>
+</tr>
+<tr>
+<td><code>zume.log(msg)</code></td>
+<td>スクリプトログに1行出力</td>
+</tr>
+<tr>
+<td><code>zume.api_version</code></td>
+<td>API バージョン（<code>2</code>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">スクリプト例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><strong>選択範囲を大文字化</strong>（未選択なら文書全体）:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">selection</span><span class="p">()</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">():</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">upper</span><span class="p">())</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"uppercased %d bytes"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">e</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">b</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>選択行をソート</strong>（未選択なら全行）。1回の取り消しで戻せます:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">selection</span><span class="p">()</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">()</span>
+<span class="kr">while</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="o">~=</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">end</span><span class="w">   </span><span class="c1">-- 行頭まで広げる</span>
+<span class="kr">while</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span><span class="w"> </span><span class="o">~=</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">block</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">block</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="p">(</span><span class="nv">block</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">):</span><span class="nf">gmatch</span><span class="p">(</span><span class="s2">"(.-)</span><span class="se">\r</span><span class="s2">?</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">lines</span><span class="p">[</span><span class="o">#</span><span class="nv">lines</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">end</span>
+<span class="nb">table.sort</span><span class="p">(</span><span class="nv">lines</span><span class="p">)</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">lines</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">out</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"sorted %d lines"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="o">#</span><span class="nv">lines</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>重複行の削除</strong>（最初の出現と元の順序を保持）:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">()</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">seen</span><span class="p">,</span><span class="w"> </span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="mi">0</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kr">end</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="p">(</span><span class="nv">text</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">):</span><span class="nf">gmatch</span><span class="p">(</span><span class="s2">"(.-)</span><span class="se">\r</span><span class="s2">?</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="w"> </span><span class="kr">do</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="nv">seen</span><span class="p">[</span><span class="nv">line</span><span class="p">]</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="nv">seen</span><span class="p">[</span><span class="nv">line</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="nv">out</span><span class="p">[</span><span class="o">#</span><span class="nv">out</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">end</span>
+<span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">(),</span><span class="w"> </span><span class="nv">result</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"removed %d duplicate line(s)"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">removed</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>各行に行番号を付ける</strong>（<code>"  12: text"</code>）。<code>line_count</code> / <code>line</code> を使用:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">line_count</span><span class="p">()</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">do</span>
+<span class="w">  </span><span class="nv">out</span><span class="p">[</span><span class="o">#</span><span class="nv">out</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s2">"%4d: %s"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">line</span><span class="p">(</span><span class="nv">i</span><span class="p">))</span>
+<span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">(),</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"numbered %d lines"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">count</span><span class="p">))</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>これらのスクリプトは AI に書かせることもできます。
+<a href="../mcp/#ai-lua">MCP → AI に Lua スクリプトを書かせる</a> を参照してください。</p>
+</div>
+<h2 id="_3">プロジェクトフック<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>プロジェクトは、開いたときと保存前にスクリプトを実行できます（プロジェクト設定の
 <code>on_open</code> / <code>on_save</code>）。プロジェクト専用のマクロやスクリプトも保持できます。</p>
-<div class="admonition note">
-<p class="admonition-title">TODO</p>
-<p>ここにスクリーンショットを追加してください。</p>
-</div>
 
 
 

@@ -921,6 +921,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Lua scripting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-zume-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The zume API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1258,6 +1286,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Lua scripting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-zume-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The zume API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1305,21 +1361,139 @@
 <li>Macros are saved in a documented text format you can edit.</li>
 </ul>
 <h2 id="lua-scripting">Lua scripting<a class="headerlink" href="#lua-scripting" title="Permanent link">&para;</a></h2>
-<p>Run Lua scripts against the current document (<strong>Script → Run Lua File</strong>).</p>
-<ul>
-<li>A sandboxed standard library plus a <code>zume</code> table (text, caret, selection, insert,
-  replace, lines, log, ...). All edits are undoable.</li>
-<li>Scripts work in text, large-file and hex tabs.</li>
-<li>Sample scripts ship with the app (sort lines, remove duplicates, CSV to Markdown
-  table, and more).</li>
-</ul>
+<p>Run Lua scripts against the current document (<strong>Script → Run Lua File</strong>, or
+<strong>Run Last Script</strong>). Scripts run in a sandbox (no file, OS or network access) and
+every edit a script makes is a single <strong>undoable</strong> step.</p>
+<p>Scripts work in text, large-file and hex tabs. Sample scripts ship with the app:
+<code>sort_lines</code>, <code>remove_duplicate_lines</code>, <code>trim_trailing_whitespace</code>, <code>count_words</code>,
+<code>list_todos</code>, <code>number_lines</code>, <code>uppercase_selection</code>, <code>fullwidth_to_ascii</code>,
+<code>csv_to_markdown_table</code> and more.</p>
+<h3 id="the-zume-api">The <code>zume</code> API<a class="headerlink" href="#the-zume-api" title="Permanent link">&para;</a></h3>
+<p>Scripts talk to the document through a global <code>zume</code> table. Byte offsets are
+0-based; a range is <code>[begin, end)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zume.text()</code></td>
+<td>The whole document as a string</td>
+</tr>
+<tr>
+<td><code>zume.size()</code></td>
+<td>Document size in bytes</td>
+</tr>
+<tr>
+<td><code>zume.caret()</code></td>
+<td>The caret's byte offset</td>
+</tr>
+<tr>
+<td><code>zume.set_caret(pos)</code></td>
+<td>Move the caret</td>
+</tr>
+<tr>
+<td><code>zume.selection()</code></td>
+<td>Two values: <code>begin, end</code> of the selection</td>
+</tr>
+<tr>
+<td><code>zume.select(begin, end)</code></td>
+<td>Set the selection</td>
+</tr>
+<tr>
+<td><code>zume.selected_text()</code></td>
+<td>The selected text</td>
+</tr>
+<tr>
+<td><code>zume.insert(pos, text)</code></td>
+<td>Insert text at an offset</td>
+</tr>
+<tr>
+<td><code>zume.replace(begin, end, text)</code></td>
+<td>Replace a byte range</td>
+</tr>
+<tr>
+<td><code>zume.line_count()</code></td>
+<td>Number of lines</td>
+</tr>
+<tr>
+<td><code>zume.line(i)</code></td>
+<td>Line <code>i</code> (0-based), without its line ending</td>
+</tr>
+<tr>
+<td><code>zume.read(offset, len)</code></td>
+<td>A bounded read (for large-file tabs)</td>
+</tr>
+<tr>
+<td><code>zume.log(msg)</code></td>
+<td>Write a line to the script log</td>
+</tr>
+<tr>
+<td><code>zume.api_version</code></td>
+<td>The API version (<code>2</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-scripts">Example scripts<a class="headerlink" href="#example-scripts" title="Permanent link">&para;</a></h3>
+<p><strong>Uppercase the selection</strong> (or the whole document when nothing is selected):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">selection</span><span class="p">()</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">():</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">upper</span><span class="p">())</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"uppercased %d bytes"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">e</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">b</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Sort the selected lines</strong> (whole document when nothing is selected), as one
+undo step:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">selection</span><span class="p">()</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">()</span>
+<span class="kr">while</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="o">~=</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">end</span><span class="w">   </span><span class="c1">-- widen to line starts</span>
+<span class="kr">while</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span><span class="w"> </span><span class="o">~=</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">e</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="nv">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">)</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">block</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">block</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{}</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="p">(</span><span class="nv">block</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">):</span><span class="nf">gmatch</span><span class="p">(</span><span class="s2">"(.-)</span><span class="se">\r</span><span class="s2">?</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="nv">lines</span><span class="p">[</span><span class="o">#</span><span class="nv">lines</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">end</span>
+<span class="nb">table.sort</span><span class="p">(</span><span class="nv">lines</span><span class="p">)</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">lines</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="nv">b</span><span class="p">,</span><span class="w"> </span><span class="nv">e</span><span class="p">,</span><span class="w"> </span><span class="nv">out</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"sorted %d lines"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="o">#</span><span class="nv">lines</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Remove duplicate lines</strong>, keeping the first occurrence and the original order:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">text</span><span class="p">()</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">seen</span><span class="p">,</span><span class="w"> </span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="mi">0</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">text</span><span class="p">:</span><span class="nf">sub</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kr">end</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="p">(</span><span class="nv">text</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">):</span><span class="nf">gmatch</span><span class="p">(</span><span class="s2">"(.-)</span><span class="se">\r</span><span class="s2">?</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="w"> </span><span class="kr">do</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="nv">seen</span><span class="p">[</span><span class="nv">line</span><span class="p">]</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">removed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="kr">else</span><span class="w"> </span><span class="nv">seen</span><span class="p">[</span><span class="nv">line</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="nv">out</span><span class="p">[</span><span class="o">#</span><span class="nv">out</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">line</span><span class="w"> </span><span class="kr">end</span>
+<span class="kr">end</span>
+<span class="kd">local</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="kr">if</span><span class="w"> </span><span class="nv">trailing</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="w"> </span><span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">(),</span><span class="w"> </span><span class="nv">result</span><span class="p">)</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"removed %d duplicate line(s)"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">removed</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Number every line</strong> (<code>"  12: text"</code>), using <code>line_count</code> / <code>line</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">line_count</span><span class="p">()</span>
+<span class="kr">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="kr">do</span>
+<span class="w">  </span><span class="nv">out</span><span class="p">[</span><span class="o">#</span><span class="nv">out</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s2">"%4d: %s"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">line</span><span class="p">(</span><span class="nv">i</span><span class="p">))</span>
+<span class="kr">end</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">zume</span><span class="p">.</span><span class="nf">size</span><span class="p">(),</span><span class="w"> </span><span class="nb">table.concat</span><span class="p">(</span><span class="nv">out</span><span class="p">,</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+<span class="nv">zume</span><span class="p">.</span><span class="nf">log</span><span class="p">((</span><span class="s2">"numbered %d lines"</span><span class="p">):</span><span class="nf">format</span><span class="p">(</span><span class="nv">count</span><span class="p">))</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An AI assistant can write these scripts for you. See
+<a href="../mcp/#ai-lua">MCP → Let the AI write a Lua script</a>.</p>
+</div>
 <h2 id="project-hooks">Project hooks<a class="headerlink" href="#project-hooks" title="Permanent link">&para;</a></h2>
 <p>A project can run a script on open and before save (<code>on_open</code> / <code>on_save</code> in the
 project settings), and keep project-local macros and scripts.</p>
-<div class="admonition note">
-<p class="admonition-title">TODO</p>
-<p>Add a screenshot here.</p>
-</div>
 
 
 

@@ -1028,7 +1028,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aikey-gen-ai-api-keys-for-the-mcp-hub" class="md-nav__link">
+  <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
         aikey - gen-AI API keys (for the MCP hub)
@@ -1433,7 +1433,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aikey-gen-ai-api-keys-for-the-mcp-hub" class="md-nav__link">
+  <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
         aikey - gen-AI API keys (for the MCP hub)
@@ -1546,6 +1546,10 @@ executable on Windows, in <code>bin/</code> on Linux, and in the app folder on m
 reuses the editor's own engines, so results match the GUI.</p>
 <div class="highlight"><pre><span></span><code>zume-cli &lt;command&gt; [arguments] [flags]
 </code></pre></div>
+<p>The commands below are the <strong>complete</strong> set. <code>zume-cli</code> is a deliberately small
+headless subset of the editor (the full tool is the app itself); there is no
+<code>--version</code>, and running it with no arguments or an unknown command prints the
+usage and exits with code <code>2</code>.</p>
 <h2 id="global-flags">Global flags<a class="headerlink" href="#global-flags" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1610,7 +1614,7 @@ Searches <code>dir</code> recursively. <code>glob</code> optionally restricts fi
 Replaces every match and saves the file in place (regex back-references like <code>$1</code>
 work in <code>--regex</code> mode). Prints <code>N replacement(s)</code>. The file is written only when
 at least one replacement was made.</p>
-<h2 id="aikey-gen-ai-api-keys-for-the-mcp-hub"><code>aikey</code> - gen-AI API keys (for the MCP hub)<a class="headerlink" href="#aikey-gen-ai-api-keys-for-the-mcp-hub" title="Permanent link">&para;</a></h2>
+<h2 id="aikey"><code>aikey</code> - gen-AI API keys (for the MCP hub)<a class="headerlink" href="#aikey" title="Permanent link">&para;</a></h2>
 <p>Manage the named API keys that the <a href="../mcp/">MCP</a> <code>http_request</code> tool injects. Keys
 are kept in the OS credential store, never in a file.</p>
 <p><div class="highlight"><pre><span></span><code>zume-cli aikey set &lt;name&gt; [value]     # store a key (prints: stored '&lt;name&gt;')

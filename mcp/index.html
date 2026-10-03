@@ -940,13 +940,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
+  <a href="#what-the-ai-can-and-cannot-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage example
+        What the AI can and cannot do
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business workflow examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Business workflow examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let the AI write a Lua script (customise the editor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1250,13 +1289,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
+  <a href="#what-the-ai-can-and-cannot-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage example
+        What the AI can and cannot do
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business workflow examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Business workflow examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let the AI write a Lua script (customise the editor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1300,13 +1378,14 @@
 <p>Zume Editor ships a separate program, <strong><code>zume-mcp</code></strong>, that acts as an
 <strong>MCP (Model Context Protocol) server</strong>. A compatible AI client (such as Claude
 Desktop or Claude Code) launches it and can then read, inspect and edit files
-through the editor's own, tested engines.</p>
+through the editor's own, tested engines - and reach external services over HTTPS
+using API keys you keep inside the app.</p>
 <p><code>zume-mcp</code> speaks JSON-RPC 2.0 over stdio (standard input / output) - it has no
 window and opens no network port of its own. It is installed alongside the app
 (next to the executable on Windows, in <code>bin/</code> on Linux, inside the app folder on
 macOS).</p>
 <h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
-<p><strong>Files, text, hex, search, diff</strong> (local, no network):</p>
+<p><strong>Files, text, hex, search, diff</strong> (local disk):</p>
 <table>
 <thead>
 <tr>
@@ -1341,11 +1420,11 @@ macOS).</p>
 </tr>
 <tr>
 <td><code>patch_bytes</code></td>
-<td>Overwrite bytes at an offset <strong>in place</strong> (modifies the file)</td>
+<td>Overwrite bytes at an offset in an <strong>existing</strong> file (modifies it)</td>
 </tr>
 <tr>
 <td><code>replace_in_file</code></td>
-<td>Replace all literal / regex matches and <strong>save</strong> (modifies the file)</td>
+<td>Replace all literal / regex matches in an existing file and <strong>save</strong></td>
 </tr>
 <tr>
 <td><code>detect_encoding</code></td>
@@ -1372,16 +1451,44 @@ macOS).</p>
 </tr>
 <tr>
 <td><code>http_request</code></td>
-<td>Call any HTTPS API, injecting a stored key <strong>by name</strong></td>
+<td>Make an HTTPS request to any API, optionally authenticated with a stored key</td>
 </tr>
 </tbody>
 </table>
-<p>With <code>http_request</code>, the AI names a stored key; the secret value is added to the
-request by <code>zume-mcp</code> and <strong>never crosses the MCP boundary</strong> to the AI. Store keys
-with <code>zume-cli aikey set</code> (see <a href="../cli/">CLI</a>).</p>
-<h2 id="usage-example">Usage example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
-<p>Point your MCP client at the <code>zume-mcp</code> command. For example, in a client that
-uses a JSON config (such as Claude Desktop):</p>
+<h2 id="what-the-ai-can-and-cannot-do">What the AI can and cannot do<a class="headerlink" href="#what-the-ai-can-and-cannot-do" title="Permanent link">&para;</a></h2>
+<p>Set expectations clearly - the AI acts <strong>only</strong> through the tools above.</p>
+<p><strong>It can:</strong></p>
+<ul>
+<li><strong>Read and inspect</strong> any file your account can read: text, logs, and binaries
+  (<code>read_file_range</code>, <code>search_in_file</code>, <code>extract_strings</code>, <code>hex_dump</code>,
+  <code>find_bytes</code>, <code>detect_encoding</code>, <code>diff_files</code>).</li>
+<li><strong>Modify existing files</strong> on disk: <code>replace_in_file</code> (find/replace and save) and
+  <code>patch_bytes</code> (overwrite bytes). These are real writes.</li>
+<li><strong>Send data out and pull data in over HTTPS</strong> with <code>http_request</code>
+  (GET/POST/PUT/PATCH/DELETE/HEAD, custom headers and body), <strong>authenticated with
+  an API key you store locally in the app</strong>. You reference the key <strong>by name</strong>;
+  <code>zume-mcp</code> injects the secret into the request's <code>Authorization</code> header, and the
+  secret value is <strong>never</strong> returned to the AI. So the AI can call external APIs,
+  LLMs and services - uploading content and fetching results - on your behalf.</li>
+</ul>
+<p><strong>It cannot (by design):</strong></p>
+<ul>
+<li><strong>Create a brand-new file from nothing</strong> - the file tools modify files that
+  already exist. (Create or save the target file in the editor first, then let the
+  AI fill it.)</li>
+<li><strong>Connect to a database over its native protocol.</strong> There is no DB tool, and
+  <code>http_request</code> is HTTPS-only, so it cannot speak the MySQL / PostgreSQL / SQL
+  Server / Redis / MongoDB wire protocols. Use the editor's <a href="../database/">Database</a>
+  feature for that (or, if your data source has an HTTPS API, <code>http_request</code>).</li>
+<li><strong>Use a dedicated cloud-drive tool.</strong> Cloud upload / download is possible only by
+  calling the provider's own HTTPS API through <code>http_request</code> with a stored token
+  (see below); the one-click <a href="../clouddrive/">CloudDrive</a> browser is an editor
+  feature.</li>
+<li><strong>Reach <code>http://</code>, loopback or local-network URLs</strong> - only <code>https://</code> is allowed.</li>
+</ul>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>Point your MCP client at the <code>zume-mcp</code> command. For a client that uses a JSON
+config (such as Claude Desktop):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">"zume-editor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1392,14 +1499,73 @@ uses a JSON config (such as Claude Desktop):</p>
 </code></pre></div>
 <p>On Windows, if <code>zume-mcp</code> is not on your <code>PATH</code>, use the full path, e.g.
 <code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code>.</p>
-<p>Once connected, you can ask the AI things like:</p>
-<ul>
-<li>"Read the last 2&nbsp;KB of <code>C:\\logs\\huge.log</code>." → <code>read_file_range</code></li>
-<li>"Find the bytes <code>DE AD BE EF</code> in <code>firmware.bin</code>." → <code>find_bytes</code></li>
-<li>"What encoding and line ending does <code>legacy.txt</code> use?" → <code>detect_encoding</code></li>
-<li>"Replace every <code>http://</code> with <code>https://</code> in <code>config.ini</code>." → <code>replace_in_file</code></li>
-<li>"Diff <code>before.json</code> and <code>after.json</code>." → <code>diff_files</code></li>
-</ul>
+<p>Store the API keys the AI may use with <code>zume-cli aikey set &lt;name&gt;</code> (see
+<a href="../cli/#aikey">CLI</a>); list them from the AI with
+<code>list_credentials</code>.</p>
+<h2 id="business-workflow">Business workflow examples<a class="headerlink" href="#business-workflow" title="Permanent link">&para;</a></h2>
+<p>Each example is one request you can make to the AI; it chains the tools itself.</p>
+<p><strong>1. Find-and-fix across a code base</strong></p>
+<blockquote>
+<p>"Find every file under <code>src</code> that still calls <code>legacy_init(</code> and change it to
+<code>init(</code>."</p>
+</blockquote>
+<p>The AI uses <code>search_in_file</code> to locate the calls and <code>replace_in_file</code> to fix each
+file (existing files, saved as it goes).</p>
+<p><strong>2. Enrich a file from a web API</strong></p>
+<blockquote>
+<p>"For each row in <code>orders.csv</code>, look up the status from our REST API and write it
+into the <code>status</code> column."</p>
+</blockquote>
+<p>The AI reads the file (<code>read_file_range</code>), calls your API with <code>http_request</code>
+(authenticated with the stored key, e.g. <code>credential: "orders-api"</code>), and writes
+the result back with <code>replace_in_file</code>. <em>(The target file must already exist.)</em></p>
+<p><strong>3. Upload a file to a cloud drive</strong></p>
+<blockquote>
+<p>"Upload <code>report.pdf</code> to my Dropbox <code>/reports</code> folder."</p>
+</blockquote>
+<p>With a Dropbox token stored (<code>zume-cli aikey set dropbox</code>), the AI reads the file
+and <code>http_request</code>s a <code>POST</code> to the Dropbox content API with the token. <em>(There is
+no dedicated cloud tool - this goes through the provider's HTTPS API. For
+interactive browsing use the editor's <a href="../clouddrive/">CloudDrive</a>.)</em></p>
+<p><strong>4. Pull records from an HTTP data source into a CSV</strong></p>
+<blockquote>
+<p>"Get this month's sign-ups from the analytics API and put them in <code>signups.csv</code>."</p>
+</blockquote>
+<p>The AI <code>http_request</code>s the HTTPS data API, shapes the rows, and writes them into
+the existing <code>signups.csv</code> with <code>replace_in_file</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Databases are not reachable over MCP</p>
+<p><code>http_request</code> is HTTPS-only, so the AI <strong>cannot</strong> open a direct connection to
+a MySQL / PostgreSQL / SQL Server / Redis / MongoDB server. "Connect to the DB
+and export a table to CSV" is a job for the editor's <a href="../database/">Database</a>
+workspace (connect, run the query, then save the grid as CSV) - not for MCP,
+unless your database is fronted by an HTTPS data API.</p>
+</div>
+<p><strong>5. Call an external LLM / API with a managed key</strong></p>
+<blockquote>
+<p>"Summarise <code>notes.md</code> with OpenAI and append the summary at the top."</p>
+</blockquote>
+<p>Store the key once (<code>zume-cli aikey set openai</code>); the AI calls the LLM with
+<code>http_request</code> (<code>url</code>, <code>credential: "openai"</code>, <code>body</code>) and writes the summary into
+the file. The key value stays in your local credential store and is never shown to
+the AI.</p>
+<h3 id="ai-lua">Let the AI write a Lua script (customise the editor)<a class="headerlink" href="#ai-lua" title="Permanent link">&para;</a></h3>
+<p>A powerful pattern: have the AI <strong>write a Zume <a href="../automation/">Lua script</a></strong> for a
+repetitive edit, then run it in the editor.</p>
+<blockquote>
+<p>"Write a Zume Lua script that aligns the <code>=</code> signs in the selected lines, and
+save it as <code>align_equals.lua</code>."</p>
+</blockquote>
+<p>The AI drafts the script using the <code>zume</code> API and writes it into an <strong>existing</strong>
+<code>align_equals.lua</code> (create the empty file first, or paste the script the AI
+returns). You then run it with <strong>Script → Run Lua File</strong>, and iterate with the AI
+until it does exactly what you want.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>zume-mcp</code> does <strong>not</strong> execute Lua - the editor does, where every edit is
+undoable - so you review and run the script yourself. This keeps you in control
+while still letting the AI extend the editor for you.</p>
+</div>
 <h2 id="usage-notes-cautions">Usage notes &amp; cautions<a class="headerlink" href="#usage-notes-cautions" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Some tools change files on disk</p>
@@ -1408,17 +1574,20 @@ these writes are <strong>not undoable</strong> from the MCP side (unlike edits m
 editor window). Only let the AI work on files you trust, and keep backups or use
 version control.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">The AI can send your data to external services</p>
+<p>Through <code>http_request</code>, the AI can transmit file contents and other data to any
+HTTPS endpoint and fetch remote data, using the API keys you have stored. The
+server itself has <strong>no telemetry</strong> and never phones home on its own - but
+<code>http_request</code> is a genuine outbound path that the AI drives. Store only the
+keys you want reachable, connect MCP only to clients you trust, and review what
+the AI does.</p>
+</div>
 <ul>
 <li><strong>It runs with your permissions.</strong> <code>zume-mcp</code> can read and write any file your
-  user account can. Only connect it in environments you control, and be mindful of
-  which folders you ask the AI to touch.</li>
-<li><strong>Outbound requests.</strong> <code>http_request</code> can reach any HTTPS URL. The AI chooses the
-  URL, so review what it does; the stored key's value is never revealed to the AI,
-  but the request is still made on your behalf.</li>
-<li><strong>Local only.</strong> The server itself listens on nothing - it communicates with the
-  client over stdio. Its only outbound network path is <code>http_request</code>.</li>
-<li><strong>No telemetry.</strong> <code>zume-mcp</code> sends nothing on its own; it only acts on the tool
-  calls the client makes.</li>
+  user account can. Be mindful of which folders and files you point it at.</li>
+<li><strong>HTTPS only, body capped.</strong> <code>http_request</code> rejects non-<code>https://</code> URLs, and a
+  response body is truncated at 1 MiB (reported via <code>body_truncated</code>).</li>
 </ul>
 
 

@@ -1028,7 +1028,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aikey-ai-api-mcp" class="md-nav__link">
+  <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
         aikey - 生成AIの API キー（MCPハブ用）
@@ -1433,7 +1433,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#aikey-ai-api-mcp" class="md-nav__link">
+  <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
         aikey - 生成AIの API キー（MCPハブ用）
@@ -1546,6 +1546,9 @@ Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。エディ�
 結果は GUI と一致します。</p>
 <div class="highlight"><pre><span></span><code>zume-cli &lt;command&gt; [引数] [フラグ]
 </code></pre></div>
+<p>以下が<strong>すべて</strong>のコマンドです。<code>zume-cli</code> はエディターの機能を絞ったヘッドレス版
+（本体はアプリそのもの）で、<code>--version</code> はありません。引数なし、または未知のコマンドで
+実行すると usage を表示して終了コード <code>2</code> を返します。</p>
 <h2 id="_1">共通フラグ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1607,7 +1610,7 @@ Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。エディ�
 </code></pre></div>
 すべての一致を置換してその場で保存します（<code>--regex</code> では <code>$1</code> などの後方参照が使えます）。
 <code>N replacement(s)</code> を出力します。1件以上置換したときのみファイルを書き込みます。</p>
-<h2 id="aikey-ai-api-mcp"><code>aikey</code> - 生成AIの API キー（MCPハブ用）<a class="headerlink" href="#aikey-ai-api-mcp" title="Permanent link">&para;</a></h2>
+<h2 id="aikey"><code>aikey</code> - 生成AIの API キー（MCPハブ用）<a class="headerlink" href="#aikey" title="Permanent link">&para;</a></h2>
 <p><a href="../mcp/">MCP</a> の <code>http_request</code> ツールが付与する、名前付き API キーを管理します。キーは OS の
 資格情報ストアに保存され、ファイルには残りません。</p>
 <p><div class="highlight"><pre><span></span><code>zume-cli aikey set &lt;name&gt; [value]     # 保存（出力: stored '&lt;name&gt;'）
