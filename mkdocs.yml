@@ -1,0 +1,107 @@
+site_name: Zume Editor Help
+site_description: >-
+  Documentation and help for Zume Editor - a fast, native text, code and hex
+  editor for Windows, macOS and Linux, built for very large files.
+site_url: https://zume-editor-dev.github.io/zume-editor-help/
+repo_url: https://github.com/zume-editor-dev/zume-editor-help
+repo_name: zume-editor-dev/zume-editor-help
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; SMOLT STAGE, K.K.
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      separator: '[\s​\-]'
+      lang:
+        - en
+        - ja
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ja
+          name: 日本語
+          build: true
+          nav_translations:
+            Editing: 編集
+
+nav:
+  - index.md
+  - getting-started.md
+  - installation.md
+  - activation.md
+  - Editing:
+      - editing/index.md
+      - editing/search.md
+      - editing/multi-cursor.md
+      - editing/encodings.md
+      - editing/large-files.md
+  - hex.md
+  - compare.md
+  - csv.md
+  - git.md
+  - terminal-ssh.md
+  - remote.md
+  - clouddrive.md
+  - database.md
+  - map.md
+  - automation.md
+  - mcp.md
+  - cli.md
+  - customization.md
+  - shortcuts.md
+  - privacy.md
+  - updating.md
+  - faq.md
+  - troubleshooting.md
+  - support.md
+  - release-notes.md
