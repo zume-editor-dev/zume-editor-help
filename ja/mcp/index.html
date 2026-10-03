@@ -1462,6 +1462,45 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 </tbody>
 </table>
+<p><strong>リモートファイル（FTP / FTPS / SFTP）</strong>（アプリで設定済みの接続）:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remote_list_connections</code></td>
+<td>保存済み FTP / FTPS / SFTP 接続を一覧（名前のみ）</td>
+</tr>
+<tr>
+<td><code>remote_ls</code></td>
+<td>リモートディレクトリの一覧</td>
+</tr>
+<tr>
+<td><code>remote_get</code></td>
+<td>リモートファイルをダウンロード（ローカル保存 or 内容を返す）</td>
+</tr>
+<tr>
+<td><code>remote_put</code></td>
+<td>ローカルファイル or インラインテキストをアップロード</td>
+</tr>
+<tr>
+<td><code>remote_delete</code></td>
+<td>リモートのファイル / 空ディレクトリを削除</td>
+</tr>
+<tr>
+<td><code>remote_rename</code></td>
+<td>リモートファイルのリネーム / 移動</td>
+</tr>
+<tr>
+<td><code>remote_mkdir</code></td>
+<td>リモートにディレクトリ作成</td>
+</tr>
+</tbody>
+</table>
 <p><strong>生成AIハブ:</strong></p>
 <table>
 <thead>
@@ -1492,6 +1531,11 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
   （<code>db_list_connections</code>）、スキーマ参照（<code>db_schema</code>）、SQL 実行（<code>db_query</code>）できます。
   保存済み接続は名前で、SQLite はファイルパスで指定します。パスワードは OS の資格情報
   ストアから取得され、AI には見えません。</li>
+<li><strong>FTP / FTPS / SFTP でのリモートファイル操作</strong>。アプリで設定済みの接続を使い、
+  <code>remote_ls</code> / <code>remote_get</code> / <code>remote_put</code> / <code>remote_delete</code> / <code>remote_rename</code> /
+  <code>remote_mkdir</code> が可能です。パスワードは OS の資格情報ストアから取得します。<strong>SFTP</strong> は、
+  サーバーのホスト鍵が既に信頼済みである必要があり（エディターで一度接続）、未知・変更
+  された鍵は拒否されます（ヘッドレスではフィンガープリントを確認できないため）。</li>
 <li><strong>HTTPS で外部へ送信・取得</strong>（<code>http_request</code>、GET/POST/PUT/PATCH/DELETE/HEAD）。
   <strong>ローカル保管の API キーで認証</strong>でき、キーは<strong>名前指定</strong>（秘密値は <code>zume-mcp</code> が付与し、
   AI 側には返りません）。</li>
@@ -1557,6 +1601,13 @@ AI 側は <code>list_credentials</code> で名前を確認できます。</p>
 <p>一度キーを保存（<code>zume-cli aikey set openai</code>）すれば、AI は <code>http_request</code> で LLM を呼び、
 <code>write_file</code> で結果を書き出します。キーの値はローカルの資格情報ストアに留まり、AI には
 見えません。</p>
+<p><strong>6. サーバー上のファイルを扱う</strong></p>
+<blockquote>
+<p>「<code>staging</code> の SFTP 接続から <code>/var/log/app.log</code> を取得し、エラーを抽出して、整形版を
+<code>/var/log/app.clean.log</code> としてアップロードして」</p>
+</blockquote>
+<p>AI は保存済み <code>staging</code> 接続で <code>remote_get</code> し、テキストを処理して <code>remote_put</code> で書き戻します。
+<code>staging</code> のホスト鍵はエディターで事前に信頼済みである必要があります（SFTP）。</p>
 <h3 id="ai-lua">AI に Lua スクリプトを書かせる（エディターのカスタマイズ）<a class="headerlink" href="#ai-lua" title="Permanent link">&para;</a></h3>
 <p>強力な使い方: 繰り返し作業用の <strong>Zume <a href="../automation/">Luaスクリプト</a> を AI に書かせ</strong>、
 エディターで実行します。</p>
@@ -1579,12 +1630,13 @@ AI 側は <code>list_credentials</code> で名前を確認できます。</p>
 信頼できるフォルダーでのみ使い、バックアップやバージョン管理を併用してください。</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">DB・ネットワークはあなたの名義で実行されます</p>
+<p class="admonition-title">DB・リモート・ネットワークはあなたの名義で実行されます</p>
 <p><code>db_query</code> は設定済み DB の読み取りと（読み取り専用でなければ）<strong>書き込み</strong>ができ、
-<code>http_request</code> は保存キーを使って任意の HTTPS エンドポイントへの送受信ができます。
-パスワードやキーの値が AI に渡ることはありませんが、操作はあなたの資格情報で実行されます。
-到達させたい接続とキーだけを設定し、信頼できるクライアントにのみ MCP を接続し、AI の
-動作を確認してください。</p>
+<code>remote_*</code> は設定済みの FTP / SFTP サーバー上のファイルの読み取り・<strong>アップロード・削除・
+リネーム</strong>ができ、<code>http_request</code> は保存キーを使って任意の HTTPS エンドポイントへの送受信
+ができます。パスワードやキーの値が AI に渡ることはありませんが、操作はあなたの資格情報で
+実行されます。到達させたい接続とキーだけを設定し、信頼できるクライアントにのみ MCP を
+接続し、AI の動作を確認してください。</p>
 </div>
 <ul>
 <li><strong>あなたの権限で動作します。</strong> <code>zume-mcp</code> は、あなたのアカウントが読み書きできるファイルを

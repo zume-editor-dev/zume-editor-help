@@ -1464,6 +1464,45 @@ macOS).</p>
 </tr>
 </tbody>
 </table>
+<p><strong>Remote files (FTP / FTPS / SFTP)</strong> (the connections configured in the app):</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remote_list_connections</code></td>
+<td>List the saved FTP / FTPS / SFTP connections (by name)</td>
+</tr>
+<tr>
+<td><code>remote_ls</code></td>
+<td>List a remote directory</td>
+</tr>
+<tr>
+<td><code>remote_get</code></td>
+<td>Download a remote file (to a local file, or return its content)</td>
+</tr>
+<tr>
+<td><code>remote_put</code></td>
+<td>Upload a local file or inline text to a remote path</td>
+</tr>
+<tr>
+<td><code>remote_delete</code></td>
+<td>Delete a remote file or empty directory</td>
+</tr>
+<tr>
+<td><code>remote_rename</code></td>
+<td>Rename / move a remote file</td>
+</tr>
+<tr>
+<td><code>remote_mkdir</code></td>
+<td>Create a remote directory</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Gen-AI hub:</strong></p>
 <table>
 <thead>
@@ -1494,6 +1533,12 @@ macOS).</p>
   app (<code>db_list_connections</code>), inspect a schema (<code>db_schema</code>) and run SQL
   (<code>db_query</code>) - against a saved connection by name, or a SQLite file by path.
   Passwords come from the OS credential store and are never shown to the AI.</li>
+<li><strong>Operate on remote files over FTP / FTPS / SFTP</strong> using the connections you
+  configured in the app (<code>remote_ls</code> / <code>remote_get</code> / <code>remote_put</code> /
+  <code>remote_delete</code> / <code>remote_rename</code> / <code>remote_mkdir</code>). Passwords come from the OS
+  credential store. For <strong>SFTP</strong>, the server's host key must already be trusted
+  (connect once in the editor); an unknown or changed key is refused, since there
+  is no way to confirm a fingerprint headlessly.</li>
 <li><strong>Send data out and pull data in over HTTPS</strong> (<code>http_request</code>,
   GET/POST/PUT/PATCH/DELETE/HEAD), <strong>authenticated with an API key you store
   locally</strong>, referenced <strong>by name</strong> (the secret is injected by <code>zume-mcp</code> and
@@ -1567,6 +1612,14 @@ or the editor's <a href="../clouddrive/">CloudDrive</a>.)</p>
 <p>Store the key once (<code>zume-cli aikey set openai</code>); the AI calls the LLM with
 <code>http_request</code> and writes the result with <code>write_file</code>. The key value stays in
 your local credential store and is never shown to the AI.</p>
+<p><strong>6. Work with files on a server</strong></p>
+<blockquote>
+<p>"Download <code>/var/log/app.log</code> from the <code>staging</code> SFTP connection, find the
+errors, and upload a cleaned copy back as <code>/var/log/app.clean.log</code>."</p>
+</blockquote>
+<p>The AI uses <code>remote_get</code> to download (over your saved <code>staging</code> connection),
+processes the text, and <code>remote_put</code> to upload the result. The <code>staging</code> host
+must already be trusted in the editor (SFTP).</p>
 <h3 id="ai-lua">Let the AI write a Lua script (customise the editor)<a class="headerlink" href="#ai-lua" title="Permanent link">&para;</a></h3>
 <p>A powerful pattern: have the AI <strong>write a Zume <a href="../automation/">Lua script</a></strong> for
 a repetitive edit, then run it in the editor.</p>
@@ -1592,13 +1645,14 @@ modify files</strong>, and these writes are <strong>not undoable</strong> from t
 trust, and keep backups or use version control.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Database and network access act on your behalf</p>
+<p class="admonition-title">Database, remote and network access act on your behalf</p>
 <p><code>db_query</code> can read and (unless the connection is read-only) <strong>write</strong> to your
-configured databases; <code>http_request</code> can send data to and fetch data from any
-HTTPS endpoint using your stored keys. Passwords and key values never reach
-the AI, but the actions run with your credentials. Configure only the
-connections and keys you want reachable, connect MCP only to clients you
-trust, and review what the AI does.</p>
+configured databases; the <code>remote_*</code> tools can read, <strong>upload, delete and
+rename</strong> files on your configured FTP / SFTP servers; <code>http_request</code> can send
+data to and fetch data from any HTTPS endpoint using your stored keys.
+Passwords and key values never reach the AI, but the actions run with your
+credentials. Configure only the connections and keys you want reachable,
+connect MCP only to clients you trust, and review what the AI does.</p>
 </div>
 <ul>
 <li><strong>It runs with your permissions.</strong> <code>zume-mcp</code> can read and write any file your
