@@ -83,11 +83,13 @@ nav:
       - editing/index.md
       - editing/search.md
       - editing/multi-cursor.md
+      - editing/vim.md
       - editing/encodings.md
       - editing/large-files.md
   - hex.md
   - compare.md
   - csv.md
+  - convert.md
   - git.md
   - terminal-ssh.md
   - remote.md

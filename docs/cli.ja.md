@@ -133,6 +133,37 @@ zume-cli geo area   <file>     # 測地的な面積（平方メートル）
 | `dms` | `<lat> <lon>` | 10進の `lat, lon` |
 | `reproject` | `--from <epsg> --to <epsg> <file.geojson>` | 再投影した GeoJSON（PROJ 使用） |
 
+## `convert` - ファイル変換
+
+```text
+zume-cli convert                      # 全変換 id を一覧
+zume-cli convert <id> <in> [out]      # 変換（out 省略時は標準出力）
+```
+
+`<id>` は `base64.encode`、`csv.toJson`、`json.toYaml`、`gzip.compress`、
+`bzip2.compress`、`html.toMarkdown` などです。Markdown / HTML から PDF への変換は
+専用 id で、出力ファイルが必須です：
+
+```text
+zume-cli convert md.toPdf   notes.md   notes.pdf
+zume-cli convert html.toPdf page.html  page.pdf
+```
+
+全変換の一覧と画面からの操作は[ファイル変換・アーカイブ](convert.md)を参照して
+ください。
+
+## `archive` - zip / tar / 7z アーカイブ
+
+```text
+zume-cli archive list    <archive>                 # 一覧
+zume-cli archive extract <archive> [dest-dir]      # 展開（既定: カレント）
+zume-cli archive create  <archive> <path>...       # ファイル / フォルダから作成
+```
+
+`create` は拡張子で形式を判定します：`.zip`、`.tar`、`.tar.gz` / `.tgz`、
+`.tar.bz2` / `.tbz2`、`.tar.xz` / `.txz`、`.7z`。`extract` は `.rar` と `.xz`
+も読めます（展開のみ）。暗号化アーカイブには非対応です。
+
 ## 例
 
 ```text
@@ -143,4 +174,8 @@ zume-cli aikey set openai            # 続けてプロンプトでキーを貼�
 zume-cli geo csv2geojson points.csv
 zume-cli geo geohash 35.68 139.76 8
 zume-cli geo reproject --from 4326 --to 3857 area.geojson
+zume-cli convert json.toYaml config.json config.yaml
+zume-cli convert md.toPdf README.md README.pdf
+zume-cli archive create site.tar.gz public/
+zume-cli archive extract bundle.7z out/
 ```

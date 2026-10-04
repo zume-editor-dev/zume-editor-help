@@ -1,8 +1,8 @@
 # Editing
 
 The everyday editing features. See also [Search & Replace](search.md),
-[Multi-cursor & Column](multi-cursor.md), [Encodings & Line Endings](encodings.md)
-and [Large Files](large-files.md).
+[Multi-cursor & Column](multi-cursor.md), [Vim mode](vim.md),
+[Encodings & Line Endings](encodings.md) and [Large Files](large-files.md).
 
 ## Basics
 

@@ -1,8 +1,9 @@
 # 編集
 
 日常的な編集機能です。[検索と置換](search.md)、
-[マルチカーソル & カラム](multi-cursor.md)、[文字コードと改行](encodings.md)、
-[大容量ファイル](large-files.md) も参照してください。
+[マルチカーソル & カラム](multi-cursor.md)、[Vim モード](vim.md)、
+[文字コードと改行](encodings.md)、[大容量ファイル](large-files.md) も参照して
+ください。
 
 ## 基本
 

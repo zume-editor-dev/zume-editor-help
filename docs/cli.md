@@ -139,6 +139,37 @@ zume-cli geo area   <file>     # geodesic area in square metres
 | `dms` | `<lat> <lon>` | decimal `lat, lon` |
 | `reproject` | `--from <epsg> --to <epsg> <file.geojson>` | reprojected GeoJSON (via PROJ) |
 
+## `convert` - file conversion
+
+```text
+zume-cli convert                      # list every converter id
+zume-cli convert <id> <in> [out]      # convert a file (stdout if out is omitted)
+```
+
+`<id>` is a converter such as `base64.encode`, `csv.toJson`, `json.toYaml`,
+`gzip.compress`, `bzip2.compress`, `html.toMarkdown`. Markdown / HTML to PDF has
+its own ids and always needs an output file:
+
+```text
+zume-cli convert md.toPdf   notes.md   notes.pdf
+zume-cli convert html.toPdf page.html  page.pdf
+```
+
+See [File conversion & archives](convert.md) for the full list and the in-editor
+equivalents.
+
+## `archive` - zip / tar / 7z archives
+
+```text
+zume-cli archive list    <archive>                 # list entries
+zume-cli archive extract <archive> [dest-dir]      # extract (default: current dir)
+zume-cli archive create  <archive> <path>...       # create from files / folders
+```
+
+`create` picks the format from the extension: `.zip`, `.tar`, `.tar.gz` / `.tgz`,
+`.tar.bz2` / `.tbz2`, `.tar.xz` / `.txz`, `.7z`. `extract` also reads `.rar` and
+`.xz` (read-only). Encrypted archives are not supported.
+
 ## Examples
 
 ```text
@@ -149,4 +180,8 @@ zume-cli aikey set openai            # then paste the key at the prompt
 zume-cli geo csv2geojson points.csv
 zume-cli geo geohash 35.68 139.76 8
 zume-cli geo reproject --from 4326 --to 3857 area.geojson
+zume-cli convert json.toYaml config.json config.yaml
+zume-cli convert md.toPdf README.md README.pdf
+zume-cli archive create site.tar.gz public/
+zume-cli archive extract bundle.7z out/
 ```
