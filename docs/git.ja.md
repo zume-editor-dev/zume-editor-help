@@ -15,5 +15,4 @@
     ローカル操作は libgit2 を使用し、ネットワークやマージ/リベースはシステムに
     インストール済みの `git` を実行します。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![内蔵 Git クライアント](assets/screenshots/git.png){ loading=lazy }

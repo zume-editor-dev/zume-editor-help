@@ -20,5 +20,4 @@ For binary files, **Compare Bytes With File** aligns both files as hex rows.
 Open a file with Git conflict markers and use **Merge → Next/Previous Conflict**
 and **Take Ours / Theirs / Both** to resolve each conflict as one undo step.
 
-!!! note "TODO"
-    Add a screenshot here.
+![Comparing two files side by side](assets/screenshots/diff.png){ loading=lazy }

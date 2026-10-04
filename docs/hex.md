@@ -11,5 +11,4 @@ Switch any tab to a hex view with ++ctrl+shift+h++ (or the command palette).
 - Works on [large files](editing/large-files.md), and you can
   [compare two files byte-by-byte](compare.md).
 
-!!! note "TODO"
-    Add a screenshot here.
+![The hex editor](assets/screenshots/hex.png){ loading=lazy }

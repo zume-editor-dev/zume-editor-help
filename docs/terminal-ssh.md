@@ -16,5 +16,6 @@ authentication are supported (see [Remote Files](remote.md)).
 !!! note
     This is an interactive shell panel, not a full terminal emulator.
 
-!!! note "TODO"
-    Add a screenshot here.
+![A terminal panel at the bottom](assets/screenshots/terminal.png){ loading=lazy }
+
+![An SSH session in a panel](assets/screenshots/ssh.png){ loading=lazy }

@@ -7,5 +7,6 @@
 - 区切り文字は自動判定。引用・エスケープは RFC&nbsp;4180 に準拠します。
 - グリッド表示と生テキスト表示はいつでも切り替えられます。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![CSV をグリッドで表示](assets/screenshots/csv.png){ loading=lazy }
+
+![グリッドでセルを編集](assets/screenshots/csv_grid.png){ loading=lazy }

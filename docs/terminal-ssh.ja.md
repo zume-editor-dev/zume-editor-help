@@ -15,5 +15,6 @@
 !!! note
     対話シェルのパネルであり、完全な端末エミュレーターではありません。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![下部のターミナルパネル](assets/screenshots/terminal.png){ loading=lazy }
+
+![パネル内の SSH セッション](assets/screenshots/ssh.png){ loading=lazy }

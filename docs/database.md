@@ -46,5 +46,4 @@ with results shown in a grid.
 - **NoSQL** - Redis and MongoDB connections run commands / queries and show the
   results in the same panel.
 
-!!! note "TODO"
-    Add a screenshot of the schema browser and the results grid.
+![The schema browser and the results grid](assets/screenshots/db.png){ loading=lazy }

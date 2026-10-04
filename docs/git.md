@@ -15,5 +15,4 @@ A built-in Git client, opened as its own tab (**Git → Open Git Tab**).
     Local operations use libgit2; network and merge/rebase operations run the
     `git` already installed on your system.
 
-!!! note "TODO"
-    Add a screenshot here.
+![The built-in Git client](assets/screenshots/git.png){ loading=lazy }

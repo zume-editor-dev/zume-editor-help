@@ -17,5 +17,4 @@
 SSHシェルは [ターミナル & SSH](terminal-ssh.md)、クラウドストレージは
 [クラウドドライブ](clouddrive.md) を参照してください。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![SFTP / FTP でリモートサーバーを閲覧](assets/screenshots/ftp.png){ loading=lazy }

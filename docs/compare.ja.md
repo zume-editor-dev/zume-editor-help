@@ -20,5 +20,4 @@
 Gitの競合マーカーを含むファイルで、**Merge → Next/Previous Conflict** と
 **Take Ours / Theirs / Both** を使うと、各競合を1回の取り消しで解決できます。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![2つのファイルを左右で比較](assets/screenshots/diff.png){ loading=lazy }

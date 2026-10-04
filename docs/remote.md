@@ -17,5 +17,4 @@ Edit files directly on a remote server.
 See also [Terminal & SSH](terminal-ssh.md) for an SSH shell, and
 [CloudDrive](clouddrive.md) for cloud storage.
 
-!!! note "TODO"
-    Add a screenshot here.
+![Browsing a remote server over SFTP / FTP](assets/screenshots/ftp.png){ loading=lazy }

@@ -44,5 +44,4 @@
 - **NoSQL** - Redis / MongoDB 接続では、コマンド / クエリを実行し、同じパネルに結果を
   表示します。
 
-!!! note "TODO"
-    スキーマブラウザーと結果グリッドのスクリーンショットを追加してください。
+![スキーマブラウザーと結果グリッド](assets/screenshots/db.png){ loading=lazy }

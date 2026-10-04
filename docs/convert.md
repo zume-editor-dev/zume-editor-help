@@ -10,6 +10,8 @@ from the `zume-cli` command line.
 converter. Pick one and choose where to save; the result is written to the file
 you pick. The active document is the input.
 
+![The file-conversion picker](assets/screenshots/convert_file.png){ loading=lazy }
+
 Available converters:
 
 | Group | Converters |

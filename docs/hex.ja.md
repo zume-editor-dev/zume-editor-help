@@ -10,5 +10,4 @@
 - [大容量ファイル](editing/large-files.md) でも動作し、
   [2ファイルをバイト単位で比較](compare.md) できます。
 
-!!! note "TODO"
-    ここにスクリーンショットを追加してください。
+![ヘックスエディター](assets/screenshots/hex.png){ loading=lazy }

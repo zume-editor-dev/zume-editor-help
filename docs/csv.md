@@ -7,5 +7,6 @@ raw text - while the file on disk stays plain CSV.
 - The delimiter is detected; quoting and escaping follow RFC&nbsp;4180.
 - Switch between the grid and the raw text view at any time.
 
-!!! note "TODO"
-    Add a screenshot here.
+![A CSV file shown as a grid](assets/screenshots/csv.png){ loading=lazy }
+
+![Editing cells in the CSV grid](assets/screenshots/csv_grid.png){ loading=lazy }

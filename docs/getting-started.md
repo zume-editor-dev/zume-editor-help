@@ -15,6 +15,8 @@ A quick tour so you can find your way around.
 - **Status bar** - line/column, language, encoding, line ending and more. Click
   the encoding or language to change it.
 
+![The Zume Editor main window](assets/screenshots/main.png){ loading=lazy }
+
 ## First steps
 
 1. **Open** a file or folder - ++ctrl+o++, or drag files onto the window.
@@ -28,5 +30,9 @@ A quick tour so you can find your way around.
 Press ++ctrl+shift+p++ to search and run any command by name - the fastest way to
 discover features. Each command shows its keyboard shortcut.
 
-!!! note "TODO"
-    Add a screenshot here.
+## Markdown & HTML preview
+
+Open a Markdown or HTML file and turn on **View → Toggle Markdown / HTML Preview**
+to see a live preview beside the editor. The preview updates as you type.
+
+![Markdown live preview beside the editor](assets/screenshots/markdown.png){ loading=lazy }
