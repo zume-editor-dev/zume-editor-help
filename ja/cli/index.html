@@ -536,6 +536,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../editing/vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim モード
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../editing/encodings/" class="md-nav__link">
         
   
@@ -661,6 +689,33 @@
     
   
     CSV &amp; データグリッド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ファイル変換・アーカイブ
   
 
     
@@ -1100,6 +1155,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#convert-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - ファイル変換
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z アーカイブ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1505,6 +1582,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#convert-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - ファイル変換
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z アーカイブ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1705,6 +1804,26 @@ zume-cli geo area   &lt;file&gt;     # 測地的な面積（平方メートル�
 </tr>
 </tbody>
 </table>
+<h2 id="convert-"><code>convert</code> - ファイル変換<a class="headerlink" href="#convert-" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli convert                      # 全変換 id を一覧
+zume-cli convert &lt;id&gt; &lt;in&gt; [out]      # 変換（out 省略時は標準出力）
+</code></pre></div>
+<p><code>&lt;id&gt;</code> は <code>base64.encode</code>、<code>csv.toJson</code>、<code>json.toYaml</code>、<code>gzip.compress</code>、
+<code>bzip2.compress</code>、<code>html.toMarkdown</code> などです。Markdown / HTML から PDF への変換は
+専用 id で、出力ファイルが必須です：</p>
+<div class="highlight"><pre><span></span><code>zume-cli convert md.toPdf   notes.md   notes.pdf
+zume-cli convert html.toPdf page.html  page.pdf
+</code></pre></div>
+<p>全変換の一覧と画面からの操作は<a href="../convert/">ファイル変換・アーカイブ</a>を参照して
+ください。</p>
+<h2 id="archive-zip-tar-7z"><code>archive</code> - zip / tar / 7z アーカイブ<a class="headerlink" href="#archive-zip-tar-7z" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli archive list    &lt;archive&gt;                 # 一覧
+zume-cli archive extract &lt;archive&gt; [dest-dir]      # 展開（既定: カレント）
+zume-cli archive create  &lt;archive&gt; &lt;path&gt;...       # ファイル / フォルダから作成
+</code></pre></div>
+<p><code>create</code> は拡張子で形式を判定します：<code>.zip</code>、<code>.tar</code>、<code>.tar.gz</code> / <code>.tgz</code>、
+<code>.tar.bz2</code> / <code>.tbz2</code>、<code>.tar.xz</code> / <code>.txz</code>、<code>.7z</code>。<code>extract</code> は <code>.rar</code> と <code>.xz</code>
+も読めます（展開のみ）。暗号化アーカイブには非対応です。</p>
 <h2 id="_7">例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>zume-cli find TODO src/main.cpp
 zume-cli search "fn\s+\w+" src --regex --ignore-case
@@ -1713,6 +1832,10 @@ zume-cli aikey set openai            # 続けてプロンプトでキーを貼�
 zume-cli geo csv2geojson points.csv
 zume-cli geo geohash 35.68 139.76 8
 zume-cli geo reproject --from 4326 --to 3857 area.geojson
+zume-cli convert json.toYaml config.json config.yaml
+zume-cli convert md.toPdf README.md README.pdf
+zume-cli archive create site.tar.gz public/
+zume-cli archive extract bundle.7z out/
 </code></pre></div>
 
 

@@ -536,6 +536,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../editing/vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../editing/encodings/" class="md-nav__link">
         
   
@@ -661,6 +689,33 @@
     
   
     CSV &amp; Data Grid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File conversion &amp; archives
   
 
     
@@ -1100,6 +1155,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#convert-file-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - file conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z-archives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z archives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1505,6 +1582,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#convert-file-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - file conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z-archives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z archives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1711,6 +1810,26 @@ zume-cli geo area   &lt;file&gt;     # geodesic area in square metres
 </tr>
 </tbody>
 </table>
+<h2 id="convert-file-conversion"><code>convert</code> - file conversion<a class="headerlink" href="#convert-file-conversion" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli convert                      # list every converter id
+zume-cli convert &lt;id&gt; &lt;in&gt; [out]      # convert a file (stdout if out is omitted)
+</code></pre></div>
+<p><code>&lt;id&gt;</code> is a converter such as <code>base64.encode</code>, <code>csv.toJson</code>, <code>json.toYaml</code>,
+<code>gzip.compress</code>, <code>bzip2.compress</code>, <code>html.toMarkdown</code>. Markdown / HTML to PDF has
+its own ids and always needs an output file:</p>
+<div class="highlight"><pre><span></span><code>zume-cli convert md.toPdf   notes.md   notes.pdf
+zume-cli convert html.toPdf page.html  page.pdf
+</code></pre></div>
+<p>See <a href="../convert/">File conversion &amp; archives</a> for the full list and the in-editor
+equivalents.</p>
+<h2 id="archive-zip-tar-7z-archives"><code>archive</code> - zip / tar / 7z archives<a class="headerlink" href="#archive-zip-tar-7z-archives" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli archive list    &lt;archive&gt;                 # list entries
+zume-cli archive extract &lt;archive&gt; [dest-dir]      # extract (default: current dir)
+zume-cli archive create  &lt;archive&gt; &lt;path&gt;...       # create from files / folders
+</code></pre></div>
+<p><code>create</code> picks the format from the extension: <code>.zip</code>, <code>.tar</code>, <code>.tar.gz</code> / <code>.tgz</code>,
+<code>.tar.bz2</code> / <code>.tbz2</code>, <code>.tar.xz</code> / <code>.txz</code>, <code>.7z</code>. <code>extract</code> also reads <code>.rar</code> and
+<code>.xz</code> (read-only). Encrypted archives are not supported.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>zume-cli find TODO src/main.cpp
 zume-cli search "fn\s+\w+" src --regex --ignore-case
@@ -1719,6 +1838,10 @@ zume-cli aikey set openai            # then paste the key at the prompt
 zume-cli geo csv2geojson points.csv
 zume-cli geo geohash 35.68 139.76 8
 zume-cli geo reproject --from 4326 --to 3857 area.geojson
+zume-cli convert json.toYaml config.json config.yaml
+zume-cli convert md.toPdf README.md README.pdf
+zume-cli archive create site.tar.gz public/
+zume-cli archive extract bundle.7z out/
 </code></pre></div>
 
 
