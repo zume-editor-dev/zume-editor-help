@@ -995,6 +995,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restrict-what-the-ai-can-touch-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restrict what the AI can touch (sandbox)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-the-ai-can-and-cannot-do" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1344,6 +1355,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restrict-what-the-ai-can-touch-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restrict what the AI can touch (sandbox)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-the-ai-can-and-cannot-do" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1494,6 +1516,73 @@ macOS).</p>
 <td><code>diff_files</code></td>
 <td>A line diff of two files (added / removed lines per hunk)</td>
 </tr>
+<tr>
+<td><code>search_in_files</code></td>
+<td>Literal or regex search across every text file under a directory</td>
+</tr>
+<tr>
+<td><code>replace_in_files</code></td>
+<td>Replace across a directory; previews by default, applies in one transaction</td>
+</tr>
+<tr>
+<td><code>search_large_file</code></td>
+<td>Streamed search over a file of any size (byte offsets + preview)</td>
+</tr>
+<tr>
+<td><code>compare_folders</code></td>
+<td>Compare two directory trees (same / different / left-only / right-only)</td>
+</tr>
+<tr>
+<td><code>list_symbols</code></td>
+<td>The definitions (functions, types, …) of a source file, with line numbers</td>
+</tr>
+<tr>
+<td><code>markdown_to_html</code></td>
+<td>Render Markdown (GFM tables, inline formatting) to an HTML document</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Map data, conversion, archives, patches, scripting:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geo_convert</code></td>
+<td>Convert map data between GeoJSON / WKT / KML / GPX / CSV</td>
+</tr>
+<tr>
+<td><code>geo_measure</code></td>
+<td>Geodesic length (m) / area (m²) of a GeoJSON or WKT document</td>
+</tr>
+<tr>
+<td><code>geo_point</code></td>
+<td>geohash, map tile + quadkey + bbox, Japan Plane Rectangular CS, DMS ⇄ decimal</td>
+</tr>
+<tr>
+<td><code>geo_reproject</code></td>
+<td>Reproject GeoJSON between EPSG CRSs (PROJ)</td>
+</tr>
+<tr>
+<td><code>convert_list</code> / <code>convert_run</code></td>
+<td>List / run the file-conversion toolbox (base64, JSON ⇄ CSV, timestamps, …)</td>
+</tr>
+<tr>
+<td><code>archive_list</code> / <code>archive_extract</code> / <code>archive_create</code></td>
+<td>List, extract or create zip / tar / 7z archives</td>
+</tr>
+<tr>
+<td><code>patch_bin</code></td>
+<td>Apply or create a binary patch (IPS / BPS / UPS / bsdiff / VCDIFF)</td>
+</tr>
+<tr>
+<td><code>run_script</code></td>
+<td>Run a sandboxed Lua script against a file (preview, or <code>save</code> to write it back)</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Databases</strong> (the connections configured in the app, or a SQLite file):</p>
@@ -1516,6 +1605,41 @@ macOS).</p>
 <tr>
 <td><code>db_query</code></td>
 <td>Run SQL on a connection and return the result rows</td>
+</tr>
+<tr>
+<td><code>nosql_list_connections</code></td>
+<td>List the saved Redis / MongoDB connections (by name)</td>
+</tr>
+<tr>
+<td><code>nosql_command</code></td>
+<td>Run a Redis / MongoDB command and return the result as JSON</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Git</strong> (a local repository, read-only):</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git_status</code></td>
+<td>The current branch and the staged / unstaged changes</td>
+</tr>
+<tr>
+<td><code>git_log</code></td>
+<td>The commit history (id, summary, author, time), newest first</td>
+</tr>
+<tr>
+<td><code>git_branches</code></td>
+<td>The local branches, with the current one and ahead / behind</td>
+</tr>
+<tr>
+<td><code>git_diff</code></td>
+<td>The diff of one file (staged or unstaged half)</td>
 </tr>
 </tbody>
 </table>
@@ -1558,6 +1682,29 @@ macOS).</p>
 </tr>
 </tbody>
 </table>
+<p><strong>Cloud storage</strong> (the account you signed in to in the app, or with <code>zume-cli</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cloud_ls</code></td>
+<td>List a folder on Dropbox / Google Drive / OneDrive / Box</td>
+</tr>
+<tr>
+<td><code>cloud_get</code></td>
+<td>Download a file from a connected cloud account</td>
+</tr>
+<tr>
+<td><code>cloud_put</code></td>
+<td>Upload a local file or inline text to a cloud account</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Gen-AI hub:</strong></p>
 <table>
 <thead>
@@ -1577,6 +1724,42 @@ macOS).</p>
 </tr>
 </tbody>
 </table>
+<h2 id="restrict-what-the-ai-can-touch-sandbox">Restrict what the AI can touch (sandbox)<a class="headerlink" href="#restrict-what-the-ai-can-touch-sandbox" title="Permanent link">&para;</a></h2>
+<p>Two environment variables, set on the <code>zume-mcp</code> process, scope what the file
+tools may do. Both are optional — if you set neither, the tools have full access
+(the default). Set them in your MCP client's server configuration (an <code>env</code>
+block) to confine an agent.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZUME_MCP_ROOTS</code></td>
+<td>A list of allowed directories (separated by <code>;</code> on Windows, <code>:</code> elsewhere). A tool is refused unless its path is inside one of these folders. Symbolic links and <code>..</code> are resolved first, so a path cannot escape.</td>
+</tr>
+<tr>
+<td><code>ZUME_MCP_READONLY</code></td>
+<td><code>1</code> / <code>true</code> / <code>yes</code> / <code>on</code> makes the server read-only: every tool that would change a file (write, patch, replace, extract, create, upload, and <code>run_script</code> with <code>save</code>) is refused. Reads still work.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"ZUME_MCP_ROOTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\work\\project"</span><span class="p">,</span><span class="w"> </span><span class="nt">"ZUME_MCP_READONLY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A refused request comes back as a normal tool error, not a crash. The sandbox
+covers the local-file tools; the database, remote-file, cloud and <code>http_request</code>
+tools have their own rules (saved connections, read-only DB profiles, HTTPS
+only).</p>
 <h2 id="what-the-ai-can-and-cannot-do">What the AI can and cannot do<a class="headerlink" href="#what-the-ai-can-and-cannot-do" title="Permanent link">&para;</a></h2>
 <p>The AI acts <strong>only</strong> through the tools above.</p>
 <p><strong>It can:</strong></p>

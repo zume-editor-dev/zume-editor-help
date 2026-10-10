@@ -998,6 +998,17 @@
   <a href="#ai" class="md-nav__link">
     <span class="md-ellipsis">
       
+        AI が触れる範囲を制限する（サンドボックス）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         AI にできること・できないこと
       
     </span>
@@ -1347,6 +1358,17 @@
   <a href="#ai" class="md-nav__link">
     <span class="md-ellipsis">
       
+        AI が触れる範囲を制限する（サンドボックス）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         AI にできること・できないこと
       
     </span>
@@ -1492,6 +1514,73 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 <td><code>diff_files</code></td>
 <td>2ファイルの行差分（追加 / 削除行）</td>
 </tr>
+<tr>
+<td><code>search_in_files</code></td>
+<td>ディレクトリ配下の全テキストファイルをリテラル / 正規表現検索</td>
+</tr>
+<tr>
+<td><code>replace_in_files</code></td>
+<td>ディレクトリ横断の置換。既定はプレビュー、適用は1トランザクション</td>
+</tr>
+<tr>
+<td><code>search_large_file</code></td>
+<td>任意サイズのファイルをストリーム検索（オフセット＋プレビュー）</td>
+</tr>
+<tr>
+<td><code>compare_folders</code></td>
+<td>2つのフォルダーツリーを比較（同一 / 相違 / 左のみ / 右のみ）</td>
+</tr>
+<tr>
+<td><code>list_symbols</code></td>
+<td>ソースの定義（関数・型など）を行番号付きで一覧</td>
+</tr>
+<tr>
+<td><code>markdown_to_html</code></td>
+<td>Markdown（GFM テーブル・インライン装飾）を HTML 文書に変換</td>
+</tr>
+</tbody>
+</table>
+<p><strong>地理データ / 変換 / アーカイブ / パッチ / スクリプト:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geo_convert</code></td>
+<td>地理データを GeoJSON / WKT / KML / GPX / CSV 間で変換</td>
+</tr>
+<tr>
+<td><code>geo_measure</code></td>
+<td>GeoJSON / WKT の測地長（m）/ 面積（m²）</td>
+</tr>
+<tr>
+<td><code>geo_point</code></td>
+<td>geohash、地図タイル＋quadkey＋bbox、平面直角座標系、DMS ⇄ 十進</td>
+</tr>
+<tr>
+<td><code>geo_reproject</code></td>
+<td>GeoJSON を EPSG 間で再投影（PROJ）</td>
+</tr>
+<tr>
+<td><code>convert_list</code> / <code>convert_run</code></td>
+<td>変換ツールボックスの一覧 / 実行（base64、JSON ⇄ CSV、タイムスタンプ 等）</td>
+</tr>
+<tr>
+<td><code>archive_list</code> / <code>archive_extract</code> / <code>archive_create</code></td>
+<td>zip / tar / 7z の一覧・展開・作成</td>
+</tr>
+<tr>
+<td><code>patch_bin</code></td>
+<td>バイナリパッチの適用 / 作成（IPS / BPS / UPS / bsdiff / VCDIFF）</td>
+</tr>
+<tr>
+<td><code>run_script</code></td>
+<td>サンドボックス Lua をファイルに実行（プレビュー、または <code>save</code> で書き戻し）</td>
+</tr>
 </tbody>
 </table>
 <p><strong>データベース</strong>（アプリで設定済みの接続、または SQLite ファイル）:</p>
@@ -1514,6 +1603,41 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 <tr>
 <td><code>db_query</code></td>
 <td>接続に対して SQL を実行し結果行を返す</td>
+</tr>
+<tr>
+<td><code>nosql_list_connections</code></td>
+<td>保存済み Redis / MongoDB 接続を一覧（名前のみ）</td>
+</tr>
+<tr>
+<td><code>nosql_command</code></td>
+<td>Redis / MongoDB のコマンドを実行し結果を JSON で返す</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Git</strong>（ローカルリポジトリ・読み取り専用）:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git_status</code></td>
+<td>現在のブランチとステージ済み / 未ステージの変更</td>
+</tr>
+<tr>
+<td><code>git_log</code></td>
+<td>コミット履歴（id・要約・作者・日時）を新しい順に</td>
+</tr>
+<tr>
+<td><code>git_branches</code></td>
+<td>ローカルブランチ（現在ブランチ・ahead / behind）</td>
+</tr>
+<tr>
+<td><code>git_diff</code></td>
+<td>1ファイルの差分（ステージ済み / 未ステージ）</td>
 </tr>
 </tbody>
 </table>
@@ -1556,6 +1680,29 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 </tbody>
 </table>
+<p><strong>クラウドストレージ</strong>（アプリ、または <code>zume-cli</code> でサインイン済みのアカウント）:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cloud_ls</code></td>
+<td>Dropbox / Google Drive / OneDrive / Box のフォルダーを一覧</td>
+</tr>
+<tr>
+<td><code>cloud_get</code></td>
+<td>接続済みクラウドからファイルをダウンロード</td>
+</tr>
+<tr>
+<td><code>cloud_put</code></td>
+<td>ローカルファイル or インラインテキストをアップロード</td>
+</tr>
+</tbody>
+</table>
 <p><strong>生成AIハブ:</strong></p>
 <table>
 <thead>
@@ -1575,7 +1722,42 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 </tbody>
 </table>
-<h2 id="ai">AI にできること・できないこと<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<h2 id="ai">AI が触れる範囲を制限する（サンドボックス）<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<p><code>zume-mcp</code> プロセスに設定する 2 つの環境変数で、ファイル系ツールの範囲を絞れます。
+どちらも任意で、未設定なら従来どおり全アクセス可能（既定）です。エージェントを
+限定したいときは、MCP クライアントのサーバー設定（<code>env</code> ブロック）で指定します。</p>
+<table>
+<thead>
+<tr>
+<th>変数</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZUME_MCP_ROOTS</code></td>
+<td>許可ディレクトリの一覧（区切りは Windows <code>;</code>、その他 <code>:</code>）。パスがいずれかのフォルダー配下でなければ拒否。シンボリックリンクや <code>..</code> は先に解決するため、外へは抜けられません。</td>
+</tr>
+<tr>
+<td><code>ZUME_MCP_READONLY</code></td>
+<td><code>1</code> / <code>true</code> / <code>yes</code> / <code>on</code> でサーバーを読み取り専用に。ファイルを変更するツール（書き込み・patch・replace・展開・作成・アップロード、<code>save</code> 付き <code>run_script</code>）を拒否。読み取りは可能。</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"ZUME_MCP_ROOTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\work\\project"</span><span class="p">,</span><span class="w"> </span><span class="nt">"ZUME_MCP_READONLY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>拒否は通常のツールエラーとして返り、クラッシュしません。サンドボックスはローカル
+ファイル系ツールに適用され、データベース / リモート / クラウド / <code>http_request</code>
+はそれぞれ独自の規則（保存済み接続、読み取り専用 DB プロファイル、HTTPS 限定）を
+持ちます。</p>
+<h2 id="ai_1">AI にできること・できないこと<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h2>
 <p>AI は上記ツール経由で<strong>のみ</strong>動作します。</p>
 <p><strong>できること:</strong></p>
 <ul>
