@@ -12,7 +12,7 @@ window and opens no network port of its own. It is installed alongside the app
 (next to the executable on Windows, in `bin/` on Linux, inside the app folder on
 macOS).
 
-## Tools
+## Tools {#tools}
 
 **Files, text, hex, search, diff** (local disk):
 
