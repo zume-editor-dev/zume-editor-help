@@ -1643,6 +1643,17 @@
 <p>A command-line companion, <code>zume-cli</code>, ships alongside the app (next to the
 executable on Windows, in <code>bin/</code> on Linux, and in the app folder on macOS). It
 reuses the editor's own engines, so results match the GUI.</p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store (MSIX) build</p>
+<p>The <strong>Microsoft Store</strong> build does <strong>not</strong> make <code>zume-cli</code> usable from the
+command line. Its files are installed under the protected
+<code>C:\Program Files\WindowsApps\…</code> folder (a version-specific path that
+changes with every update and is not on your <code>PATH</code>), so <code>zume-cli</code> cannot
+be run or scripted directly. To use the CLI — or the
+<a href="../mcp/">MCP server</a> — on Windows, install the <strong>portable ZIP</strong> (or the
+installer build) instead, extract it to a stable folder, and run
+<code>zume-cli.exe</code> from there.</p>
+</div>
 <div class="highlight"><pre><span></span><code>zume-cli &lt;command&gt; [arguments] [flags]
 </code></pre></div>
 <p>The commands below are the <strong>complete</strong> set. <code>zume-cli</code> is a deliberately small

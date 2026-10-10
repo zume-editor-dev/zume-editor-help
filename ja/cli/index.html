@@ -1643,6 +1643,15 @@
 <p>コマンドライン用の補助ツール <code>zume-cli</code> を同梱しています（Windowsは実行ファイルの隣、
 Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。エディター本体のエンジンを再利用するため、
 結果は GUI と一致します。</p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store（MSIX）版について</p>
+<p><strong>Microsoft Store 版</strong>では <code>zume-cli</code> を<strong>コマンドラインから利用できません</strong>。
+ファイルは保護された <code>C:\Program Files\WindowsApps\…</code> 配下にインストールされ
+（更新のたびに変わるバージョン別パスで、<code>PATH</code> にも登録されません）、
+<code>zume-cli</code> を直接実行・スクリプト化できないためです。Windows で CLI や
+<a href="../mcp/">MCP サーバー</a>を使うには、代わりに<strong>ポータブル ZIP</strong>（またはインストーラー版）
+を導入し、任意の安定フォルダーに展開して、そこから <code>zume-cli.exe</code> を実行してください。</p>
+</div>
 <div class="highlight"><pre><span></span><code>zume-cli &lt;command&gt; [引数] [フラグ]
 </code></pre></div>
 <p>以下が<strong>すべて</strong>のコマンドです。<code>zume-cli</code> はエディターの機能を絞ったヘッドレス版

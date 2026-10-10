@@ -1625,6 +1625,21 @@ config (such as Claude Desktop):</p>
 </code></pre></div>
 <p>On Windows, if <code>zume-mcp</code> is not on your <code>PATH</code>, use the full path, e.g.
 <code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store (MSIX) build</p>
+<p>The <strong>Microsoft Store</strong> build cannot be used as an MCP server. Its
+<code>zume-mcp</code> is installed under the protected
+<code>C:\Program Files\WindowsApps\…</code> folder — a version-specific path that
+changes with every update and is not on your <code>PATH</code> — so an MCP client
+cannot launch it. To run the MCP server (or the <a href="../cli/">CLI</a>) on Windows,
+install the <strong>portable ZIP</strong> (or the installer build), extract it to a
+stable folder, and point your client at that <code>zume-mcp.exe</code>, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>With the Claude Code CLI:</p>
+<div class="highlight"><pre><span></span><code>claude mcp add zume -s user -- "C:\Tools\Zume\zume-mcp.exe"
+</code></pre></div>
+</div>
 <p>The database tools read the connections you set up in the app's
 <a href="../database/">Database</a> workspace. Store API keys for <code>http_request</code> with
 <code>zume-cli aikey set &lt;name&gt;</code> (see <a href="../cli/#aikey">CLI</a>); the AI lists them with

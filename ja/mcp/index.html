@@ -1619,6 +1619,21 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </code></pre></div>
 <p>Windows で <code>zume-mcp</code> が <code>PATH</code> に無い場合はフルパスを指定します。例:
 <code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store（MSIX）版について</p>
+<p><strong>Microsoft Store 版</strong>は MCP サーバーとして利用できません。<code>zume-mcp</code> は
+保護された <code>C:\Program Files\WindowsApps\…</code> 配下（更新のたびに変わる
+バージョン別パスで、<code>PATH</code> にも登録されません）にインストールされるため、
+MCP クライアントから起動できません。Windows で MCP サーバー（や
+<a href="../cli/">CLI</a>）を使うには、代わりに<strong>ポータブル ZIP</strong>（またはインストーラー版）
+を導入し、任意の安定フォルダーに展開して、そこの <code>zume-mcp.exe</code> をクライアントに
+指定してください。例:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Claude Code CLI の場合:</p>
+<div class="highlight"><pre><span></span><code>claude mcp add zume -s user -- "C:\Tools\Zume\zume-mcp.exe"
+</code></pre></div>
+</div>
 <p>DB ツールは、アプリの <a href="../database/">データベース</a> ワークスペースで設定した接続を参照します。
 <code>http_request</code> 用の API キーは <code>zume-cli aikey set &lt;name&gt;</code> で保存します（<a href="../cli/#aikey">CLI</a>）。
 AI 側は <code>list_credentials</code> で名前を確認できます。</p>
