@@ -1585,6 +1585,29 @@ macOS).</p>
 </tr>
 </tbody>
 </table>
+<p><strong>Security analysis</strong> (binary triage / transform / signatures):</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entropy</code></td>
+<td>Shannon entropy (overall + a windowed sparkline) and the byte histogram — spot packed / encrypted regions</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>A CyberChef-style recipe: XOR / ROT / RC4 / base58·85 / hex + the convert toolbox, composed in one pipeline</td>
+</tr>
+<tr>
+<td><code>yara_scan</code></td>
+<td>Scan a file, a directory or inline bytes with a practical YARA-rule subset</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Databases</strong> (the connections configured in the app, or a SQLite file):</p>
 <table>
 <thead>
