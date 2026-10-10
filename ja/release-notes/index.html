@@ -1225,13 +1225,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#0300" class="md-nav__link">
     <span class="md-ellipsis">
       
-        未リリース
+        0.30.0 — 初の公開ベータ
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="0.30.0 — 初の公開ベータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#202610" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1270,13 +1287,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#0300" class="md-nav__link">
     <span class="md-ellipsis">
       
-        未リリース
+        0.30.0 — 初の公開ベータ
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="0.30.0 — 初の公開ベータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#202610" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1306,13 +1340,48 @@
 
 
 <h1 id="_1">リリースノート<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>最新の変更点はアプリ内（<strong>Help → About</strong>）および、Windowsでは Microsoft Store の
-製品ページに表示されます。</p>
-<p>このページでは、リリースごとの主な変更点を記載していきます。</p>
-<h2 id="_2">未リリース<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>現在のバージョンはアプリ内（<strong>Help → About</strong>）で確認できます。本バージョンは
+<strong>無料の公開ベータ版</strong>で、<strong>2027年3月31日まで</strong>すべての機能を無料でご利用いただけます。</p>
+<p>ダウンロードは<a href="../installation/">インストール</a>ページをご覧ください。不具合報告・ご要望は
+<a href="https://github.com/zume-editor-dev/zume-editor-help/issues">GitHub</a> までお寄せください。</p>
+<h2 id="0300">0.30.0 — 初の公開ベータ<a class="headerlink" href="#0300" title="Permanent link">&para;</a></h2>
+<p><strong>Windows・macOS・Linux</strong> 対応、Zume Editor 初の公開ベータです。</p>
+<p><strong>主な機能</strong></p>
 <ul>
-<li>最初の一般公開リリース。</li>
+<li><strong>巨大ファイル対応</strong> — 10&nbsp;GB 超のファイルも、メモリに丸ごと読み込まずに、
+  初回表示ほぼ一瞬で開く・検索・編集・保存。</li>
+<li><strong>HEX エディタ</strong> — オフセット / ASCII / EBCDIC 列、バイト検索・置換、テンプレート、
+  パッチ（IPS / BPS / UPS / bsdiff / VCDIFF）。</li>
+<li><strong>Git クライアント</strong> — ステージ／コミット、ブランチ、ログのグラフ、Diff、
+  コンフリクト解決、fetch / pull / push、ワークツリー、LFS。</li>
+<li><strong>ターミナル・SSH</strong> シェル（ドッキング可能なパネル）、<strong>SFTP / FTP / FTPS</strong>
+  でのリモート編集。</li>
+<li><strong>データベースツール</strong>、2 ペインの <strong>Diff・マージ</strong>、<strong>CSV グリッド</strong>編集。</li>
+<li><strong>Markdown / HTML ライブプレビュー</strong>、<strong>フォーマット・エンコーディング変換</strong>、
+  <strong>CLI</strong>（<code>zume-cli</code>）、AI 連携の <strong>MCP サーバー</strong>。</li>
+<li><strong>地理データ変換</strong>（MAP）：DMS、ジオハッシュ、地図タイル、
+  GeoJSON / WKT / KML / GPX、平面直角座標系。</li>
+<li>日常の編集：シンタックスハイライト、コード折りたたみ、アウトライン、
+  <strong>マルチキャレット</strong>、<strong>カラム（ブロック）モード</strong>、検索・置換、分割ビュー、
+  マクロ、Lua スクリプト、セッション復元。</li>
 </ul>
+<p>1 ライセンス（今後の正式版）で 3 プラットフォームすべてに対応します。</p>
+<h3 id="202610">ベータ版の更新 — 2026年10月<a class="headerlink" href="#202610" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Markdown プレビューのテーブル</strong> — GFM のパイプテーブルが罫線付きグリッドで
+  表示され、<strong>セル内の太字 / 斜体 / コード / リンク</strong>や列ごとの配置に対応。
+  HTML のテーブルも全プラットフォームのプレビューで表示されます。</li>
+<li><strong>処理中カーソル</strong> — 巨大ファイルのオープン中、およびファイル内の検索・置換の
+  実行中に、処理中（待機）カーソルを表示。</li>
+<li><strong>ダイアログの改善</strong> — 長いダイアログのタイトルが折り返したり閉じるボタンに
+  重なったりしないよう修正、テーマダイアログの <strong>X</strong> ボタンとヘッダーのホバーを修正、
+  設定ダイアログのスクロールバーにカーソルを表示。</li>
+<li><strong>安定性</strong> — ターミナル / SSH パネル使用後に発生し得たクラッシュを修正。</li>
+<li>その他、全プラットフォームで細かな修正。</li>
+</ul>
+<hr />
+<p>正式版（1.0）はサブスクリプションを予定しています。皆さまのフィードバックが 1.0 を
+形づくります。ベータ版のテストにご協力いただきありがとうございます。</p>
 
 
 
