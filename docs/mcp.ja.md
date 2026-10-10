@@ -106,6 +106,25 @@ MCP クライアントの起動コマンドに `zume-mcp` を指定します。J
 Windows で `zume-mcp` が `PATH` に無い場合はフルパスを指定します。例:
 `"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"`
 
+!!! warning "Microsoft Store（MSIX）版について"
+    **Microsoft Store 版**は MCP サーバーとして利用できません。`zume-mcp` は
+    保護された `C:\Program Files\WindowsApps\…` 配下（更新のたびに変わる
+    バージョン別パスで、`PATH` にも登録されません）にインストールされるため、
+    MCP クライアントから起動できません。Windows で MCP サーバー（や
+    [CLI](cli.md)）を使うには、代わりに**ポータブル ZIP**（またはインストーラー版）
+    を導入し、任意の安定フォルダーに展開して、そこの `zume-mcp.exe` をクライアントに
+    指定してください。例:
+
+    ```json
+    { "mcpServers": { "zume": { "command": "C:\\Tools\\Zume\\zume-mcp.exe" } } }
+    ```
+
+    Claude Code CLI の場合:
+
+    ```text
+    claude mcp add zume -s user -- "C:\Tools\Zume\zume-mcp.exe"
+    ```
+
 DB ツールは、アプリの [データベース](database.md) ワークスペースで設定した接続を参照します。
 `http_request` 用の API キーは `zume-cli aikey set <name>` で保存します（[CLI](cli.md#aikey)）。
 AI 側は `list_credentials` で名前を確認できます。

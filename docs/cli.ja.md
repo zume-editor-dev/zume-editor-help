@@ -4,6 +4,14 @@
 Linuxは `bin/`、macOSはアプリフォルダー内）。エディター本体のエンジンを再利用するため、
 結果は GUI と一致します。
 
+!!! warning "Microsoft Store（MSIX）版について"
+    **Microsoft Store 版**では `zume-cli` を**コマンドラインから利用できません**。
+    ファイルは保護された `C:\Program Files\WindowsApps\…` 配下にインストールされ
+    （更新のたびに変わるバージョン別パスで、`PATH` にも登録されません）、
+    `zume-cli` を直接実行・スクリプト化できないためです。Windows で CLI や
+    [MCP サーバー](mcp.md)を使うには、代わりに**ポータブル ZIP**（またはインストーラー版）
+    を導入し、任意の安定フォルダーに展開して、そこから `zume-cli.exe` を実行してください。
+
 ```text
 zume-cli <command> [引数] [フラグ]
 ```
