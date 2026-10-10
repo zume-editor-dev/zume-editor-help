@@ -141,6 +141,13 @@
         <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/remote/"/>
     </url>
     <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/security/</loc>
+        <lastmod>2026-10-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/security/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/security/"/>
+    </url>
+    <url>
         <loc>https://zume-editor-dev.github.io/zume-editor-help/shortcuts/</loc>
         <lastmod>2026-10-10</lastmod>
         <changefreq>daily</changefreq>
@@ -356,6 +363,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/remote/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/remote/"/>
+    </url>
+    <url>
+        <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/security/</loc>
+        <lastmod>2026-10-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://zume-editor-dev.github.io/zume-editor-help/ja/security/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://zume-editor-dev.github.io/zume-editor-help/security/"/>
     </url>
     <url>
         <loc>https://zume-editor-dev.github.io/zume-editor-help/ja/shortcuts/</loc>
