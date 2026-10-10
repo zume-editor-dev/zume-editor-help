@@ -29,6 +29,25 @@ macOS).
 | `replace_in_file` | Replace all literal / regex matches in an existing file and save |
 | `detect_encoding` | A file's text encoding and line ending |
 | `diff_files` | A line diff of two files (added / removed lines per hunk) |
+| `search_in_files` | Literal or regex search across every text file under a directory |
+| `replace_in_files` | Replace across a directory; previews by default, applies in one transaction |
+| `search_large_file` | Streamed search over a file of any size (byte offsets + preview) |
+| `compare_folders` | Compare two directory trees (same / different / left-only / right-only) |
+| `list_symbols` | The definitions (functions, types, …) of a source file, with line numbers |
+| `markdown_to_html` | Render Markdown (GFM tables, inline formatting) to an HTML document |
+
+**Map data, conversion, archives, patches, scripting:**
+
+| Tool | What it does |
+| --- | --- |
+| `geo_convert` | Convert map data between GeoJSON / WKT / KML / GPX / CSV |
+| `geo_measure` | Geodesic length (m) / area (m²) of a GeoJSON or WKT document |
+| `geo_point` | geohash, map tile + quadkey + bbox, Japan Plane Rectangular CS, DMS ⇄ decimal |
+| `geo_reproject` | Reproject GeoJSON between EPSG CRSs (PROJ) |
+| `convert_list` / `convert_run` | List / run the file-conversion toolbox (base64, JSON ⇄ CSV, timestamps, …) |
+| `archive_list` / `archive_extract` / `archive_create` | List, extract or create zip / tar / 7z archives |
+| `patch_bin` | Apply or create a binary patch (IPS / BPS / UPS / bsdiff / VCDIFF) |
+| `run_script` | Run a sandboxed Lua script against a file (preview, or `save` to write it back) |
 
 **Databases** (the connections configured in the app, or a SQLite file):
 
@@ -37,6 +56,17 @@ macOS).
 | `db_list_connections` | List the saved SQL connections (names only; no passwords) |
 | `db_schema` | List a connection's tables / views and their columns |
 | `db_query` | Run SQL on a connection and return the result rows |
+| `nosql_list_connections` | List the saved Redis / MongoDB connections (by name) |
+| `nosql_command` | Run a Redis / MongoDB command and return the result as JSON |
+
+**Git** (a local repository, read-only):
+
+| Tool | What it does |
+| --- | --- |
+| `git_status` | The current branch and the staged / unstaged changes |
+| `git_log` | The commit history (id, summary, author, time), newest first |
+| `git_branches` | The local branches, with the current one and ahead / behind |
+| `git_diff` | The diff of one file (staged or unstaged half) |
 
 **Remote files (FTP / FTPS / SFTP)** (the connections configured in the app):
 
@@ -50,12 +80,48 @@ macOS).
 | `remote_rename` | Rename / move a remote file |
 | `remote_mkdir` | Create a remote directory |
 
+**Cloud storage** (the account you signed in to in the app, or with `zume-cli`):
+
+| Tool | What it does |
+| --- | --- |
+| `cloud_ls` | List a folder on Dropbox / Google Drive / OneDrive / Box |
+| `cloud_get` | Download a file from a connected cloud account |
+| `cloud_put` | Upload a local file or inline text to a cloud account |
+
 **Gen-AI hub:**
 
 | Tool | What it does |
 | --- | --- |
 | `list_credentials` | List the **names** of API keys stored locally |
 | `http_request` | Make an HTTPS request to any API, optionally authenticated with a stored key |
+
+## Restrict what the AI can touch (sandbox)
+
+Two environment variables, set on the `zume-mcp` process, scope what the file
+tools may do. Both are optional — if you set neither, the tools have full access
+(the default). Set them in your MCP client's server configuration (an `env`
+block) to confine an agent.
+
+| Variable | Effect |
+| --- | --- |
+| `ZUME_MCP_ROOTS` | A list of allowed directories (separated by `;` on Windows, `:` elsewhere). A tool is refused unless its path is inside one of these folders. Symbolic links and `..` are resolved first, so a path cannot escape. |
+| `ZUME_MCP_READONLY` | `1` / `true` / `yes` / `on` makes the server read-only: every tool that would change a file (write, patch, replace, extract, create, upload, and `run_script` with `save`) is refused. Reads still work. |
+
+```json
+{
+  "mcpServers": {
+    "zume": {
+      "command": "C:\\Tools\\Zume\\zume-mcp.exe",
+      "env": { "ZUME_MCP_ROOTS": "C:\\work\\project", "ZUME_MCP_READONLY": "1" }
+    }
+  }
+}
+```
+
+A refused request comes back as a normal tool error, not a crash. The sandbox
+covers the local-file tools; the database, remote-file, cloud and `http_request`
+tools have their own rules (saved connections, read-only DB profiles, HTTPS
+only).
 
 ## What the AI can and cannot do
 

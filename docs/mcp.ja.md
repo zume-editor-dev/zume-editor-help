@@ -27,6 +27,25 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 | `replace_in_file` | 既存ファイルのリテラル / 正規表現一致を全置換し保存 |
 | `detect_encoding` | 文字コードと改行コードの判定 |
 | `diff_files` | 2ファイルの行差分（追加 / 削除行） |
+| `search_in_files` | ディレクトリ配下の全テキストファイルをリテラル / 正規表現検索 |
+| `replace_in_files` | ディレクトリ横断の置換。既定はプレビュー、適用は1トランザクション |
+| `search_large_file` | 任意サイズのファイルをストリーム検索（オフセット＋プレビュー） |
+| `compare_folders` | 2つのフォルダーツリーを比較（同一 / 相違 / 左のみ / 右のみ） |
+| `list_symbols` | ソースの定義（関数・型など）を行番号付きで一覧 |
+| `markdown_to_html` | Markdown（GFM テーブル・インライン装飾）を HTML 文書に変換 |
+
+**地理データ / 変換 / アーカイブ / パッチ / スクリプト:**
+
+| ツール | 内容 |
+| --- | --- |
+| `geo_convert` | 地理データを GeoJSON / WKT / KML / GPX / CSV 間で変換 |
+| `geo_measure` | GeoJSON / WKT の測地長（m）/ 面積（m²） |
+| `geo_point` | geohash、地図タイル＋quadkey＋bbox、平面直角座標系、DMS ⇄ 十進 |
+| `geo_reproject` | GeoJSON を EPSG 間で再投影（PROJ） |
+| `convert_list` / `convert_run` | 変換ツールボックスの一覧 / 実行（base64、JSON ⇄ CSV、タイムスタンプ 等） |
+| `archive_list` / `archive_extract` / `archive_create` | zip / tar / 7z の一覧・展開・作成 |
+| `patch_bin` | バイナリパッチの適用 / 作成（IPS / BPS / UPS / bsdiff / VCDIFF） |
+| `run_script` | サンドボックス Lua をファイルに実行（プレビュー、または `save` で書き戻し） |
 
 **データベース**（アプリで設定済みの接続、または SQLite ファイル）:
 
@@ -35,6 +54,17 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 | `db_list_connections` | 保存済み SQL 接続の一覧（名前のみ・パスワードなし） |
 | `db_schema` | 接続のテーブル / ビューと列を一覧 |
 | `db_query` | 接続に対して SQL を実行し結果行を返す |
+| `nosql_list_connections` | 保存済み Redis / MongoDB 接続を一覧（名前のみ） |
+| `nosql_command` | Redis / MongoDB のコマンドを実行し結果を JSON で返す |
+
+**Git**（ローカルリポジトリ・読み取り専用）:
+
+| ツール | 内容 |
+| --- | --- |
+| `git_status` | 現在のブランチとステージ済み / 未ステージの変更 |
+| `git_log` | コミット履歴（id・要約・作者・日時）を新しい順に |
+| `git_branches` | ローカルブランチ（現在ブランチ・ahead / behind） |
+| `git_diff` | 1ファイルの差分（ステージ済み / 未ステージ） |
 
 **リモートファイル（FTP / FTPS / SFTP）**（アプリで設定済みの接続）:
 
@@ -48,12 +78,47 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 | `remote_rename` | リモートファイルのリネーム / 移動 |
 | `remote_mkdir` | リモートにディレクトリ作成 |
 
+**クラウドストレージ**（アプリ、または `zume-cli` でサインイン済みのアカウント）:
+
+| ツール | 内容 |
+| --- | --- |
+| `cloud_ls` | Dropbox / Google Drive / OneDrive / Box のフォルダーを一覧 |
+| `cloud_get` | 接続済みクラウドからファイルをダウンロード |
+| `cloud_put` | ローカルファイル or インラインテキストをアップロード |
+
 **生成AIハブ:**
 
 | ツール | 内容 |
 | --- | --- |
 | `list_credentials` | ローカル保存された API キーの**名前**一覧 |
 | `http_request` | 任意の HTTPS API へリクエスト。保存キーで認証も可 |
+
+## AI が触れる範囲を制限する（サンドボックス）
+
+`zume-mcp` プロセスに設定する 2 つの環境変数で、ファイル系ツールの範囲を絞れます。
+どちらも任意で、未設定なら従来どおり全アクセス可能（既定）です。エージェントを
+限定したいときは、MCP クライアントのサーバー設定（`env` ブロック）で指定します。
+
+| 変数 | 効果 |
+| --- | --- |
+| `ZUME_MCP_ROOTS` | 許可ディレクトリの一覧（区切りは Windows `;`、その他 `:`）。パスがいずれかのフォルダー配下でなければ拒否。シンボリックリンクや `..` は先に解決するため、外へは抜けられません。 |
+| `ZUME_MCP_READONLY` | `1` / `true` / `yes` / `on` でサーバーを読み取り専用に。ファイルを変更するツール（書き込み・patch・replace・展開・作成・アップロード、`save` 付き `run_script`）を拒否。読み取りは可能。 |
+
+```json
+{
+  "mcpServers": {
+    "zume": {
+      "command": "C:\\Tools\\Zume\\zume-mcp.exe",
+      "env": { "ZUME_MCP_ROOTS": "C:\\work\\project", "ZUME_MCP_READONLY": "1" }
+    }
+  }
+}
+```
+
+拒否は通常のツールエラーとして返り、クラッシュしません。サンドボックスはローカル
+ファイル系ツールに適用され、データベース / リモート / クラウド / `http_request`
+はそれぞれ独自の規則（保存済み接続、読み取り専用 DB プロファイル、HTTPS 限定）を
+持ちます。
 
 ## AI にできること・できないこと
 
