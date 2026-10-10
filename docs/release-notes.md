@@ -37,9 +37,10 @@ One license (for the upcoming stable release) covers all three platforms.
   most of the editor's engines as tools: cross-file search & replace, map-data
   conversion (geo), the conversion toolbox, zip/tar archives, binary patches,
   Markdown→HTML, an outline/symbol list, folder compare, streamed large-file
-  search, Redis/MongoDB, read-only Git, cloud storage and sandboxed Lua
-  scripting. A new sandbox (`ZUME_MCP_ROOTS` / `ZUME_MCP_READONLY`) confines what
-  an agent can read or change. See [MCP](mcp.md#tools).
+  search, Redis/MongoDB, read-only Git, cloud storage, sandboxed Lua scripting,
+  and security analysis (entropy, CyberChef-style transform recipes, a YARA-rule
+  subset scanner). A new sandbox (`ZUME_MCP_ROOTS` / `ZUME_MCP_READONLY`) confines
+  what an agent can read or change. See [MCP](mcp.md#tools).
 - **Markdown preview tables** — GFM pipe tables now render as a bordered grid,
   with **bold / italic / code / links inside cells** and per-column alignment.
   HTML tables render in the preview on all platforms.

@@ -49,6 +49,14 @@ macOS).
 | `patch_bin` | Apply or create a binary patch (IPS / BPS / UPS / bsdiff / VCDIFF) |
 | `run_script` | Run a sandboxed Lua script against a file (preview, or `save` to write it back) |
 
+**Security analysis** (binary triage / transform / signatures):
+
+| Tool | What it does |
+| --- | --- |
+| `entropy` | Shannon entropy (overall + a windowed sparkline) and the byte histogram — spot packed / encrypted regions |
+| `transform` | A CyberChef-style recipe: XOR / ROT / RC4 / base58·85 / hex + the convert toolbox, composed in one pipeline |
+| `yara_scan` | Scan a file, a directory or inline bytes with a practical YARA-rule subset |
+
 **Databases** (the connections configured in the app, or a SQLite file):
 
 | Tool | What it does |
