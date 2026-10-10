@@ -15,6 +15,7 @@ and real developer workflows.
 [**CloudDrive** <span>Dropbox, Drive, OneDrive, Box</span>](clouddrive.md)
 [**Database** <span>Query your databases</span>](database.md)
 [**MAP** <span>Geo data conversion</span>](map.md)
+[**Security** <span>Entropy, transforms, YARA</span>](security.md)
 [**MCP** <span>AI integration</span>](mcp.md)
 [**MCP Tools** <span>Every tool, at a glance</span>](mcp.md#tools)
 [**CLI** <span>zume-cli</span>](cli.md)

@@ -96,6 +96,7 @@ nav:
   - clouddrive.md
   - database.md
   - map.md
+  - security.md
   - automation.md
   - mcp.md
   - cli.md

@@ -15,6 +15,7 @@
 [**クラウドドライブ** <span>Dropbox / Drive / OneDrive / Box</span>](clouddrive.md)
 [**データベース** <span>DBへ接続・クエリ</span>](database.md)
 [**地図(MAP)** <span>地理データ変換</span>](map.md)
+[**セキュリティ** <span>エントロピー・変換・YARA</span>](security.md)
 [**MCP** <span>AI連携</span>](mcp.md)
 [**MCP ツール一覧** <span>全ツールを一覧</span>](mcp.md#tools)
 [**CLI** <span>zume-cli</span>](cli.md)
