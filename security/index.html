@@ -965,6 +965,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="YARA Scan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-rules-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example rules file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is supported
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1340,6 +1368,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="YARA Scan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-rules-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example rules file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is supported
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1407,18 +1463,52 @@ Each is also available headlessly to AI agents through the
 <a href="../mcp/#tools">MCP server</a> (the <code>entropy</code>, <code>transform</code> and <code>yara_scan</code> tools).</p>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>
+<p>The dialog asks for <strong>the path to a YARA rules file</strong> (<code>.yar</code> / <code>.yara</code>) — not
+the rules themselves. You write the rules in a file first, then point the dialog
+at it.</p>
 <ol>
-<li>Run the command (it is also in the command palette).</li>
-<li>Enter the path to a <code>.yar</code> / <code>.yara</code> rules file.</li>
+<li>Create a rules file (see the example below) and save it, e.g.
+   <code>C:\rules\malware.yar</code> or <code>~/rules/strings.yara</code>.</li>
+<li>Open the document you want to scan, then run <strong>Code → YARA Scan…</strong> (it is
+   also in the command palette).</li>
+<li>Enter the full path to the rules file and press Enter.</li>
 <li>Matches are listed in the results panel as <code>rule  $string  line N @ offset</code>.
    Click a row (or press F4) to jump to that line.</li>
 </ol>
-<p>A practical subset of the YARA language is supported: text, hex
-(<code>{ 4D 5A ?? 00 }</code>, with <code>??</code> / <code>?</code> wildcards) and <code>/regex/</code> strings with the
-<code>nocase</code> / <code>wide</code> / <code>ascii</code> / <code>fullword</code> modifiers, and conditions using
-<code>all</code>/<code>any</code>/<code>N of them</code>, <code>N of ($a*)</code>, <code>#count</code>, <code>$s at N</code>, <code>filesize</code>, and
-<code>and</code> / <code>or</code> / <code>not</code>. It is not the full libyara engine (no <code>pe</code> / <code>hash</code> /
-<code>math</code> modules).</p>
+<p>The command works on a normal text / code tab (not on large-file, hex or Git
+tabs).</p>
+<h3 id="example-rules-file">Example rules file<a class="headerlink" href="#example-rules-file" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">rule</span><span class="w"> </span><span class="n">suspicious_strings</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">strings</span><span class="p">:</span>
+<span class="w">        </span><span class="nv">$a</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s2">"cmd.exe /c"</span><span class="w"> </span><span class="nb">nocase</span>
+<span class="w">        </span><span class="nv">$b</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s2">"powershell"</span><span class="w"> </span><span class="nb">nocase</span><span class="w"> </span><span class="nb">wide</span>
+<span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>4D<span class="w"> </span>5A<span class="w"> </span><span class="p">??</span><span class="w"> </span>00<span class="w"> </span><span class="p">}</span><span class="w">              </span><span class="c1">// PE header (?? is a wildcard byte)</span>
+<span class="w">        </span><span class="nv">$url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="sr">/https?:\/</span>\<span class="sr">/[a-z0-9.\-]+/</span><span class="w"> </span><span class="nb">nocase</span>
+<span class="w">    </span><span class="k">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span>2<span class="w"> </span><span class="nb">of</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span><span class="w"> </span><span class="nv">$b</span><span class="p">,</span><span class="w"> </span><span class="nv">$url</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="what-is-supported">What is supported<a class="headerlink" href="#what-is-supported" title="Permanent link">&para;</a></h3>
+<p>A practical subset of the YARA language:</p>
+<ul>
+<li><strong>Strings</strong> — text (<code>"..."</code>), hex (<code>{ 4D 5A ?? 00 }</code>, with <code>??</code> byte and <code>?</code>
+  nibble wildcards) and regular expressions (<code>/regex/</code>).</li>
+<li><strong>String modifiers</strong> — <code>nocase</code>, <code>wide</code>, <code>ascii</code>, <code>fullword</code>.</li>
+<li><strong>Conditions</strong> — a string name (<code>$a</code>), <code>all of them</code> / <code>any of them</code> /
+  <code>N of them</code>, <code>N of ($a*)</code>, <code>#a &lt;op&gt; N</code> (match count), <code>$a at N</code> (match at an
+  offset), <code>filesize &lt;op&gt; N</code>, <code>and</code> / <code>or</code> / <code>not</code>, parentheses, and <code>//</code> …
+  <code>/* … */</code> comments.</li>
+</ul>
+<p>It is <strong>not</strong> the full libyara engine: modules (<code>pe</code>, <code>hash</code>, <code>math</code>, …), hex
+jumps (<code>[4-6]</code>) and alternation (<code>( A | B )</code>) are not supported, and a rule that
+uses them reports a typed error instead of matching.</p>
+<div class="admonition tip">
+<p class="admonition-title">Inline rules / batch scanning</p>
+<p>To paste rules directly, or to scan a whole file or directory at once, use
+the <code>yara_scan</code> tool over <a href="../mcp/#tools">MCP</a> — it accepts the rules as text
+and a file, a directory or inline bytes as the target.</p>
+</div>
 <h2 id="transform-recipes">Transform recipes<a class="headerlink" href="#transform-recipes" title="Permanent link">&para;</a></h2>
 <p><strong>Code → Apply Convert Recipe…</strong> runs a pipeline of transforms over the
 selection (or the whole document), left to right. Steps are separated by <code>|</code>

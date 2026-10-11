@@ -965,10 +965,38 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="YARA スキャン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルールファイルの例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対応している記法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         変換レシピ
@@ -979,7 +1007,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -990,7 +1018,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1340,10 +1368,38 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="YARA スキャン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルールファイルの例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対応している記法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         変換レシピ
@@ -1354,7 +1410,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1365,7 +1421,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1407,18 +1463,51 @@
 （<code>entropy</code>・<code>transform</code>・<code>yara_scan</code> ツール）。</p>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
+<p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
+— ルール本文そのものではありません。先にルールをファイルに書いて保存し、その場所を
+ダイアログで指定します。</p>
 <ol>
-<li>コマンドを実行（コマンドパレットにもあります）。</li>
-<li><code>.yar</code> / <code>.yara</code> ルールファイルのパスを入力。</li>
+<li>ルールファイルを作成して保存（下の例を参照）。例：<code>C:\rules\malware.yar</code>、
+   <code>~/rules/strings.yara</code>。</li>
+<li>走査したい文書を開き、<strong>コード → YARA スキャン…</strong> を実行（コマンドパレットにも
+   あります）。</li>
+<li>ルールファイルのフルパスを入力して Enter。</li>
 <li>一致は結果パネルに <code>rule  $string  line N @ offset</code> の形で一覧表示されます。
-   行をクリック（または F4）するとその行へジャンプします。</li>
+   行をクリック（または F4）でその行へジャンプします。</li>
 </ol>
-<p>対応する YARA のサブセット：テキスト、hex（<code>{ 4D 5A ?? 00 }</code>、<code>??</code> / <code>?</code>
-ワイルドカード）、<code>/regex/</code> 文字列（修飾子 <code>nocase</code> / <code>wide</code> / <code>ascii</code> /
-<code>fullword</code>）、条件 <code>all</code>/<code>any</code>/<code>N of them</code>、<code>N of ($a*)</code>、<code>#count</code>、<code>$s at N</code>、
-<code>filesize</code>、<code>and</code> / <code>or</code> / <code>not</code>。完全な libyara エンジンではありません
-（<code>pe</code> / <code>hash</code> / <code>math</code> モジュールは非対応）。</p>
-<h2 id="_2">変換レシピ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>対象は通常のテキスト / コードタブです（大容量・HEX・Git タブでは無効）。</p>
+<h3 id="_2">ルールファイルの例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">rule</span><span class="w"> </span><span class="n">suspicious_strings</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">strings</span><span class="p">:</span>
+<span class="w">        </span><span class="nv">$a</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s2">"cmd.exe /c"</span><span class="w"> </span><span class="nb">nocase</span>
+<span class="w">        </span><span class="nv">$b</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s2">"powershell"</span><span class="w"> </span><span class="nb">nocase</span><span class="w"> </span><span class="nb">wide</span>
+<span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>4D<span class="w"> </span>5A<span class="w"> </span><span class="p">??</span><span class="w"> </span>00<span class="w"> </span><span class="p">}</span><span class="w">              </span><span class="c1">// PE ヘッダ（?? は任意バイト）</span>
+<span class="w">        </span><span class="nv">$url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="sr">/https?:\/</span>\<span class="sr">/[a-z0-9.\-]+/</span><span class="w"> </span><span class="nb">nocase</span>
+<span class="w">    </span><span class="k">condition</span><span class="p">:</span>
+<span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span>2<span class="w"> </span><span class="nb">of</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span><span class="w"> </span><span class="nv">$b</span><span class="p">,</span><span class="w"> </span><span class="nv">$url</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_3">対応している記法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>YARA の実用的なサブセット：</p>
+<ul>
+<li><strong>文字列</strong> — テキスト（<code>"..."</code>）、hex（<code>{ 4D 5A ?? 00 }</code>、<code>??</code>=任意バイト、
+  <code>?</code>=ニブルのワイルドカード）、正規表現（<code>/regex/</code>）。</li>
+<li><strong>文字列修飾子</strong> — <code>nocase</code> / <code>wide</code> / <code>ascii</code> / <code>fullword</code>。</li>
+<li><strong>条件</strong> — 文字列名（<code>$a</code>）、<code>all of them</code> / <code>any of them</code> / <code>N of them</code>、
+  <code>N of ($a*)</code>、<code>#a &lt;op&gt; N</code>（出現回数）、<code>$a at N</code>（オフセット一致）、
+  <code>filesize &lt;op&gt; N</code>、<code>and</code> / <code>or</code> / <code>not</code>、括弧、<code>//</code> … <code>/* … */</code> コメント。</li>
+</ul>
+<p><strong>完全な libyara エンジンではありません</strong>：モジュール（<code>pe</code> / <code>hash</code> / <code>math</code> 等）、
+hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B )</code>）は非対応で、使用すると
+一致ではなく型付きエラーになります。</p>
+<div class="admonition tip">
+<p class="admonition-title">ルールの直接入力 / 一括スキャン</p>
+<p>ルールを直接貼り付けたい、またはファイルやディレクトリをまとめて走査したい場合は、
+<a href="../mcp/#tools">MCP</a> の <code>yara_scan</code> ツールを使ってください。ルールをテキストで渡し、
+対象にファイル・ディレクトリ・インラインのバイト列を指定できます。</p>
+</div>
+<h2 id="_4">変換レシピ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><strong>コード → 変換レシピの適用…</strong> は、選択範囲（または文書全体）に対して変換を
 左から右へ連結して適用します。ステップは <code>|</code>（またはスペース / カンマ）で区切り、
 引数はコロンの後に書きます。例：</p>
@@ -1429,11 +1518,11 @@
 <code>base58.encode</code> / <code>base58.decode</code>、<code>base85.encode</code> / <code>base85.decode</code>、
 <code>from_hex</code> / <code>to_hex</code> のプリミティブが使えます。鍵は <code>hex:cafe</code> または
 <code>str:secret</code>（素の値は、16 進に見える場合は 16 進として扱います）。</p>
-<h2 id="_3">エントロピー<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_5">エントロピー<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p><a href="../hex/">HEX / バイナリエディタ</a>のエントロピーマップとオーバービューストリップが、
 ファイルを領域ごとに Shannon エントロピー（0–8 bit/byte）で表示するため、パックや
 暗号化された領域が目立ちます。</p>
-<h2 id="_4">シークレットの検出<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_6">シークレットの検出<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p><strong>コード → シークレットを検出</strong> は、文書内の疑わしいシークレット（API キー、
 トークン、秘密鍵、資格情報）を行番号付きで一覧し、行をクリックするとジャンプします。
 <strong>編集 → 選択範囲をマスク</strong> は選択テキストを伏せ字にします。</p>
