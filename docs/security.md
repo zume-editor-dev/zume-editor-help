@@ -77,6 +77,26 @@ JWT decode, …), the recipe adds the primitives `xor:<key>`, `rot:<n>` / `rot13
 be `hex:cafe` or `str:secret` (a bare value is treated as hex when it looks like
 hex).
 
+### Examples
+
+Select the encoded text (or run it on the whole document) and apply:
+
+| Recipe | What it does |
+| --- | --- |
+| `from_base64` | Decode a Base64 blob |
+| `from_base64 \| gunzip` | Decode Base64, then gzip-decompress the result |
+| `from_hex \| xor:5a` | Hex-decode, then XOR every byte with `0x5A` |
+| `from_hex \| xor:hex:deadbeef` | Hex-decode, then XOR with the repeating key `DE AD BE EF` |
+| `from_base64 \| rc4:str:s3cret` | Base64-decode, then RC4-decrypt with the key `s3cret` |
+| `rot13` | ROT13; `rot:3` is a Caesar shift of 3 |
+| `base58.decode` | Decode a Base58 string (e.g. a wallet address / key) |
+| `jwt.decode` | Expand a JWT into its decoded header / payload JSON |
+| `from_base64 \| xor:cafe \| from_base64` | Peel a doubly-encoded, XOR-wrapped payload |
+
+The result replaces the selection (or the document) as one undo step, so
+`Ctrl+Z` reverts the whole recipe. If a step fails (e.g. input that is not valid
+Base64), the editor shows which step failed and leaves the text unchanged.
+
 ## Entropy
 
 In the [Hex / Binary editor](hex.md), the entropy map and the entropy overview

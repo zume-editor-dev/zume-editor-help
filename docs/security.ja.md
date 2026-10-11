@@ -74,6 +74,26 @@ from_base64 | xor:cafe | gunzip
 `from_hex` / `to_hex` のプリミティブが使えます。鍵は `hex:cafe` または
 `str:secret`（素の値は、16 進に見える場合は 16 進として扱います）。
 
+### 例
+
+エンコードされたテキストを選択して（または文書全体に）適用します：
+
+| レシピ | 内容 |
+| --- | --- |
+| `from_base64` | Base64 をデコード |
+| `from_base64 \| gunzip` | Base64 デコード後に gzip 解凍 |
+| `from_hex \| xor:5a` | 16 進デコード後、各バイトを `0x5A` で XOR |
+| `from_hex \| xor:hex:deadbeef` | 16 進デコード後、繰り返し鍵 `DE AD BE EF` で XOR |
+| `from_base64 \| rc4:str:s3cret` | Base64 デコード後、鍵 `s3cret` で RC4 復号 |
+| `rot13` | ROT13（`rot:3` はシーザー暗号の 3 シフト） |
+| `base58.decode` | Base58 文字列をデコード（ウォレットアドレス／鍵など） |
+| `jwt.decode` | JWT をデコード済みヘッダー／ペイロードの JSON に展開 |
+| `from_base64 \| xor:cafe \| from_base64` | 二重エンコード＋XOR のペイロードを剥がす |
+
+結果は選択範囲（または文書）を**1 回の undo 単位**で置き換えるので、`Ctrl+Z` で
+レシピ全体を取り消せます。途中のステップが失敗した場合（例：不正な Base64）は、
+どのステップで失敗したかを表示し、テキストは変更しません。
+
 ## エントロピー
 
 [HEX / バイナリエディタ](hex.md)のエントロピーマップとオーバービューストリップが、
