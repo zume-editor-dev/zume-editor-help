@@ -1004,10 +1004,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="変換レシピ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1018,7 +1035,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1407,10 +1424,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="変換レシピ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1421,7 +1455,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1518,11 +1552,62 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 <code>base58.encode</code> / <code>base58.decode</code>、<code>base85.encode</code> / <code>base85.decode</code>、
 <code>from_hex</code> / <code>to_hex</code> のプリミティブが使えます。鍵は <code>hex:cafe</code> または
 <code>str:secret</code>（素の値は、16 進に見える場合は 16 進として扱います）。</p>
-<h2 id="_5">エントロピー<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_5">例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>エンコードされたテキストを選択して（または文書全体に）適用します：</p>
+<table>
+<thead>
+<tr>
+<th>レシピ</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>from_base64</code></td>
+<td>Base64 をデコード</td>
+</tr>
+<tr>
+<td><code>from_base64 \| gunzip</code></td>
+<td>Base64 デコード後に gzip 解凍</td>
+</tr>
+<tr>
+<td><code>from_hex \| xor:5a</code></td>
+<td>16 進デコード後、各バイトを <code>0x5A</code> で XOR</td>
+</tr>
+<tr>
+<td><code>from_hex \| xor:hex:deadbeef</code></td>
+<td>16 進デコード後、繰り返し鍵 <code>DE AD BE EF</code> で XOR</td>
+</tr>
+<tr>
+<td><code>from_base64 \| rc4:str:s3cret</code></td>
+<td>Base64 デコード後、鍵 <code>s3cret</code> で RC4 復号</td>
+</tr>
+<tr>
+<td><code>rot13</code></td>
+<td>ROT13（<code>rot:3</code> はシーザー暗号の 3 シフト）</td>
+</tr>
+<tr>
+<td><code>base58.decode</code></td>
+<td>Base58 文字列をデコード（ウォレットアドレス／鍵など）</td>
+</tr>
+<tr>
+<td><code>jwt.decode</code></td>
+<td>JWT をデコード済みヘッダー／ペイロードの JSON に展開</td>
+</tr>
+<tr>
+<td><code>from_base64 \| xor:cafe \| from_base64</code></td>
+<td>二重エンコード＋XOR のペイロードを剥がす</td>
+</tr>
+</tbody>
+</table>
+<p>結果は選択範囲（または文書）を<strong>1 回の undo 単位</strong>で置き換えるので、<code>Ctrl+Z</code> で
+レシピ全体を取り消せます。途中のステップが失敗した場合（例：不正な Base64）は、
+どのステップで失敗したかを表示し、テキストは変更しません。</p>
+<h2 id="_6">エントロピー<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p><a href="../hex/">HEX / バイナリエディタ</a>のエントロピーマップとオーバービューストリップが、
 ファイルを領域ごとに Shannon エントロピー（0–8 bit/byte）で表示するため、パックや
 暗号化された領域が目立ちます。</p>
-<h2 id="_6">シークレットの検出<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">シークレットの検出<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p><strong>コード → シークレットを検出</strong> は、文書内の疑わしいシークレット（API キー、
 トークン、秘密鍵、資格情報）を行番号付きで一覧し、行をクリックするとジャンプします。
 <strong>編集 → 選択範囲をマスク</strong> は選択テキストを伏せ字にします。</p>
