@@ -1008,6 +1008,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#every-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Every step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1428,6 +1439,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#every-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Every step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1549,12 +1571,55 @@ selection (or the whole document), left to right. Steps are separated by <code>|
 (or spaces / commas); a step argument follows a colon. For example:</p>
 <div class="highlight"><pre><span></span><code>from_base64 | xor:cafe | gunzip
 </code></pre></div>
-<p>Besides every converter in <a href="../convert/">File conversion</a> (base64, gzip, URL,
-JWT decode, …), the recipe adds the primitives <code>xor:&lt;key&gt;</code>, <code>rot:&lt;n&gt;</code> / <code>rot13</code>,
-<code>not</code>, <code>reverse</code>, <code>rc4:&lt;key&gt;</code>, <code>base58.encode</code> / <code>base58.decode</code>,
-<code>base85.encode</code> / <code>base85.decode</code>, and <code>from_hex</code> / <code>to_hex</code>. A key argument may
-be <code>hex:cafe</code> or <code>str:secret</code> (a bare value is treated as hex when it looks like
-hex).</p>
+<p>The dialog that opens takes the recipe in its single text field; the hint
+below the field lists every step the engine accepts, grouped as in the table
+below, so you do not have to remember them. Type the steps, then press
+<strong>Enter</strong> (or OK) to apply; <strong>Esc</strong> cancels.</p>
+<p><img alt="The transform-recipe dialog with its step list" loading="lazy" src="../assets/screenshots/convert_recipe_dialog.png" /></p>
+<h3 id="every-step">Every step<a class="headerlink" href="#every-step" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Steps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>With an argument</td>
+<td><code>xor:&lt;key&gt;</code> (XOR every byte with the repeating key), <code>rc4:&lt;key&gt;</code> (RC4 encrypt / decrypt), <code>rot:&lt;n&gt;</code> (Caesar shift by <em>n</em>)</td>
+</tr>
+<tr>
+<td>No argument</td>
+<td><code>from_hex</code>, <code>to_hex</code>, <code>rot13</code>, <code>not</code> (invert every bit), <code>reverse</code> (reverse the bytes), <code>base58.encode</code> / <code>base58.decode</code>, <code>base85.encode</code> / <code>base85.decode</code></td>
+</tr>
+<tr>
+<td>Short names</td>
+<td><code>from_base64</code> = <code>base64.decode</code>, <code>to_base64</code> = <code>base64.encode</code>, <code>from_base32</code> / <code>to_base32</code>, <code>gunzip</code> = <code>gzip.decompress</code>, <code>gzip</code> = <code>gzip.compress</code>, <code>url_decode</code> / <code>url_encode</code></td>
+</tr>
+<tr>
+<td>Encode</td>
+<td><code>base64.encode</code>, <code>base64url.encode</code>, <code>url.encode</code>, <code>qp.encode</code>, <code>html.encode</code>, <code>unicode.escape</code>, <code>rot13</code>, <code>base32.encode</code></td>
+</tr>
+<tr>
+<td>Decode</td>
+<td><code>base64.decode</code>, <code>base64url.decode</code>, <code>url.decode</code>, <code>qp.decode</code>, <code>html.decode</code>, <code>unicode.unescape</code>, <code>jwt.decode</code>, <code>base32.decode</code></td>
+</tr>
+<tr>
+<td>Data</td>
+<td><code>timestamp.unixToIso</code>, <code>timestamp.unixMsToIso</code>, <code>timestamp.filetimeToIso</code>, <code>timestamp.isoToUnix</code>, <code>csv.toJson</code>, <code>json.toCsv</code>, <code>csv.toTsv</code>, <code>tsv.toCsv</code>, <code>csv.toMarkdown</code>, <code>csv.toHtml</code>, <code>csv.toSql</code>, <code>json.toYaml</code>, <code>yaml.toJson</code>, <code>json.toToml</code>, <code>toml.toJson</code>, <code>json.toIni</code>, <code>ini.toJson</code>, <code>json.minify</code>, <code>json.pretty</code>, <code>html.toMarkdown</code></td>
+</tr>
+<tr>
+<td>Compress</td>
+<td><code>gzip.compress</code>, <code>gzip.decompress</code>, <code>zlib.compress</code>, <code>zlib.decompress</code>, <code>bzip2.compress</code>, <code>bzip2.decompress</code></td>
+</tr>
+</tbody>
+</table>
+<p>The Encode / Decode / Data / Compress rows are the converters of
+<a href="../convert/">File conversion</a>; any converter id works as a step. A key argument
+(<code>xor:</code> / <code>rc4:</code>) is read as hex bytes when it looks like hex (<code>cafe</code>,
+<code>deadbeef</code>) and as text otherwise; write <code>hex:cafe</code> or <code>str:cafe</code> to say which
+explicitly.</p>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p>Select the encoded text (or run it on the whole document) and apply:</p>
 <table>

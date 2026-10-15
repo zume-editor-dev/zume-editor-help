@@ -996,7 +996,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#transform-recipes" class="md-nav__link">
     <span class="md-ellipsis">
       
         変換レシピ
@@ -1006,6 +1006,17 @@
   
     <nav class="md-nav" aria-label="変換レシピ">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使えるステップの一覧
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
@@ -1416,7 +1427,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#transform-recipes" class="md-nav__link">
     <span class="md-ellipsis">
       
         変換レシピ
@@ -1426,6 +1437,17 @@
   
     <nav class="md-nav" aria-label="変換レシピ">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使えるステップの一覧
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
@@ -1541,17 +1563,61 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 <a href="../mcp/#tools">MCP</a> の <code>yara_scan</code> ツールを使ってください。ルールをテキストで渡し、
 対象にファイル・ディレクトリ・インラインのバイト列を指定できます。</p>
 </div>
-<h2 id="_4">変換レシピ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="transform-recipes">変換レシピ<a class="headerlink" href="#transform-recipes" title="Permanent link">&para;</a></h2>
 <p><strong>コード → 変換レシピの適用…</strong> は、選択範囲（または文書全体）に対して変換を
 左から右へ連結して適用します。ステップは <code>|</code>（またはスペース / カンマ）で区切り、
 引数はコロンの後に書きます。例：</p>
 <div class="highlight"><pre><span></span><code>from_base64 | xor:cafe | gunzip
 </code></pre></div>
-<p><a href="../convert/">ファイル変換</a>の各コンバーター（base64、gzip、URL、JWT デコード等）に
-加えて、<code>xor:&lt;鍵&gt;</code>、<code>rot:&lt;n&gt;</code> / <code>rot13</code>、<code>not</code>、<code>reverse</code>、<code>rc4:&lt;鍵&gt;</code>、
-<code>base58.encode</code> / <code>base58.decode</code>、<code>base85.encode</code> / <code>base85.decode</code>、
-<code>from_hex</code> / <code>to_hex</code> のプリミティブが使えます。鍵は <code>hex:cafe</code> または
-<code>str:secret</code>（素の値は、16 進に見える場合は 16 進として扱います）。</p>
+<p>開くダイアログの 1 行の入力欄にレシピを書きます。欄の下のヒントに、エンジンが
+受け付けるすべてのステップが下表と同じ分類で並ぶので、名前を覚えておく必要は
+ありません。ステップを入力して <strong>Enter</strong>（または OK）で適用、<strong>Esc</strong> で
+キャンセルです。</p>
+<p><img alt="変換レシピのダイアログとステップ一覧" loading="lazy" src="../../assets/screenshots/convert_recipe_dialog.png" /></p>
+<h3 id="_4">使えるステップの一覧<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>ステップ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>引数あり</td>
+<td><code>xor:&lt;鍵&gt;</code>（繰り返し鍵で各バイトを XOR）、<code>rc4:&lt;鍵&gt;</code>（RC4 暗号化 / 復号）、<code>rot:&lt;n&gt;</code>（n 文字のシーザーシフト）</td>
+</tr>
+<tr>
+<td>引数なし</td>
+<td><code>from_hex</code>、<code>to_hex</code>、<code>rot13</code>、<code>not</code>（全ビット反転）、<code>reverse</code>（バイト順を反転）、<code>base58.encode</code> / <code>base58.decode</code>、<code>base85.encode</code> / <code>base85.decode</code></td>
+</tr>
+<tr>
+<td>短い別名</td>
+<td><code>from_base64</code> = <code>base64.decode</code>、<code>to_base64</code> = <code>base64.encode</code>、<code>from_base32</code> / <code>to_base32</code>、<code>gunzip</code> = <code>gzip.decompress</code>、<code>gzip</code> = <code>gzip.compress</code>、<code>url_decode</code> / <code>url_encode</code></td>
+</tr>
+<tr>
+<td>エンコード</td>
+<td><code>base64.encode</code>、<code>base64url.encode</code>、<code>url.encode</code>、<code>qp.encode</code>、<code>html.encode</code>、<code>unicode.escape</code>、<code>rot13</code>、<code>base32.encode</code></td>
+</tr>
+<tr>
+<td>デコード</td>
+<td><code>base64.decode</code>、<code>base64url.decode</code>、<code>url.decode</code>、<code>qp.decode</code>、<code>html.decode</code>、<code>unicode.unescape</code>、<code>jwt.decode</code>、<code>base32.decode</code></td>
+</tr>
+<tr>
+<td>データ</td>
+<td><code>timestamp.unixToIso</code>、<code>timestamp.unixMsToIso</code>、<code>timestamp.filetimeToIso</code>、<code>timestamp.isoToUnix</code>、<code>csv.toJson</code>、<code>json.toCsv</code>、<code>csv.toTsv</code>、<code>tsv.toCsv</code>、<code>csv.toMarkdown</code>、<code>csv.toHtml</code>、<code>csv.toSql</code>、<code>json.toYaml</code>、<code>yaml.toJson</code>、<code>json.toToml</code>、<code>toml.toJson</code>、<code>json.toIni</code>、<code>ini.toJson</code>、<code>json.minify</code>、<code>json.pretty</code>、<code>html.toMarkdown</code></td>
+</tr>
+<tr>
+<td>圧縮</td>
+<td><code>gzip.compress</code>、<code>gzip.decompress</code>、<code>zlib.compress</code>、<code>zlib.decompress</code>、<code>bzip2.compress</code>、<code>bzip2.decompress</code></td>
+</tr>
+</tbody>
+</table>
+<p>エンコード / デコード / データ / 圧縮の行は<a href="../convert/">ファイル変換</a>の
+コンバーターで、どのコンバーター ID もそのままステップとして使えます。鍵の引数
+（<code>xor:</code> / <code>rc4:</code>）は、<code>cafe</code> や <code>deadbeef</code> のように 16 進に見える場合は 16 進
+バイト列、それ以外は文字列として扱います。<code>hex:cafe</code> / <code>str:cafe</code> と書けば明示
+できます。</p>
 <h3 id="_5">例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>エンコードされたテキストを選択して（または文書全体に）適用します：</p>
 <table>

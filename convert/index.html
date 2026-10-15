@@ -1441,6 +1441,13 @@ you pick. The active document is the input.</p>
 <p>gzip / zlib / bzip2 here compress one file into one stream. For multi-file
 <code>.tar.gz</code> / <code>.tar.bz2</code> archives, see <a href="#archives">Archives</a> below.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To chain several of these over the selection in place (for example
+<code>base64.decode | gzip.decompress | json.pretty</code>), use <strong>Code → Apply Convert
+Recipe…</strong> — see <a href="../security/#transform-recipes">Transform recipes</a>, which
+lists every step the recipe accepts.</p>
+</div>
 <h2 id="export-to-pdf">Export to PDF<a class="headerlink" href="#export-to-pdf" title="Permanent link">&para;</a></h2>
 <p>A Markdown or HTML document can be saved as PDF:</p>
 <ul>
