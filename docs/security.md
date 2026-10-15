@@ -6,14 +6,25 @@ Each is also available headlessly to AI agents through the
 [MCP server](mcp.md#tools) (the `entropy`, `transform`, `yara_scan` and
 `pe_info` tools).
 
-!!! tip "Reading an executable's structure"
-    The MCP tool `pe_info` reads a Windows EXE / DLL structurally: the headers
-    and security flags (ASLR / DEP / CFG), every section with its entropy, the
-    imported DLLs and functions, the exports, and the resources a feature
-    inventory needs — the version strings, the string tables, each dialog's
-    caption and controls, the menu items and the manifest — plus the PDB path
-    and any data appended past the last section. It never disassembles, loads
-    or runs the file. Analyze only binaries whose licence permits it.
+## PE Info
+
+**Code → PE Info…** reads a Windows EXE / DLL structurally and lists the
+result in the results panel: the headers and security flags (ASLR / DEP /
+CFG), every section with its entropy, the imported DLLs and functions, the
+exports, and the resources a feature inventory needs — the version strings,
+the string tables, each dialog's caption and controls, the menu items and the
+manifest — plus the PDB path and any data appended past the last section.
+
+When the active tab is itself a PE file (a binary opened in the hex view),
+that file is read; otherwise a file picker asks for one. The file is read on
+a worker, so a large binary does not block the editor. Click a row (or press
+**F4**) to copy that line to the clipboard; **Esc** closes the panel.
+
+![PE Info in the results panel](assets/screenshots/pe_info_panel.png){ loading=lazy }
+
+The same reader is the MCP tool `pe_info` (see [MCP](mcp.md#tools)). It
+never disassembles, loads or runs the file. Analyze only binaries whose
+licence permits it.
 
 ## YARA Scan
 
