@@ -56,6 +56,7 @@ macOS).
 | `entropy` | Shannon entropy (overall + a windowed sparkline) and the byte histogram — spot packed / encrypted regions |
 | `transform` | A CyberChef-style recipe: XOR / ROT / RC4 / base58·85 / hex + the convert toolbox, composed in one pipeline |
 | `yara_scan` | Scan a file, a directory or inline bytes with a practical YARA-rule subset |
+| `pe_info` | The structure of a Windows EXE / DLL (PE32 / PE32+): machine, subsystem, timestamp, linker, ASLR / DEP / CFG flags, .NET and Authenticode presence, sections with entropy, imports (incl. delay-load) and exports (incl. forwarders), the resource tree with the version strings, string tables, dialog captions + controls, menu items and the manifest, the PDB path, and any overlay. Structure only — no disassembly |
 
 **Databases** (the connections configured in the app, or a SQLite file):
 

@@ -3,7 +3,17 @@
 Zume Editor has tools for binary triage, data transforms and signature
 scanning — useful for reverse engineering, CTFs and authorized security work.
 Each is also available headlessly to AI agents through the
-[MCP server](mcp.md#tools) (the `entropy`, `transform` and `yara_scan` tools).
+[MCP server](mcp.md#tools) (the `entropy`, `transform`, `yara_scan` and
+`pe_info` tools).
+
+!!! tip "Reading an executable's structure"
+    The MCP tool `pe_info` reads a Windows EXE / DLL structurally: the headers
+    and security flags (ASLR / DEP / CFG), every section with its entropy, the
+    imported DLLs and functions, the exports, and the resources a feature
+    inventory needs — the version strings, the string tables, each dialog's
+    caption and controls, the menu items and the manifest — plus the PDB path
+    and any data appended past the last section. It never disassembles, loads
+    or runs the file. Analyze only binaries whose licence permits it.
 
 ## YARA Scan
 
