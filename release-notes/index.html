@@ -1274,6 +1274,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-15-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-15 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1330,6 +1341,17 @@
     <span class="md-ellipsis">
       
         Beta updates — October 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-15-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-15 (refreshed builds)
       
     </span>
   </a>
@@ -1414,6 +1436,28 @@ requests on <a href="https://github.com/zume-editor-dev/zume-editor-help/issues"
 <li><strong>Stability</strong> — fixed a crash that could occur after using the Terminal / SSH
   panel.</li>
 <li>Various smaller fixes across all platforms.</li>
+</ul>
+<h3 id="beta-update-2026-10-15-refreshed-builds">Beta update — 2026-10-15 (refreshed builds)<a class="headerlink" href="#beta-update-2026-10-15-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>The Windows, macOS and Linux packages were rebuilt from the same tree; the
+version stays 0.30.0. Re-download from the Installation page to pick them up.</p>
+<ul>
+<li><strong>The transform-recipe dialog lists every step</strong> — Code → Apply Convert
+  Recipe… now shows the whole step list under its field: the keyed primitives
+  (<code>xor:</code> / <code>rc4:</code> / <code>rot:</code>), the argument-free ones, the short names and every
+  converter id by group, so there is nothing to memorise. The short names the
+  documentation uses (<code>from_base64</code>, <code>to_base64</code>, <code>from_base32</code>, <code>to_base32</code>,
+  <code>gunzip</code>, <code>gzip</code>, <code>url_decode</code>, <code>url_encode</code>) are accepted now — before, the
+  engine rejected them as unknown steps. See
+  <a href="../security/#transform-recipes">Transform recipes</a>.</li>
+<li><strong>YARA Scan in the editor</strong> — Code → YARA Scan… takes a rules file, scans
+  the active document and lists each match in the results panel; a row jumps
+  to its line. The recipe also gained the transform primitives (<code>xor</code>, <code>rot</code>,
+  <code>rc4</code>, <code>base58</code> / <code>base85</code>, hex) that were MCP-only before.</li>
+<li><strong>Strikethrough in the preview</strong> — <code>~~text~~</code> and <code>&lt;del&gt;</code> / <code>&lt;s&gt;</code> /
+  <code>&lt;strike&gt;</code> now render struck through in the Markdown / HTML preview
+  (Windows and Linux; macOS draws them as plain text for now).</li>
+<li><strong>macOS</strong> — the image was rebuilt with the fixes above and the latest
+  macOS-side polish.</li>
 </ul>
 <hr />
 <p>A subscription is planned for the stable (1.0) release. Your feedback shapes the
