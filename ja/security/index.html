@@ -957,6 +957,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PE 情報
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1388,6 +1399,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PE 情報
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1517,16 +1539,22 @@
 リバースエンジニアリング、CTF、認可されたセキュリティ作業に役立ちます。いずれも
 <a href="../mcp/#tools">MCP サーバー</a>経由で AI エージェントからヘッドレスに利用できます
 （<code>entropy</code>・<code>transform</code>・<code>yara_scan</code>・<code>pe_info</code> ツール）。</p>
-<div class="admonition tip">
-<p class="admonition-title">実行ファイルの構造を読む</p>
-<p>MCP ツール <code>pe_info</code> は Windows の EXE / DLL を構造として読み取ります：
-ヘッダーとセキュリティフラグ（ASLR / DEP / CFG）、各セクションとその
-エントロピー、インポートする DLL と関数、エクスポート、そして機能の目録を
-作るのに必要なリソース — バージョン文字列、文字列テーブル、各ダイアログの
-キャプションとコントロール、メニュー項目、マニフェスト — に加えて PDB パスと
-最終セクション以降に付加されたデータ。逆アセンブル・ロード・実行は一切
-行いません。解析はライセンスで許されたバイナリに限ってください。</p>
-</div>
+<h2 id="pe">PE 情報<a class="headerlink" href="#pe" title="Permanent link">&para;</a></h2>
+<p><strong>コード → PE 情報…</strong> は Windows の EXE / DLL を構造として読み取り、結果パネルに
+一覧します：ヘッダーとセキュリティフラグ（ASLR / DEP / CFG）、各セクションとその
+エントロピー、インポートする DLL と関数、エクスポート、そして機能の目録を作るのに
+必要なリソース — バージョン文字列、文字列テーブル、各ダイアログのキャプションと
+コントロール、メニュー項目、マニフェスト — に加えて PDB パスと最終セクション以降に
+付加されたデータです。</p>
+<p>アクティブなタブ自体が PE ファイルなら（16 進ビューで開いたバイナリなど）その
+ファイルを読み、そうでなければファイル選択ダイアログで指定します。読み込みは
+ワーカースレッドで行うので、大きなバイナリでもエディターは止まりません。行を
+クリック（または <strong>F4</strong>）するとその行をクリップボードにコピーし、<strong>Esc</strong> で
+パネルを閉じます。</p>
+<p><img alt="結果パネルの PE 情報" loading="lazy" src="../../assets/screenshots/pe_info_panel.png" /></p>
+<p>同じ読み取りエンジンが MCP ツール <code>pe_info</code> です（<a href="../mcp/#tools">MCP</a> 参照）。
+逆アセンブル・ロード・実行は一切行いません。解析はライセンスで許されたバイナリに
+限ってください。</p>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
 <p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
