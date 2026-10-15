@@ -58,7 +58,7 @@ hex の jump（`[4-6]`）やオルタネーション（`( A | B )`）は非対�
     [MCP](mcp.md#tools) の `yara_scan` ツールを使ってください。ルールをテキストで渡し、
     対象にファイル・ディレクトリ・インラインのバイト列を指定できます。
 
-## 変換レシピ
+## 変換レシピ { #transform-recipes }
 
 **コード → 変換レシピの適用…** は、選択範囲（または文書全体）に対して変換を
 左から右へ連結して適用します。ステップは `|`（またはスペース / カンマ）で区切り、
@@ -68,11 +68,30 @@ hex の jump（`[4-6]`）やオルタネーション（`( A | B )`）は非対�
 from_base64 | xor:cafe | gunzip
 ```
 
-[ファイル変換](convert.md)の各コンバーター（base64、gzip、URL、JWT デコード等）に
-加えて、`xor:<鍵>`、`rot:<n>` / `rot13`、`not`、`reverse`、`rc4:<鍵>`、
-`base58.encode` / `base58.decode`、`base85.encode` / `base85.decode`、
-`from_hex` / `to_hex` のプリミティブが使えます。鍵は `hex:cafe` または
-`str:secret`（素の値は、16 進に見える場合は 16 進として扱います）。
+開くダイアログの 1 行の入力欄にレシピを書きます。欄の下のヒントに、エンジンが
+受け付けるすべてのステップが下表と同じ分類で並ぶので、名前を覚えておく必要は
+ありません。ステップを入力して **Enter**（または OK）で適用、**Esc** で
+キャンセルです。
+
+![変換レシピのダイアログとステップ一覧](assets/screenshots/convert_recipe_dialog.png){ loading=lazy }
+
+### 使えるステップの一覧
+
+| 分類 | ステップ |
+| --- | --- |
+| 引数あり | `xor:<鍵>`（繰り返し鍵で各バイトを XOR）、`rc4:<鍵>`（RC4 暗号化 / 復号）、`rot:<n>`（n 文字のシーザーシフト） |
+| 引数なし | `from_hex`、`to_hex`、`rot13`、`not`（全ビット反転）、`reverse`（バイト順を反転）、`base58.encode` / `base58.decode`、`base85.encode` / `base85.decode` |
+| 短い別名 | `from_base64` = `base64.decode`、`to_base64` = `base64.encode`、`from_base32` / `to_base32`、`gunzip` = `gzip.decompress`、`gzip` = `gzip.compress`、`url_decode` / `url_encode` |
+| エンコード | `base64.encode`、`base64url.encode`、`url.encode`、`qp.encode`、`html.encode`、`unicode.escape`、`rot13`、`base32.encode` |
+| デコード | `base64.decode`、`base64url.decode`、`url.decode`、`qp.decode`、`html.decode`、`unicode.unescape`、`jwt.decode`、`base32.decode` |
+| データ | `timestamp.unixToIso`、`timestamp.unixMsToIso`、`timestamp.filetimeToIso`、`timestamp.isoToUnix`、`csv.toJson`、`json.toCsv`、`csv.toTsv`、`tsv.toCsv`、`csv.toMarkdown`、`csv.toHtml`、`csv.toSql`、`json.toYaml`、`yaml.toJson`、`json.toToml`、`toml.toJson`、`json.toIni`、`ini.toJson`、`json.minify`、`json.pretty`、`html.toMarkdown` |
+| 圧縮 | `gzip.compress`、`gzip.decompress`、`zlib.compress`、`zlib.decompress`、`bzip2.compress`、`bzip2.decompress` |
+
+エンコード / デコード / データ / 圧縮の行は[ファイル変換](convert.md)の
+コンバーターで、どのコンバーター ID もそのままステップとして使えます。鍵の引数
+（`xor:` / `rc4:`）は、`cafe` や `deadbeef` のように 16 進に見える場合は 16 進
+バイト列、それ以外は文字列として扱います。`hex:cafe` / `str:cafe` と書けば明示
+できます。
 
 ### 例
 

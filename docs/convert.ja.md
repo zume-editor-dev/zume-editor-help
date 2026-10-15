@@ -26,6 +26,12 @@ Zume Editor は、テキストやデータを多くの形式間で変換し、Ma
     複数ファイルの `.tar.gz` / `.tar.bz2` は下の[アーカイブ](#archives)を参照
     してください。
 
+!!! tip
+    これらを選択範囲に対してその場で連結して適用するには（例：
+    `base64.decode | gzip.decompress | json.pretty`）、**コード → 変換レシピを
+    適用…** を使います。使えるステップの全一覧は
+    [変換レシピ](security.md#transform-recipes)を参照してください。
+
 ## PDF へ出力
 
 Markdown / HTML ドキュメントは PDF として保存できます：

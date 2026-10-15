@@ -25,6 +25,12 @@ Available converters:
     gzip / zlib / bzip2 here compress one file into one stream. For multi-file
     `.tar.gz` / `.tar.bz2` archives, see [Archives](#archives) below.
 
+!!! tip
+    To chain several of these over the selection in place (for example
+    `base64.decode | gzip.decompress | json.pretty`), use **Code → Apply Convert
+    Recipe…** — see [Transform recipes](security.md#transform-recipes), which
+    lists every step the recipe accepts.
+
 ## Export to PDF
 
 A Markdown or HTML document can be saved as PDF:

@@ -70,12 +70,30 @@ selection (or the whole document), left to right. Steps are separated by `|`
 from_base64 | xor:cafe | gunzip
 ```
 
-Besides every converter in [File conversion](convert.md) (base64, gzip, URL,
-JWT decode, …), the recipe adds the primitives `xor:<key>`, `rot:<n>` / `rot13`,
-`not`, `reverse`, `rc4:<key>`, `base58.encode` / `base58.decode`,
-`base85.encode` / `base85.decode`, and `from_hex` / `to_hex`. A key argument may
-be `hex:cafe` or `str:secret` (a bare value is treated as hex when it looks like
-hex).
+The dialog that opens takes the recipe in its single text field; the hint
+below the field lists every step the engine accepts, grouped as in the table
+below, so you do not have to remember them. Type the steps, then press
+**Enter** (or OK) to apply; **Esc** cancels.
+
+![The transform-recipe dialog with its step list](assets/screenshots/convert_recipe_dialog.png){ loading=lazy }
+
+### Every step
+
+| Group | Steps |
+| --- | --- |
+| With an argument | `xor:<key>` (XOR every byte with the repeating key), `rc4:<key>` (RC4 encrypt / decrypt), `rot:<n>` (Caesar shift by *n*) |
+| No argument | `from_hex`, `to_hex`, `rot13`, `not` (invert every bit), `reverse` (reverse the bytes), `base58.encode` / `base58.decode`, `base85.encode` / `base85.decode` |
+| Short names | `from_base64` = `base64.decode`, `to_base64` = `base64.encode`, `from_base32` / `to_base32`, `gunzip` = `gzip.decompress`, `gzip` = `gzip.compress`, `url_decode` / `url_encode` |
+| Encode | `base64.encode`, `base64url.encode`, `url.encode`, `qp.encode`, `html.encode`, `unicode.escape`, `rot13`, `base32.encode` |
+| Decode | `base64.decode`, `base64url.decode`, `url.decode`, `qp.decode`, `html.decode`, `unicode.unescape`, `jwt.decode`, `base32.decode` |
+| Data | `timestamp.unixToIso`, `timestamp.unixMsToIso`, `timestamp.filetimeToIso`, `timestamp.isoToUnix`, `csv.toJson`, `json.toCsv`, `csv.toTsv`, `tsv.toCsv`, `csv.toMarkdown`, `csv.toHtml`, `csv.toSql`, `json.toYaml`, `yaml.toJson`, `json.toToml`, `toml.toJson`, `json.toIni`, `ini.toJson`, `json.minify`, `json.pretty`, `html.toMarkdown` |
+| Compress | `gzip.compress`, `gzip.decompress`, `zlib.compress`, `zlib.decompress`, `bzip2.compress`, `bzip2.decompress` |
+
+The Encode / Decode / Data / Compress rows are the converters of
+[File conversion](convert.md); any converter id works as a step. A key argument
+(`xor:` / `rc4:`) is read as hex bytes when it looks like hex (`cafe`,
+`deadbeef`) and as text otherwise; write `hex:cafe` or `str:cafe` to say which
+explicitly.
 
 ### Examples
 
