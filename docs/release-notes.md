@@ -53,6 +53,29 @@ One license (for the upcoming stable release) covers all three platforms.
   panel.
 - Various smaller fixes across all platforms.
 
+### Beta update — 2026-10-15 (refreshed builds)
+
+The Windows, macOS and Linux packages were rebuilt from the same tree; the
+version stays 0.30.0. Re-download from the Installation page to pick them up.
+
+- **The transform-recipe dialog lists every step** — Code → Apply Convert
+  Recipe… now shows the whole step list under its field: the keyed primitives
+  (`xor:` / `rc4:` / `rot:`), the argument-free ones, the short names and every
+  converter id by group, so there is nothing to memorise. The short names the
+  documentation uses (`from_base64`, `to_base64`, `from_base32`, `to_base32`,
+  `gunzip`, `gzip`, `url_decode`, `url_encode`) are accepted now — before, the
+  engine rejected them as unknown steps. See
+  [Transform recipes](security.md#transform-recipes).
+- **YARA Scan in the editor** — Code → YARA Scan… takes a rules file, scans
+  the active document and lists each match in the results panel; a row jumps
+  to its line. The recipe also gained the transform primitives (`xor`, `rot`,
+  `rc4`, `base58` / `base85`, hex) that were MCP-only before.
+- **Strikethrough in the preview** — `~~text~~` and `<del>` / `<s>` /
+  `<strike>` now render struck through in the Markdown / HTML preview
+  (Windows and Linux; macOS draws them as plain text for now).
+- **macOS** — the image was rebuilt with the fixes above and the latest
+  macOS-side polish.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the
