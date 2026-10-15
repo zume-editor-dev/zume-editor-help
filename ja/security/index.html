@@ -1516,7 +1516,17 @@
 <p>Zume Editor には、バイナリ診断・データ変換・シグネチャ走査のツールがあり、
 リバースエンジニアリング、CTF、認可されたセキュリティ作業に役立ちます。いずれも
 <a href="../mcp/#tools">MCP サーバー</a>経由で AI エージェントからヘッドレスに利用できます
-（<code>entropy</code>・<code>transform</code>・<code>yara_scan</code> ツール）。</p>
+（<code>entropy</code>・<code>transform</code>・<code>yara_scan</code>・<code>pe_info</code> ツール）。</p>
+<div class="admonition tip">
+<p class="admonition-title">実行ファイルの構造を読む</p>
+<p>MCP ツール <code>pe_info</code> は Windows の EXE / DLL を構造として読み取ります：
+ヘッダーとセキュリティフラグ（ASLR / DEP / CFG）、各セクションとその
+エントロピー、インポートする DLL と関数、エクスポート、そして機能の目録を
+作るのに必要なリソース — バージョン文字列、文字列テーブル、各ダイアログの
+キャプションとコントロール、メニュー項目、マニフェスト — に加えて PDB パスと
+最終セクション以降に付加されたデータ。逆アセンブル・ロード・実行は一切
+行いません。解析はライセンスで許されたバイナリに限ってください。</p>
+</div>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
 <p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
