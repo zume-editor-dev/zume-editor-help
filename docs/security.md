@@ -20,6 +20,13 @@ that file is read; otherwise a file picker asks for one. The file is read on
 a worker, so a large binary does not block the editor. Click a row (or press
 **F4**) to copy that line to the clipboard; **Esc** closes the panel.
 
+Rows that name code jump to the disassembly instead: the entry-point line,
+an export with a code address, and a section marked CODE / EXECUTE. Clicking
+one opens the file in the hex view at that file offset and runs
+**Hex → Disassemble** there with the architecture the file declares (x64,
+x86, ARM64, ARM / Thumb), so the disassembly panel takes the report's place
+from that offset; the hex view stays open for browsing.
+
 ![PE Info in the results panel](assets/screenshots/pe_info_panel.png){ loading=lazy }
 
 The same reader is the MCP tool `pe_info` (see [MCP](mcp.md#tools)). It
