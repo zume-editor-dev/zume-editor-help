@@ -319,32 +319,7 @@ reverse engineer uses.
 
 ### How the pieces fit together
 
-```
-          You (developer)
-              │  "analyse <target you own>, then build a clean-room app"
-              ▼
-      ┌──────────────────────┐        writes source files
-      │     Claude Code        │ ─────────────────────────────┐
-      │  (AI agent: plans,     │                              ▼
-      │   calls tools, codes)  │                   ┌───────────────────────┐
-      └───────────┬────────────┘                   │   Your NEW application  │
-                  │  MCP tool calls (JSON-RPC)      │  clean-room, written    │
-                  ▼                                 │  from the specification │
-      ┌──────────────────────┐                     │  — NOT copied output    │
-      │   zume MCP server      │                   └───────────────────────┘
-      │   (zume-mcp.exe)       │
-      │  pe_info · functions · │   shells out (optional, opt-in):
-      │  xrefs · disassemble · │──► Ghidra      native → C    [ZUME_GHIDRA_HOME]
-      │  extract_strings · …   │──► ilspycmd    .NET  → C#    [ZUME_ILSPY]
-      └───────────┬────────────┘
-                  │  static reads only (never run / loaded)
-                  ▼
-      ┌──────────────────────┐
-      │  Target executable     │  ← ONLY one you own or are licensed to analyse
-      │  EXE / DLL / .so /     │
-      │  Mach-O / .NET assembly│
-      └──────────────────────┘
-```
+![How you, Claude Code, the zume MCP server, Ghidra / ilspycmd, the target executable and your new clean-room app relate](assets/re-app-dev.svg){ loading=lazy }
 
 Zume, Ghidra and ilspycmd only **read** the target statically — it is never
 executed or loaded. Ghidra and ilspycmd are not bundled; they run only when you

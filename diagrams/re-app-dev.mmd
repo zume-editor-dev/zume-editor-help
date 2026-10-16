@@ -1,0 +1,23 @@
+%%{init: {"theme":"neutral","flowchart":{"useMaxWidth":true,"htmlLabels":true}}}%%
+flowchart TD
+    user(["You (developer)"])
+    cc["Claude Code<br/><small>AI agent: plans, calls tools, writes code</small>"]
+    mcp["zume MCP server (zume-mcp.exe)<br/><small>pe_info · functions · xrefs · disassemble · extract_strings · …</small>"]
+    ghidra["Ghidra<br/><small>native → C &nbsp;[ZUME_GHIDRA_HOME]</small>"]
+    ilspy["ilspycmd<br/><small>.NET → C# &nbsp;[ZUME_ILSPY]</small>"]
+    target["Target executable<br/><small>EXE / DLL / .so / Mach-O / .NET<br/>ONLY one you own or are licensed to analyse</small>"]
+    app["Your NEW application<br/><small>clean-room, written from the specification<br/>— NOT copied output</small>"]
+
+    user -->|"analyse a target you own,<br/>then build a clean-room app"| cc
+    cc -->|"MCP tool calls (JSON-RPC)"| mcp
+    cc ==>|"writes source files"| app
+    mcp -->|"shells out<br/>(optional, opt-in)"| ghidra
+    mcp -->|"shells out<br/>(optional, opt-in)"| ilspy
+    mcp -->|"static reads only<br/>(never run / loaded)"| target
+    ghidra -.->|reads| target
+    ilspy -.->|reads| target
+
+    classDef warn fill:#ffe8e8,stroke:#c0392b,color:#7b241c;
+    classDef made fill:#e8f6ff,stroke:#2e86c1,color:#1b4f72;
+    class target warn;
+    class app made;

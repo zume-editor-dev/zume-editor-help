@@ -1,0 +1,23 @@
+%%{init: {"theme":"neutral","flowchart":{"useMaxWidth":true,"htmlLabels":true}}}%%
+flowchart TD
+    user(["あなた（開発者）"])
+    cc["Claude Code<br/><small>AI エージェント: 計画・ツール呼び出し・コーディング</small>"]
+    mcp["zume MCP サーバー (zume-mcp.exe)<br/><small>pe_info · functions · xrefs · disassemble · extract_strings · …</small>"]
+    ghidra["Ghidra<br/><small>ネイティブ → C &nbsp;[ZUME_GHIDRA_HOME]</small>"]
+    ilspy["ilspycmd<br/><small>.NET → C# &nbsp;[ZUME_ILSPY]</small>"]
+    target["解析対象の実行ファイル<br/><small>EXE / DLL / .so / Mach-O / .NET<br/>権利を有する／許可されたものだけ</small>"]
+    app["あなたの新しいアプリ<br/><small>仕様書から書いたクリーンルーム実装<br/>— 出力の流用ではない</small>"]
+
+    user -->|"権利を有する対象を解析し、<br/>クリーンルームでアプリを作る"| cc
+    cc -->|"MCP ツール呼び出し (JSON-RPC)"| mcp
+    cc ==>|"ソースコードを書き出す"| app
+    mcp -->|"外部起動<br/>（任意・オプトイン）"| ghidra
+    mcp -->|"外部起動<br/>（任意・オプトイン）"| ilspy
+    mcp -->|"静的読み取りのみ<br/>（実行・ロードしない）"| target
+    ghidra -.->|読み取り| target
+    ilspy -.->|読み取り| target
+
+    classDef warn fill:#ffe8e8,stroke:#c0392b,color:#7b241c;
+    classDef made fill:#e8f6ff,stroke:#2e86c1,color:#1b4f72;
+    class target warn;
+    class app made;
