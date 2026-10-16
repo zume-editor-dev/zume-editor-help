@@ -290,6 +290,104 @@ the AI until it does exactly what you want.
     undoable - so you review and run the script yourself. This keeps you in
     control while still letting the AI extend the editor for you.
 
+## Reverse-engineering for app development {#re-app-dev}
+
+The static-analysis tools (`pe_info` / `elf_info` / `macho_info`,
+`extract_strings`, `functions`, `xrefs`, `disassemble`, and the optional
+`decompile` / `il_types` / `il_decompile`) let an AI agent study an existing
+program and help you build your **own** application with similar behaviour -
+the same *inventory → locate → read → specify → reimplement* workflow a human
+reverse engineer uses.
+
+!!! danger "Use only on software you are entitled to analyse — and you own what you make"
+    Run these tools **only** on executables whose licence / EULA permits reverse
+    engineering **and** that you have the right to analyse — your own builds,
+    open-source binaries, or software whose terms explicitly allow it. Many
+    commercial EULAs **prohibit** reverse engineering; analysing such software
+    may breach that contract or applicable law. Confirming you have that right
+    is **your** responsibility.
+
+    Decompiled and disassembled output is **derivative** of the original. Build
+    your application **clean-room**: work from a written *behavioural
+    specification* you produce, **not** by copying the emitted C / C# / IL /
+    assembly into your code.
+
+    **No liability.** Anything you create with this feature is entirely your own
+    responsibility. To the fullest extent permitted by law, the authors and
+    distributors of Zume accept **no liability whatsoever** for how this feature
+    is used or for anything produced with it.
+
+### How the pieces fit together
+
+```
+          You (developer)
+              │  "analyse <target you own>, then build a clean-room app"
+              ▼
+      ┌──────────────────────┐        writes source files
+      │     Claude Code        │ ─────────────────────────────┐
+      │  (AI agent: plans,     │                              ▼
+      │   calls tools, codes)  │                   ┌───────────────────────┐
+      └───────────┬────────────┘                   │   Your NEW application  │
+                  │  MCP tool calls (JSON-RPC)      │  clean-room, written    │
+                  ▼                                 │  from the specification │
+      ┌──────────────────────┐                     │  — NOT copied output    │
+      │   zume MCP server      │                   └───────────────────────┘
+      │   (zume-mcp.exe)       │
+      │  pe_info · functions · │   shells out (optional, opt-in):
+      │  xrefs · disassemble · │──► Ghidra      native → C    [ZUME_GHIDRA_HOME]
+      │  extract_strings · …   │──► ilspycmd    .NET  → C#    [ZUME_ILSPY]
+      └───────────┬────────────┘
+                  │  static reads only (never run / loaded)
+                  ▼
+      ┌──────────────────────┐
+      │  Target executable     │  ← ONLY one you own or are licensed to analyse
+      │  EXE / DLL / .so /     │
+      │  Mach-O / .NET assembly│
+      └──────────────────────┘
+```
+
+Zume, Ghidra and ilspycmd only **read** the target statically — it is never
+executed or loaded. Ghidra and ilspycmd are not bundled; they run only when you
+install them and set `ZUME_GHIDRA_HOME` / `ZUME_ILSPY`.
+
+### Example prompt for Claude Code
+
+Paste this into a Claude Code session that has the zume MCP server connected,
+replacing the target path and the feature you want:
+
+```text
+You have the zume MCP server connected (static binary-analysis tools). 
+Target: C:\path\to\target.exe — I confirm I have the right to analyse this
+binary (my own build / OSS / a licence that permits reverse engineering).
+Work clean-room: produce a behavioural specification and reimplement from it;
+do NOT copy decompiled C/C#/IL or disassembly into the new code.
+
+Do this step by step, reporting findings at each stage:
+1. Inventory: run pe_info (or elf_info / macho_info) and extract_strings.
+   Summarise the feature set, the OS/library APIs it uses, the file formats,
+   URLs and error messages, and the UI (dialogs / menus). If pe_info reports
+   managed: true, it is a .NET assembly — use il_types instead of functions.
+2. Locate: I want to reimplement this feature: <describe the feature>. Use
+   extract_strings / search_in_file to find related strings, then functions
+   and xrefs (or il_types) to find the functions/types that use them.
+3. Read: for the key functions, use disassemble at the offsets functions /
+   xrefs reported; optionally decompile (native) or il_decompile (.NET) a
+   specific function/type. Explain inputs, outputs, side effects and errors.
+4. Specify: write a precise behavioural specification (inputs, outputs,
+   formats, edge cases, error conditions) — observed behaviour only.
+5. Reimplement: from that specification alone, implement the feature as new
+   code in <your language/project>, clean-room. Note anything you could not
+   determine statically (it may need runtime observation, which these tools
+   do not do).
+
+Keep everything static — never run or load the target. Flag any licensing
+concern if the binary embeds third-party libraries whose reimplementation
+their licence restricts.
+```
+
+The agent reports at each step; you keep the **behavioural specification** and
+the **new code**, and discard the raw decompiler / disassembler output.
+
 ## Usage notes & cautions
 
 !!! warning "Some tools change files on disk"
