@@ -991,6 +991,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逆コンパイラ外部ツールの導入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ghidra" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1041,7 +1052,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         ルールファイルの例
@@ -1052,7 +1063,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         対応している記法
@@ -1080,7 +1091,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         使えるステップの一覧
@@ -1091,7 +1102,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         例
@@ -1107,7 +1118,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1118,7 +1129,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1494,6 +1505,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逆コンパイラ外部ツールの導入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ghidra" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1544,7 +1566,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         ルールファイルの例
@@ -1555,7 +1577,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         対応している記法
@@ -1583,7 +1605,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         使えるステップの一覧
@@ -1594,7 +1616,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         例
@@ -1610,7 +1632,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1621,7 +1643,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1722,6 +1744,58 @@
 <p>同じ読み取りエンジンが MCP ツール <code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> です
 （<a href="../mcp/#tools">MCP</a> 参照）。ロード・実行は一切行わず、<code>disassemble</code> もバイト列を
 デコードするだけです。解析はライセンスで許されたバイナリに限ってください。</p>
+<h3 id="_4">逆コンパイラ外部ツールの導入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>逆コンパイルは<strong>任意機能</strong>で、ユーザー自身が導入したツールを使います。Zume はいずれも同梱せず、
+ダウンロードもせず、あなたが場所を教えたときだけ起動します。必要なものだけ入れてください:</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>逆コンパイル対象</th>
+<th>入手</th>
+<th>有効化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JDK</strong>（Temurin / OpenJDK）</td>
+<td>Java <strong>および</strong> Ghidra の前提</td>
+<td><a href="https://adoptium.net/">adoptium.net</a>（Java 17 以上）</td>
+<td><code>JAVA_HOME</code> を設定、または <code>java</code> / <code>javap</code> を <code>PATH</code> に</td>
+</tr>
+<tr>
+<td><strong>Ghidra</strong></td>
+<td>ネイティブ <strong>PE / ELF / Mach-O → C</strong></td>
+<td><a href="https://ghidra-sre.org/">ghidra-sre.org</a>（任意の場所に展開。JDK が必要）</td>
+<td>エディタ: <em>ツール → 設定 → 逆コンパイラ (Ghidra)</em>／MCP: <code>ZUME_GHIDRA_HOME</code>（インストール先）</td>
+</tr>
+<tr>
+<td><strong>ilspycmd</strong>（ILSpy）</td>
+<td><strong>.NET アセンブリ → C# / IL</strong></td>
+<td><code>dotnet tool install -g ilspycmd</code>（.NET ランタイムが必要）</td>
+<td>エディタ: <em>ツール → 設定 → 逆コンパイラ (.NET / ILSpy)</em>／MCP: <code>ZUME_ILSPY</code>（<code>ilspycmd</code> のパス、または <code>1</code> で PATH 探索）</td>
+</tr>
+<tr>
+<td><strong>CFR</strong></td>
+<td><strong>Java <code>.class</code> / <code>.jar</code> → Java ソース</strong></td>
+<td>Maven Central から <a href="https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar"><code>cfr-0.152.jar</code></a> を取得（単体 jar。JDK が必要）</td>
+<td>MCP: <code>ZUME_CFR</code>（jar のパス）</td>
+</tr>
+</tbody>
+</table>
+<p>補足:</p>
+<ul>
+<li><strong>javap</strong>（JVM バイトコード）と <strong>jar</strong>（クラス一覧）は JDK 付属なので、Java のクラス一覧と
+  バイトコードは JDK だけで動きます。CFR は Java <strong>ソース</strong>復元を追加します。</li>
+<li><code>ZUME_*</code> 変数は <strong>MCP サーバーの環境</strong>から読まれます。Claude Code CLI の場合は
+  <code>~/.claude.json</code> の <code>zume</code> エントリの <code>env</code> ブロックです（編集後はクライアントを再起動）。
+  任意のキャッシュ先: <code>ZUME_GHIDRA_CACHE</code> / <code>ZUME_ILSPY_CACHE</code> / <code>ZUME_CFR_CACHE</code>。</li>
+<li>Ghidra と ilspycmd はエディタの<strong>設定ダイアログ</strong>からも指定できます（エディタ自身の
+  <em>コード → 逆コンパイル…</em> 用）。<code>ZUME_*</code> は Claude Code から使う MCP ツール用で、両者は独立です。</li>
+<li>いずれのツールも<strong>対象を静的に読むだけで、実行はしません</strong>。ライセンスは Ghidra が Apache-2.0、
+  ilspycmd と CFR が MIT で、Zume は再配布しません。逆コンパイル出力は派生物です。利用前に
+  各ツールの節とライセンス／クリーンルームの注意を確認してください。</li>
+</ul>
 <h3 id="ghidra">逆コンパイル (Ghidra)<a class="headerlink" href="#ghidra" title="Permanent link">&para;</a></h3>
 <p>Zume 自体は逆コンパイラを内蔵しませんが、既にインストール済みの逆コンパイラを呼び出せます。
 <strong>コード → 逆コンパイル (Ghidra)…</strong> は、ローカルの <a href="https://ghidra-sre.org/">Ghidra</a> を
@@ -1832,7 +1906,7 @@ EULA で許可され、かつ解析する権利があるソフトウェアにの
    行をクリック（または F4）でその行へジャンプします。</li>
 </ol>
 <p>対象は通常のテキスト / コードタブです（大容量・HEX・Git タブでは無効）。</p>
-<h3 id="_4">ルールファイルの例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_5">ルールファイルの例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kd">rule</span><span class="w"> </span><span class="n">suspicious_strings</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="k">strings</span><span class="p">:</span>
@@ -1844,7 +1918,7 @@ EULA で許可され、かつ解析する権利があるソフトウェアにの
 <span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span>2<span class="w"> </span><span class="nb">of</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span><span class="w"> </span><span class="nv">$b</span><span class="p">,</span><span class="w"> </span><span class="nv">$url</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="_5">対応している記法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_6">対応している記法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>YARA の実用的なサブセット：</p>
 <ul>
 <li><strong>文字列</strong> — テキスト（<code>"..."</code>）、hex（<code>{ 4D 5A ?? 00 }</code>、<code>??</code>=任意バイト、
@@ -1874,7 +1948,7 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 ありません。ステップを入力して <strong>Enter</strong>（または OK）で適用、<strong>Esc</strong> で
 キャンセルです。</p>
 <p><img alt="変換レシピのダイアログとステップ一覧" loading="lazy" src="../../assets/screenshots/convert_recipe_dialog.png" /></p>
-<h3 id="_6">使えるステップの一覧<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_7">使えるステップの一覧<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1918,7 +1992,7 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 （<code>xor:</code> / <code>rc4:</code>）は、<code>cafe</code> や <code>deadbeef</code> のように 16 進に見える場合は 16 進
 バイト列、それ以外は文字列として扱います。<code>hex:cafe</code> / <code>str:cafe</code> と書けば明示
 できます。</p>
-<h3 id="_7">例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_8">例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>エンコードされたテキストを選択して（または文書全体に）適用します：</p>
 <table>
 <thead>
@@ -1969,11 +2043,11 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 <p>結果は選択範囲（または文書）を<strong>1 回の undo 単位</strong>で置き換えるので、<code>Ctrl+Z</code> で
 レシピ全体を取り消せます。途中のステップが失敗した場合（例：不正な Base64）は、
 どのステップで失敗したかを表示し、テキストは変更しません。</p>
-<h2 id="_8">エントロピー<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">エントロピー<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p><a href="../hex/">HEX / バイナリエディタ</a>のエントロピーマップとオーバービューストリップが、
 ファイルを領域ごとに Shannon エントロピー（0–8 bit/byte）で表示するため、パックや
 暗号化された領域が目立ちます。</p>
-<h2 id="_9">シークレットの検出<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_10">シークレットの検出<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p><strong>コード → シークレットを検出</strong> は、文書内の疑わしいシークレット（API キー、
 トークン、秘密鍵、資格情報）を行番号付きで一覧し、行をクリックするとジャンプします。
 <strong>編集 → 選択範囲をマスク</strong> は選択テキストを伏せ字にします。</p>

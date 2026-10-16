@@ -991,6 +991,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decompiler-tools-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompiler tools — installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decompile-ghidra" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1494,6 +1505,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decompiler-tools-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompiler tools — installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decompile-ghidra" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1726,6 +1748,62 @@ and disassembles from there. The same scan is the MCP tool <code>xrefs</code>.</
 (see <a href="../mcp/#tools">MCP</a>). They never load or run the file; <code>disassemble</code>
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.</p>
+<h3 id="decompiler-tools-installation">Decompiler tools — installation<a class="headerlink" href="#decompiler-tools-installation" title="Permanent link">&para;</a></h3>
+<p>Decompilation is <strong>optional</strong> and uses tools you install yourself. Zume bundles
+none of them, downloads nothing, and launches a tool only when you point it at
+it. Install just the ones you need:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Decompiles</th>
+<th>Install</th>
+<th>Enable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JDK</strong> (Temurin / OpenJDK)</td>
+<td>prerequisite for Java <strong>and</strong> Ghidra</td>
+<td><a href="https://adoptium.net/">adoptium.net</a> — Java 17+</td>
+<td>set <code>JAVA_HOME</code>, or put <code>java</code> / <code>javap</code> on <code>PATH</code></td>
+</tr>
+<tr>
+<td><strong>Ghidra</strong></td>
+<td>native <strong>PE / ELF / Mach-O → C</strong></td>
+<td><a href="https://ghidra-sre.org/">ghidra-sre.org</a> — unzip anywhere (needs a JDK)</td>
+<td>editor: <em>Tools → Settings → Decompiler (Ghidra)</em>; MCP: <code>ZUME_GHIDRA_HOME</code> = the install dir</td>
+</tr>
+<tr>
+<td><strong>ilspycmd</strong> (ILSpy)</td>
+<td><strong>.NET assembly → C# / IL</strong></td>
+<td><code>dotnet tool install -g ilspycmd</code> (needs the .NET runtime)</td>
+<td>editor: <em>Tools → Settings → Decompiler (.NET / ILSpy)</em>; MCP: <code>ZUME_ILSPY</code> = the <code>ilspycmd</code> path, or <code>1</code> to find it on <code>PATH</code></td>
+</tr>
+<tr>
+<td><strong>CFR</strong></td>
+<td><strong>Java <code>.class</code> / <code>.jar</code> → Java source</strong></td>
+<td>download <a href="https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar"><code>cfr-0.152.jar</code></a> from Maven Central (a single jar; needs a JDK)</td>
+<td>MCP: <code>ZUME_CFR</code> = the jar path</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><strong>javap</strong> (JVM bytecode) and <strong>jar</strong> (class listing) ship with the JDK, so Java
+  class listing and bytecode work with the JDK alone — CFR adds Java <strong>source</strong>.</li>
+<li>The <code>ZUME_*</code> variables are read from the <strong>MCP server's</strong> environment. For the
+  Claude Code CLI that is the <code>env</code> block of the <code>zume</code> entry in <code>~/.claude.json</code>;
+  restart the client after editing it. Optional result caches:
+  <code>ZUME_GHIDRA_CACHE</code>, <code>ZUME_ILSPY_CACHE</code>, <code>ZUME_CFR_CACHE</code>.</li>
+<li>Ghidra and ilspycmd are also configurable from the editor's <strong>Settings</strong> dialog
+  (they drive the editor's own <em>Code → Decompile…</em> commands); the <code>ZUME_*</code>
+  variables drive the MCP tools used from Claude Code. The two are independent.</li>
+<li>Every tool <strong>reads the target statically — it never runs it.</strong> Licences differ:
+  Ghidra is Apache-2.0, ilspycmd and CFR are MIT; none is redistributed by Zume.
+  Decompiler output is derivative — see the per-tool sections below and their
+  licence / clean-room warnings before you reuse anything.</li>
+</ul>
 <h3 id="decompile-ghidra">Decompile (Ghidra)<a class="headerlink" href="#decompile-ghidra" title="Permanent link">&para;</a></h3>
 <p>Zume does not include a decompiler, but it can drive one you already have:
 <strong>Code → Decompile (Ghidra)…</strong> turns a function's machine code back into
