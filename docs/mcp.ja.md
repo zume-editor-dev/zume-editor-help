@@ -302,7 +302,7 @@ AI は `zume` API を使ってスクリプトを作成し、`write_file` で `al
 
 ### 構成図（関連図）
 
-![あなた・Claude Code・zume MCP サーバー・Ghidra / ilspycmd・解析対象の実行ファイル・新しいクリーンルームアプリの関連図](assets/re-app-dev.ja.svg){ loading=lazy }
+![あなた・Claude Code・zume MCP サーバー・Ghidra / ilspycmd・解析対象の実行ファイル・新しいクリーンルームアプリの関連図](assets/re-app-dev.ja.png){ loading=lazy }
 
 Zume・Ghidra・ilspycmd は対象を**静的に読み取るだけ**で、実行もロードもしません。Ghidra と
 ilspycmd は同梱されておらず、導入して `ZUME_GHIDRA_HOME` / `ZUME_ILSPY` を設定したときのみ

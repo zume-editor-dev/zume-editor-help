@@ -321,7 +321,7 @@ reverse engineer uses.
 
 ### How the pieces fit together
 
-![How you, Claude Code, the zume MCP server, Ghidra / ilspycmd, the target executable and your new clean-room app relate](assets/re-app-dev.svg){ loading=lazy }
+![How you, Claude Code, the zume MCP server, Ghidra / ilspycmd, the target executable and your new clean-room app relate](assets/re-app-dev.png){ loading=lazy }
 
 Zume, Ghidra and ilspycmd only **read** the target statically — it is never
 executed or loaded. Ghidra and ilspycmd are not bundled; they run only when you
