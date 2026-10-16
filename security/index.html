@@ -979,6 +979,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1438,6 +1449,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cross-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-References
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1623,6 +1645,17 @@ results panel and the keyboard walks it: <strong>↑ / ↓</strong>, <strong>Pag
 caret moves to that instruction), <strong>Esc</strong> closes the panel.</p>
 <p><img alt="The start dialog over kernel32, an export name typed" loading="lazy" src="../assets/screenshots/disasm_prompt.png" /></p>
 <p><img alt="The listing from GetProcAddress in the hex view" loading="lazy" src="../assets/screenshots/disasm_listing.png" /></p>
+<h3 id="cross-references">Cross-References<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
+<p><strong>Code → Cross-References…</strong> answers "which code uses this": it takes the
+active tab's executable (or asks for one), opens a small dialog for the
+target - an import or symbol name (<code>CreateFileW</code>, <code>KERNEL32.dll!CreateFileW</code>),
+a fragment of a string, a <code>0x</code> address, or nothing for every reference - and
+scans every executable section. The results panel lists the targets by
+reference count (import / symbol / PLT or stub / string / code / data) and
+then every referencing instruction with its address; clicking a reference
+row (or pressing <strong>F4</strong>) opens the file in the hex view at that instruction
+and disassembles from there. The same scan is the MCP tool <code>xrefs</code>.</p>
+<p><img alt="Cross-references of kernel32 to GetProcAddress" loading="lazy" src="../assets/screenshots/xrefs_panel.png" /></p>
 <p>The same readers are the MCP tools <code>pe_info</code>, <code>elf_info</code> and <code>macho_info</code>
 (see <a href="../mcp/#tools">MCP</a>). They never load or run the file; <code>disassemble</code>
 decodes bytes and nothing more. Analyze only binaries whose licence permits
