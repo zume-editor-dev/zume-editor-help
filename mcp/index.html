@@ -2078,31 +2078,7 @@ distributors of Zume accept <strong>no liability whatsoever</strong> for how thi
 is used or for anything produced with it.</p>
 </div>
 <h3 id="how-the-pieces-fit-together">How the pieces fit together<a class="headerlink" href="#how-the-pieces-fit-together" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>          You (developer)
-              │  "analyse &lt;target you own&gt;, then build a clean-room app"
-              ▼
-      ┌──────────────────────┐        writes source files
-      │     Claude Code        │ ─────────────────────────────┐
-      │  (AI agent: plans,     │                              ▼
-      │   calls tools, codes)  │                   ┌───────────────────────┐
-      └───────────┬────────────┘                   │   Your NEW application  │
-                  │  MCP tool calls (JSON-RPC)      │  clean-room, written    │
-                  ▼                                 │  from the specification │
-      ┌──────────────────────┐                     │  — NOT copied output    │
-      │   zume MCP server      │                   └───────────────────────┘
-      │   (zume-mcp.exe)       │
-      │  pe_info · functions · │   shells out (optional, opt-in):
-      │  xrefs · disassemble · │──► Ghidra      native → C    [ZUME_GHIDRA_HOME]
-      │  extract_strings · …   │──► ilspycmd    .NET  → C#    [ZUME_ILSPY]
-      └───────────┬────────────┘
-                  │  static reads only (never run / loaded)
-                  ▼
-      ┌──────────────────────┐
-      │  Target executable     │  ← ONLY one you own or are licensed to analyse
-      │  EXE / DLL / .so /     │
-      │  Mach-O / .NET assembly│
-      └──────────────────────┘
-</code></pre></div>
+<p><img alt="How you, Claude Code, the zume MCP server, Ghidra / ilspycmd, the target executable and your new clean-room app relate" loading="lazy" src="../assets/re-app-dev.svg" /></p>
 <p>Zume, Ghidra and ilspycmd only <strong>read</strong> the target statically — it is never
 executed or loaded. Ghidra and ilspycmd are not bundled; they run only when you
 install them and set <code>ZUME_GHIDRA_HOME</code> / <code>ZUME_ILSPY</code>.</p>

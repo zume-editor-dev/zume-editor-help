@@ -2059,32 +2059,7 @@ C / C# / IL / アセンブリを<strong>コードに流用しない</strong>こ�
 いかなる成果物についても、<strong>一切の責任を負いません</strong>。</p>
 </div>
 <h3 id="_2">構成図（関連図）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>          あなた（開発者）
-              │  「&lt;権利を有する対象&gt; を解析し、クリーンルームでアプリを作って」
-              ▼
-      ┌──────────────────────┐        ソースコードを書き出す
-      │     Claude Code        │ ─────────────────────────────┐
-      │  (AI エージェント:      │                              ▼
-      │   計画・ツール呼び出し・ │                   ┌───────────────────────┐
-      │   コーディング)         │                   │   あなたの新しいアプリ   │
-      └───────────┬────────────┘                   │  仕様書から書いた        │
-                  │  MCP ツール呼び出し (JSON-RPC)   │  クリーンルーム実装       │
-                  ▼                                 │  — 出力の流用ではない     │
-      ┌──────────────────────┐                     └───────────────────────┘
-      │   zume MCP サーバー     │
-      │   (zume-mcp.exe)       │
-      │  pe_info · functions · │   外部ツールを起動（任意・オプトイン）:
-      │  xrefs · disassemble · │──► Ghidra     ネイティブ → C   [ZUME_GHIDRA_HOME]
-      │  extract_strings · …   │──► ilspycmd   .NET      → C#   [ZUME_ILSPY]
-      └───────────┬────────────┘
-                  │  静的読み取りのみ（実行・ロードしない）
-                  ▼
-      ┌──────────────────────┐
-      │  解析対象の実行ファイル  │  ← 権利を有する／ライセンスで許可されたものだけ
-      │  EXE / DLL / .so /     │
-      │  Mach-O / .NET アセンブリ│
-      └──────────────────────┘
-</code></pre></div>
+<p><img alt="あなた・Claude Code・zume MCP サーバー・Ghidra / ilspycmd・解析対象の実行ファイル・新しいクリーンルームアプリの関連図" loading="lazy" src="../assets/re-app-dev.svg" /></p>
 <p>Zume・Ghidra・ilspycmd は対象を<strong>静的に読み取るだけ</strong>で、実行もロードもしません。Ghidra と
 ilspycmd は同梱されておらず、導入して <code>ZUME_GHIDRA_HOME</code> / <code>ZUME_ILSPY</code> を設定したときのみ
 動作します。</p>
