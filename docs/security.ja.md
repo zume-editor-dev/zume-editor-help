@@ -88,7 +88,7 @@ Zume Editor には、バイナリ診断・データ変換・シグネチャ走�
 | **JDK**（Temurin / OpenJDK） | Java **および** Ghidra の前提 | [adoptium.net](https://adoptium.net/)（Java 17 以上） | `JAVA_HOME` を設定、または `java` / `javap` を `PATH` に |
 | **Ghidra** | ネイティブ **PE / ELF / Mach-O → C** | [ghidra-sre.org](https://ghidra-sre.org/)（任意の場所に展開。JDK が必要） | エディタ: *ツール → 設定 → 逆コンパイラ (Ghidra)*／MCP: `ZUME_GHIDRA_HOME`（インストール先） |
 | **ilspycmd**（ILSpy） | **.NET アセンブリ → C# / IL** | `dotnet tool install -g ilspycmd`（.NET ランタイムが必要） | エディタ: *ツール → 設定 → 逆コンパイラ (.NET / ILSpy)*／MCP: `ZUME_ILSPY`（`ilspycmd` のパス、または `1` で PATH 探索） |
-| **CFR** | **Java `.class` / `.jar` → Java ソース** | Maven Central から [`cfr-0.152.jar`](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) を取得（単体 jar。JDK が必要） | MCP: `ZUME_CFR`（jar のパス） |
+| **CFR** | **Java `.class` / `.jar` → Java ソース** | Maven Central から [https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) を取得（単体 jar。JDK が必要） | MCP: `ZUME_CFR`（jar のパス） |
 
 補足:
 

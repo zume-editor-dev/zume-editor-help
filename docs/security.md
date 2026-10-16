@@ -93,7 +93,7 @@ it. Install just the ones you need:
 | **JDK** (Temurin / OpenJDK) | prerequisite for Java **and** Ghidra | [adoptium.net](https://adoptium.net/) — Java 17+ | set `JAVA_HOME`, or put `java` / `javap` on `PATH` |
 | **Ghidra** | native **PE / ELF / Mach-O → C** | [ghidra-sre.org](https://ghidra-sre.org/) — unzip anywhere (needs a JDK) | editor: *Tools → Settings → Decompiler (Ghidra)*; MCP: `ZUME_GHIDRA_HOME` = the install dir |
 | **ilspycmd** (ILSpy) | **.NET assembly → C# / IL** | `dotnet tool install -g ilspycmd` (needs the .NET runtime) | editor: *Tools → Settings → Decompiler (.NET / ILSpy)*; MCP: `ZUME_ILSPY` = the `ilspycmd` path, or `1` to find it on `PATH` |
-| **CFR** | **Java `.class` / `.jar` → Java source** | download [`cfr-0.152.jar`](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) from Maven Central (a single jar; needs a JDK) | MCP: `ZUME_CFR` = the jar path |
+| **CFR** | **Java `.class` / `.jar` → Java source** | download [https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) from Maven Central (a single jar; needs a JDK) | MCP: `ZUME_CFR` = the jar path |
 
 Notes:
 
