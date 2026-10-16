@@ -78,6 +78,31 @@ Zume Editor には、バイナリ診断・データ変換・シグネチャ走�
 （[MCP](mcp.md#tools) 参照）。ロード・実行は一切行わず、`disassemble` もバイト列を
 デコードするだけです。解析はライセンスで許されたバイナリに限ってください。
 
+### 逆コンパイラ外部ツールの導入
+
+逆コンパイルは**任意機能**で、ユーザー自身が導入したツールを使います。Zume はいずれも同梱せず、
+ダウンロードもせず、あなたが場所を教えたときだけ起動します。必要なものだけ入れてください:
+
+| ツール | 逆コンパイル対象 | 入手 | 有効化 |
+| --- | --- | --- | --- |
+| **JDK**（Temurin / OpenJDK） | Java **および** Ghidra の前提 | [adoptium.net](https://adoptium.net/)（Java 17 以上） | `JAVA_HOME` を設定、または `java` / `javap` を `PATH` に |
+| **Ghidra** | ネイティブ **PE / ELF / Mach-O → C** | [ghidra-sre.org](https://ghidra-sre.org/)（任意の場所に展開。JDK が必要） | エディタ: *ツール → 設定 → 逆コンパイラ (Ghidra)*／MCP: `ZUME_GHIDRA_HOME`（インストール先） |
+| **ilspycmd**（ILSpy） | **.NET アセンブリ → C# / IL** | `dotnet tool install -g ilspycmd`（.NET ランタイムが必要） | エディタ: *ツール → 設定 → 逆コンパイラ (.NET / ILSpy)*／MCP: `ZUME_ILSPY`（`ilspycmd` のパス、または `1` で PATH 探索） |
+| **CFR** | **Java `.class` / `.jar` → Java ソース** | Maven Central から [`cfr-0.152.jar`](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) を取得（単体 jar。JDK が必要） | MCP: `ZUME_CFR`（jar のパス） |
+
+補足:
+
+- **javap**（JVM バイトコード）と **jar**（クラス一覧）は JDK 付属なので、Java のクラス一覧と
+  バイトコードは JDK だけで動きます。CFR は Java **ソース**復元を追加します。
+- `ZUME_*` 変数は **MCP サーバーの環境**から読まれます。Claude Code CLI の場合は
+  `~/.claude.json` の `zume` エントリの `env` ブロックです（編集後はクライアントを再起動）。
+  任意のキャッシュ先: `ZUME_GHIDRA_CACHE` / `ZUME_ILSPY_CACHE` / `ZUME_CFR_CACHE`。
+- Ghidra と ilspycmd はエディタの**設定ダイアログ**からも指定できます（エディタ自身の
+  *コード → 逆コンパイル…* 用）。`ZUME_*` は Claude Code から使う MCP ツール用で、両者は独立です。
+- いずれのツールも**対象を静的に読むだけで、実行はしません**。ライセンスは Ghidra が Apache-2.0、
+  ilspycmd と CFR が MIT で、Zume は再配布しません。逆コンパイル出力は派生物です。利用前に
+  各ツールの節とライセンス／クリーンルームの注意を確認してください。
+
 ### 逆コンパイル (Ghidra)
 
 Zume 自体は逆コンパイラを内蔵しませんが、既にインストール済みの逆コンパイラを呼び出せます。

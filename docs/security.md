@@ -82,6 +82,35 @@ The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.
 
+### Decompiler tools — installation
+
+Decompilation is **optional** and uses tools you install yourself. Zume bundles
+none of them, downloads nothing, and launches a tool only when you point it at
+it. Install just the ones you need:
+
+| Tool | Decompiles | Install | Enable |
+| --- | --- | --- | --- |
+| **JDK** (Temurin / OpenJDK) | prerequisite for Java **and** Ghidra | [adoptium.net](https://adoptium.net/) — Java 17+ | set `JAVA_HOME`, or put `java` / `javap` on `PATH` |
+| **Ghidra** | native **PE / ELF / Mach-O → C** | [ghidra-sre.org](https://ghidra-sre.org/) — unzip anywhere (needs a JDK) | editor: *Tools → Settings → Decompiler (Ghidra)*; MCP: `ZUME_GHIDRA_HOME` = the install dir |
+| **ilspycmd** (ILSpy) | **.NET assembly → C# / IL** | `dotnet tool install -g ilspycmd` (needs the .NET runtime) | editor: *Tools → Settings → Decompiler (.NET / ILSpy)*; MCP: `ZUME_ILSPY` = the `ilspycmd` path, or `1` to find it on `PATH` |
+| **CFR** | **Java `.class` / `.jar` → Java source** | download [`cfr-0.152.jar`](https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar) from Maven Central (a single jar; needs a JDK) | MCP: `ZUME_CFR` = the jar path |
+
+Notes:
+
+- **javap** (JVM bytecode) and **jar** (class listing) ship with the JDK, so Java
+  class listing and bytecode work with the JDK alone — CFR adds Java **source**.
+- The `ZUME_*` variables are read from the **MCP server's** environment. For the
+  Claude Code CLI that is the `env` block of the `zume` entry in `~/.claude.json`;
+  restart the client after editing it. Optional result caches:
+  `ZUME_GHIDRA_CACHE`, `ZUME_ILSPY_CACHE`, `ZUME_CFR_CACHE`.
+- Ghidra and ilspycmd are also configurable from the editor's **Settings** dialog
+  (they drive the editor's own *Code → Decompile…* commands); the `ZUME_*`
+  variables drive the MCP tools used from Claude Code. The two are independent.
+- Every tool **reads the target statically — it never runs it.** Licences differ:
+  Ghidra is Apache-2.0, ilspycmd and CFR are MIT; none is redistributed by Zume.
+  Decompiler output is derivative — see the per-tool sections below and their
+  licence / clean-room warnings before you reuse anything.
+
 ### Decompile (Ghidra)
 
 Zume does not include a decompiler, but it can drive one you already have:
