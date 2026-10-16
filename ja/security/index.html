@@ -1788,10 +1788,28 @@ JDK の <strong>javap</strong>（バイトコード）と、ユーザー導入�
 <ul>
 <li><strong>javap / jar</strong> は JDK 付属で、<code>JAVA_HOME</code> / <code>PATH</code> から検出します（Ghidra 連携で必要な JDK と
   同じ）。バイトコードとクラス一覧は JDK だけで動きます。</li>
-<li><strong>CFR</strong>（Java ソース復元）は単体 jar を導入し、<code>ZUME_CFR</code> 環境変数（MCP サーバー側）にパスを
-  設定します。キャッシュ先は <code>ZUME_CFR_CACHE</code>。CFR は MIT ライセンスで、Ghidra / ilspycmd と同様に
-  同梱・取得・リンクはせず、ユーザーが導入したツールを起動するだけです。</li>
+<li><strong>CFR</strong>（Java ソース復元）はユーザーが用意する単体 jar です。<code>ZUME_CFR</code> 環境変数（MCP サーバー側）に
+  そのパスを設定します。キャッシュ先は <code>ZUME_CFR_CACHE</code>。CFR は MIT ライセンスで、Ghidra / ilspycmd と
+  同様に同梱・取得・リンクはせず、ユーザーが導入したツールを起動するだけです。</li>
 </ul>
+<p><strong>CFR の入手。</strong> 単体 jar なのでインストール不要です。Maven Central（または
+<a href="https://github.com/leibnitz27/cfr/releases">CFR のリリース</a>）から 1 回ダウンロードします:</p>
+<div class="highlight"><pre><span></span><code>https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar
+</code></pre></div>
+<p>任意の場所に保存します（例: <code>C:\Users\&lt;あなた&gt;\zume-app\cfr\cfr-0.152.jar</code>）。CFR の実行（<code>java</code>）と
+バイトコード（<code>javap</code>）のために <strong>JDK</strong> も必要です（Ghidra 連携で使うものと同じ）。</p>
+<p><strong>有効化。</strong> 以下を <strong>MCP サーバーの環境</strong>（CLI なら <code>~/.claude.json</code> の <code>zume</code> エントリの <code>env</code>
+ブロック）に設定し、クライアントを再起動します:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"JAVA_HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Program Files\\Eclipse Adoptium\\jdk-25...-hotspot"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"ZUME_CFR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Users\\&lt;あなた&gt;\\zume-app\\cfr\\cfr-0.152.jar"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"ZUME_CFR_CACHE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Users\\&lt;あなた&gt;\\zume-app\\cfr-cache"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>java</code> / <code>javap</code> が既に <code>PATH</code> にあれば <code>JAVA_HOME</code> は省略できます。その場合でもクラス一覧と
+バイトコード（<code>javap</code>）は JDK だけで動き、<code>ZUME_CFR</code> を足すと Java ソース出力（CFR）が有効に
+なります。非 ASCII の文字列リテラルは <code>\uXXXX</code> エスケープで返りますが、これは CFR の通常の
+（ロスレスな）出力です。</p>
 <p>いずれもクラスファイルを読み取るだけで、実行はしません。</p>
 <div class="admonition warning">
 <p class="admonition-title">ライセンスとクリーンルーム</p>
