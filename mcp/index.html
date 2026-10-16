@@ -1646,6 +1646,10 @@ macOS).</p>
 <td>The structure of a Mach-O image or fat / universal binary (every slice listed, <code>slice</code> picks one): CPU, file type, header flags, every load command, segments / sections with entropy, dylibs with versions, rpaths, UUID, platform / minimum OS / SDK, the entry, imported / exported symbols, code-signature and encryption presence</td>
 </tr>
 <tr>
+<td><code>xrefs</code></td>
+<td>Static cross-references of a PE / ELF / Mach-O: every executable section is decoded and each address an instruction uses is classified as an import (PE IAT slot, <code>dll!function</code>), an exported / named symbol, a PLT / stub, a string (with its text), another code address or data; a summary per target plus the referencing instructions, narrowed by <code>target</code> (a name, a string fragment or an address). Static only</td>
+</tr>
+<tr>
 <td><code>disassemble</code></td>
 <td>A Capstone listing (x86 16/32/64, ARM, Thumb, AArch64) of a byte range of a file or of inline hex bytes. Over a PE / ELF / Mach-O the architecture, the start (the entry point, or the export named by <code>symbol</code>) and the virtual addresses come from the headers, so the offsets <code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code> report can be passed straight in; raw bytes need <code>arch</code>. A decoder only: nothing is loaded, executed or decompiled</td>
 </tr>
