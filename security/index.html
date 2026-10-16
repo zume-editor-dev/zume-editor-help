@@ -990,6 +990,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile (Ghidra)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1460,6 +1471,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile (Ghidra)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1660,6 +1682,36 @@ and disassembles from there. The same scan is the MCP tool <code>xrefs</code>.</
 (see <a href="../mcp/#tools">MCP</a>). They never load or run the file; <code>disassemble</code>
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.</p>
+<h3 id="decompile-ghidra">Decompile (Ghidra)<a class="headerlink" href="#decompile-ghidra" title="Permanent link">&para;</a></h3>
+<p>Zume does not include a decompiler, but it can drive one you already have:
+<strong>Code → Decompile (Ghidra)…</strong> turns a function's machine code back into
+C-like pseudocode using a local <a href="https://ghidra-sre.org/">Ghidra</a> install.
+It is <strong>optional and off by default</strong> - the menu item is greyed out until you
+point Zume at Ghidra.</p>
+<p><strong>Enabling it.</strong> Open <strong>Tools → Settings…</strong>, find the <em>Decompiler (Ghidra)</em>
+section, click the <em>Ghidra install:</em> row and choose your Ghidra directory (the
+folder that contains <code>support/analyzeHeadless</code>). Ghidra needs a Java 17+
+runtime; Zume finds one on your <code>PATH</code> or <code>JAVA_HOME</code>, so no extra setup is
+usually needed. Clearing the path disables the feature again.</p>
+<p><strong>Using it.</strong> With the active tab an executable (or via the file picker),
+choose <strong>Code → Decompile (Ghidra)…</strong>, then enter a function - an address
+(<code>0x180001020</code>, e.g. one <code>functions</code> or <code>xrefs</code> reported), a name, or nothing
+for the whole file (capped). Zume runs Ghidra headlessly on a background
+thread (this can take a few minutes the first time) and opens the decompiled C
+in a <strong>read-only</strong> tab. Results are <strong>cached</strong> by the file's size, modification
+time and your request, so decompiling the same unchanged function again is
+instant.</p>
+<p>The same decompiler is the MCP tool <code>decompile</code>, which is off unless the
+<code>ZUME_GHIDRA_HOME</code> environment variable points at a Ghidra install (set
+<code>ZUME_GHIDRA_CACHE</code> to choose its cache directory).</p>
+<div class="admonition warning">
+<p class="admonition-title">Licence and clean-room</p>
+<p>Ghidra statically analyses the binary - it does not run it - but
+decompiler output is <strong>derivative</strong> of the original and can resemble its
+source. Decompile only binaries whose licence permits it, and if you
+re-implement a feature, work from a behavioural specification, not from
+the emitted C.</p>
+</div>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>
 <p>The dialog asks for <strong>the path to a YARA rules file</strong> (<code>.yar</code> / <code>.yara</code>) — not

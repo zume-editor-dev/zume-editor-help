@@ -990,6 +990,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逆コンパイル (Ghidra)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1460,6 +1471,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逆コンパイル (Ghidra)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1656,6 +1678,33 @@
 <p>同じ読み取りエンジンが MCP ツール <code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> です
 （<a href="../mcp/#tools">MCP</a> 参照）。ロード・実行は一切行わず、<code>disassemble</code> もバイト列を
 デコードするだけです。解析はライセンスで許されたバイナリに限ってください。</p>
+<h3 id="ghidra">逆コンパイル (Ghidra)<a class="headerlink" href="#ghidra" title="Permanent link">&para;</a></h3>
+<p>Zume 自体は逆コンパイラを内蔵しませんが、既にインストール済みの逆コンパイラを呼び出せます。
+<strong>コード → 逆コンパイル (Ghidra)…</strong> は、ローカルの <a href="https://ghidra-sre.org/">Ghidra</a> を
+使って関数の機械語を C 風の擬似コードに戻します。<strong>任意機能で既定では無効</strong>です。Zume に
+Ghidra の場所を教えるまでメニュー項目はグレーアウトしています。</p>
+<p><strong>有効化。</strong> <strong>ツール → 設定…</strong> を開き、<em>逆コンパイラ (Ghidra)</em> セクションの
+<em>Ghidra のインストール先:</em> の行をクリックして Ghidra のフォルダー（<code>support/analyzeHeadless</code>
+を含むフォルダー）を選びます。Ghidra には Java 17 以上のランタイムが必要ですが、Zume が
+<code>PATH</code> や <code>JAVA_HOME</code> から自動検出するので、通常は追加設定は不要です。パスをクリアすると
+再び無効になります。</p>
+<p><strong>使い方。</strong> アクティブなタブが実行ファイルの状態で（またはファイル選択で）<strong>コード →
+逆コンパイル (Ghidra)…</strong> を選び、対象の関数を入力します — アドレス（<code>0x180001020</code>。
+<code>functions</code> や <code>xrefs</code> が報告したものなど）、関数名、または空ならファイル全体（上限あり）。
+Zume はバックグラウンドで Ghidra をヘッドレス実行し（初回は数分かかることがあります）、
+逆コンパイルした C を<strong>読み取り専用</strong>のタブで開きます。結果はファイルのサイズ・更新時刻・
+リクエスト内容で<strong>キャッシュ</strong>されるので、同じ未変更の関数を再度逆コンパイルすると即座に
+返ります。</p>
+<p>同じ逆コンパイラが MCP ツール <code>decompile</code> です。環境変数 <code>ZUME_GHIDRA_HOME</code> が Ghidra の
+インストール先を指しているときだけ有効になります（キャッシュ先は <code>ZUME_GHIDRA_CACHE</code> で
+指定できます）。</p>
+<div class="admonition warning">
+<p class="admonition-title">ライセンスとクリーンルーム</p>
+<p>Ghidra は対象バイナリを実行せず静的に解析しますが、逆コンパイル結果は元のバイナリの
+<strong>派生物</strong>であり、元のソースに似ることがあります。逆コンパイルはライセンスで許された
+バイナリに限り、機能を再実装する場合は出力された C ではなく観測した振る舞いの仕様から
+行ってください。</p>
+</div>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
 <p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
