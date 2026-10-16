@@ -62,6 +62,18 @@ Zume Editor には、バイナリ診断・データ変換・シグネチャ走�
 
 ![GetProcAddress からのリスティング（16 進ビュー）](assets/screenshots/disasm_listing.png){ loading=lazy }
 
+### 相互参照
+
+**コード → 相互参照…** は「これを使っているコードはどこか」に答えます。アクティブなタブの
+実行ファイル（なければファイル選択）に対して小さなダイアログで対象を尋ね — インポート /
+シンボル名（`CreateFileW`、`KERNEL32.dll!CreateFileW`）、文字列の一部、`0x` 付きアドレス、
+空ならすべての参照 — 実行属性セクションをすべて走査します。結果パネルには参照先を参照回数順に
+（インポート / シンボル / PLT・スタブ / 文字列 / コード / データ）、続いて参照している命令を
+アドレス付きで並べます。参照行をクリック（または **F4**）するとそのファイルが 16 進ビューで
+その命令の位置に開き、そこから逆アセンブルします。同じ走査が MCP ツール `xrefs` です。
+
+![kernel32 の GetProcAddress への相互参照](assets/screenshots/xrefs_panel.png){ loading=lazy }
+
 同じ読み取りエンジンが MCP ツール `pe_info`・`elf_info`・`macho_info` です
 （[MCP](mcp.md#tools) 参照）。ロード・実行は一切行わず、`disassemble` もバイト列を
 デコードするだけです。解析はライセンスで許されたバイナリに限ってください。

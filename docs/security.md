@@ -63,6 +63,20 @@ caret moves to that instruction), **Esc** closes the panel.
 
 ![The listing from GetProcAddress in the hex view](assets/screenshots/disasm_listing.png){ loading=lazy }
 
+### Cross-References
+
+**Code → Cross-References…** answers "which code uses this": it takes the
+active tab's executable (or asks for one), opens a small dialog for the
+target - an import or symbol name (`CreateFileW`, `KERNEL32.dll!CreateFileW`),
+a fragment of a string, a `0x` address, or nothing for every reference - and
+scans every executable section. The results panel lists the targets by
+reference count (import / symbol / PLT or stub / string / code / data) and
+then every referencing instruction with its address; clicking a reference
+row (or pressing **F4**) opens the file in the hex view at that instruction
+and disassembles from there. The same scan is the MCP tool `xrefs`.
+
+![Cross-references of kernel32 to GetProcAddress](assets/screenshots/xrefs_panel.png){ loading=lazy }
+
 The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
 (see [MCP](mcp.md#tools)). They never load or run the file; `disassemble`
 decodes bytes and nothing more. Analyze only binaries whose licence permits
