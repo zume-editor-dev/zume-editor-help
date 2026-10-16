@@ -43,9 +43,27 @@ from that offset; the hex view stays open for browsing.
 
 ![PE Info in the results panel](assets/screenshots/pe_info_panel.png){ loading=lazy }
 
+### Disassemble Executable
+
+**Code → Disassemble Executable…** goes straight to the listing. It takes
+the active tab's file when it is a PE / ELF / Mach-O (otherwise a file picker
+asks), reads the headers, and opens a small dialog asking where to start,
+prefilled with the entry point's file offset. Type a file offset (`0x2D5F0`
+or decimal) or the name of an exported function (`GetProcAddress`; a Mach-O
+name works with or without its leading `_`) and press **Enter**: the file
+opens in the hex view at that offset and the disassembly panel lists the
+instructions from there, decoded as the architecture the file declares. A
+name that is not an export, or an offset past the file, is refused with a
+message. The same decoder is the MCP tool `disassemble`.
+
+![The start dialog over kernel32, an export name typed](assets/screenshots/disasm_prompt.png){ loading=lazy }
+
+![The listing from GetProcAddress in the hex view](assets/screenshots/disasm_listing.png){ loading=lazy }
+
 The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
-(see [MCP](mcp.md#tools)). They never disassemble, load or run the file.
-Analyze only binaries whose licence permits it.
+(see [MCP](mcp.md#tools)). They never load or run the file; `disassemble`
+decodes bytes and nothing more. Analyze only binaries whose licence permits
+it.
 
 ## YARA Scan
 
