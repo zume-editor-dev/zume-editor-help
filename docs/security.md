@@ -3,35 +3,49 @@
 Zume Editor has tools for binary triage, data transforms and signature
 scanning — useful for reverse engineering, CTFs and authorized security work.
 Each is also available headlessly to AI agents through the
-[MCP server](mcp.md#tools) (the `entropy`, `transform`, `yara_scan` and
-`pe_info` tools).
+[MCP server](mcp.md#tools) (the `entropy`, `transform`, `yara_scan`,
+`pe_info`, `elf_info` and `macho_info` tools).
 
-## PE Info
+## Executable Info (PE / ELF / Mach-O)
 
-**Code → PE Info…** reads a Windows EXE / DLL structurally and lists the
-result in the results panel: the headers and security flags (ASLR / DEP /
-CFG), every section with its entropy, the imported DLLs and functions, the
-exports, and the resources a feature inventory needs — the version strings,
-the string tables, each dialog's caption and controls, the menu items and the
-manifest — plus the PDB path and any data appended past the last section.
+**Code → Executable Info…** reads an executable structurally and lists the
+result in the results panel. The format is detected from the file's magic:
 
-When the active tab is itself a PE file (a binary opened in the hex view),
+- **PE** (Windows EXE / DLL): the headers and security flags (ASLR / DEP /
+  CFG), every section with its entropy, the imported DLLs and functions, the
+  exports, and the resources a feature inventory needs — the version strings,
+  the string tables, each dialog's caption and controls, the menu items and the
+  manifest — plus the PDB path and any data appended past the last section.
+- **ELF** (Linux executables and shared objects): type, machine, entry, the
+  interpreter, segments and sections with entropy, the dynamic section (needed
+  libraries, soname, rpath / runpath), imported and exported symbols with their
+  versions, the local symbols when not stripped, the GNU build id, and the
+  hardening the binary carries (PIE, NX stack, RELRO, stack canary, FORTIFY).
+- **Mach-O** (macOS / iOS images, including fat / universal binaries, whose
+  slices are listed and the first one read): CPU, file type, header flags,
+  every load command, segments and sections with entropy, linked dylibs with
+  versions, rpaths, UUID, platform / minimum OS / SDK, the entry point,
+  imported and exported symbols, and whether the image is code-signed or
+  encrypted.
+
+When the active tab is itself such a file (a binary opened in the hex view),
 that file is read; otherwise a file picker asks for one. The file is read on
-a worker, so a large binary does not block the editor. Click a row (or press
-**F4**) to copy that line to the clipboard; **Esc** closes the panel.
+a worker, so a large binary does not block the editor (the first 256 MiB are
+read; a larger file says so in a warning row). Click a row (or press **F4**)
+to copy that line to the clipboard; **Esc** closes the panel.
 
 Rows that name code jump to the disassembly instead: the entry-point line,
-an export with a code address, and a section marked CODE / EXECUTE. Clicking
-one opens the file in the hex view at that file offset and runs
+an exported function, and an executable section or segment. Clicking one
+opens the file in the hex view at that file offset and runs
 **Hex → Disassemble** there with the architecture the file declares (x64,
 x86, ARM64, ARM / Thumb), so the disassembly panel takes the report's place
 from that offset; the hex view stays open for browsing.
 
 ![PE Info in the results panel](assets/screenshots/pe_info_panel.png){ loading=lazy }
 
-The same reader is the MCP tool `pe_info` (see [MCP](mcp.md#tools)). It
-never disassembles, loads or runs the file. Analyze only binaries whose
-licence permits it.
+The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
+(see [MCP](mcp.md#tools)). They never disassemble, load or run the file.
+Analyze only binaries whose licence permits it.
 
 ## YARA Scan
 

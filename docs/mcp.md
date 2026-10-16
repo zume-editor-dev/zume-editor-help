@@ -57,6 +57,8 @@ macOS).
 | `transform` | A CyberChef-style recipe: XOR / ROT / RC4 / base58·85 / hex + the convert toolbox, composed in one pipeline |
 | `yara_scan` | Scan a file, a directory or inline bytes with a practical YARA-rule subset |
 | `pe_info` | The structure of a Windows EXE / DLL (PE32 / PE32+): machine, subsystem, timestamp, linker, ASLR / DEP / CFG flags, .NET and Authenticode presence, sections with entropy, imports (incl. delay-load) and exports (incl. forwarders), the resource tree with the version strings, string tables, dialog captions + controls, menu items and the manifest, the PDB path, and any overlay. Structure only — no disassembly |
+| `elf_info` | The structure of an ELF executable / shared object (ELF32 / ELF64, either byte order): type, machine, entry, interpreter, segments and sections with entropy, the dynamic section (needed libraries, soname, rpath / runpath), imported / exported symbols with versions, the GNU build id and hardening (PIE, NX stack, RELRO, stack canary, FORTIFY) |
+| `macho_info` | The structure of a Mach-O image or fat / universal binary (every slice listed, `slice` picks one): CPU, file type, header flags, every load command, segments / sections with entropy, dylibs with versions, rpaths, UUID, platform / minimum OS / SDK, the entry, imported / exported symbols, code-signature and encryption presence |
 
 **Databases** (the connections configured in the app, or a SQLite file):
 
