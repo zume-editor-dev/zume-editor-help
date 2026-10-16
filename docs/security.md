@@ -161,6 +161,30 @@ routes a managed target here automatically.
     for native code: decompile only assemblies whose licence permits it, and
     re-implement from a behavioural specification, not from the emitted C#.
 
+### Decompile Java (javap + CFR)
+
+Java `.class` / `.jar` files are JVM bytecode - neither Ghidra nor ILSpy is the
+right tool. Zume uses the JDK's **javap** (bytecode) and a user-provided **CFR**
+decompiler (Java source) instead, through the MCP tools `java_types` (list a
+jar's classes) and `java_decompile` (one class to Java source, or `javap -c`
+bytecode, or a whole jar to a source tree). It is **opt-in**:
+
+- **javap / jar** come from the JDK, found via `JAVA_HOME` or `PATH` - the same
+  JDK the Ghidra integration needs. Bytecode and class listing work with the JDK
+  alone.
+- **CFR** (Java-source decompilation) is a single jar you install; set the
+  `ZUME_CFR` environment variable (on the MCP server) to its path. `ZUME_CFR_CACHE`
+  chooses the cache directory. CFR is MIT-licensed and, like Ghidra and ilspycmd,
+  is not bundled, fetched or linked - Zume only launches the tool you installed.
+
+The tools read the class files - they never run them.
+
+!!! warning "Licence and clean-room"
+    Decompiled Java is **derivative** of the original. Decompile only software
+    whose licence / EULA permits reverse engineering and that you have the right
+    to analyse, and re-implement from a behavioural specification, not by copying
+    the emitted Java. Anything you build this way is your own responsibility.
+
 ## YARA Scan
 
 **Code → YARA Scan…** scans the active document with a set of YARA rules.
