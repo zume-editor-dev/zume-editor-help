@@ -1083,6 +1083,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse-engineering for app development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse-engineering for app development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-pieces-fit-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the pieces fit together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-prompt-for-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example prompt for Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usage-notes-cautions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1431,6 +1470,45 @@
     <span class="md-ellipsis">
       
         Let the AI write a Lua script (customise the editor)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse-engineering for app development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse-engineering for app development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-pieces-fit-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the pieces fit together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-prompt-for-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example prompt for Claude Code
       
     </span>
   </a>
@@ -1975,6 +2053,92 @@ the AI until it does exactly what you want.</p>
 undoable - so you review and run the script yourself. This keeps you in
 control while still letting the AI extend the editor for you.</p>
 </div>
+<h2 id="re-app-dev">Reverse-engineering for app development<a class="headerlink" href="#re-app-dev" title="Permanent link">&para;</a></h2>
+<p>The static-analysis tools (<code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code>,
+<code>extract_strings</code>, <code>functions</code>, <code>xrefs</code>, <code>disassemble</code>, and the optional
+<code>decompile</code> / <code>il_types</code> / <code>il_decompile</code>) let an AI agent study an existing
+program and help you build your <strong>own</strong> application with similar behaviour -
+the same <em>inventory → locate → read → specify → reimplement</em> workflow a human
+reverse engineer uses.</p>
+<div class="admonition danger">
+<p class="admonition-title">Use only on software you are entitled to analyse — and you own what you make</p>
+<p>Run these tools <strong>only</strong> on executables whose licence / EULA permits reverse
+engineering <strong>and</strong> that you have the right to analyse — your own builds,
+open-source binaries, or software whose terms explicitly allow it. Many
+commercial EULAs <strong>prohibit</strong> reverse engineering; analysing such software
+may breach that contract or applicable law. Confirming you have that right
+is <strong>your</strong> responsibility.</p>
+<p>Decompiled and disassembled output is <strong>derivative</strong> of the original. Build
+your application <strong>clean-room</strong>: work from a written <em>behavioural
+specification</em> you produce, <strong>not</strong> by copying the emitted C / C# / IL /
+assembly into your code.</p>
+<p><strong>No liability.</strong> Anything you create with this feature is entirely your own
+responsibility. To the fullest extent permitted by law, the authors and
+distributors of Zume accept <strong>no liability whatsoever</strong> for how this feature
+is used or for anything produced with it.</p>
+</div>
+<h3 id="how-the-pieces-fit-together">How the pieces fit together<a class="headerlink" href="#how-the-pieces-fit-together" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>          You (developer)
+              │  "analyse &lt;target you own&gt;, then build a clean-room app"
+              ▼
+      ┌──────────────────────┐        writes source files
+      │     Claude Code        │ ─────────────────────────────┐
+      │  (AI agent: plans,     │                              ▼
+      │   calls tools, codes)  │                   ┌───────────────────────┐
+      └───────────┬────────────┘                   │   Your NEW application  │
+                  │  MCP tool calls (JSON-RPC)      │  clean-room, written    │
+                  ▼                                 │  from the specification │
+      ┌──────────────────────┐                     │  — NOT copied output    │
+      │   zume MCP server      │                   └───────────────────────┘
+      │   (zume-mcp.exe)       │
+      │  pe_info · functions · │   shells out (optional, opt-in):
+      │  xrefs · disassemble · │──► Ghidra      native → C    [ZUME_GHIDRA_HOME]
+      │  extract_strings · …   │──► ilspycmd    .NET  → C#    [ZUME_ILSPY]
+      └───────────┬────────────┘
+                  │  static reads only (never run / loaded)
+                  ▼
+      ┌──────────────────────┐
+      │  Target executable     │  ← ONLY one you own or are licensed to analyse
+      │  EXE / DLL / .so /     │
+      │  Mach-O / .NET assembly│
+      └──────────────────────┘
+</code></pre></div>
+<p>Zume, Ghidra and ilspycmd only <strong>read</strong> the target statically — it is never
+executed or loaded. Ghidra and ilspycmd are not bundled; they run only when you
+install them and set <code>ZUME_GHIDRA_HOME</code> / <code>ZUME_ILSPY</code>.</p>
+<h3 id="example-prompt-for-claude-code">Example prompt for Claude Code<a class="headerlink" href="#example-prompt-for-claude-code" title="Permanent link">&para;</a></h3>
+<p>Paste this into a Claude Code session that has the zume MCP server connected,
+replacing the target path and the feature you want:</p>
+<div class="highlight"><pre><span></span><code>You have the zume MCP server connected (static binary-analysis tools). 
+Target: C:\path\to\target.exe — I confirm I have the right to analyse this
+binary (my own build / OSS / a licence that permits reverse engineering).
+Work clean-room: produce a behavioural specification and reimplement from it;
+do NOT copy decompiled C/C#/IL or disassembly into the new code.
+
+Do this step by step, reporting findings at each stage:
+1. Inventory: run pe_info (or elf_info / macho_info) and extract_strings.
+   Summarise the feature set, the OS/library APIs it uses, the file formats,
+   URLs and error messages, and the UI (dialogs / menus). If pe_info reports
+   managed: true, it is a .NET assembly — use il_types instead of functions.
+2. Locate: I want to reimplement this feature: &lt;describe the feature&gt;. Use
+   extract_strings / search_in_file to find related strings, then functions
+   and xrefs (or il_types) to find the functions/types that use them.
+3. Read: for the key functions, use disassemble at the offsets functions /
+   xrefs reported; optionally decompile (native) or il_decompile (.NET) a
+   specific function/type. Explain inputs, outputs, side effects and errors.
+4. Specify: write a precise behavioural specification (inputs, outputs,
+   formats, edge cases, error conditions) — observed behaviour only.
+5. Reimplement: from that specification alone, implement the feature as new
+   code in &lt;your language/project&gt;, clean-room. Note anything you could not
+   determine statically (it may need runtime observation, which these tools
+   do not do).
+
+Keep everything static — never run or load the target. Flag any licensing
+concern if the binary embeds third-party libraries whose reimplementation
+their licence restricts.
+</code></pre></div>
+<p>The agent reports at each step; you keep the <strong>behavioural specification</strong> and
+the <strong>new code</strong>, and discard the raw decompiler / disassembler output.</p>
 <h2 id="usage-notes-cautions">Usage notes &amp; cautions<a class="headerlink" href="#usage-notes-cautions" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Some tools change files on disk</p>

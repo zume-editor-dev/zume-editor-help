@@ -1083,7 +1083,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リバースエンジニアリングによるアプリ開発
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リバースエンジニアリングによるアプリ開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成図（関連図）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code 用のプロンプト例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         利用上の注意
@@ -1443,7 +1482,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リバースエンジニアリングによるアプリ開発
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リバースエンジニアリングによるアプリ開発">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成図（関連図）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code 用のプロンプト例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         利用上の注意
@@ -1960,7 +2038,86 @@ AI 側は <code>list_credentials</code> で名前を確認できます。</p>
 可能）です。スクリプトはあなたが確認して実行するため、AI にエディターを拡張させつつ、
 主導権はあなたに残ります。</p>
 </div>
-<h2 id="_2">利用上の注意<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="re-app-dev">リバースエンジニアリングによるアプリ開発<a class="headerlink" href="#re-app-dev" title="Permanent link">&para;</a></h2>
+<p>静的解析ツール（<code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code>、<code>extract_strings</code>、
+<code>functions</code>、<code>xrefs</code>、<code>disassemble</code>、および任意の <code>decompile</code> / <code>il_types</code> /
+<code>il_decompile</code>）を使うと、AI エージェントが既存のプログラムを調べ、同等の振る舞いを持つ
+<strong>あなた自身の</strong>アプリ開発を支援できます。人間のリバースエンジニアが行う
+<em>目録 → 特定 → 読解 → 仕様化 → 再実装</em> と同じ流れです。</p>
+<div class="admonition danger">
+<p class="admonition-title">解析する権利があるソフトウェアにのみ使用し、成果物の責任は利用者にあります</p>
+<p>これらのツールは、ライセンス / EULA がリバースエンジニアリングを許可し、<strong>かつ</strong>あなたに
+解析する権利がある実行ファイル — 自作物・OSS・規約で明示的に許可されたソフトウェア — に
+<strong>のみ</strong>使用してください。多くの商用 EULA はリバースエンジニアリングを<strong>禁止</strong>しており、
+そうしたソフトの解析は契約や適用法令に違反するおそれがあります。権利の有無の確認は
+<strong>利用者の責任</strong>です。</p>
+<p>逆コンパイル・逆アセンブルの出力は元バイナリの<strong>派生物</strong>です。アプリは<strong>クリーンルーム</strong>で
+作成してください。すなわち、あなたが作成した<em>振る舞いの仕様書</em>から実装し、出力された
+C / C# / IL / アセンブリを<strong>コードに流用しない</strong>こと。</p>
+<p><strong>免責。</strong> 本機能を用いて作成されたものについては、すべて利用者自身の責任です。法が許す
+最大限の範囲において、Zume の作者および配布者は、本機能の利用や本機能で作成された
+いかなる成果物についても、<strong>一切の責任を負いません</strong>。</p>
+</div>
+<h3 id="_2">構成図（関連図）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>          あなた（開発者）
+              │  「&lt;権利を有する対象&gt; を解析し、クリーンルームでアプリを作って」
+              ▼
+      ┌──────────────────────┐        ソースコードを書き出す
+      │     Claude Code        │ ─────────────────────────────┐
+      │  (AI エージェント:      │                              ▼
+      │   計画・ツール呼び出し・ │                   ┌───────────────────────┐
+      │   コーディング)         │                   │   あなたの新しいアプリ   │
+      └───────────┬────────────┘                   │  仕様書から書いた        │
+                  │  MCP ツール呼び出し (JSON-RPC)   │  クリーンルーム実装       │
+                  ▼                                 │  — 出力の流用ではない     │
+      ┌──────────────────────┐                     └───────────────────────┘
+      │   zume MCP サーバー     │
+      │   (zume-mcp.exe)       │
+      │  pe_info · functions · │   外部ツールを起動（任意・オプトイン）:
+      │  xrefs · disassemble · │──► Ghidra     ネイティブ → C   [ZUME_GHIDRA_HOME]
+      │  extract_strings · …   │──► ilspycmd   .NET      → C#   [ZUME_ILSPY]
+      └───────────┬────────────┘
+                  │  静的読み取りのみ（実行・ロードしない）
+                  ▼
+      ┌──────────────────────┐
+      │  解析対象の実行ファイル  │  ← 権利を有する／ライセンスで許可されたものだけ
+      │  EXE / DLL / .so /     │
+      │  Mach-O / .NET アセンブリ│
+      └──────────────────────┘
+</code></pre></div>
+<p>Zume・Ghidra・ilspycmd は対象を<strong>静的に読み取るだけ</strong>で、実行もロードもしません。Ghidra と
+ilspycmd は同梱されておらず、導入して <code>ZUME_GHIDRA_HOME</code> / <code>ZUME_ILSPY</code> を設定したときのみ
+動作します。</p>
+<h3 id="claude-code">Claude Code 用のプロンプト例<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h3>
+<p>zume MCP サーバーを接続した Claude Code セッションに、対象パスと再実装したい機能を書き換えて
+貼り付けます:</p>
+<div class="highlight"><pre><span></span><code>zume MCP サーバー（静的バイナリ解析ツール群）が接続されています。
+対象: C:\path\to\target.exe — このバイナリを解析する権利があることを確認済みです
+（自作物 / OSS / リバースエンジニアリングを許可するライセンス）。
+クリーンルームで進めてください。振る舞いの仕様書を作成し、そこから再実装すること。
+逆コンパイルした C/C#/IL や逆アセンブルを新コードに流用しないこと。
+
+各段階の要約を報告しながら、順に実施してください:
+1. 目録: pe_info（または elf_info / macho_info）と extract_strings を実行。
+   機能一覧、使用している OS/ライブラリ API、ファイル形式・URL・エラーメッセージ、
+   UI（ダイアログ/メニュー）を要約。pe_info が managed: true を返したら .NET
+   アセンブリなので functions の代わりに il_types を使う。
+2. 特定: 再実装したい機能はこれです: &lt;機能を記述&gt;。extract_strings /
+   search_in_file で関連文字列を探し、functions と xrefs（または il_types）で
+   それらを使う関数/型を特定。
+3. 読解: 主要関数を functions / xrefs が示したオフセットで disassemble。必要に応じ
+   decompile（ネイティブ）や il_decompile（.NET）で特定の関数/型を逆コンパイル。
+   入力・出力・副作用・エラー処理を説明。
+4. 仕様化: 入力・出力・形式・境界条件・エラー条件を観測事実のみで仕様書に。
+5. 再実装: その仕様書だけから、&lt;対象の言語/プロジェクト&gt; で新規実装。静的解析で
+   確定できなかった点は明記（実行時観測が必要なものは本ツールでは扱わない）。
+
+すべて静的に行い、対象を実行・ロードしないこと。再実装がライセンスで制限される
+サードパーティライブラリを埋め込んでいる場合は、その懸念も報告すること。
+</code></pre></div>
+<p>エージェントは各段階で報告します。あなたは<strong>振る舞いの仕様書</strong>と<strong>新しいコード</strong>を保持し、
+逆コンパイラ／逆アセンブラの生出力は破棄します。</p>
+<h2 id="_3">利用上の注意<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">一部のツールはディスク上のファイルを変更します</p>
 <p><code>write_file</code> / <code>patch_bytes</code> / <code>replace_in_file</code> はファイルを<strong>作成・上書き・変更</strong>します。
