@@ -965,6 +965,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Executable Info (PE / ELF / Mach-O)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disassemble-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disassemble Executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1407,6 +1424,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Executable Info (PE / ELF / Mach-O)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disassemble-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disassemble Executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1573,9 +1607,23 @@ opens the file in the hex view at that file offset and runs
 x86, ARM64, ARM / Thumb), so the disassembly panel takes the report's place
 from that offset; the hex view stays open for browsing.</p>
 <p><img alt="PE Info in the results panel" loading="lazy" src="../assets/screenshots/pe_info_panel.png" /></p>
+<h3 id="disassemble-executable">Disassemble Executable<a class="headerlink" href="#disassemble-executable" title="Permanent link">&para;</a></h3>
+<p><strong>Code → Disassemble Executable…</strong> goes straight to the listing. It takes
+the active tab's file when it is a PE / ELF / Mach-O (otherwise a file picker
+asks), reads the headers, and opens a small dialog asking where to start,
+prefilled with the entry point's file offset. Type a file offset (<code>0x2D5F0</code>
+or decimal) or the name of an exported function (<code>GetProcAddress</code>; a Mach-O
+name works with or without its leading <code>_</code>) and press <strong>Enter</strong>: the file
+opens in the hex view at that offset and the disassembly panel lists the
+instructions from there, decoded as the architecture the file declares. A
+name that is not an export, or an offset past the file, is refused with a
+message. The same decoder is the MCP tool <code>disassemble</code>.</p>
+<p><img alt="The start dialog over kernel32, an export name typed" loading="lazy" src="../assets/screenshots/disasm_prompt.png" /></p>
+<p><img alt="The listing from GetProcAddress in the hex view" loading="lazy" src="../assets/screenshots/disasm_listing.png" /></p>
 <p>The same readers are the MCP tools <code>pe_info</code>, <code>elf_info</code> and <code>macho_info</code>
-(see <a href="../mcp/#tools">MCP</a>). They never disassemble, load or run the file.
-Analyze only binaries whose licence permits it.</p>
+(see <a href="../mcp/#tools">MCP</a>). They never load or run the file; <code>disassemble</code>
+decodes bytes and nothing more. Analyze only binaries whose licence permits
+it.</p>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>
 <p>The dialog asks for <strong>the path to a YARA rules file</strong> (<code>.yar</code> / <code>.yara</code>) — not
