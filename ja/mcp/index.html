@@ -1645,7 +1645,15 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 <tr>
 <td><code>decompile</code></td>
-<td>PE / ELF / Mach-O の関数（または全ファイル、上限あり）を、ローカルの Ghidra（ヘッドレス実行）で C に逆コンパイル。環境変数 <code>ZUME_GHIDRA_HOME</code> が Ghidra のインストール先を指すときだけ有効（Ghidra は同梱せず、JDK が必要）。各関数の名前・アドレス・シグネチャ・C を返す。<code>address</code> / <code>symbol</code> で 1 関数を指定（<code>functions</code> / <code>xrefs</code> のオフセットを渡せる）。結果はキャッシュ。Ghidra は対象を静的解析のみ。出力 C は派生物なのでライセンスの範囲で利用</td>
+<td>PE / ELF / Mach-O の関数（または全ファイル、上限あり）を、ローカルの Ghidra（ヘッドレス実行）で C に逆コンパイル。環境変数 <code>ZUME_GHIDRA_HOME</code> が Ghidra のインストール先を指すときだけ有効（Ghidra は同梱せず、JDK が必要）。各関数の名前・アドレス・シグネチャ・C を返す。<code>address</code> / <code>symbol</code> で 1 関数を指定（<code>functions</code> / <code>xrefs</code> のオフセットを渡せる）。結果はキャッシュ。Ghidra は対象を静的解析のみ。出力 C は派生物なのでライセンスの範囲で利用。<strong>managed（.NET）</strong> の対象は <code>il_decompile</code> に自動振り分け</td>
+</tr>
+<tr>
+<td><code>il_types</code></td>
+<td>.NET / managed アセンブリの型の目録（名前空間・型名・種別）を、ローカルの <a href="https://github.com/icsharpcode/ILSpy">ILSpy</a>（<code>ilspycmd</code>）で取得。<code>functions</code> の managed 版。環境変数 <code>ZUME_ILSPY</code> が設定されているときだけ有効（<code>ilspycmd</code> のパス、または <code>PATH</code> から探す <code>1</code>）。静的解析のみ。逆コンパイルした IL は元ソースに近いのでライセンスの範囲で利用</td>
+</tr>
+<tr>
+<td><code>il_decompile</code></td>
+<td>.NET の型 1 つを C#（<code>il</code> で IL）に逆コンパイル、または <code>out_dir</code> でアセンブリ全体を <code>.csproj</code> プロジェクトとして展開。環境変数 <code>ZUME_ILSPY</code> が設定されているときだけ有効。<code>type</code>（<code>il_types</code> の結果）または <code>out_dir</code> を指定。長い結果はファイルに退避。結果はキャッシュ（<code>ZUME_ILSPY_CACHE</code>）</td>
 </tr>
 <tr>
 <td><code>functions</code></td>

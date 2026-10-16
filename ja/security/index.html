@@ -1001,6 +1001,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#net-ilspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .NET の逆コンパイル (ILSpy)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1482,6 +1493,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#net-ilspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .NET の逆コンパイル (ILSpy)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1704,6 +1726,37 @@ Zume はバックグラウンドで Ghidra をヘッドレス実行し（初回�
 <strong>派生物</strong>であり、元のソースに似ることがあります。逆コンパイルはライセンスで許された
 バイナリに限り、機能を再実装する場合は出力された C ではなく観測した振る舞いの仕様から
 行ってください。</p>
+</div>
+<h3 id="net-ilspy">.NET の逆コンパイル (ILSpy)<a class="headerlink" href="#net-ilspy" title="Permanent link">&para;</a></h3>
+<p>.NET アセンブリの実体は メタデータ内の CIL なので、Ghidra では実用的に逆コンパイルできません。
+<strong>managed（.NET）</strong> バイナリに対しては、Zume は代わりに
+<a href="https://github.com/icsharpcode/ILSpy">ILSpy</a> のコマンドラインツール <strong>ilspycmd</strong> を呼び出します。
+<strong>コード → 逆コンパイル (.NET / ILSpy)…</strong> で型を C# に戻します。Ghidra 連携と同様に
+<strong>任意機能で既定では無効</strong>です。Zume に <code>ilspycmd</code> の場所を教えるまでメニュー項目はグレーアウトしています。</p>
+<p><strong>ilspycmd の導入。</strong> これは .NET のグローバルツールです（ILSpy のデスクトップアプリは不要）。</p>
+<div class="highlight"><pre><span></span><code>dotnet tool install -g ilspycmd
+</code></pre></div>
+<p>.NET ランタイムが必要で、<code>ilspycmd</code>（通常は
+<code>%USERPROFILE%\.dotnet\tools\ilspycmd.exe</code>）がインストールされ、<code>PATH</code> にも載ります。</p>
+<p><strong>有効化。</strong> <strong>ツール → 設定…</strong> を開き、<em>逆コンパイラ (.NET / ILSpy)</em> セクションの
+<em>ilspycmd:</em> の行をクリックして <code>ilspycmd.exe</code> を選びます。任意の <em>IL キャッシュ:</em> の行で
+結果のキャッシュ先を選べます（未設定なら既定の場所を使用。フォルダーは初回実行時に自動作成）。
+パスをクリアすると再び無効になります。</p>
+<p><strong>使い方。</strong> アクティブなタブが .NET アセンブリの状態で（またはファイル選択で）<strong>コード →
+逆コンパイル (.NET / ILSpy)…</strong> を選び、完全修飾の型名（例: <code>Acme.Core.Engine</code>）を入力します。
+空のまま実行すると、まずアセンブリの型一覧をタブに出力するので、その中の名前で再実行できます。
+Zume はバックグラウンドで ilspycmd を実行し、逆コンパイルした C# を<strong>読み取り専用</strong>のタブで
+開きます。結果は Ghidra と同様にキャッシュされます。</p>
+<p>同じ逆コンパイラは MCP クライアントからも <code>il_types</code>（型の目録。<code>functions</code> の managed 版）と
+<code>il_decompile</code>（型 1 つを C# に、または <code>out_dir</code> でアセンブリ全体をプロジェクト展開）として
+使えます。環境変数 <code>ZUME_ILSPY</code> が設定されているときだけ有効です — <code>ilspycmd</code> のパス、または
+<code>PATH</code> から探す <code>1</code>（キャッシュ先は <code>ZUME_ILSPY_CACHE</code>）。<code>decompile</code> ツールは managed な対象を
+自動的にこちらへ振り分けます。</p>
+<div class="admonition warning">
+<p class="admonition-title">ライセンスとクリーンルーム</p>
+<p>逆コンパイルした C# は<strong>元のソースに非常に近い</strong>（IL が名前や構造を保持しているため）ので、
+ネイティブコード以上にライセンス／クリーンルームの注意が重要です。逆コンパイルはライセンスで
+許されたアセンブリに限り、再実装は出力された C# ではなく振る舞いの仕様から行ってください。</p>
 </div>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>

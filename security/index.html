@@ -1001,6 +1001,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-net-ilspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile .NET (ILSpy)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1482,6 +1493,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-net-ilspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile .NET (ILSpy)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1711,6 +1733,43 @@ decompiler output is <strong>derivative</strong> of the original and can resembl
 source. Decompile only binaries whose licence permits it, and if you
 re-implement a feature, work from a behavioural specification, not from
 the emitted C.</p>
+</div>
+<h3 id="decompile-net-ilspy">Decompile .NET (ILSpy)<a class="headerlink" href="#decompile-net-ilspy" title="Permanent link">&para;</a></h3>
+<p>A .NET assembly's real code is CIL in its metadata, so Ghidra cannot usefully
+decompile it. For <strong>managed</strong> binaries Zume drives
+<a href="https://github.com/icsharpcode/ILSpy">ILSpy</a>'s command-line tool <strong>ilspycmd</strong>
+instead: <strong>Code → Decompile (.NET / ILSpy)…</strong> turns a type back into C#. Like
+the Ghidra integration it is <strong>optional and off by default</strong> - the menu item is
+greyed out until you point Zume at <code>ilspycmd</code>.</p>
+<p><strong>Installing ilspycmd.</strong> It is a .NET global tool (the ILSpy desktop app is <em>not</em>
+needed):</p>
+<div class="highlight"><pre><span></span><code>dotnet tool install -g ilspycmd
+</code></pre></div>
+<p>This needs the .NET runtime and installs <code>ilspycmd</code> (typically
+<code>%USERPROFILE%\.dotnet\tools\ilspycmd.exe</code>), also putting it on your <code>PATH</code>.</p>
+<p><strong>Enabling it.</strong> Open <strong>Tools → Settings…</strong>, find the <em>Decompiler (.NET / ILSpy)</em>
+section, click the <em>ilspycmd:</em> row and choose the <code>ilspycmd.exe</code> file. The
+optional <em>IL cache:</em> row chooses where results are cached (leave it unset to use
+a default location; the folder is created for you on first use). Clearing the
+path disables the feature again.</p>
+<p><strong>Using it.</strong> With the active tab a .NET assembly (or via the file picker),
+choose <strong>Code → Decompile (.NET / ILSpy)…</strong> and enter a fully qualified type
+name (e.g. <code>Acme.Core.Engine</code>); leave it empty to list the assembly's types into
+a tab first, then re-run with one of them. Zume runs ilspycmd on a background
+thread and opens the decompiled C# in a <strong>read-only</strong> tab. Results are cached
+like the Ghidra ones.</p>
+<p>The same decompiler is available to MCP clients as <code>il_types</code> (the type
+inventory, the managed counterpart of <code>functions</code>) and <code>il_decompile</code> (one type
+to C#, or the whole assembly as a project), off unless the <code>ZUME_ILSPY</code>
+environment variable is set - the path of <code>ilspycmd</code>, or <code>1</code> to find it on
+<code>PATH</code> (<code>ZUME_ILSPY_CACHE</code> chooses the cache directory). The <code>decompile</code> tool
+routes a managed target here automatically.</p>
+<div class="admonition warning">
+<p class="admonition-title">Licence and clean-room</p>
+<p>Decompiled C# is <strong>very close to the original source</strong> (the IL keeps names
+and structure), so the licence / clean-room caution matters even more than
+for native code: decompile only assemblies whose licence permits it, and
+re-implement from a behavioural specification, not from the emitted C#.</p>
 </div>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>

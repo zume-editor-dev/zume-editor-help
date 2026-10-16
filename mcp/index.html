@@ -1647,7 +1647,15 @@ macOS).</p>
 </tr>
 <tr>
 <td><code>decompile</code></td>
-<td>Decompile a function (or the whole file, capped) of a PE / ELF / Mach-O to C using a local Ghidra, via its headless runner. Off unless <code>ZUME_GHIDRA_HOME</code> points at a Ghidra install (Ghidra is not bundled and needs a JDK). Returns each function's name, address, signature and C; <code>address</code> / <code>symbol</code> picks one (pass an offset from <code>functions</code> / <code>xrefs</code>). Results are cached. Ghidra statically analyses the target; the C is derivative, so reuse only what the licence permits</td>
+<td>Decompile a function (or the whole file, capped) of a PE / ELF / Mach-O to C using a local Ghidra, via its headless runner. Off unless <code>ZUME_GHIDRA_HOME</code> points at a Ghidra install (Ghidra is not bundled and needs a JDK). Returns each function's name, address, signature and C; <code>address</code> / <code>symbol</code> picks one (pass an offset from <code>functions</code> / <code>xrefs</code>). Results are cached. Ghidra statically analyses the target; the C is derivative, so reuse only what the licence permits. A <strong>managed (.NET)</strong> target is routed to <code>il_decompile</code></td>
+</tr>
+<tr>
+<td><code>il_types</code></td>
+<td>The type inventory of a .NET / managed assembly (namespace, type name, kind) via a local <a href="https://github.com/icsharpcode/ILSpy">ILSpy</a> (<code>ilspycmd</code>) — the managed counterpart of <code>functions</code>. Off unless <code>ZUME_ILSPY</code> is set (the path of <code>ilspycmd</code>, or <code>1</code> to find it on <code>PATH</code>). Static only; the decompiled IL is close to the source, so reuse only what the licence permits</td>
+</tr>
+<tr>
+<td><code>il_decompile</code></td>
+<td>Decompile one .NET type to C# (or IL with <code>il</code>), or expand the whole assembly as a <code>.csproj</code> project with <code>out_dir</code>, via ILSpy. Off unless <code>ZUME_ILSPY</code> is set. Pass <code>type</code> (from <code>il_types</code>) or <code>out_dir</code>; a long result spills to a file. Results are cached (<code>ZUME_ILSPY_CACHE</code>)</td>
 </tr>
 <tr>
 <td><code>functions</code></td>
