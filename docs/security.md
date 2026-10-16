@@ -54,7 +54,10 @@ name works with or without its leading `_`) and press **Enter**: the file
 opens in the hex view at that offset and the disassembly panel lists the
 instructions from there, decoded as the architecture the file declares. A
 name that is not an export, or an offset past the file, is refused with a
-message. The same decoder is the MCP tool `disassemble`.
+message. The same decoder is the MCP tool `disassemble`. Click into the
+results panel and the keyboard walks it: **↑ / ↓**, **PageUp / PageDown**,
+**Home / End** move the highlighted row, **Enter** activates it (the hex
+caret moves to that instruction), **Esc** closes the panel.
 
 ![The start dialog over kernel32, an export name typed](assets/screenshots/disasm_prompt.png){ loading=lazy }
 
