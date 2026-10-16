@@ -116,6 +116,51 @@ The same decompiler is the MCP tool `decompile`, which is off unless the
     re-implement a feature, work from a behavioural specification, not from
     the emitted C.
 
+### Decompile .NET (ILSpy)
+
+A .NET assembly's real code is CIL in its metadata, so Ghidra cannot usefully
+decompile it. For **managed** binaries Zume drives
+[ILSpy](https://github.com/icsharpcode/ILSpy)'s command-line tool **ilspycmd**
+instead: **Code → Decompile (.NET / ILSpy)…** turns a type back into C#. Like
+the Ghidra integration it is **optional and off by default** - the menu item is
+greyed out until you point Zume at `ilspycmd`.
+
+**Installing ilspycmd.** It is a .NET global tool (the ILSpy desktop app is *not*
+needed):
+
+```
+dotnet tool install -g ilspycmd
+```
+
+This needs the .NET runtime and installs `ilspycmd` (typically
+`%USERPROFILE%\.dotnet\tools\ilspycmd.exe`), also putting it on your `PATH`.
+
+**Enabling it.** Open **Tools → Settings…**, find the *Decompiler (.NET / ILSpy)*
+section, click the *ilspycmd:* row and choose the `ilspycmd.exe` file. The
+optional *IL cache:* row chooses where results are cached (leave it unset to use
+a default location; the folder is created for you on first use). Clearing the
+path disables the feature again.
+
+**Using it.** With the active tab a .NET assembly (or via the file picker),
+choose **Code → Decompile (.NET / ILSpy)…** and enter a fully qualified type
+name (e.g. `Acme.Core.Engine`); leave it empty to list the assembly's types into
+a tab first, then re-run with one of them. Zume runs ilspycmd on a background
+thread and opens the decompiled C# in a **read-only** tab. Results are cached
+like the Ghidra ones.
+
+The same decompiler is available to MCP clients as `il_types` (the type
+inventory, the managed counterpart of `functions`) and `il_decompile` (one type
+to C#, or the whole assembly as a project), off unless the `ZUME_ILSPY`
+environment variable is set - the path of `ilspycmd`, or `1` to find it on
+`PATH` (`ZUME_ILSPY_CACHE` chooses the cache directory). The `decompile` tool
+routes a managed target here automatically.
+
+!!! warning "Licence and clean-room"
+    Decompiled C# is **very close to the original source** (the IL keeps names
+    and structure), so the licence / clean-room caution matters even more than
+    for native code: decompile only assemblies whose licence permits it, and
+    re-implement from a behavioural specification, not from the emitted C#.
+
 ## YARA Scan
 
 **Code → YARA Scan…** scans the active document with a set of YARA rules.
