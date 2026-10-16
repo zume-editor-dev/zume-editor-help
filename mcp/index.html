@@ -1645,6 +1645,10 @@ macOS).</p>
 <td><code>macho_info</code></td>
 <td>The structure of a Mach-O image or fat / universal binary (every slice listed, <code>slice</code> picks one): CPU, file type, header flags, every load command, segments / sections with entropy, dylibs with versions, rpaths, UUID, platform / minimum OS / SDK, the entry, imported / exported symbols, code-signature and encryption presence</td>
 </tr>
+<tr>
+<td><code>disassemble</code></td>
+<td>A Capstone listing (x86 16/32/64, ARM, Thumb, AArch64) of a byte range of a file or of inline hex bytes. Over a PE / ELF / Mach-O the architecture, the start (the entry point, or the export named by <code>symbol</code>) and the virtual addresses come from the headers, so the offsets <code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code> report can be passed straight in; raw bytes need <code>arch</code>. A decoder only: nothing is loaded, executed or decompiled</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Databases</strong> (the connections configured in the app, or a SQLite file):</p>

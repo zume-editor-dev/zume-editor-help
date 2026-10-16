@@ -1643,6 +1643,10 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 <td><code>macho_info</code></td>
 <td>Mach-O イメージまたは fat / ユニバーサルバイナリ（全スライスを列挙し <code>slice</code> で選択）の構造：CPU、ファイル種別、ヘッダーフラグ、全ロードコマンド、セグメント / セクション（エントロピー付き）、バージョン付き dylib、rpath、UUID、プラットフォーム / 最小 OS / SDK、エントリ、インポート / エクスポートシンボル、コード署名と暗号化の有無</td>
 </tr>
+<tr>
+<td><code>disassemble</code></td>
+<td>ファイルのバイト範囲、またはインラインの hex バイトを Capstone で逆アセンブル（x86 16/32/64、ARM、Thumb、AArch64）。PE / ELF / Mach-O ではアーキテクチャ、開始位置（エントリポイント、または <code>symbol</code> で指定したエクスポート関数）、仮想アドレスをヘッダーから取るので、<code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code> が報告するオフセットをそのまま渡せる。生バイトには <code>arch</code> が必要。デコードのみで、ロード・実行・逆コンパイルは行わない</td>
+</tr>
 </tbody>
 </table>
 <p><strong>データベース</strong>（アプリで設定済みの接続、または SQLite ファイル）:</p>
