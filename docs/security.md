@@ -172,10 +172,37 @@ bytecode, or a whole jar to a source tree). It is **opt-in**:
 - **javap / jar** come from the JDK, found via `JAVA_HOME` or `PATH` - the same
   JDK the Ghidra integration needs. Bytecode and class listing work with the JDK
   alone.
-- **CFR** (Java-source decompilation) is a single jar you install; set the
+- **CFR** (Java-source decompilation) is a single jar you provide; set the
   `ZUME_CFR` environment variable (on the MCP server) to its path. `ZUME_CFR_CACHE`
   chooses the cache directory. CFR is MIT-licensed and, like Ghidra and ilspycmd,
   is not bundled, fetched or linked - Zume only launches the tool you installed.
+
+**Installing CFR.** It is a single jar - there is nothing to install, just
+download it once from Maven Central (or the [CFR releases](https://github.com/leibnitz27/cfr/releases)):
+
+```
+https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar
+```
+
+Save it anywhere, e.g. `C:\Users\<you>\zume-app\cfr\cfr-0.152.jar`. A JDK must
+also be present for `java` (to run CFR) and `javap` (bytecode) - the same JDK the
+Ghidra integration uses.
+
+**Enabling it.** Set these on the environment of the **MCP server** (for the CLI,
+the `env` block of the `zume` entry in `~/.claude.json`), then restart the client:
+
+```json
+"env": {
+  "JAVA_HOME": "C:\\Program Files\\Eclipse Adoptium\\jdk-25...-hotspot",
+  "ZUME_CFR": "C:\\Users\\<you>\\zume-app\\cfr\\cfr-0.152.jar",
+  "ZUME_CFR_CACHE": "C:\\Users\\<you>\\zume-app\\cfr-cache"
+}
+```
+
+`JAVA_HOME` can be omitted if `java` / `javap` are already on `PATH`; class
+listing and bytecode (`javap`) then work with the JDK alone, and `ZUME_CFR` adds
+Java-source output (CFR). Non-ASCII string literals come back as `\uXXXX`
+escapes, which is CFR's normal, lossless output.
 
 The tools read the class files - they never run them.
 

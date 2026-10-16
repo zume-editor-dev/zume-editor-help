@@ -157,9 +157,35 @@ JDK の **javap**（バイトコード）と、ユーザー導入の **CFR**（J
 
 - **javap / jar** は JDK 付属で、`JAVA_HOME` / `PATH` から検出します（Ghidra 連携で必要な JDK と
   同じ）。バイトコードとクラス一覧は JDK だけで動きます。
-- **CFR**（Java ソース復元）は単体 jar を導入し、`ZUME_CFR` 環境変数（MCP サーバー側）にパスを
-  設定します。キャッシュ先は `ZUME_CFR_CACHE`。CFR は MIT ライセンスで、Ghidra / ilspycmd と同様に
-  同梱・取得・リンクはせず、ユーザーが導入したツールを起動するだけです。
+- **CFR**（Java ソース復元）はユーザーが用意する単体 jar です。`ZUME_CFR` 環境変数（MCP サーバー側）に
+  そのパスを設定します。キャッシュ先は `ZUME_CFR_CACHE`。CFR は MIT ライセンスで、Ghidra / ilspycmd と
+  同様に同梱・取得・リンクはせず、ユーザーが導入したツールを起動するだけです。
+
+**CFR の入手。** 単体 jar なのでインストール不要です。Maven Central（または
+[CFR のリリース](https://github.com/leibnitz27/cfr/releases)）から 1 回ダウンロードします:
+
+```
+https://repo1.maven.org/maven2/org/benf/cfr/0.152/cfr-0.152.jar
+```
+
+任意の場所に保存します（例: `C:\Users\<あなた>\zume-app\cfr\cfr-0.152.jar`）。CFR の実行（`java`）と
+バイトコード（`javap`）のために **JDK** も必要です（Ghidra 連携で使うものと同じ）。
+
+**有効化。** 以下を **MCP サーバーの環境**（CLI なら `~/.claude.json` の `zume` エントリの `env`
+ブロック）に設定し、クライアントを再起動します:
+
+```json
+"env": {
+  "JAVA_HOME": "C:\\Program Files\\Eclipse Adoptium\\jdk-25...-hotspot",
+  "ZUME_CFR": "C:\\Users\\<あなた>\\zume-app\\cfr\\cfr-0.152.jar",
+  "ZUME_CFR_CACHE": "C:\\Users\\<あなた>\\zume-app\\cfr-cache"
+}
+```
+
+`java` / `javap` が既に `PATH` にあれば `JAVA_HOME` は省略できます。その場合でもクラス一覧と
+バイトコード（`javap`）は JDK だけで動き、`ZUME_CFR` を足すと Java ソース出力（CFR）が有効に
+なります。非 ASCII の文字列リテラルは `\uXXXX` エスケープで返りますが、これは CFR の通常の
+（ロスレスな）出力です。
 
 いずれもクラスファイルを読み取るだけで、実行はしません。
 
