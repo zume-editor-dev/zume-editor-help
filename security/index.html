@@ -957,10 +957,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pe-info" class="md-nav__link">
+  <a href="#executable-info-pe-elf-mach-o" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PE Info
+        Executable Info (PE / ELF / Mach-O)
       
     </span>
   </a>
@@ -1399,10 +1399,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pe-info" class="md-nav__link">
+  <a href="#executable-info-pe-elf-mach-o" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PE Info
+        Executable Info (PE / ELF / Mach-O)
       
     </span>
   </a>
@@ -1538,29 +1538,44 @@
 <p>Zume Editor has tools for binary triage, data transforms and signature
 scanning — useful for reverse engineering, CTFs and authorized security work.
 Each is also available headlessly to AI agents through the
-<a href="../mcp/#tools">MCP server</a> (the <code>entropy</code>, <code>transform</code>, <code>yara_scan</code> and
-<code>pe_info</code> tools).</p>
-<h2 id="pe-info">PE Info<a class="headerlink" href="#pe-info" title="Permanent link">&para;</a></h2>
-<p><strong>Code → PE Info…</strong> reads a Windows EXE / DLL structurally and lists the
-result in the results panel: the headers and security flags (ASLR / DEP /
-CFG), every section with its entropy, the imported DLLs and functions, the
-exports, and the resources a feature inventory needs — the version strings,
-the string tables, each dialog's caption and controls, the menu items and the
-manifest — plus the PDB path and any data appended past the last section.</p>
-<p>When the active tab is itself a PE file (a binary opened in the hex view),
+<a href="../mcp/#tools">MCP server</a> (the <code>entropy</code>, <code>transform</code>, <code>yara_scan</code>,
+<code>pe_info</code>, <code>elf_info</code> and <code>macho_info</code> tools).</p>
+<h2 id="executable-info-pe-elf-mach-o">Executable Info (PE / ELF / Mach-O)<a class="headerlink" href="#executable-info-pe-elf-mach-o" title="Permanent link">&para;</a></h2>
+<p><strong>Code → Executable Info…</strong> reads an executable structurally and lists the
+result in the results panel. The format is detected from the file's magic:</p>
+<ul>
+<li><strong>PE</strong> (Windows EXE / DLL): the headers and security flags (ASLR / DEP /
+  CFG), every section with its entropy, the imported DLLs and functions, the
+  exports, and the resources a feature inventory needs — the version strings,
+  the string tables, each dialog's caption and controls, the menu items and the
+  manifest — plus the PDB path and any data appended past the last section.</li>
+<li><strong>ELF</strong> (Linux executables and shared objects): type, machine, entry, the
+  interpreter, segments and sections with entropy, the dynamic section (needed
+  libraries, soname, rpath / runpath), imported and exported symbols with their
+  versions, the local symbols when not stripped, the GNU build id, and the
+  hardening the binary carries (PIE, NX stack, RELRO, stack canary, FORTIFY).</li>
+<li><strong>Mach-O</strong> (macOS / iOS images, including fat / universal binaries, whose
+  slices are listed and the first one read): CPU, file type, header flags,
+  every load command, segments and sections with entropy, linked dylibs with
+  versions, rpaths, UUID, platform / minimum OS / SDK, the entry point,
+  imported and exported symbols, and whether the image is code-signed or
+  encrypted.</li>
+</ul>
+<p>When the active tab is itself such a file (a binary opened in the hex view),
 that file is read; otherwise a file picker asks for one. The file is read on
-a worker, so a large binary does not block the editor. Click a row (or press
-<strong>F4</strong>) to copy that line to the clipboard; <strong>Esc</strong> closes the panel.</p>
+a worker, so a large binary does not block the editor (the first 256 MiB are
+read; a larger file says so in a warning row). Click a row (or press <strong>F4</strong>)
+to copy that line to the clipboard; <strong>Esc</strong> closes the panel.</p>
 <p>Rows that name code jump to the disassembly instead: the entry-point line,
-an export with a code address, and a section marked CODE / EXECUTE. Clicking
-one opens the file in the hex view at that file offset and runs
+an exported function, and an executable section or segment. Clicking one
+opens the file in the hex view at that file offset and runs
 <strong>Hex → Disassemble</strong> there with the architecture the file declares (x64,
 x86, ARM64, ARM / Thumb), so the disassembly panel takes the report's place
 from that offset; the hex view stays open for browsing.</p>
 <p><img alt="PE Info in the results panel" loading="lazy" src="../assets/screenshots/pe_info_panel.png" /></p>
-<p>The same reader is the MCP tool <code>pe_info</code> (see <a href="../mcp/#tools">MCP</a>). It
-never disassembles, loads or runs the file. Analyze only binaries whose
-licence permits it.</p>
+<p>The same readers are the MCP tools <code>pe_info</code>, <code>elf_info</code> and <code>macho_info</code>
+(see <a href="../mcp/#tools">MCP</a>). They never disassemble, load or run the file.
+Analyze only binaries whose licence permits it.</p>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>
 <p>The dialog asks for <strong>the path to a YARA rules file</strong> (<code>.yar</code> / <code>.yara</code>) — not

@@ -957,10 +957,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pe" class="md-nav__link">
+  <a href="#pe-elf-mach-o" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PE 情報
+        実行ファイル情報 (PE / ELF / Mach-O)
       
     </span>
   </a>
@@ -1399,10 +1399,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pe" class="md-nav__link">
+  <a href="#pe-elf-mach-o" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PE 情報
+        実行ファイル情報 (PE / ELF / Mach-O)
       
     </span>
   </a>
@@ -1538,29 +1538,44 @@
 <p>Zume Editor には、バイナリ診断・データ変換・シグネチャ走査のツールがあり、
 リバースエンジニアリング、CTF、認可されたセキュリティ作業に役立ちます。いずれも
 <a href="../mcp/#tools">MCP サーバー</a>経由で AI エージェントからヘッドレスに利用できます
-（<code>entropy</code>・<code>transform</code>・<code>yara_scan</code>・<code>pe_info</code> ツール）。</p>
-<h2 id="pe">PE 情報<a class="headerlink" href="#pe" title="Permanent link">&para;</a></h2>
-<p><strong>コード → PE 情報…</strong> は Windows の EXE / DLL を構造として読み取り、結果パネルに
-一覧します：ヘッダーとセキュリティフラグ（ASLR / DEP / CFG）、各セクションとその
-エントロピー、インポートする DLL と関数、エクスポート、そして機能の目録を作るのに
-必要なリソース — バージョン文字列、文字列テーブル、各ダイアログのキャプションと
-コントロール、メニュー項目、マニフェスト — に加えて PDB パスと最終セクション以降に
-付加されたデータです。</p>
-<p>アクティブなタブ自体が PE ファイルなら（16 進ビューで開いたバイナリなど）その
+（<code>entropy</code>・<code>transform</code>・<code>yara_scan</code>・<code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> ツール）。</p>
+<h2 id="pe-elf-mach-o">実行ファイル情報 (PE / ELF / Mach-O)<a class="headerlink" href="#pe-elf-mach-o" title="Permanent link">&para;</a></h2>
+<p><strong>コード → 実行ファイル情報…</strong> は実行ファイルを構造として読み取り、結果パネルに
+一覧します。形式はファイルのマジックから判別します：</p>
+<ul>
+<li><strong>PE</strong>（Windows の EXE / DLL）：ヘッダーとセキュリティフラグ（ASLR / DEP / CFG）、
+  各セクションとそのエントロピー、インポートする DLL と関数、エクスポート、そして
+  機能の目録を作るのに必要なリソース — バージョン文字列、文字列テーブル、各
+  ダイアログのキャプションとコントロール、メニュー項目、マニフェスト — に加えて
+  PDB パスと最終セクション以降に付加されたデータ。</li>
+<li><strong>ELF</strong>（Linux の実行ファイルと共有オブジェクト）：種別、マシン、エントリ、
+  インタープリター、セグメントとセクション（エントロピー付き）、動的セクション
+  （必要なライブラリ、soname、rpath / runpath）、バージョン付きのインポート /
+  エクスポートシンボル、ストリップされていなければローカルシンボル、GNU ビルド
+  ID、そしてバイナリのハードニング（PIE、NX スタック、RELRO、スタックカナリア、
+  FORTIFY）。</li>
+<li><strong>Mach-O</strong>（macOS / iOS のイメージ。fat / ユニバーサルバイナリはスライスを列挙して
+  先頭を読みます）：CPU、ファイル種別、ヘッダーフラグ、全ロードコマンド、
+  セグメントとセクション（エントロピー付き）、バージョン付きのリンク先 dylib、
+  rpath、UUID、プラットフォーム / 最小 OS / SDK、エントリポイント、インポート /
+  エクスポートシンボル、コード署名と暗号化の有無。</li>
+</ul>
+<p>アクティブなタブ自体がそうしたファイルなら（16 進ビューで開いたバイナリなど）その
 ファイルを読み、そうでなければファイル選択ダイアログで指定します。読み込みは
-ワーカースレッドで行うので、大きなバイナリでもエディターは止まりません。行を
+ワーカースレッドで行うので、大きなバイナリでもエディターは止まりません（先頭
+256 MiB を読み、それより大きいファイルは警告行でその旨を示します）。行を
 クリック（または <strong>F4</strong>）するとその行をクリップボードにコピーし、<strong>Esc</strong> で
 パネルを閉じます。</p>
 <p>コードを指す行はコピーではなく逆アセンブル表示へジャンプします：エントリポイントの
-行、コードアドレスを持つエクスポート、CODE / EXECUTE 属性のセクションです。
+行、エクスポートされた関数、実行属性を持つセクションやセグメントです。
 クリックするとそのファイルを 16 進ビューで該当オフセットに開き、ファイルが宣言する
 アーキテクチャ（x64 / x86 / ARM64 / ARM / Thumb）で <strong>16進 → 逆アセンブル</strong> を
 実行するので、結果パネルがそのオフセットからの逆アセンブルに切り替わります。
 16 進ビューはそのまま残るので、続けて参照できます。</p>
 <p><img alt="結果パネルの PE 情報" loading="lazy" src="../../assets/screenshots/pe_info_panel.png" /></p>
-<p>同じ読み取りエンジンが MCP ツール <code>pe_info</code> です（<a href="../mcp/#tools">MCP</a> 参照）。
-逆アセンブル・ロード・実行は一切行いません。解析はライセンスで許されたバイナリに
-限ってください。</p>
+<p>同じ読み取りエンジンが MCP ツール <code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> です
+（<a href="../mcp/#tools">MCP</a> 参照）。逆アセンブル・ロード・実行は一切行いません。解析は
+ライセンスで許されたバイナリに限ってください。</p>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
 <p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
