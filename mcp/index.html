@@ -1646,6 +1646,10 @@ macOS).</p>
 <td>The structure of a Mach-O image or fat / universal binary (every slice listed, <code>slice</code> picks one): CPU, file type, header flags, every load command, segments / sections with entropy, dylibs with versions, rpaths, UUID, platform / minimum OS / SDK, the entry, imported / exported symbols, code-signature and encryption presence</td>
 </tr>
 <tr>
+<td><code>functions</code></td>
+<td>Function boundaries and the call graph of a PE / ELF / Mach-O: each function's address / file offset / size and how it was found, the imports / symbols / functions it calls (with counts), the strings it loads, the data references and the functions that call it; narrowed by <code>target</code> (a name, <code>sub_&lt;hex&gt;</code>, <code>entry</code> or an address). Static and heuristic</td>
+</tr>
+<tr>
 <td><code>xrefs</code></td>
 <td>Static cross-references of a PE / ELF / Mach-O: every executable section is decoded and each address an instruction uses is classified as an import (PE IAT slot, <code>dll!function</code>), an exported / named symbol, a PLT / stub, a string (with its text), another code address or data; a summary per target plus the referencing instructions, narrowed by <code>target</code> (a name, a string fragment or an address). Static only</td>
 </tr>
