@@ -1736,6 +1736,14 @@ macOS).</p>
 <td>Decompile one .NET type to C# (or IL with <code>il</code>), or expand the whole assembly as a <code>.csproj</code> project with <code>out_dir</code>, via ILSpy. Off unless <code>ZUME_ILSPY</code> is set. Pass <code>type</code> (from <code>il_types</code>) or <code>out_dir</code>; a long result spills to a file. Results are cached (<code>ZUME_ILSPY_CACHE</code>)</td>
 </tr>
 <tr>
+<td><code>java_types</code></td>
+<td>The class inventory of a Java <code>.class</code> / <code>.jar</code>, via the JDK's <code>jar</code> / <code>javap</code> — the Java counterpart of <code>functions</code>. Needs a JDK (<code>JAVA_HOME</code> / <code>PATH</code>). Reads the class files only</td>
+</tr>
+<tr>
+<td><code>java_decompile</code></td>
+<td>Decompile one Java class to source via a user-provided <strong>CFR</strong> (set <code>ZUME_CFR</code> to a cfr.jar), or to JVM bytecode via <code>javap</code> (<code>bytecode: true</code>, no CFR needed), or expand a whole jar to a source tree with <code>out_dir</code>. Pass <code>class</code> (from <code>java_types</code>) for a <code>.jar</code>. <code>decompile</code> points a Java target here. Results are cached (<code>ZUME_CFR_CACHE</code>)</td>
+</tr>
+<tr>
 <td><code>functions</code></td>
 <td>Function boundaries and the call graph of a PE / ELF / Mach-O: each function's address / file offset / size and how it was found, the imports / symbols / functions it calls (with counts), the strings it loads, the data references and the functions that call it; narrowed by <code>target</code> (a name, <code>sub_&lt;hex&gt;</code>, <code>entry</code> or an address). Static and heuristic</td>
 </tr>

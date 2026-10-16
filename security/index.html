@@ -1012,6 +1012,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-java-javap-cfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile Java (javap + CFR)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1504,6 +1515,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decompile-java-javap-cfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decompile Java (javap + CFR)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1770,6 +1792,29 @@ routes a managed target here automatically.</p>
 and structure), so the licence / clean-room caution matters even more than
 for native code: decompile only assemblies whose licence permits it, and
 re-implement from a behavioural specification, not from the emitted C#.</p>
+</div>
+<h3 id="decompile-java-javap-cfr">Decompile Java (javap + CFR)<a class="headerlink" href="#decompile-java-javap-cfr" title="Permanent link">&para;</a></h3>
+<p>Java <code>.class</code> / <code>.jar</code> files are JVM bytecode - neither Ghidra nor ILSpy is the
+right tool. Zume uses the JDK's <strong>javap</strong> (bytecode) and a user-provided <strong>CFR</strong>
+decompiler (Java source) instead, through the MCP tools <code>java_types</code> (list a
+jar's classes) and <code>java_decompile</code> (one class to Java source, or <code>javap -c</code>
+bytecode, or a whole jar to a source tree). It is <strong>opt-in</strong>:</p>
+<ul>
+<li><strong>javap / jar</strong> come from the JDK, found via <code>JAVA_HOME</code> or <code>PATH</code> - the same
+  JDK the Ghidra integration needs. Bytecode and class listing work with the JDK
+  alone.</li>
+<li><strong>CFR</strong> (Java-source decompilation) is a single jar you install; set the
+  <code>ZUME_CFR</code> environment variable (on the MCP server) to its path. <code>ZUME_CFR_CACHE</code>
+  chooses the cache directory. CFR is MIT-licensed and, like Ghidra and ilspycmd,
+  is not bundled, fetched or linked - Zume only launches the tool you installed.</li>
+</ul>
+<p>The tools read the class files - they never run them.</p>
+<div class="admonition warning">
+<p class="admonition-title">Licence and clean-room</p>
+<p>Decompiled Java is <strong>derivative</strong> of the original. Decompile only software
+whose licence / EULA permits reverse engineering and that you have the right
+to analyse, and re-implement from a behavioural specification, not by copying
+the emitted Java. Anything you build this way is your own responsibility.</p>
 </div>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>

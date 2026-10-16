@@ -1734,6 +1734,14 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 <td>.NET の型 1 つを C#（<code>il</code> で IL）に逆コンパイル、または <code>out_dir</code> でアセンブリ全体を <code>.csproj</code> プロジェクトとして展開。環境変数 <code>ZUME_ILSPY</code> が設定されているときだけ有効。<code>type</code>（<code>il_types</code> の結果）または <code>out_dir</code> を指定。長い結果はファイルに退避。結果はキャッシュ（<code>ZUME_ILSPY_CACHE</code>）</td>
 </tr>
 <tr>
+<td><code>java_types</code></td>
+<td>Java の <code>.class</code> / <code>.jar</code> のクラス目録を、JDK の <code>jar</code> / <code>javap</code> で取得。<code>functions</code> の Java 版。JDK が必要（<code>JAVA_HOME</code> / <code>PATH</code>）。クラスファイルを読むだけ</td>
+</tr>
+<tr>
+<td><code>java_decompile</code></td>
+<td>Java のクラス 1 つを、ユーザー導入の <strong>CFR</strong>（<code>ZUME_CFR</code> に cfr.jar を指定）で Java ソースに、または <code>javap</code>（<code>bytecode: true</code>、CFR 不要）で JVM バイトコードに逆コンパイル。<code>out_dir</code> で jar 全体をソースツリー展開。<code>.jar</code> は <code>class</code>（<code>java_types</code> の結果）を指定。<code>decompile</code> は Java 対象をここへ案内。結果はキャッシュ（<code>ZUME_CFR_CACHE</code>）</td>
+</tr>
+<tr>
 <td><code>functions</code></td>
 <td>PE / ELF / Mach-O の関数境界と呼び出しグラフ：各関数のアドレス / ファイルオフセット / サイズと検出方法、呼び出すインポート / シンボル / 関数（回数付き）、読み込む文字列、データ参照数、その関数を呼ぶ関数を返す。<code>target</code>（名前、<code>sub_&lt;hex&gt;</code>、<code>entry</code>、アドレス）で絞り込める。静的・ヒューリスティック</td>
 </tr>

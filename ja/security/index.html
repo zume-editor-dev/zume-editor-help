@@ -1012,6 +1012,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#java-javap-cfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java の逆コンパイル (javap + CFR)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1504,6 +1515,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#java-javap-cfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java の逆コンパイル (javap + CFR)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1757,6 +1779,25 @@ Zume はバックグラウンドで ilspycmd を実行し、逆コンパイル�
 <p>逆コンパイルした C# は<strong>元のソースに非常に近い</strong>（IL が名前や構造を保持しているため）ので、
 ネイティブコード以上にライセンス／クリーンルームの注意が重要です。逆コンパイルはライセンスで
 許されたアセンブリに限り、再実装は出力された C# ではなく振る舞いの仕様から行ってください。</p>
+</div>
+<h3 id="java-javap-cfr">Java の逆コンパイル (javap + CFR)<a class="headerlink" href="#java-javap-cfr" title="Permanent link">&para;</a></h3>
+<p>Java の <code>.class</code> / <code>.jar</code> は JVM バイトコードで、Ghidra でも ILSpy でも扱えません。Zume は
+JDK の <strong>javap</strong>（バイトコード）と、ユーザー導入の <strong>CFR</strong>（Java ソース）を使います。MCP ツール
+<code>java_types</code>（jar 内のクラス一覧）と <code>java_decompile</code>（クラス 1 つを Java ソース、または
+<code>javap -c</code> のバイトコード、あるいは jar 全体をソースツリー）として提供します。<strong>オプトイン</strong>です:</p>
+<ul>
+<li><strong>javap / jar</strong> は JDK 付属で、<code>JAVA_HOME</code> / <code>PATH</code> から検出します（Ghidra 連携で必要な JDK と
+  同じ）。バイトコードとクラス一覧は JDK だけで動きます。</li>
+<li><strong>CFR</strong>（Java ソース復元）は単体 jar を導入し、<code>ZUME_CFR</code> 環境変数（MCP サーバー側）にパスを
+  設定します。キャッシュ先は <code>ZUME_CFR_CACHE</code>。CFR は MIT ライセンスで、Ghidra / ilspycmd と同様に
+  同梱・取得・リンクはせず、ユーザーが導入したツールを起動するだけです。</li>
+</ul>
+<p>いずれもクラスファイルを読み取るだけで、実行はしません。</p>
+<div class="admonition warning">
+<p class="admonition-title">ライセンスとクリーンルーム</p>
+<p>逆コンパイルした Java は元のバイナリの<strong>派生物</strong>です。リバースエンジニアリングがライセンス /
+EULA で許可され、かつ解析する権利があるソフトウェアにのみ使用し、再実装は出力された Java の
+流用ではなく振る舞いの仕様から行ってください。本機能で作成したものは利用者自身の責任です。</p>
 </div>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
