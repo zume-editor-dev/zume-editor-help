@@ -82,6 +82,40 @@ The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.
 
+### Decompile (Ghidra)
+
+Zume does not include a decompiler, but it can drive one you already have:
+**Code → Decompile (Ghidra)…** turns a function's machine code back into
+C-like pseudocode using a local [Ghidra](https://ghidra-sre.org/) install.
+It is **optional and off by default** - the menu item is greyed out until you
+point Zume at Ghidra.
+
+**Enabling it.** Open **Tools → Settings…**, find the *Decompiler (Ghidra)*
+section, click the *Ghidra install:* row and choose your Ghidra directory (the
+folder that contains `support/analyzeHeadless`). Ghidra needs a Java 17+
+runtime; Zume finds one on your `PATH` or `JAVA_HOME`, so no extra setup is
+usually needed. Clearing the path disables the feature again.
+
+**Using it.** With the active tab an executable (or via the file picker),
+choose **Code → Decompile (Ghidra)…**, then enter a function - an address
+(`0x180001020`, e.g. one `functions` or `xrefs` reported), a name, or nothing
+for the whole file (capped). Zume runs Ghidra headlessly on a background
+thread (this can take a few minutes the first time) and opens the decompiled C
+in a **read-only** tab. Results are **cached** by the file's size, modification
+time and your request, so decompiling the same unchanged function again is
+instant.
+
+The same decompiler is the MCP tool `decompile`, which is off unless the
+`ZUME_GHIDRA_HOME` environment variable points at a Ghidra install (set
+`ZUME_GHIDRA_CACHE` to choose its cache directory).
+
+!!! warning "Licence and clean-room"
+    Ghidra statically analyses the binary - it does not run it - but
+    decompiler output is **derivative** of the original and can resemble its
+    source. Decompile only binaries whose licence permits it, and if you
+    re-implement a feature, work from a behavioural specification, not from
+    the emitted C.
+
 ## YARA Scan
 
 **Code → YARA Scan…** scans the active document with a set of YARA rules.
