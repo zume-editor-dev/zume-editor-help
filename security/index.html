@@ -1617,7 +1617,10 @@ name works with or without its leading <code>_</code>) and press <strong>Enter</
 opens in the hex view at that offset and the disassembly panel lists the
 instructions from there, decoded as the architecture the file declares. A
 name that is not an export, or an offset past the file, is refused with a
-message. The same decoder is the MCP tool <code>disassemble</code>.</p>
+message. The same decoder is the MCP tool <code>disassemble</code>. Click into the
+results panel and the keyboard walks it: <strong>↑ / ↓</strong>, <strong>PageUp / PageDown</strong>,
+<strong>Home / End</strong> move the highlighted row, <strong>Enter</strong> activates it (the hex
+caret moves to that instruction), <strong>Esc</strong> closes the panel.</p>
 <p><img alt="The start dialog over kernel32, an export name typed" loading="lazy" src="../assets/screenshots/disasm_prompt.png" /></p>
 <p><img alt="The listing from GetProcAddress in the hex view" loading="lazy" src="../assets/screenshots/disasm_listing.png" /></p>
 <p>The same readers are the MCP tools <code>pe_info</code>, <code>elf_info</code> and <code>macho_info</code>

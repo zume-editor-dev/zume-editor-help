@@ -1616,7 +1616,10 @@
 なくても可）を入力して <strong>Enter</strong> を押すと、そのファイルが 16 進ビューでそのオフセットに
 開き、結果パネルにそこからの命令列が、ファイルが宣言するアーキテクチャで並びます。
 エクスポートにない名前やファイル末尾を超えるオフセットはメッセージで拒否します。同じ
-デコーダーが MCP ツール <code>disassemble</code> です。</p>
+デコーダーが MCP ツール <code>disassemble</code> です。結果パネルをクリックするとキーボードで
+移動できます：<strong>↑ / ↓</strong>、<strong>PageUp / PageDown</strong>、<strong>Home / End</strong> で強調行を移動、
+<strong>Enter</strong> でその行を実行（16 進ビューのキャレットがその命令へ移動）、<strong>Esc</strong> で
+パネルを閉じます。</p>
 <p><img alt="kernel32 に対する開始位置ダイアログ（エクスポート関数名を入力）" loading="lazy" src="../../assets/screenshots/disasm_prompt.png" /></p>
 <p><img alt="GetProcAddress からのリスティング（16 進ビュー）" loading="lazy" src="../../assets/screenshots/disasm_listing.png" /></p>
 <p>同じ読み取りエンジンが MCP ツール <code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> です
