@@ -1040,6 +1040,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interface-recovery-objective-c-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface recovery (Objective-C / Swift)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara-scan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1554,6 +1565,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interface-recovery-objective-c-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface recovery (Objective-C / Swift)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara-scan" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1913,6 +1935,34 @@ whose licence / EULA permits reverse engineering and that you have the right
 to analyse, and re-implement from a behavioural specification, not by copying
 the emitted Java. Anything you build this way is your own responsibility.</p>
 </div>
+<h2 id="interface-recovery-objective-c-swift">Interface recovery (Objective-C / Swift)<a class="headerlink" href="#interface-recovery-objective-c-swift" title="Permanent link">&para;</a></h2>
+<p><strong>Code → Objective-C / Swift Interface…</strong> recovers the class interfaces a
+macOS / iOS <strong>Mach-O</strong> carries in its Objective-C and Swift runtime metadata —
+without a decompiler. It reads the <code>__objc_*</code> and <code>__swift5_*</code> sections and
+writes a header to <code>&lt;app data&gt;/interfaces/&lt;name&gt;.h</code>, opened read-only, listing:</p>
+<ul>
+<li><strong>Objective-C</strong> classes with their superclass and adopted protocols, every
+  instance and class method (<code>-</code> / <code>+</code> with the selector, and the argument and
+  return types where the metadata carries them), the instance variables, the
+  declared properties with their attributes, and the categories that extend a
+  class.</li>
+<li><strong>Swift</strong> types recovered from <code>__swift5_types</code> / <code>__swift5_protos</code>, and the
+  Swift symbols of the symbol table demangled to readable signatures
+  (<code>Module.Type.method(label:) async throws -&gt; T</code>). The demangler is
+  <strong>fail-closed</strong>: a symbol is demangled correctly or left in its raw <code>_$s…</code>
+  form — never guessed wrong.</li>
+</ul>
+<p>When the active tab is such a file it is read; otherwise a file picker asks.
+A fat / universal binary resolves to the slice read, and pointing the command
+at a <code>.app</code> or <code>.framework</code> bundle resolves to the Mach-O inside it. Each
+method row carries the address of its implementation, so activating it (click,
+or <strong>F4</strong>) jumps to that method's body in the disassembly, like the Executable
+Info code rows. The same engine names call sites in <strong>Cross-References</strong> and in
+the MCP <code>functions</code> tool — an <code>objc_msgSend</code> site shows the <code>@selector(...)</code> it
+sends, and a class reference shows the class.</p>
+<p>This reads only the metadata Objective-C and Swift leave in the binary for
+their own runtimes, not the method bodies; it never runs the target. It is most
+useful on macOS / iOS binaries, where this metadata is richest.</p>
 <h2 id="yara-scan">YARA Scan<a class="headerlink" href="#yara-scan" title="Permanent link">&para;</a></h2>
 <p><strong>Code → YARA Scan…</strong> scans the active document with a set of YARA rules.</p>
 <p>The dialog asks for <strong>the path to a YARA rules file</strong> (<code>.yar</code> / <code>.yara</code>) — not

@@ -1285,6 +1285,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-21-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-21 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1352,6 +1363,17 @@
     <span class="md-ellipsis">
       
         Beta update — 2026-10-15 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-21-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-21 (refreshed builds)
       
     </span>
   </a>
@@ -1458,6 +1480,31 @@ version stays 0.30.0. Re-download from the Installation page to pick them up.</p
   (Windows and Linux; macOS draws them as plain text for now).</li>
 <li><strong>macOS</strong> — the image was rebuilt with the fixes above and the latest
   macOS-side polish.</li>
+</ul>
+<h3 id="beta-update-2026-10-21-refreshed-builds">Beta update — 2026-10-21 (refreshed builds)<a class="headerlink" href="#beta-update-2026-10-21-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0) with a large reverse-engineering
+batch and floating panels. Re-download from the Installation page to pick them
+up.</p>
+<ul>
+<li><strong>Reverse engineering</strong> — a new <strong>Code</strong> menu suite reads executables
+  structurally and never runs them: <strong>Executable Info</strong> (PE / ELF / Mach-O —
+  headers, sections with entropy, imports / exports, resources, hardening),
+  <strong>Disassemble Executable</strong> (Capstone: x86 / 64, ARM, Thumb, AArch64),
+  <strong>Cross-References</strong> and function recovery, and optional decompilers that shell
+  out to tools you install — <strong>Ghidra</strong>, <strong>ILSpy</strong> (.NET) and <strong>javap + CFR</strong>
+  (Java). New <strong>Objective-C / Swift Interface</strong> recovery reads a Mach-O's
+  runtime metadata (classes, methods, ivars, properties, Swift types and
+  demangled symbols) — most useful on macOS / iOS binaries. The MCP server
+  exposes the same engines (<code>pe_info</code>, <code>elf_info</code>, <code>macho_info</code>, <code>disassemble</code>,
+  <code>xrefs</code>, <code>functions</code>, <code>decompile</code>). See <a href="../security/">Security analysis</a>.</li>
+<li><strong>Floating panels</strong> — any dock panel (Terminal, results, FTP / SFTP / SSH,
+  compare) can be floated into its own window — to put a Terminal on a second
+  monitor, for instance — and re-docked, with its live content still updating.
+  Right-click a panel's tab for <strong>Float Tab</strong> and <strong>Move to Right / Bottom</strong>.
+  See <a href="../getting-started/#panels-docking-moving-and-floating">Getting Started</a>.</li>
+<li><strong>macOS</strong> — the reverse-engineering suite and floating panels were verified on
+  the macOS build; the image was rebuilt with the latest Mac-side polish.</li>
+<li>Various smaller fixes across all platforms.</li>
 </ul>
 <hr />
 <p>A subscription is planned for the stable (1.0) release. Your feedback shapes the

@@ -412,6 +412,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パネル: ドック・移動・切り離し
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown-html" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1365,6 +1376,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パネル: ドック・移動・切り離し
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown-html" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1425,8 +1447,33 @@
 <li><strong>保存</strong> - <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span>。</li>
 </ol>
 <h2 id="_4">コマンドパレット<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> で、あらゆるコマンドを名前で検索・実行できます（機能を探す最短
-ルート）。各コマンドにはショートカットも表示されます。</p>
+<p><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> でコマンドパレットを開きます。エディターのあらゆる操作を見つけて
+実行する最短ルートです。コマンド名の一部を打つとあいまい一致で絞り込まれ
+（"fif" で <em>Find in Files</em> が出ます）、<strong>↑ / ↓</strong> で選択、<strong>Enter</strong> で実行、
+<strong>Esc</strong> で閉じます。各行にはショートカット（あれば）も表示されるので、
+ショートカットを覚えるのにも使えます。最近実行したコマンドは上位に上がり、
+よく使うものはお気に入りに固定できます（設定の <code>favorite_commands</code>。
+<a href="../customization/">カスタマイズ</a> を参照）。現在のタブに当てはまらないコマンドは
+グレー表示です。本ガイドのほぼすべての機能にコマンドがあるので、メニュー項目が
+見つからないときはパレットで検索してください。</p>
+<h2 id="_5">パネル: ドック・移動・切り離し<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>下部・右側の<strong>ドック領域</strong>には、検索結果・<a href="../terminal-ssh/">ターミナル</a>・
+FTP / SFTP / SSH ブラウザ・比較出力などのパネルが入ります。各パネルはその領域の
+タブで、画面に合わせて並べ替えられます。</p>
+<ul>
+<li><strong>移動</strong>: タブをドラッグして下部⇔右側を移動、またはタブを右クリックして
+  <strong>右へ移動</strong> / <strong>下へ移動</strong>（<strong>表示</strong>メニューにも同じコマンドがあります）。</li>
+<li><strong>切り離し (フロート)</strong>: <strong>パネル: タブを切り離す</strong>（タブの右クリック、表示
+  メニュー、パレット）でパネルを独立ウィンドウに出します（例: ターミナルを別の
+  モニタへ）。フロートウィンドウは内容の変化にライブで追従します。</li>
+<li><strong>再ドック</strong>: フロートウィンドウを閉じる（タイトルバーの <strong>×</strong> で元の領域へ
+  戻ります。パネルや接続は閉じません）か、<strong>パネル: タブを埋め込む</strong> で戻します。</li>
+<li><strong>閉じる</strong>: パネルのタブの <strong>×</strong>（ターミナルはシェル終了、FTP / SFTP / SSH タブ
+  は切断）。</li>
+</ul>
+<p>エディターとドック領域の境界のディバイダをドラッグするとサイズを変更でき、
+<strong>表示 → パネルの自動非表示</strong> でパネルを折りたたみ、表示・フォーカス時に再び
+現れます。</p>
 <h2 id="markdown-html">Markdown / HTML プレビュー<a class="headerlink" href="#markdown-html" title="Permanent link">&para;</a></h2>
 <p>Markdown や HTML ファイルを開き、<strong>表示 → Markdown / HTML プレビューの切替</strong> を
 オンにすると、エディターの隣にライブプレビューが表示されます。入力に追従して

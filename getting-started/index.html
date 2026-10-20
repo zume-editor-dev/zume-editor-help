@@ -412,6 +412,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#panels-docking-moving-and-floating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panels: docking, moving and floating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown-html-preview" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1365,6 +1376,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#panels-docking-moving-and-floating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panels: docking, moving and floating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#markdown-html-preview" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1425,8 +1447,37 @@
 <li><strong>Save</strong> - <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-s">S</kbd></span>.</li>
 </ol>
 <h2 id="the-command-palette">The command palette<a class="headerlink" href="#the-command-palette" title="Permanent link">&para;</a></h2>
-<p>Press <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> to search and run any command by name - the fastest way to
-discover features. Each command shows its keyboard shortcut.</p>
+<p>Press <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-p">P</kbd></span> to open the command palette — the fastest way to find and
+run anything in the editor. Start typing part of a command's name and the list
+filters by a fuzzy match (so "fif" finds <em>Find in Files</em>); <strong>↑ / ↓</strong> move the
+selection, <strong>Enter</strong> runs it, <strong>Esc</strong> closes. Each row shows the command's
+keyboard shortcut, if it has one, so the palette doubles as a way to learn
+shortcuts. Recently run commands rise to the top, and you can pin favourites
+(<code>favorite_commands</code> in settings — see <a href="../customization/">Customization</a>).
+Commands that do not apply to the current tab are shown greyed. Almost every
+feature in this guide has a command, so when you cannot find a menu item, search
+the palette for it.</p>
+<h2 id="panels-docking-moving-and-floating">Panels: docking, moving and floating<a class="headerlink" href="#panels-docking-moving-and-floating" title="Permanent link">&para;</a></h2>
+<p>The bottom and right <strong>dock areas</strong> hold panels — search results, the
+<a href="../terminal-ssh/">Terminal</a>, FTP / SFTP / SSH browsers, compare output and more.
+Each panel is a tab in its area, and you can rearrange them to suit your screen:</p>
+<ul>
+<li><strong>Move</strong> a panel between the bottom and the right area by dragging its tab, or
+  right-click the tab and choose <strong>Move to Right</strong> / <strong>Move to Bottom</strong> (the
+  <strong>View</strong> menu has the same commands).</li>
+<li><strong>Float</strong> a panel out into its own window — to put a Terminal on a second
+  monitor, say — with <strong>Panel: Float Tab</strong> (right-click the tab, or the View
+  menu / palette). The floating window keeps updating live as its content
+  changes.</li>
+<li><strong>Re-dock</strong> a floating panel by closing its window (its title-bar <strong>×</strong>
+  returns it to its area — it does not close the panel or end its connection),
+  or with <strong>Panel: Dock Tab</strong>.</li>
+<li><strong>Close</strong> a panel's tab with its own <strong>×</strong> (a Terminal ends its shell; an
+  FTP / SFTP / SSH tab disconnects).</li>
+</ul>
+<p>Drag the divider between the editor and a dock area to resize it, and
+<strong>View → Toggle Panel Auto-Hide</strong> collapses the panels until one is shown or
+focused again.</p>
 <h2 id="markdown-html-preview">Markdown &amp; HTML preview<a class="headerlink" href="#markdown-html-preview" title="Permanent link">&para;</a></h2>
 <p>Open a Markdown or HTML file and turn on <strong>View → Toggle Markdown / HTML Preview</strong>
 to see a live preview beside the editor. The preview updates as you type.</p>

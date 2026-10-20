@@ -1285,6 +1285,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#20261021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月21日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1352,6 +1363,17 @@
     <span class="md-ellipsis">
       
         ベータ版の更新 — 2026年10月15日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月21日（ビルド更新）
       
     </span>
   </a>
@@ -1457,6 +1479,31 @@
   Markdown / HTML プレビューで打ち消し線付きで表示されます（Windows と Linux。
   macOS は当面プレーンテキストで表示）。</li>
 <li><strong>macOS</strong> — 上記の修正と macOS 側の最新の調整を含めてイメージを再作成しました。</li>
+</ul>
+<h3 id="20261021">ベータ版の更新 — 2026年10月21日（ビルド更新）<a class="headerlink" href="#20261021" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。リバースエンジニアリングの
+大きなバッチとフローティングパネルを含みます。インストールページから再ダウンロード
+してください。</p>
+<ul>
+<li><strong>リバースエンジニアリング</strong> — 実行ファイルを構造的に読む（実行はしない）新しい
+  <strong>コード</strong>メニュー群: <strong>実行ファイル情報</strong>（PE / ELF / Mach-O — ヘッダ、
+  エントロピー付きセクション、インポート / エクスポート、リソース、ハードニング）、
+  <strong>実行ファイルの逆アセンブル</strong>（Capstone: x86 / 64・ARM・Thumb・AArch64）、
+  <strong>相互参照</strong>と関数復元、そしてユーザー導入ツールへ委譲する任意の逆コンパイラ
+  <strong>Ghidra</strong>・<strong>ILSpy</strong>（.NET）・<strong>javap + CFR</strong>（Java）。新しい
+  <strong>Objective-C / Swift インターフェース</strong>復元は Mach-O のランタイムメタデータ
+  （クラス、メソッド、ivar、プロパティ、Swift 型とデマングルしたシンボル）を読みます
+  — macOS / iOS バイナリで特に有用です。MCP サーバーも同じエンジンを公開します
+  （<code>pe_info</code>、<code>elf_info</code>、<code>macho_info</code>、<code>disassemble</code>、<code>xrefs</code>、<code>functions</code>、
+  <code>decompile</code>）。<a href="../security/">セキュリティ分析</a> を参照。</li>
+<li><strong>フローティングパネル</strong> — 任意のドックパネル（ターミナル、結果、FTP / SFTP /
+  SSH、比較）を独立ウィンドウに切り離し（例: ターミナルを別モニタへ）、内容を
+  ライブ更新したまま再ドックできます。パネルのタブを右クリックで
+  <strong>タブを切り離す</strong>・<strong>右へ移動 / 下へ移動</strong>。
+  <a href="../getting-started/">はじめに</a> を参照。</li>
+<li><strong>macOS</strong> — リバースエンジニアリング群とフローティングパネルは macOS ビルドで
+  検証済み。最新の macOS 側の調整を含めてイメージを再作成しました。</li>
+<li>全プラットフォームで細かな修正。</li>
 </ul>
 <hr />
 <p>正式版（1.0）はサブスクリプションを予定しています。皆さまのフィードバックが 1.0 を

@@ -1040,6 +1040,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#objective-c-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インターフェース復元 (Objective-C / Swift)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1554,6 +1565,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#objective-c-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インターフェース復元 (Objective-C / Swift)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yara" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1891,6 +1913,32 @@ JDK の <strong>javap</strong>（バイトコード）と、ユーザー導入�
 EULA で許可され、かつ解析する権利があるソフトウェアにのみ使用し、再実装は出力された Java の
 流用ではなく振る舞いの仕様から行ってください。本機能で作成したものは利用者自身の責任です。</p>
 </div>
+<h2 id="objective-c-swift">インターフェース復元 (Objective-C / Swift)<a class="headerlink" href="#objective-c-swift" title="Permanent link">&para;</a></h2>
+<p><strong>コード → Objective-C / Swift インターフェース…</strong> は、macOS / iOS の
+<strong>Mach-O</strong> が Objective-C / Swift ランタイムのメタデータとして保持している
+クラスインターフェースを、逆コンパイラ無しで復元します。<code>__objc_*</code> /
+<code>__swift5_*</code> セクションを読み、<code>&lt;アプリデータ&gt;/interfaces/&lt;名前&gt;.h</code> に
+ヘッダを書き出して読み取り専用で開きます。内容:</p>
+<ul>
+<li><strong>Objective-C</strong>: スーパークラスと採用プロトコル付きのクラス、インスタンス /
+  クラスメソッド（<code>-</code> / <code>+</code>・セレクタ・メタデータがあれば引数と戻り値の型）、
+  インスタンス変数、属性付きの宣言済みプロパティ、クラスを拡張するカテゴリ。</li>
+<li><strong>Swift</strong>: <code>__swift5_types</code> / <code>__swift5_protos</code> から復元した型と、シンボル
+  テーブルの Swift シンボルを可読シグネチャにデマングルしたもの
+  （<code>Module.Type.method(label:) async throws -&gt; T</code>）。デマングラは
+  <strong>フェイルクローズ</strong>設計で、正しくデマングルできるか、生の <code>_$s…</code> のまま
+  残すかのどちらかで、誤った推測はしません。</li>
+</ul>
+<p>アクティブタブがその種のファイルならそれを、そうでなければファイル選択で
+読みます。fat / ユニバーサルバイナリは読んだスライスに解決し、<code>.app</code> /
+<code>.framework</code> バンドルを指定すると中の Mach-O に解決します。各メソッド行は
+実装のアドレスを持つので、実行（クリック / <strong>F4</strong>）すると Executable Info の
+コード行と同様に逆アセンブリ上のそのメソッド本体へジャンプします。同じエンジンが
+<strong>相互参照</strong>や MCP の <code>functions</code> ツールでも呼び出し箇所に名前を付けます
+（<code>objc_msgSend</code> 箇所には送っている <code>@selector(...)</code>、クラス参照にはクラス名）。</p>
+<p>読むのは Objective-C / Swift がランタイム用にバイナリへ残すメタデータだけで、
+メソッド本体ではなく、対象を実行することもありません。メタデータが最も豊富な
+macOS / iOS バイナリで特に有用です。</p>
 <h2 id="yara">YARA スキャン<a class="headerlink" href="#yara" title="Permanent link">&para;</a></h2>
 <p><strong>コード → YARA スキャン…</strong> は、YARA ルールでアクティブ文書を走査します。</p>
 <p>ダイアログに入力するのは、<strong>YARA ルールファイルのパス</strong>（<code>.yar</code> / <code>.yara</code>）です
