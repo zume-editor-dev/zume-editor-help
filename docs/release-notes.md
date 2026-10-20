@@ -76,6 +76,32 @@ version stays 0.30.0. Re-download from the Installation page to pick them up.
 - **macOS** — the image was rebuilt with the fixes above and the latest
   macOS-side polish.
 
+### Beta update — 2026-10-21 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0) with a large reverse-engineering
+batch and floating panels. Re-download from the Installation page to pick them
+up.
+
+- **Reverse engineering** — a new **Code** menu suite reads executables
+  structurally and never runs them: **Executable Info** (PE / ELF / Mach-O —
+  headers, sections with entropy, imports / exports, resources, hardening),
+  **Disassemble Executable** (Capstone: x86 / 64, ARM, Thumb, AArch64),
+  **Cross-References** and function recovery, and optional decompilers that shell
+  out to tools you install — **Ghidra**, **ILSpy** (.NET) and **javap + CFR**
+  (Java). New **Objective-C / Swift Interface** recovery reads a Mach-O's
+  runtime metadata (classes, methods, ivars, properties, Swift types and
+  demangled symbols) — most useful on macOS / iOS binaries. The MCP server
+  exposes the same engines (`pe_info`, `elf_info`, `macho_info`, `disassemble`,
+  `xrefs`, `functions`, `decompile`). See [Security analysis](security.md).
+- **Floating panels** — any dock panel (Terminal, results, FTP / SFTP / SSH,
+  compare) can be floated into its own window — to put a Terminal on a second
+  monitor, for instance — and re-docked, with its live content still updating.
+  Right-click a panel's tab for **Float Tab** and **Move to Right / Bottom**.
+  See [Getting Started](getting-started.md#panels-docking-moving-and-floating).
+- **macOS** — the reverse-engineering suite and floating panels were verified on
+  the macOS build; the image was rebuilt with the latest Mac-side polish.
+- Various smaller fixes across all platforms.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the

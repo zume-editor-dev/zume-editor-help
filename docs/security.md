@@ -241,6 +241,37 @@ The tools read the class files - they never run them.
     to analyse, and re-implement from a behavioural specification, not by copying
     the emitted Java. Anything you build this way is your own responsibility.
 
+## Interface recovery (Objective-C / Swift)
+
+**Code → Objective-C / Swift Interface…** recovers the class interfaces a
+macOS / iOS **Mach-O** carries in its Objective-C and Swift runtime metadata —
+without a decompiler. It reads the `__objc_*` and `__swift5_*` sections and
+writes a header to `<app data>/interfaces/<name>.h`, opened read-only, listing:
+
+- **Objective-C** classes with their superclass and adopted protocols, every
+  instance and class method (`-` / `+` with the selector, and the argument and
+  return types where the metadata carries them), the instance variables, the
+  declared properties with their attributes, and the categories that extend a
+  class.
+- **Swift** types recovered from `__swift5_types` / `__swift5_protos`, and the
+  Swift symbols of the symbol table demangled to readable signatures
+  (`Module.Type.method(label:) async throws -> T`). The demangler is
+  **fail-closed**: a symbol is demangled correctly or left in its raw `_$s…`
+  form — never guessed wrong.
+
+When the active tab is such a file it is read; otherwise a file picker asks.
+A fat / universal binary resolves to the slice read, and pointing the command
+at a `.app` or `.framework` bundle resolves to the Mach-O inside it. Each
+method row carries the address of its implementation, so activating it (click,
+or **F4**) jumps to that method's body in the disassembly, like the Executable
+Info code rows. The same engine names call sites in **Cross-References** and in
+the MCP `functions` tool — an `objc_msgSend` site shows the `@selector(...)` it
+sends, and a class reference shows the class.
+
+This reads only the metadata Objective-C and Swift leave in the binary for
+their own runtimes, not the method bodies; it never runs the target. It is most
+useful on macOS / iOS binaries, where this metadata is richest.
+
 ## YARA Scan
 
 **Code → YARA Scan…** scans the active document with a set of YARA rules.
