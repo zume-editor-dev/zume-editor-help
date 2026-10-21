@@ -1011,6 +1011,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting it up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1022,7 +1033,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restrict-what-the-ai-can-touch-sandbox" class="md-nav__link">
+  <a href="#sandbox" class="md-nav__link">
     <span class="md-ellipsis">
       
         Restrict what the AI can touch (sandbox)
@@ -1044,7 +1055,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#setup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Setup
@@ -1410,6 +1421,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting it up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1421,7 +1443,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restrict-what-the-ai-can-touch-sandbox" class="md-nav__link">
+  <a href="#sandbox" class="md-nav__link">
     <span class="md-ellipsis">
       
         Restrict what the AI can touch (sandbox)
@@ -1443,7 +1465,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#setup_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Setup
@@ -1567,6 +1589,47 @@ tested engines.</p>
 window and opens no network port of its own. It is installed alongside the app
 (next to the executable on Windows, in <code>bin/</code> on Linux, inside the app folder on
 macOS).</p>
+<h2 id="setup">Setting it up<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>An MCP client launches the server as a command. Point it at <code>zume-mcp</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows — portable ZIP</label><label for="__tabbed_1_2">Windows — Microsoft Store / MSIX</label><label for="__tabbed_1_3">macOS / Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Extract the ZIP to a folder you keep, and use the full path to
+<code>zume-mcp.exe</code> as the command:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The Store (MSIX) package registers an <strong>app execution alias</strong>, so after
+installing you can use the bare name <code>zume-mcp</code> — no path needed:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>(The alias lives on your <code>PATH</code> under
+<code>%LOCALAPPDATA%\Microsoft\WindowsApps</code>, so it keeps working across updates.
+<code>zume-cli</code> is aliased the same way.)</p>
+</div>
+<div class="tabbed-block">
+<p>Use the full path to <code>zume-mcp</code> inside the app folder (macOS) or the
+installed <code>bin/zume-mcp</code> (Linux):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Applications/Zume Editor.app/Contents/MacOS/zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Add an <code>env</code> block to the server entry to scope what it can touch — see
+<a href="#sandbox">Restrict what the AI can touch</a> below.</p>
 <h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
 <p><strong>Files, text, hex, search, diff</strong> (local disk):</p>
 <table>
@@ -1896,7 +1959,7 @@ macOS).</p>
 </tr>
 </tbody>
 </table>
-<h2 id="restrict-what-the-ai-can-touch-sandbox">Restrict what the AI can touch (sandbox)<a class="headerlink" href="#restrict-what-the-ai-can-touch-sandbox" title="Permanent link">&para;</a></h2>
+<h2 id="sandbox">Restrict what the AI can touch (sandbox)<a class="headerlink" href="#sandbox" title="Permanent link">&para;</a></h2>
 <p>Two environment variables, set on the <code>zume-mcp</code> process, scope what the file
 tools may do. Both are optional — if you set neither, the tools have full access
 (the default). Set them in your MCP client's server configuration (an <code>env</code>
@@ -1967,7 +2030,7 @@ only).</p>
   through <code>http_request</code>.</li>
 <li><strong>Reach <code>http://</code>, loopback or local-network URLs</strong> - only <code>https://</code> is allowed.</li>
 </ul>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h2 id="setup_1">Setup<a class="headerlink" href="#setup_1" title="Permanent link">&para;</a></h2>
 <p>Point your MCP client at the <code>zume-mcp</code> command. For a client that uses a JSON
 config (such as Claude Desktop):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>

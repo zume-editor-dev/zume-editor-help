@@ -1011,6 +1011,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1022,7 +1033,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai" class="md-nav__link">
+  <a href="#sandbox" class="md-nav__link">
     <span class="md-ellipsis">
       
         AI が触れる範囲を制限する（サンドボックス）
@@ -1033,7 +1044,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai_1" class="md-nav__link">
+  <a href="#ai" class="md-nav__link">
     <span class="md-ellipsis">
       
         AI にできること・できないこと
@@ -1410,6 +1421,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1421,7 +1443,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai" class="md-nav__link">
+  <a href="#sandbox" class="md-nav__link">
     <span class="md-ellipsis">
       
         AI が触れる範囲を制限する（サンドボックス）
@@ -1432,7 +1454,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ai_1" class="md-nav__link">
+  <a href="#ai" class="md-nav__link">
     <span class="md-ellipsis">
       
         AI にできること・できないこと
@@ -1565,6 +1587,45 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 <p><code>zume-mcp</code> は stdio（標準入出力）上で JSON-RPC 2.0 を話します。ウィンドウは持たず、自身で
 ネットワークポートを開くこともありません。アプリと同じ場所にインストールされます
 （Windowsは実行ファイルの隣、Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。</p>
+<h2 id="setup">設定方法<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>MCP クライアントはサーバーを「コマンド」として起動します。<code>zume-mcp</code> を指定してください。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows ― ポータブル ZIP</label><label for="__tabbed_1_2">Windows ― Microsoft Store / MSIX</label><label for="__tabbed_1_3">macOS / Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>ZIP を好きなフォルダーに解凍し、<code>zume-mcp.exe</code> のフルパスをコマンドに指定します。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Store（MSIX）版は<strong>実行エイリアス</strong>を登録するので、インストール後は<strong>パス不要</strong>で
+<code>zume-mcp</code> という名前だけで起動できます。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>（エイリアスは <code>%LOCALAPPDATA%\Microsoft\WindowsApps</code> に置かれ <code>PATH</code> 上にあるため、
+更新をまたいでも使えます。<code>zume-cli</code> も同様にエイリアス化されています。）</p>
+</div>
+<div class="tabbed-block">
+<p>アプリフォルダー内（macOS）、またはインストール先の <code>bin/zume-mcp</code>（Linux）の
+フルパスを指定します。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Applications/Zume Editor.app/Contents/MacOS/zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>サーバー項目に <code>env</code> ブロックを足すと、触れる範囲を制限できます。下記
+<a href="#sandbox">AI が触れる範囲を制限する</a> を参照。</p>
 <h2 id="tools">ツール一覧<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
 <p><strong>ファイル / テキスト / Hex / 検索 / 差分</strong>（ローカルディスク）:</p>
 <table>
@@ -1894,7 +1955,7 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 </tbody>
 </table>
-<h2 id="ai">AI が触れる範囲を制限する（サンドボックス）<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<h2 id="sandbox">AI が触れる範囲を制限する（サンドボックス）<a class="headerlink" href="#sandbox" title="Permanent link">&para;</a></h2>
 <p><code>zume-mcp</code> プロセスに設定する 2 つの環境変数で、ファイル系ツールの範囲を絞れます。
 どちらも任意で、未設定なら従来どおり全アクセス可能（既定）です。エージェントを
 限定したいときは、MCP クライアントのサーバー設定（<code>env</code> ブロック）で指定します。</p>
@@ -1929,7 +1990,7 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 ファイル系ツールに適用され、データベース / リモート / クラウド / <code>http_request</code>
 はそれぞれ独自の規則（保存済み接続、読み取り専用 DB プロファイル、HTTPS 限定）を
 持ちます。</p>
-<h2 id="ai_1">AI にできること・できないこと<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h2>
+<h2 id="ai">AI にできること・できないこと<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
 <p>AI は上記ツール経由で<strong>のみ</strong>動作します。</p>
 <p><strong>できること:</strong></p>
 <ul>
