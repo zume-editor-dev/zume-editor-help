@@ -10,6 +10,54 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 ネットワークポートを開くこともありません。アプリと同じ場所にインストールされます
 （Windowsは実行ファイルの隣、Linuxは `bin/`、macOSはアプリフォルダー内）。
 
+## 設定方法 {#setup}
+
+MCP クライアントはサーバーを「コマンド」として起動します。`zume-mcp` を指定してください。
+
+=== "Windows ― ポータブル ZIP"
+
+    ZIP を好きなフォルダーに解凍し、`zume-mcp.exe` のフルパスをコマンドに指定します。
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "C:\\Tools\\Zume\\zume-mcp.exe", "args": [] }
+      }
+    }
+    ```
+
+=== "Windows ― Microsoft Store / MSIX"
+
+    Store（MSIX）版は**実行エイリアス**を登録するので、インストール後は**パス不要**で
+    `zume-mcp` という名前だけで起動できます。
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "zume-mcp", "args": [] }
+      }
+    }
+    ```
+
+    （エイリアスは `%LOCALAPPDATA%\Microsoft\WindowsApps` に置かれ `PATH` 上にあるため、
+    更新をまたいでも使えます。`zume-cli` も同様にエイリアス化されています。）
+
+=== "macOS / Linux"
+
+    アプリフォルダー内（macOS）、またはインストール先の `bin/zume-mcp`（Linux）の
+    フルパスを指定します。
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "/Applications/Zume Editor.app/Contents/MacOS/zume-mcp", "args": [] }
+      }
+    }
+    ```
+
+サーバー項目に `env` ブロックを足すと、触れる範囲を制限できます。下記
+[AI が触れる範囲を制限する](#sandbox) を参照。
+
 ## ツール一覧 {#tools}
 
 **ファイル / テキスト / Hex / 検索 / 差分**（ローカルディスク）:
@@ -112,7 +160,7 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 | `list_credentials` | ローカル保存された API キーの**名前**一覧 |
 | `http_request` | 任意の HTTPS API へリクエスト。保存キーで認証も可 |
 
-## AI が触れる範囲を制限する（サンドボックス）
+## AI が触れる範囲を制限する（サンドボックス） {#sandbox}
 
 `zume-mcp` プロセスに設定する 2 つの環境変数で、ファイル系ツールの範囲を絞れます。
 どちらも任意で、未設定なら従来どおり全アクセス可能（既定）です。エージェントを

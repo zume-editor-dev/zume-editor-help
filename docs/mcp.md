@@ -12,6 +12,56 @@ window and opens no network port of its own. It is installed alongside the app
 (next to the executable on Windows, in `bin/` on Linux, inside the app folder on
 macOS).
 
+## Setting it up {#setup}
+
+An MCP client launches the server as a command. Point it at `zume-mcp`:
+
+=== "Windows — portable ZIP"
+
+    Extract the ZIP to a folder you keep, and use the full path to
+    `zume-mcp.exe` as the command:
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "C:\\Tools\\Zume\\zume-mcp.exe", "args": [] }
+      }
+    }
+    ```
+
+=== "Windows — Microsoft Store / MSIX"
+
+    The Store (MSIX) package registers an **app execution alias**, so after
+    installing you can use the bare name `zume-mcp` — no path needed:
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "zume-mcp", "args": [] }
+      }
+    }
+    ```
+
+    (The alias lives on your `PATH` under
+    `%LOCALAPPDATA%\Microsoft\WindowsApps`, so it keeps working across updates.
+    `zume-cli` is aliased the same way.)
+
+=== "macOS / Linux"
+
+    Use the full path to `zume-mcp` inside the app folder (macOS) or the
+    installed `bin/zume-mcp` (Linux):
+
+    ```json
+    {
+      "mcpServers": {
+        "zume": { "command": "/Applications/Zume Editor.app/Contents/MacOS/zume-mcp", "args": [] }
+      }
+    }
+    ```
+
+Add an `env` block to the server entry to scope what it can touch — see
+[Restrict what the AI can touch](#sandbox) below.
+
 ## Tools {#tools}
 
 **Files, text, hex, search, diff** (local disk):
@@ -114,7 +164,7 @@ macOS).
 | `list_credentials` | List the **names** of API keys stored locally |
 | `http_request` | Make an HTTPS request to any API, optionally authenticated with a stored key |
 
-## Restrict what the AI can touch (sandbox)
+## Restrict what the AI can touch (sandbox) {#sandbox}
 
 Two environment variables, set on the `zume-mcp` process, scope what the file
 tools may do. Both are optional — if you set neither, the tools have full access
