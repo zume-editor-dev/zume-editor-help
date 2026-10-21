@@ -102,6 +102,20 @@ up.
   the macOS build; the image was rebuilt with the latest Mac-side polish.
 - Various smaller fixes across all platforms.
 
+### Beta update — 2026-10-22 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up.
+
+- **Settings path fix (Windows)** — file-system paths that contain backslashes —
+  the **Ghidra** and **ILSpy** install folders, the ILSpy cache and the recovery
+  directory — were corrupted when `settings.json` was reloaded (for example
+  `C:\root\ghidra` became `C:rootghidra`), which made **Code → Decompile** fail
+  with "analyzeHeadless not found". Settings paths now round-trip correctly, and
+  an existing `settings.json` is read correctly after updating, with no need to
+  re-enter the paths.
+- All platforms were rebuilt from the same commit.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the
