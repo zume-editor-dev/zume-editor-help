@@ -1296,6 +1296,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-22-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-22 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1374,6 +1385,17 @@
     <span class="md-ellipsis">
       
         Beta update — 2026-10-21 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-22-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-22 (refreshed builds)
       
     </span>
   </a>
@@ -1505,6 +1527,19 @@ up.</p>
 <li><strong>macOS</strong> — the reverse-engineering suite and floating panels were verified on
   the macOS build; the image was rebuilt with the latest Mac-side polish.</li>
 <li>Various smaller fixes across all platforms.</li>
+</ul>
+<h3 id="beta-update-2026-10-22-refreshed-builds">Beta update — 2026-10-22 (refreshed builds)<a class="headerlink" href="#beta-update-2026-10-22-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up.</p>
+<ul>
+<li><strong>Settings path fix (Windows)</strong> — file-system paths that contain backslashes —
+  the <strong>Ghidra</strong> and <strong>ILSpy</strong> install folders, the ILSpy cache and the recovery
+  directory — were corrupted when <code>settings.json</code> was reloaded (for example
+  <code>C:\root\ghidra</code> became <code>C:rootghidra</code>), which made <strong>Code → Decompile</strong> fail
+  with "analyzeHeadless not found". Settings paths now round-trip correctly, and
+  an existing <code>settings.json</code> is read correctly after updating, with no need to
+  re-enter the paths.</li>
+<li>All platforms were rebuilt from the same commit.</li>
 </ul>
 <hr />
 <p>A subscription is planned for the stable (1.0) release. Your feedback shapes the

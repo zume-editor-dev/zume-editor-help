@@ -1296,6 +1296,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#20261022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月22日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1374,6 +1385,17 @@
     <span class="md-ellipsis">
       
         ベータ版の更新 — 2026年10月21日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月22日（ビルド更新）
       
     </span>
   </a>
@@ -1504,6 +1526,19 @@
 <li><strong>macOS</strong> — リバースエンジニアリング群とフローティングパネルは macOS ビルドで
   検証済み。最新の macOS 側の調整を含めてイメージを再作成しました。</li>
 <li>全プラットフォームで細かな修正。</li>
+</ul>
+<h3 id="20261022">ベータ版の更新 — 2026年10月22日（ビルド更新）<a class="headerlink" href="#20261022" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。</p>
+<ul>
+<li><strong>設定パスの修正（Windows）</strong> — バックスラッシュを含むファイルパス（<strong>Ghidra</strong>・
+  <strong>ILSpy</strong> のインストールフォルダー、ILSpy キャッシュ、リカバリーディレクトリ）が
+  <code>settings.json</code> の再読み込み時に壊れていました（例: <code>C:\root\ghidra</code> が
+  <code>C:rootghidra</code> になる）。このため <strong>コード → 逆コンパイル</strong> が
+  「analyzeHeadless not found」で失敗していました。設定パスが正しく往復保存される
+  ようになり、既存の <code>settings.json</code> も更新後に正しく読み込まれます（パスの再入力は
+  不要です）。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
 </ul>
 <hr />
 <p>正式版（1.0）はサブスクリプションを予定しています。皆さまのフィードバックが 1.0 を
