@@ -114,6 +114,10 @@ page to pick them up.
   with "analyzeHeadless not found". Settings paths now round-trip correctly, and
   an existing `settings.json` is read correctly after updating, with no need to
   re-enter the paths.
+- **Folder-panel scroll fix** — after the folder panel had been scrolled to
+  the bottom, shrinking the results panel grew the panel and left its rows
+  scrolled off the top with the scrollbar gone and no way back. The scroll
+  offset is now clamped so the rows can never be stranded.
 - All platforms were rebuilt from the same commit.
 
 ---
