@@ -1307,6 +1307,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#20261028" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月28日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1396,6 +1407,17 @@
     <span class="md-ellipsis">
       
         ベータ版の更新 — 2026年10月22日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261028" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月28日（ビルド更新）
       
     </span>
   </a>
@@ -1542,6 +1564,27 @@
   結果パネルを縮めると、パネルが伸びて行が上に隠れたままになり、
   スクロールバーも消えて戻せなくなっていました。スクロール位置を
   クランプして、行が取り残されないようにしました。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="20261028">ベータ版の更新 — 2026年10月28日（ビルド更新）<a class="headerlink" href="#20261028" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.14.0</strong> になりました。</p>
+<ul>
+<li><strong>ソフトタブ</strong> — Tab キーでタブ文字の代わりに任意個数のスペースを挿入できます
+  （<strong>書式 → タブをスペースで挿入…</strong>）。Tab / Shift+Tab は同じ幅で行全体を
+  インデント／アンインデントします。</li>
+<li><strong>リスト系パネルの絞り込み入力</strong> — リスト系パネル（文字列抽出、関数／シンボルの
+  アウトライン、最近使ったファイル、テーマなど）にフォーカスがある状態で入力すると、
+  大文字小文字を無視した部分一致で行が絞り込まれます。Backspace で編集、Esc で解除。</li>
+<li><strong>全角スペース（U+3000）</strong> を空白可視化で表示するようになりました。ASCII スペースと
+  区別できるよう専用のボックスで描画します。</li>
+<li><strong>変換レシピの鍵を明示指定</strong> — <strong>コード → 変換レシピを適用…</strong> で、16 進に<em>見える</em>だけの
+  <code>xor:</code> / <code>rc4:</code> 鍵をステータスバーで警告し、<code>hex:</code> / <code>str:</code> で解釈を固定できます。
+  新しい <strong>コード → 変換キーの厳格モード切替</strong> は素の鍵を拒否します。<code>transform</code> MCP
+  ツールにも対応する <code>warnings</code> リストと <code>strict</code> オプションを追加しました。</li>
+<li><strong>ターミナルの貼り付け修正</strong> — Ctrl+V が実行中のシェルに貼り付けられるようになりました
+  （以前は失われていました）。</li>
 <li>全プラットフォームを同じコミットから再ビルドしました。</li>
 </ul>
 <hr />
