@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -35,10 +35,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2040,6 +2040,17 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 （<code>xor:</code> / <code>rc4:</code>）は、<code>cafe</code> や <code>deadbeef</code> のように 16 進に見える場合は 16 進
 バイト列、それ以外は文字列として扱います。<code>hex:cafe</code> / <code>str:cafe</code> と書けば明示
 できます。</p>
+<div class="admonition warning">
+<p class="admonition-title">16 進に見える文字列の鍵に注意</p>
+<p>鍵は <strong>16 進数字だけなら 16 進バイト列</strong>として読まれるため、<code>cafe</code>・<code>decade</code>・
+<code>7a756d65</code> のような文字列パスワードは「文字」ではなく「バイト」として扱われ
+ます。<code>rc4:zume</code> は（16 進でない文字を含むので）文字列鍵 <code>zume</code> を使いますが、
+<code>rc4:cafe</code> は文字列 <code>cafe</code> を使い<strong>ません</strong>。曖昧さをなくすには、文字列／ASCII
+鍵は <code>rc4:str:&lt;鍵&gt;</code>（例 <code>rc4:str:zume</code>）、バイト鍵は <code>rc4:hex:&lt;バイト&gt;</code> または
+そのまま 16 進（例 <code>rc4:7a756d65</code> = <code>zume</code> の 16 進）と書きます。両者はキー
+ストリームが変わるため、バイナリ内の鍵チェック（生の鍵バイトを使う）に合わせる
+には、その正確なバイト列を 16 進形式で渡します。</p>
+</div>
 <h3 id="_8">例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>エンコードされたテキストを選択して（または文書全体に）適用します：</p>
 <table>
@@ -2068,7 +2079,11 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 </tr>
 <tr>
 <td><code>from_base64 \| rc4:str:s3cret</code></td>
-<td>Base64 デコード後、鍵 <code>s3cret</code> で RC4 復号</td>
+<td>Base64 デコード後、文字列鍵 <code>s3cret</code> で RC4 復号</td>
+</tr>
+<tr>
+<td><code>from_hex \| rc4:7a756d65</code></td>
+<td>16 進デコード後、バイト鍵 <code>7A 75 6D 65</code>（<code>zume</code> の 16 進）で RC4</td>
 </tr>
 <tr>
 <td><code>rot13</code></td>
@@ -2198,10 +2213,10 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

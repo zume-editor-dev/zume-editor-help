@@ -27,7 +27,7 @@
       
       
       <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -35,10 +35,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2066,6 +2066,18 @@ below, so you do not have to remember them. Type the steps, then press
 (<code>xor:</code> / <code>rc4:</code>) is read as hex bytes when it looks like hex (<code>cafe</code>,
 <code>deadbeef</code>) and as text otherwise; write <code>hex:cafe</code> or <code>str:cafe</code> to say which
 explicitly.</p>
+<div class="admonition warning">
+<p class="admonition-title">A text key that happens to look like hex</p>
+<p>Because a bare key is read as <strong>hex whenever it is all hex digits</strong>, a text
+password such as <code>cafe</code>, <code>decade</code> or <code>7a756d65</code> is taken as <em>bytes</em>, not
+letters — so <code>rc4:zume</code> uses the text key <code>zume</code> (there are non-hex letters),
+but <code>rc4:cafe</code> does <strong>not</strong> use the text <code>cafe</code>. Remove the ambiguity: write
+<code>rc4:str:&lt;key&gt;</code> for a text/ASCII key (e.g. <code>rc4:str:zume</code>) and
+<code>rc4:hex:&lt;bytes&gt;</code> — or just the bare hex — for a byte key (e.g.
+<code>rc4:7a756d65</code>, the hex of <code>zume</code>). The two forms give different keystreams,
+so matching a key check in a binary (which uses the raw key bytes) means
+using the hex form of those exact bytes.</p>
+</div>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p>Select the encoded text (or run it on the whole document) and apply:</p>
 <table>
@@ -2094,7 +2106,11 @@ explicitly.</p>
 </tr>
 <tr>
 <td><code>from_base64 \| rc4:str:s3cret</code></td>
-<td>Base64-decode, then RC4-decrypt with the key <code>s3cret</code></td>
+<td>Base64-decode, then RC4-decrypt with the text key <code>s3cret</code></td>
+</tr>
+<tr>
+<td><code>from_hex \| rc4:7a756d65</code></td>
+<td>Hex-decode, then RC4 with the byte key <code>7A 75 6D 65</code> (the hex of <code>zume</code>)</td>
 </tr>
 <tr>
 <td><code>rot13</code></td>
@@ -2224,10 +2240,10 @@ keys, credentials) in the document, each with its line; a row jumps to it.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
