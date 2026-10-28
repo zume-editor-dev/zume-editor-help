@@ -144,6 +144,23 @@ page to pick them up. The Microsoft Store (`.msix`) build is now version
   being lost.
 - All platforms were rebuilt from the same commit.
 
+### Beta update — 2026-10-29 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.15.0**.
+
+- **Strict transform keys moved to Settings** — the strict-mode toggle for
+  transform-recipe keys is now in **Tools → Settings…**, under **Transform
+  recipe keys**, instead of the Code menu, and no longer prints a status-bar
+  note when switched (the dialog's checkmark is the state). The behaviour is
+  unchanged — a bare `xor:`/`rc4:` key is refused in strict mode and auto-
+  detected otherwise. See [Security analysis](security.md#transform-recipes).
+- **macOS whitespace marks** — the macOS editor now draws whitespace marks
+  (space dots, tab arrows, the line-end pilcrow and the full-width-space box)
+  like Windows and Linux; before, macOS showed none.
+- All platforms were rebuilt from the same commit.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the

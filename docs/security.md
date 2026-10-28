@@ -374,8 +374,9 @@ explicitly.
     using the hex form of those exact bytes.
 
 !!! tip "Make it an error instead of a guess (strict mode)"
-    To forbid the bare form outright, turn on **Code ▸ Toggle Strict Transform
-    Keys** (the `strict_transform_keys` setting). Every `xor:`/`rc4:` key must
+    To forbid the bare form outright, turn on strict mode in **Tools ▸
+    Settings…**, under **Transform recipe keys** (the `strict_transform_keys`
+    setting). Every `xor:`/`rc4:` key must
     then carry `hex:` or `str:`; a bare key is refused and the recipe is not
     applied. With strict mode off (the default), a bare key that looks like hex
     still applies, but the status line warns and names the `str:`/`hex:` forms.
