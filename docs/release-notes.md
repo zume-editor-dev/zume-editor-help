@@ -120,6 +120,30 @@ page to pick them up.
   offset is now clamped so the rows can never be stranded.
 - All platforms were rebuilt from the same commit.
 
+### Beta update — 2026-10-28 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.14.0**.
+
+- **Soft tabs** — the Tab key can insert a configurable number of spaces
+  instead of a tab character (**Format → Tab Inserts Spaces…**); Tab /
+  Shift+Tab indent whole lines by that same width.
+- **Type-to-filter in list panels** — with a list panel focused (Extract
+  Strings, the function / symbol outline, recent files, themes, …), typing
+  narrows the rows to a case-insensitive substring; Backspace edits the filter
+  and Esc clears it.
+- **Full-width spaces (U+3000)** now show in whitespace visualization, drawn as
+  a distinct box so they are not mistaken for ASCII spaces.
+- **Explicit transform-recipe keys** — in **Code → Apply Convert Recipe…**, an
+  `xor:` / `rc4:` key that only *looks* like hex is flagged in the status bar,
+  and `hex:` / `str:` force the interpretation. A new **Code → Toggle Strict
+  Transform Keys** refuses a bare key outright. The `transform` MCP tool gained
+  a matching `warnings` list and a `strict` option.
+- **Terminal paste fix** — Ctrl+V now pastes into the running shell instead of
+  being lost.
+- All platforms were rebuilt from the same commit.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the
