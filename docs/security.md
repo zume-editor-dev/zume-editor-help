@@ -373,6 +373,16 @@ explicitly.
     so matching a key check in a binary (which uses the raw key bytes) means
     using the hex form of those exact bytes.
 
+!!! tip "Make it an error instead of a guess (strict mode)"
+    To forbid the bare form outright, turn on **Code ▸ Toggle Strict Transform
+    Keys** (the `strict_transform_keys` setting). Every `xor:`/`rc4:` key must
+    then carry `hex:` or `str:`; a bare key is refused and the recipe is not
+    applied. With strict mode off (the default), a bare key that looks like hex
+    still applies, but the status line warns and names the `str:`/`hex:` forms.
+    The `transform` MCP tool mirrors this: its response always carries a
+    `warnings` list that flags such a bare key, and a `strict: true` argument
+    refuses one.
+
 ### Examples
 
 Select the encoded text (or run it on the whole document) and apply:
