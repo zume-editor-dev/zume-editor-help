@@ -362,6 +362,17 @@ The Encode / Decode / Data / Compress rows are the converters of
 `deadbeef`) and as text otherwise; write `hex:cafe` or `str:cafe` to say which
 explicitly.
 
+!!! warning "A text key that happens to look like hex"
+    Because a bare key is read as **hex whenever it is all hex digits**, a text
+    password such as `cafe`, `decade` or `7a756d65` is taken as *bytes*, not
+    letters — so `rc4:zume` uses the text key `zume` (there are non-hex letters),
+    but `rc4:cafe` does **not** use the text `cafe`. Remove the ambiguity: write
+    `rc4:str:<key>` for a text/ASCII key (e.g. `rc4:str:zume`) and
+    `rc4:hex:<bytes>` — or just the bare hex — for a byte key (e.g.
+    `rc4:7a756d65`, the hex of `zume`). The two forms give different keystreams,
+    so matching a key check in a binary (which uses the raw key bytes) means
+    using the hex form of those exact bytes.
+
 ### Examples
 
 Select the encoded text (or run it on the whole document) and apply:
@@ -372,7 +383,8 @@ Select the encoded text (or run it on the whole document) and apply:
 | `from_base64 \| gunzip` | Decode Base64, then gzip-decompress the result |
 | `from_hex \| xor:5a` | Hex-decode, then XOR every byte with `0x5A` |
 | `from_hex \| xor:hex:deadbeef` | Hex-decode, then XOR with the repeating key `DE AD BE EF` |
-| `from_base64 \| rc4:str:s3cret` | Base64-decode, then RC4-decrypt with the key `s3cret` |
+| `from_base64 \| rc4:str:s3cret` | Base64-decode, then RC4-decrypt with the text key `s3cret` |
+| `from_hex \| rc4:7a756d65` | Hex-decode, then RC4 with the byte key `7A 75 6D 65` (the hex of `zume`) |
 | `rot13` | ROT13; `rot:3` is a Caesar shift of 3 |
 | `base58.decode` | Decode a Base58 string (e.g. a wallet address / key) |
 | `jwt.decode` | Expand a JWT into its decoded header / payload JSON |

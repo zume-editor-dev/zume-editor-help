@@ -336,6 +336,16 @@ from_base64 | xor:cafe | gunzip
 バイト列、それ以外は文字列として扱います。`hex:cafe` / `str:cafe` と書けば明示
 できます。
 
+!!! warning "16 進に見える文字列の鍵に注意"
+    鍵は **16 進数字だけなら 16 進バイト列**として読まれるため、`cafe`・`decade`・
+    `7a756d65` のような文字列パスワードは「文字」ではなく「バイト」として扱われ
+    ます。`rc4:zume` は（16 進でない文字を含むので）文字列鍵 `zume` を使いますが、
+    `rc4:cafe` は文字列 `cafe` を使い**ません**。曖昧さをなくすには、文字列／ASCII
+    鍵は `rc4:str:<鍵>`（例 `rc4:str:zume`）、バイト鍵は `rc4:hex:<バイト>` または
+    そのまま 16 進（例 `rc4:7a756d65` = `zume` の 16 進）と書きます。両者はキー
+    ストリームが変わるため、バイナリ内の鍵チェック（生の鍵バイトを使う）に合わせる
+    には、その正確なバイト列を 16 進形式で渡します。
+
 ### 例
 
 エンコードされたテキストを選択して（または文書全体に）適用します：
@@ -346,7 +356,8 @@ from_base64 | xor:cafe | gunzip
 | `from_base64 \| gunzip` | Base64 デコード後に gzip 解凍 |
 | `from_hex \| xor:5a` | 16 進デコード後、各バイトを `0x5A` で XOR |
 | `from_hex \| xor:hex:deadbeef` | 16 進デコード後、繰り返し鍵 `DE AD BE EF` で XOR |
-| `from_base64 \| rc4:str:s3cret` | Base64 デコード後、鍵 `s3cret` で RC4 復号 |
+| `from_base64 \| rc4:str:s3cret` | Base64 デコード後、文字列鍵 `s3cret` で RC4 復号 |
+| `from_hex \| rc4:7a756d65` | 16 進デコード後、バイト鍵 `7A 75 6D 65`（`zume` の 16 進）で RC4 |
 | `rot13` | ROT13（`rot:3` はシーザー暗号の 3 シフト） |
 | `base58.decode` | Base58 文字列をデコード（ウォレットアドレス／鍵など） |
 | `jwt.decode` | JWT をデコード済みヘッダー／ペイロードの JSON に展開 |
