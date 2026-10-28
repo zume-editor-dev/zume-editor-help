@@ -2053,8 +2053,9 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 </div>
 <div class="admonition tip">
 <p class="admonition-title">推測ではなくエラーにする（厳格モード）</p>
-<p>素の鍵を一切禁止したい場合は、<strong>コード ▸ 変換キーの厳格モード切替</strong>
-（<code>strict_transform_keys</code> 設定）をオンにします。すると <code>xor:</code>/<code>rc4:</code> の鍵は
+<p>素の鍵を一切禁止したい場合は、<strong>ツール ▸ 設定…</strong> の <strong>変換レシピの鍵</strong>
+セクションで厳格モード（<code>strict_transform_keys</code> 設定）をオンにします。
+すると <code>xor:</code>/<code>rc4:</code> の鍵は
 必ず <code>hex:</code> か <code>str:</code> を付ける必要があり、素の鍵は拒否されてレシピは適用され
 ません。厳格モードがオフ（既定）のときは、16 進に見える素の鍵もそのまま適用
 されますが、ステータス行が警告し <code>str:</code>/<code>hex:</code> 形式を案内します。<code>transform</code>

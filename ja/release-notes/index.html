@@ -1318,6 +1318,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#20261029" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月29日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1418,6 +1429,17 @@
     <span class="md-ellipsis">
       
         ベータ版の更新 — 2026年10月28日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261029" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月29日（ビルド更新）
       
     </span>
   </a>
@@ -1585,6 +1607,21 @@
   ツールにも対応する <code>warnings</code> リストと <code>strict</code> オプションを追加しました。</li>
 <li><strong>ターミナルの貼り付け修正</strong> — Ctrl+V が実行中のシェルに貼り付けられるようになりました
   （以前は失われていました）。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="20261029">ベータ版の更新 — 2026年10月29日（ビルド更新）<a class="headerlink" href="#20261029" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.15.0</strong> になりました。</p>
+<ul>
+<li><strong>変換キーの厳格モードを設定画面へ移動</strong> — 変換レシピの鍵の厳格モード切替を、
+  コードメニューから <strong>ツール → 設定…</strong> の <strong>変換レシピの鍵</strong> セクションに移しました。
+  切り替え時のステータスバー表示も廃止しています（状態はダイアログのチェックで分かります）。
+  挙動は変わりません — 厳格モードでは素の <code>xor:</code>/<code>rc4:</code> 鍵を拒否し、オフなら自動判定します。
+  <a href="../security/#transform-recipes">セキュリティ分析</a> を参照。</li>
+<li><strong>macOS の空白可視化</strong> — macOS のエディターでも空白マーク（スペースのドット、タブの矢印、
+  行末の改行記号、全角スペースのボックス）を描画するようになりました。以前は macOS では
+  表示されていませんでした。</li>
 <li>全プラットフォームを同じコミットから再ビルドしました。</li>
 </ul>
 <hr />

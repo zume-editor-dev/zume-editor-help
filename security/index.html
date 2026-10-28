@@ -2080,8 +2080,9 @@ using the hex form of those exact bytes.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Make it an error instead of a guess (strict mode)</p>
-<p>To forbid the bare form outright, turn on <strong>Code ▸ Toggle Strict Transform
-Keys</strong> (the <code>strict_transform_keys</code> setting). Every <code>xor:</code>/<code>rc4:</code> key must
+<p>To forbid the bare form outright, turn on strict mode in <strong>Tools ▸
+Settings…</strong>, under <strong>Transform recipe keys</strong> (the <code>strict_transform_keys</code>
+setting). Every <code>xor:</code>/<code>rc4:</code> key must
 then carry <code>hex:</code> or <code>str:</code>; a bare key is refused and the recipe is not
 applied. With strict mode off (the default), a bare key that looks like hex
 still applies, but the status line warns and names the <code>str:</code>/<code>hex:</code> forms.
