@@ -43,6 +43,15 @@ from that offset; the hex view stays open for browsing.
 
 ![PE Info in the results panel](assets/screenshots/pe_info_panel.png){ loading=lazy }
 
+!!! tip "Learning mode: field explanations"
+    Turn on **Explanations** in **Tools → Settings…** (the `explain_annotations`
+    setting, off by default) and the Executable Info report gains a short
+    "what this means" note under the fields that matter for triage — the entry
+    point, subsystem, section entropy, imports/exports, the overlay, and each
+    hardening bit present (ASLR / DEP / CFG, ELF PIE / NX / RELRO / stack canary
+    / FORTIFY, a Mach-O signature / encryption / chained fixups). It is meant
+    for learning; experts leave it off for an uncluttered report.
+
 ### Disassemble Executable
 
 **Code → Disassemble Executable…** goes straight to the listing. It takes
@@ -81,6 +90,18 @@ The same readers are the MCP tools `pe_info`, `elf_info` and `macho_info`
 (see [MCP](mcp.md#tools)). They never load or run the file; `disassemble`
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.
+
+### Control-Flow Graph
+
+**Code → Control-Flow Graph…** takes the active tab's executable (or asks for
+one) and graphs its **entry function** into basic blocks — a straight run of
+instructions entered only at its first and left only at its last. The results
+panel lists each block with its address, instruction count, flags (entry /
+returns / computed jump) and the blocks control can reach next (`-> B1, B2`,
+the taken branch first), followed by the block's instructions, so the function's
+branches and loops are laid out in order. The MCP tool `cfg` builds the same
+graph for **any** function (by `symbol` or `address`), which is the way to graph
+a function other than the entry. Static and heuristic; nothing is run.
 
 ### Decompiler tools — installation
 
@@ -410,6 +431,11 @@ Base64), the editor shows which step failed and leaves the text unchanged.
 In the [Hex / Binary editor](hex.md), the entropy map and the entropy overview
 strip show the Shannon entropy of the file per region (0–8 bits/byte), so packed
 or encrypted areas stand out.
+
+**Code → Entropy Map…** lists the same for any file in the results panel: the
+overall entropy, a block sparkline across the whole file, and a per-window row
+(offset, value, glyph). A value near 8 bits/byte suggests compressed or
+encrypted data — often a packer. The MCP tool `entropy` returns the same series.
 
 ## Scan for Secrets
 
