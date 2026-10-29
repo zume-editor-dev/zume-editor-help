@@ -994,6 +994,17 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
+        制御フローグラフ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         逆コンパイラ外部ツールの導入
       
     </span>
@@ -1063,7 +1074,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         ルールファイルの例
@@ -1074,7 +1085,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         対応している記法
@@ -1102,7 +1113,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         使えるステップの一覧
@@ -1113,7 +1124,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         例
@@ -1129,7 +1140,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1140,7 +1151,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1519,6 +1530,17 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
+        制御フローグラフ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         逆コンパイラ外部ツールの導入
       
     </span>
@@ -1588,7 +1610,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         ルールファイルの例
@@ -1599,7 +1621,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         対応している記法
@@ -1627,7 +1649,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         使えるステップの一覧
@@ -1638,7 +1660,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         例
@@ -1654,7 +1676,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         エントロピー
@@ -1665,7 +1687,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         シークレットの検出
@@ -1739,6 +1761,15 @@
 実行するので、結果パネルがそのオフセットからの逆アセンブルに切り替わります。
 16 進ビューはそのまま残るので、続けて参照できます。</p>
 <p><img alt="結果パネルの PE 情報" loading="lazy" src="../../assets/screenshots/pe_info_panel.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">学習モード：フィールド解説</p>
+<p><strong>ツール → 設定…</strong> で <strong>解説</strong>（<code>explain_annotations</code> 設定、既定はオフ）をオンにすると、
+実行ファイル情報のトリアージで重要なフィールドの下に「これは何か」の一行解説が付きます
+— エントリポイント、サブシステム、セクションのエントロピー、インポート／エクスポート、
+オーバーレイ、そして存在する各ハードニングビット（ASLR / DEP / CFG、ELF の PIE / NX /
+RELRO / スタックカナリア / FORTIFY、Mach-O の署名／暗号化／chained fixups）。学習向けの
+機能で、熟練者はオフのままにしておけばレポートがすっきりします。</p>
+</div>
 <h3 id="_2">実行ファイルを逆アセンブル<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p><strong>コード → 実行ファイルを逆アセンブル…</strong> は一覧を経由せず直接リスティングへ進みます。
 アクティブなタブが PE / ELF / Mach-O ならそのファイルを（そうでなければファイル選択
@@ -1766,7 +1797,15 @@
 <p>同じ読み取りエンジンが MCP ツール <code>pe_info</code>・<code>elf_info</code>・<code>macho_info</code> です
 （<a href="../mcp/#tools">MCP</a> 参照）。ロード・実行は一切行わず、<code>disassemble</code> もバイト列を
 デコードするだけです。解析はライセンスで許されたバイナリに限ってください。</p>
-<h3 id="_4">逆コンパイラ外部ツールの導入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4">制御フローグラフ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>コード → 制御フローグラフ…</strong> は、アクティブタブの実行ファイル（なければ選択を要求）の
+<strong>エントリ関数</strong>を基本ブロック（分岐の入口でのみ入り、末尾でのみ出る直線的な命令列）に
+分解します。結果パネルは各ブロックをアドレス・命令数・フラグ（entry / returns / 間接ジャンプ）・
+次に到達しうるブロック（<code>-&gt; B1, B2</code>、分岐成立先が先頭）とともに並べ、続けてそのブロックの
+命令を表示するので、関数の分岐とループが順に把握できます。MCP ツール <code>cfg</code> は<strong>任意の関数</strong>を
+（<code>symbol</code> または <code>address</code> で）同じようにグラフ化でき、エントリ以外を見たいときはこちらです。
+静的かつヒューリスティックで、実行は行いません。</p>
+<h3 id="_5">逆コンパイラ外部ツールの導入<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>逆コンパイルは<strong>任意機能</strong>で、ユーザー自身が導入したツールを使います。Zume はいずれも同梱せず、
 ダウンロードもせず、あなたが場所を教えたときだけ起動します。必要なものだけ入れてください:</p>
 <table>
@@ -1954,7 +1993,7 @@ macOS / iOS バイナリで特に有用です。</p>
    行をクリック（または F4）でその行へジャンプします。</li>
 </ol>
 <p>対象は通常のテキスト / コードタブです（大容量・HEX・Git タブでは無効）。</p>
-<h3 id="_5">ルールファイルの例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_6">ルールファイルの例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kd">rule</span><span class="w"> </span><span class="n">suspicious_strings</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="k">strings</span><span class="p">:</span>
@@ -1966,7 +2005,7 @@ macOS / iOS バイナリで特に有用です。</p>
 <span class="w">        </span><span class="nv">$mz</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span>2<span class="w"> </span><span class="nb">of</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span><span class="w"> </span><span class="nv">$b</span><span class="p">,</span><span class="w"> </span><span class="nv">$url</span><span class="p">))</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="_6">対応している記法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_7">対応している記法<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>YARA の実用的なサブセット：</p>
 <ul>
 <li><strong>文字列</strong> — テキスト（<code>"..."</code>）、hex（<code>{ 4D 5A ?? 00 }</code>、<code>??</code>=任意バイト、
@@ -1996,7 +2035,7 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 ありません。ステップを入力して <strong>Enter</strong>（または OK）で適用、<strong>Esc</strong> で
 キャンセルです。</p>
 <p><img alt="変換レシピのダイアログとステップ一覧" loading="lazy" src="../../assets/screenshots/convert_recipe_dialog.png" /></p>
-<h3 id="_7">使えるステップの一覧<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_8">使えるステップの一覧<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2062,7 +2101,7 @@ hex の jump（<code>[4-6]</code>）やオルタネーション（<code>( A | B 
 MCP ツールも同様で、応答に常に <code>warnings</code> 配列（曖昧な素の鍵を通知）を含み、
 <code>strict: true</code> 引数で素の鍵を拒否します。</p>
 </div>
-<h3 id="_8">例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="_9">例<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>エンコードされたテキストを選択して（または文書全体に）適用します：</p>
 <table>
 <thead>
@@ -2117,11 +2156,15 @@ MCP ツールも同様で、応答に常に <code>warnings</code> 配列（曖�
 <p>結果は選択範囲（または文書）を<strong>1 回の undo 単位</strong>で置き換えるので、<code>Ctrl+Z</code> で
 レシピ全体を取り消せます。途中のステップが失敗した場合（例：不正な Base64）は、
 どのステップで失敗したかを表示し、テキストは変更しません。</p>
-<h2 id="_9">エントロピー<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_10">エントロピー<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p><a href="../hex/">HEX / バイナリエディタ</a>のエントロピーマップとオーバービューストリップが、
 ファイルを領域ごとに Shannon エントロピー（0–8 bit/byte）で表示するため、パックや
 暗号化された領域が目立ちます。</p>
-<h2 id="_10">シークレットの検出<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><strong>コード → エントロピーマップ…</strong> は、任意のファイルについて同じ情報を結果パネルに
+一覧します：全体のエントロピー、ファイル全体のブロックスパークライン、窓ごとの行
+（オフセット・値・字形）。8 bit/byte に近い値は圧縮・暗号化の疑い（多くはパッカー）です。
+MCP ツール <code>entropy</code> も同じ系列を返します。</p>
+<h2 id="_11">シークレットの検出<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p><strong>コード → シークレットを検出</strong> は、文書内の疑わしいシークレット（API キー、
 トークン、秘密鍵、資格情報）を行番号付きで一覧し、行をクリックするとジャンプします。
 <strong>編集 → 選択範囲をマスク</strong> は選択テキストを伏せ字にします。</p>

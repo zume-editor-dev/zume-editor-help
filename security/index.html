@@ -991,6 +991,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#control-flow-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control-Flow Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decompiler-tools-installation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1516,6 +1527,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#control-flow-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control-Flow Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decompiler-tools-installation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1739,6 +1761,16 @@ opens the file in the hex view at that file offset and runs
 x86, ARM64, ARM / Thumb), so the disassembly panel takes the report's place
 from that offset; the hex view stays open for browsing.</p>
 <p><img alt="PE Info in the results panel" loading="lazy" src="../assets/screenshots/pe_info_panel.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Learning mode: field explanations</p>
+<p>Turn on <strong>Explanations</strong> in <strong>Tools → Settings…</strong> (the <code>explain_annotations</code>
+setting, off by default) and the Executable Info report gains a short
+"what this means" note under the fields that matter for triage — the entry
+point, subsystem, section entropy, imports/exports, the overlay, and each
+hardening bit present (ASLR / DEP / CFG, ELF PIE / NX / RELRO / stack canary
+/ FORTIFY, a Mach-O signature / encryption / chained fixups). It is meant
+for learning; experts leave it off for an uncluttered report.</p>
+</div>
 <h3 id="disassemble-executable">Disassemble Executable<a class="headerlink" href="#disassemble-executable" title="Permanent link">&para;</a></h3>
 <p><strong>Code → Disassemble Executable…</strong> goes straight to the listing. It takes
 the active tab's file when it is a PE / ELF / Mach-O (otherwise a file picker
@@ -1770,6 +1802,16 @@ and disassembles from there. The same scan is the MCP tool <code>xrefs</code>.</
 (see <a href="../mcp/#tools">MCP</a>). They never load or run the file; <code>disassemble</code>
 decodes bytes and nothing more. Analyze only binaries whose licence permits
 it.</p>
+<h3 id="control-flow-graph">Control-Flow Graph<a class="headerlink" href="#control-flow-graph" title="Permanent link">&para;</a></h3>
+<p><strong>Code → Control-Flow Graph…</strong> takes the active tab's executable (or asks for
+one) and graphs its <strong>entry function</strong> into basic blocks — a straight run of
+instructions entered only at its first and left only at its last. The results
+panel lists each block with its address, instruction count, flags (entry /
+returns / computed jump) and the blocks control can reach next (<code>-&gt; B1, B2</code>,
+the taken branch first), followed by the block's instructions, so the function's
+branches and loops are laid out in order. The MCP tool <code>cfg</code> builds the same
+graph for <strong>any</strong> function (by <code>symbol</code> or <code>address</code>), which is the way to graph
+a function other than the entry. Static and heuristic; nothing is run.</p>
 <h3 id="decompiler-tools-installation">Decompiler tools — installation<a class="headerlink" href="#decompiler-tools-installation" title="Permanent link">&para;</a></h3>
 <p>Decompilation is <strong>optional</strong> and uses tools you install yourself. Zume bundles
 none of them, downloads nothing, and launches a tool only when you point it at
@@ -2149,6 +2191,10 @@ Base64), the editor shows which step failed and leaves the text unchanged.</p>
 <p>In the <a href="../hex/">Hex / Binary editor</a>, the entropy map and the entropy overview
 strip show the Shannon entropy of the file per region (0–8 bits/byte), so packed
 or encrypted areas stand out.</p>
+<p><strong>Code → Entropy Map…</strong> lists the same for any file in the results panel: the
+overall entropy, a block sparkline across the whole file, and a per-window row
+(offset, value, glyph). A value near 8 bits/byte suggests compressed or
+encrypted data — often a packer. The MCP tool <code>entropy</code> returns the same series.</p>
 <h2 id="scan-for-secrets">Scan for Secrets<a class="headerlink" href="#scan-for-secrets" title="Permanent link">&para;</a></h2>
 <p><strong>Code → Scan for Secrets</strong> lists likely secrets (API keys, tokens, private
 keys, credentials) in the document, each with its line; a row jumps to it.
