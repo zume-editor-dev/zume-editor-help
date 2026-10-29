@@ -3,8 +3,52 @@
 Zume Editor has tools for binary triage, data transforms and signature
 scanning — useful for reverse engineering, CTFs and authorized security work.
 Each is also available headlessly to AI agents through the
-[MCP server](mcp.md#tools) (the `entropy`, `transform`, `yara_scan`,
+[MCP server](mcp.md#tools) (the `identify`, `entropy`, `transform`, `yara_scan`,
 `pe_info`, `elf_info` and `macho_info` tools).
+
+## Identify file
+
+**Code → Identify File…** tells you **what a file is** and, for many document
+and image formats, **what software created it** — the general triage companion
+to Executable Info.
+
+It reads the file's content (magic signatures, not the extension) and lists in
+the results panel:
+
+- the **format** and a description, the **MIME type**, a **category**
+  (image / document / archive / executable / audio / video / font / …), a
+  **confidence**, the common **extensions**, and the **container** when the real
+  payload is wrapped (a `.docx`, for example, is a ZIP container).
+- for a document or image, a **Producer** / **Creator** line — the application
+  or device that wrote the file.
+
+About 50 formats are recognised — images (PNG, JPEG, GIF, TIFF, WebP,
+HEIC/AVIF, BMP, ICO), documents (PDF, RTF, PostScript, the OOXML and
+OpenDocument office formats, EPUB), archives and compression (ZIP, 7z, RAR,
+tar, gzip, xz, zstd, …), media (MP4/MOV, WebM/Matroska, WAV, FLAC, OGG, MP3),
+fonts, SQLite databases, WebAssembly and Java class files, plus the PE / ELF /
+Mach-O executables. ZIP-based files are refined to the real type (docx / xlsx /
+pptx / odt / epub / jar / apk).
+
+"Created by" is read from the file's own metadata, never guessed:
+
+| Format | Source |
+| --- | --- |
+| PDF | the Info dictionary `/Producer` and `/Creator` (and XMP `pdf:Producer` / `xmp:CreatorTool`); the file's tail is read too, so a large PDF's producer is still found |
+| JPEG / TIFF | EXIF — Software, Make + Model, and from the Exif sub-IFD the DateTimeOriginal and lens make / model |
+| PNG | the `Software` text chunk |
+| OOXML (docx / xlsx / pptx) | `docProps/app.xml` `<Application>` (and the author from `core.xml`) |
+| OpenDocument (odt / ods / odp) | `meta.xml` `<meta:generator>` |
+
+When the active tab is a file, that file is identified; otherwise a file picker
+asks for one. Only a bounded prefix (and, for a PDF, the tail) is read, so a
+huge file is identified without being loaded. Click a row (or **F4**) to copy
+it; **Esc** closes. An unrecognised file is reported as unknown data, not a
+guess.
+
+The same identification is available to AI agents through the MCP
+[`identify`](mcp.md#tools) tool (and `file_info` reports it too), and from the
+command line with [`zume-cli identify`](cli.md#identify).
 
 ## Executable Info (PE / ELF / Mach-O)
 
@@ -15,7 +59,11 @@ result in the results panel. The format is detected from the file's magic:
   CFG), every section with its entropy, the imported DLLs and functions, the
   exports, and the resources a feature inventory needs — the version strings,
   the string tables, each dialog's caption and controls, the menu items and the
-  manifest — plus the PDB path and any data appended past the last section.
+  manifest — plus the PDB path and any data appended past the last section. For
+  an MSVC-linked binary it also reads the **Rich header**: the undocumented
+  `@comp.id` build-provenance block that names each compiler / linker /
+  assembler component, its build number and object count, with a checksum
+  validity flag (a strong "which toolchain built this" fingerprint).
 - **ELF** (Linux executables and shared objects): type, machine, entry, the
   interpreter, segments and sections with entropy, the dynamic section (needed
   libraries, soname, rpath / runpath), imported and exported symbols with their
@@ -47,9 +95,10 @@ from that offset; the hex view stays open for browsing.
     Turn on **Explanations** in **Tools → Settings…** (the `explain_annotations`
     setting, off by default) and the Executable Info report gains a short
     "what this means" note under the fields that matter for triage — the entry
-    point, subsystem, section entropy, imports/exports, the overlay, and each
-    hardening bit present (ASLR / DEP / CFG, ELF PIE / NX / RELRO / stack canary
-    / FORTIFY, a Mach-O signature / encryption / chained fixups). It is meant
+    point, subsystem, section entropy, imports/exports, the overlay, the Rich
+    header (build provenance), and each hardening bit present (ASLR / DEP / CFG,
+    ELF PIE / NX / RELRO / stack canary / FORTIFY, a Mach-O signature /
+    encryption / chained fixups). It is meant
     for learning; experts leave it off for an uncluttered report.
 
 ### Disassemble Executable

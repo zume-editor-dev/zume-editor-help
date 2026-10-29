@@ -67,6 +67,30 @@ Replaces every match and saves the file in place (regex back-references like `$1
 work in `--regex` mode). Prints `N replacement(s)`. The file is written only when
 at least one replacement was made.
 
+## `identify` - file type & creator {#identify}
+
+```text
+zume-cli identify <file>
+```
+Identifies a file's type from its content (magic signatures, not the extension)
+and prints `format`, `description`, `category`, `confidence`, `mime`,
+`extensions`, `container`, and `detail` lines. For a document or image it also
+prints the `producer` / `creator` — the software that wrote the file — read from
+PDF (`/Producer`, `/Creator`), EXIF (Software / Make / Model …), PNG (`Software`)
+or OOXML / ODF (`<Application>` / `<meta:generator>`) metadata. Only a bounded
+prefix (and, for a PDF, the tail) is read. Same engine as the editor's
+**Code → Identify File…** and the MCP [`identify`](mcp.md#tools) tool.
+
+```text
+$ zume-cli identify report.pdf
+format: pdf
+description: PDF document
+category: document
+mime: application/pdf
+producer: Microsoft: Print To PDF
+creator: Microsoft Word
+```
+
 ## `aikey` - gen-AI API keys (for the MCP hub) {#aikey}
 
 Manage the named API keys that the [MCP](mcp.md) `http_request` tool injects. Keys

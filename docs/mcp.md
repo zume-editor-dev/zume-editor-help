@@ -69,7 +69,8 @@ Add an `env` block to the server entry to scope what it can touch — see
 | Tool | What it does |
 | --- | --- |
 | `read_file_range` | Read a bounded byte range of a file (works on very large files) |
-| `file_info` | Whether a file exists, and its size in bytes |
+| `file_info` | Whether a file exists, its size in bytes, and its identified type (format, MIME, category) |
+| `identify` | Identify a file's type from its content (magic signatures): format, MIME, category, confidence, container (docx / epub / jar / apk …) and, for a document / image, the `creator` (producer / creator read from PDF / EXIF / PNG / OOXML / ODF metadata). A bounded read; takes a `path` or inline `text` |
 | `write_file` | Create a new file, or overwrite / append an existing one (text or hex) |
 | `search_in_file` | Literal or regex search; returns matches with offsets / lines |
 | `extract_strings` | Printable-ASCII runs with their byte offsets |
@@ -106,7 +107,7 @@ Add an `env` block to the server entry to scope what it can touch — see
 | `entropy` | Shannon entropy (overall + a windowed sparkline) and the byte histogram — spot packed / encrypted regions |
 | `transform` | A CyberChef-style recipe: XOR / ROT / RC4 / base58·85 / hex + the convert toolbox, composed in one pipeline (returns `warnings` for an ambiguous bare `xor:`/`rc4:` key; `strict: true` refuses one) |
 | `yara_scan` | Scan a file, a directory or inline bytes with a practical YARA-rule subset |
-| `pe_info` | The structure of a Windows EXE / DLL (PE32 / PE32+): machine, subsystem, timestamp, linker, ASLR / DEP / CFG flags, .NET and Authenticode presence, sections with entropy, imports (incl. delay-load) and exports (incl. forwarders), the resource tree with the version strings, string tables, dialog captions + controls, menu items and the manifest, the PDB path, and any overlay. Structure only — no disassembly |
+| `pe_info` | The structure of a Windows EXE / DLL (PE32 / PE32+): machine, subsystem, timestamp, linker, ASLR / DEP / CFG flags, .NET and Authenticode presence, sections with entropy, imports (incl. delay-load) and exports (incl. forwarders), the resource tree with the version strings, string tables, dialog captions + controls, menu items and the manifest, the PDB path, the MSVC Rich header (build-provenance `@comp.id` entries with a checksum flag), and any overlay. Structure only — no disassembly |
 | `elf_info` | The structure of an ELF executable / shared object (ELF32 / ELF64, either byte order): type, machine, entry, interpreter, segments and sections with entropy, the dynamic section (needed libraries, soname, rpath / runpath), imported / exported symbols with versions, the GNU build id and hardening (PIE, NX stack, RELRO, stack canary, FORTIFY) |
 | `macho_info` | The structure of a Mach-O image or fat / universal binary (every slice listed, `slice` picks one): CPU, file type, header flags, every load command, segments / sections with entropy, dylibs with versions, rpaths, UUID, platform / minimum OS / SDK, the entry, imported / exported symbols, code-signature and encryption presence |
 | `decompile` | Decompile a function (or the whole file, capped) of a PE / ELF / Mach-O to C using a local Ghidra, via its headless runner. Off unless `ZUME_GHIDRA_HOME` points at a Ghidra install (Ghidra is not bundled and needs a JDK). Returns each function's name, address, signature and C; `address` / `symbol` picks one (pass an offset from `functions` / `xrefs`). Results are cached. Ghidra statically analyses the target; the C is derivative, so reuse only what the licence permits. A **managed (.NET)** target is routed to `il_decompile` |

@@ -3,7 +3,48 @@
 Zume Editor には、バイナリ診断・データ変換・シグネチャ走査のツールがあり、
 リバースエンジニアリング、CTF、認可されたセキュリティ作業に役立ちます。いずれも
 [MCP サーバー](mcp.md#tools)経由で AI エージェントからヘッドレスに利用できます
-（`entropy`・`transform`・`yara_scan`・`pe_info`・`elf_info`・`macho_info` ツール）。
+（`identify`・`entropy`・`transform`・`yara_scan`・`pe_info`・`elf_info`・`macho_info` ツール）。
+
+## ファイルの種別を判定
+
+**コード → ファイルの種別を判定…** は、**そのファイルが何か**を、そして多くの
+ドキュメント／画像形式については**どのソフトで作成されたか**を教えてくれます。
+実行ファイル情報の汎用版にあたる診断ツールです。
+
+拡張子ではなくファイルの内容（マジックシグネチャ）から判定し、結果パネルに
+一覧します：
+
+- **format**（形式）と説明、**MIME タイプ**、**カテゴリ**（画像／ドキュメント／
+  アーカイブ／実行ファイル／音声／動画／フォント…）、**信頼度**、一般的な
+  **拡張子**、そして実体が包まれている場合の**コンテナ**（例: `.docx` は ZIP
+  コンテナ）。
+- ドキュメント／画像なら、それを書き出したアプリや機器を示す
+  **Producer** / **Creator** 行。
+
+約 50 形式を認識します — 画像（PNG, JPEG, GIF, TIFF, WebP, HEIC/AVIF, BMP, ICO）、
+ドキュメント（PDF, RTF, PostScript, OOXML・OpenDocument のオフィス形式, EPUB）、
+アーカイブと圧縮（ZIP, 7z, RAR, tar, gzip, xz, zstd …）、メディア（MP4/MOV,
+WebM/Matroska, WAV, FLAC, OGG, MP3）、フォント、SQLite データベース、WebAssembly、
+Java クラスファイル、そして PE / ELF / Mach-O 実行ファイル。ZIP ベースのファイルは
+実体の種別（docx / xlsx / pptx / odt / epub / jar / apk）まで絞り込みます。
+
+「作成元」はファイル自身のメタデータから読み取り、推測はしません：
+
+| 形式 | 取得元 |
+| --- | --- |
+| PDF | Info 辞書の `/Producer`・`/Creator`（および XMP の `pdf:Producer` / `xmp:CreatorTool`）。ファイル末尾も読むので、大きな PDF でも作成元が見つかります |
+| JPEG / TIFF | EXIF — Software、Make + Model、および Exif サブ IFD の DateTimeOriginal・レンズのメーカー／型番 |
+| PNG | `Software` テキストチャンク |
+| OOXML（docx / xlsx / pptx） | `docProps/app.xml` の `<Application>`（および `core.xml` の作成者） |
+| OpenDocument（odt / ods / odp） | `meta.xml` の `<meta:generator>` |
+
+アクティブなタブがファイルならそれを判定し、そうでなければファイル選択ダイアログで
+指定します。読み取るのは先頭の一定量（PDF は末尾も）だけなので、巨大なファイルでも
+読み込まずに判定します。行をクリック（または **F4**）でコピー、**Esc** で閉じます。
+認識できないファイルは推測せず「不明なデータ」と報告します。
+
+同じ判定は MCP の [`identify`](mcp.md#tools) ツール（`file_info` も種別を返します）、
+およびコマンドライン [`zume-cli identify`](cli.md#identify) からも使えます。
 
 ## 実行ファイル情報 (PE / ELF / Mach-O)
 
@@ -14,7 +55,10 @@ Zume Editor には、バイナリ診断・データ変換・シグネチャ走�
   各セクションとそのエントロピー、インポートする DLL と関数、エクスポート、そして
   機能の目録を作るのに必要なリソース — バージョン文字列、文字列テーブル、各
   ダイアログのキャプションとコントロール、メニュー項目、マニフェスト — に加えて
-  PDB パスと最終セクション以降に付加されたデータ。
+  PDB パスと最終セクション以降に付加されたデータ。MSVC でリンクされたバイナリでは
+  **Rich ヘッダー**（各コンパイラ／リンカー／アセンブラのコンポーネントとビルド番号・
+  オブジェクト数を記録する非公開の `@comp.id` ブロック、チェックサムの正否付き。
+  「どのツールチェーンでビルドされたか」の強力な指紋）も読み取ります。
 - **ELF**（Linux の実行ファイルと共有オブジェクト）：種別、マシン、エントリ、
   インタープリター、セグメントとセクション（エントロピー付き）、動的セクション
   （必要なライブラリ、soname、rpath / runpath）、バージョン付きのインポート /
@@ -47,8 +91,9 @@ Zume Editor には、バイナリ診断・データ変換・シグネチャ走�
     **ツール → 設定…** で **解説**（`explain_annotations` 設定、既定はオフ）をオンにすると、
     実行ファイル情報のトリアージで重要なフィールドの下に「これは何か」の一行解説が付きます
     — エントリポイント、サブシステム、セクションのエントロピー、インポート／エクスポート、
-    オーバーレイ、そして存在する各ハードニングビット（ASLR / DEP / CFG、ELF の PIE / NX /
-    RELRO / スタックカナリア / FORTIFY、Mach-O の署名／暗号化／chained fixups）。学習向けの
+    オーバーレイ、Rich ヘッダー（ビルド由来）、そして存在する各ハードニングビット
+    （ASLR / DEP / CFG、ELF の PIE / NX / RELRO / スタックカナリア / FORTIFY、Mach-O の
+    署名／暗号化／chained fixups）。学習向けの
     機能で、熟練者はオフのままにしておけばレポートがすっきりします。
 
 ### 実行ファイルを逆アセンブル

@@ -61,6 +61,30 @@ zume-cli replace <pattern> <replacement> <file> [--regex] [--ignore-case]
 すべての一致を置換してその場で保存します（`--regex` では `$1` などの後方参照が使えます）。
 `N replacement(s)` を出力します。1件以上置換したときのみファイルを書き込みます。
 
+## `identify` - ファイル種別と作成元 {#identify}
+
+```text
+zume-cli identify <file>
+```
+拡張子ではなくファイルの内容（マジックシグネチャ）から種別を判定し、`format`・
+`description`・`category`・`confidence`・`mime`・`extensions`・`container`・
+`detail` の各行を出力します。ドキュメント／画像なら、それを書き出したソフトを示す
+`producer` / `creator` も出力します（PDF の `/Producer`・`/Creator`、EXIF の
+Software / Make / Model …、PNG の `Software`、OOXML / ODF の `<Application>` /
+`<meta:generator>` から読み取り）。読み取るのは先頭の一定量（PDF は末尾も）だけ。
+エディタの **コード → ファイルの種別を判定…** と MCP の
+[`identify`](mcp.md#tools) ツールと同じエンジンです。
+
+```text
+$ zume-cli identify report.pdf
+format: pdf
+description: PDF document
+category: document
+mime: application/pdf
+producer: Microsoft: Print To PDF
+creator: Microsoft Word
+```
+
 ## `aikey` - 生成AIの API キー（MCPハブ用） {#aikey}
 
 [MCP](mcp.md) の `http_request` ツールが付与する、名前付き API キーを管理します。キーは OS の
