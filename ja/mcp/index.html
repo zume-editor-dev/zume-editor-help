@@ -1642,7 +1642,11 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 <tr>
 <td><code>file_info</code></td>
-<td>ファイルの有無とバイトサイズ</td>
+<td>ファイルの有無、バイトサイズ、内容から判定した種別（形式・MIME・カテゴリ）</td>
+</tr>
+<tr>
+<td><code>identify</code></td>
+<td>ファイルの内容（マジックシグネチャ）から種別を判定：形式・MIME・カテゴリ・信頼度・コンテナ（docx / epub / jar / apk …）、およびドキュメント／画像なら <code>creator</code>（PDF / EXIF / PNG / OOXML / ODF のメタデータから読んだ作成元）。範囲限定の読み取りで、<code>path</code> かインラインの <code>text</code> を受け取る</td>
 </tr>
 <tr>
 <td><code>write_file</code></td>
@@ -1772,7 +1776,7 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </tr>
 <tr>
 <td><code>pe_info</code></td>
-<td>Windows の EXE / DLL（PE32 / PE32+）の構造：マシン種別、サブシステム、タイムスタンプ、リンカー、ASLR / DEP / CFG フラグ、.NET と Authenticode の有無、セクションとそのエントロピー、インポート（遅延ロード含む）とエクスポート（フォワーダー含む）、リソースツリーとバージョン文字列・文字列テーブル・ダイアログのキャプションとコントロール・メニュー項目・マニフェスト、PDB パス、オーバーレイ。構造の読み取りのみで逆アセンブルはしません</td>
+<td>Windows の EXE / DLL（PE32 / PE32+）の構造：マシン種別、サブシステム、タイムスタンプ、リンカー、ASLR / DEP / CFG フラグ、.NET と Authenticode の有無、セクションとそのエントロピー、インポート（遅延ロード含む）とエクスポート（フォワーダー含む）、リソースツリーとバージョン文字列・文字列テーブル・ダイアログのキャプションとコントロール・メニュー項目・マニフェスト、PDB パス、MSVC の Rich ヘッダー（ビルド由来の <code>@comp.id</code> エントリとチェックサムの正否）、オーバーレイ。構造の読み取りのみで逆アセンブルはしません</td>
 </tr>
 <tr>
 <td><code>elf_info</code></td>

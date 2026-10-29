@@ -1110,6 +1110,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - file type &amp; creator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1537,6 +1548,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - file type &amp; creator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1751,6 +1773,25 @@ Searches <code>dir</code> recursively. <code>glob</code> optionally restricts fi
 Replaces every match and saves the file in place (regex back-references like <code>$1</code>
 work in <code>--regex</code> mode). Prints <code>N replacement(s)</code>. The file is written only when
 at least one replacement was made.</p>
+<h2 id="identify"><code>identify</code> - file type &amp; creator<a class="headerlink" href="#identify" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code>zume-cli identify &lt;file&gt;
+</code></pre></div>
+Identifies a file's type from its content (magic signatures, not the extension)
+and prints <code>format</code>, <code>description</code>, <code>category</code>, <code>confidence</code>, <code>mime</code>,
+<code>extensions</code>, <code>container</code>, and <code>detail</code> lines. For a document or image it also
+prints the <code>producer</code> / <code>creator</code> — the software that wrote the file — read from
+PDF (<code>/Producer</code>, <code>/Creator</code>), EXIF (Software / Make / Model …), PNG (<code>Software</code>)
+or OOXML / ODF (<code>&lt;Application&gt;</code> / <code>&lt;meta:generator&gt;</code>) metadata. Only a bounded
+prefix (and, for a PDF, the tail) is read. Same engine as the editor's
+<strong>Code → Identify File…</strong> and the MCP <a href="../mcp/#tools"><code>identify</code></a> tool.</p>
+<div class="highlight"><pre><span></span><code>$ zume-cli identify report.pdf
+format: pdf
+description: PDF document
+category: document
+mime: application/pdf
+producer: Microsoft: Print To PDF
+creator: Microsoft Word
+</code></pre></div>
 <h2 id="aikey"><code>aikey</code> - gen-AI API keys (for the MCP hub)<a class="headerlink" href="#aikey" title="Permanent link">&para;</a></h2>
 <p>Manage the named API keys that the <a href="../mcp/">MCP</a> <code>http_request</code> tool injects. Keys
 are kept in the OS credential store, never in a file.</p>

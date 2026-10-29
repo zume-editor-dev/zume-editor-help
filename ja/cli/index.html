@@ -1110,6 +1110,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - ファイル種別と作成元
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1537,6 +1548,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - ファイル種別と作成元
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aikey" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1745,6 +1767,25 @@ Linuxは <code>bin/</code>、macOSはアプリフォルダー内）。エディ�
 </code></pre></div>
 すべての一致を置換してその場で保存します（<code>--regex</code> では <code>$1</code> などの後方参照が使えます）。
 <code>N replacement(s)</code> を出力します。1件以上置換したときのみファイルを書き込みます。</p>
+<h2 id="identify"><code>identify</code> - ファイル種別と作成元<a class="headerlink" href="#identify" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code>zume-cli identify &lt;file&gt;
+</code></pre></div>
+拡張子ではなくファイルの内容（マジックシグネチャ）から種別を判定し、<code>format</code>・
+<code>description</code>・<code>category</code>・<code>confidence</code>・<code>mime</code>・<code>extensions</code>・<code>container</code>・
+<code>detail</code> の各行を出力します。ドキュメント／画像なら、それを書き出したソフトを示す
+<code>producer</code> / <code>creator</code> も出力します（PDF の <code>/Producer</code>・<code>/Creator</code>、EXIF の
+Software / Make / Model …、PNG の <code>Software</code>、OOXML / ODF の <code>&lt;Application&gt;</code> /
+<code>&lt;meta:generator&gt;</code> から読み取り）。読み取るのは先頭の一定量（PDF は末尾も）だけ。
+エディタの <strong>コード → ファイルの種別を判定…</strong> と MCP の
+<a href="../mcp/#tools"><code>identify</code></a> ツールと同じエンジンです。</p>
+<div class="highlight"><pre><span></span><code>$ zume-cli identify report.pdf
+format: pdf
+description: PDF document
+category: document
+mime: application/pdf
+producer: Microsoft: Print To PDF
+creator: Microsoft Word
+</code></pre></div>
 <h2 id="aikey"><code>aikey</code> - 生成AIの API キー（MCPハブ用）<a class="headerlink" href="#aikey" title="Permanent link">&para;</a></h2>
 <p><a href="../mcp/">MCP</a> の <code>http_request</code> ツールが付与する、名前付き API キーを管理します。キーは OS の
 資格情報ストアに保存され、ファイルには残りません。</p>
