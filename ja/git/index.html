@@ -31,7 +31,7 @@
     
     
       
-        <title>Git - Zume Editor Help</title>
+        <title>Git クライアント - Zume Editor Help</title>
       
     
     
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Git
+              Git クライアント
             
           </span>
         </div>
@@ -744,6 +744,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git クライアント
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -751,7 +769,7 @@
   <span class="md-ellipsis">
     
   
-    Git
+    Git クライアント
   
 
     
@@ -760,6 +778,235 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git タブについて
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git タブについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        画面構成
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リポジトリを開く / クローン
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-branch-git-checkout-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ブランチ作成（git branch / git checkout -b）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-add-git-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ステージ / コミット（git add / git commit）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-fetch-pullgit-push-git-fetch-git-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push / Fetch / Pull（git push / git fetch / git pull）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-stash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スタッシュ（git stash）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-diff-git-log-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        差分の確認（git diff / git log -p）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        マージ（git merge）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リベース（git rebase）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-revert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取り消し（git revert）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リセット（git reset）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-cherry-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        チェリーピック（git cherry-pick）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        タグ（git tag）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolve-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コンフリクトの解消
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便利なショートカット（Git タブ）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1244,6 +1491,224 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git タブについて
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git タブについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        画面構成
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リポジトリを開く / クローン
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-branch-git-checkout-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ブランチ作成（git branch / git checkout -b）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-add-git-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ステージ / コミット（git add / git commit）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-fetch-pullgit-push-git-fetch-git-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push / Fetch / Pull（git push / git fetch / git pull）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-stash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スタッシュ（git stash）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-diff-git-log-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        差分の確認（git diff / git log -p）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        マージ（git merge）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リベース（git rebase）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-revert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        取り消し（git revert）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リセット（git reset）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-cherry-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        チェリーピック（git cherry-pick）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        タグ（git tag）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolve-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コンフリクトの解消
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便利なショートカット（Git タブ）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1267,24 +1732,228 @@
   
 
 
-<h1 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
-<p>内蔵のGitクライアントです。専用タブとして開きます（<strong>Git → Open Git Tab</strong>）。</p>
-<ul>
-<li><strong>Local Changes</strong> - ファイルのステージ / 解除（複数選択可）、ファイル単位の差分、
-  コミット（件名＋説明、amend）。競合はインラインで解決。</li>
-<li><strong>コミットグラフ</strong> - 全ブランチのレーングラフ。コミットごとのファイル一覧と差分、
-  コミットの絞り込み / 検索。</li>
-<li><strong>ブランチ / タグ / スタッシュ / リモート</strong> のナビゲーター。チェックアウト・作成・
-  リネーム・削除・マージ・リベースなどを右クリックメニューから。</li>
-<li><strong>Fetch / Pull / Push / Clone</strong>、worktree、LFS - これらはお使いの <code>git</code> を実行します。</li>
-<li>Gitタブがアクティブな間、ファイルパネルはそのリポジトリに追従します。</li>
-</ul>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>ローカル操作は libgit2 を使用し、ネットワークやマージ/リベースはシステムに
-インストール済みの <code>git</code> を実行します。</p>
-</div>
+<h1 id="git">Git クライアント<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
+<p>Zume Editor には、エディターを離れずに使える <strong>Fork 風の本格的な Git クライアント</strong>が
+内蔵されています。差分・コミットグラフ・ブランチ操作をマウスで扱えるので、普段は
+コマンドライン（CUI）で Git を使っている方でも、ログの確認やコンフリクトの解消などを
+視覚的に行えます。</p>
+<p>このページでは、<code>git add</code> / <code>git commit</code> / <code>git push</code> といった<strong>おなじみのコマンドが
+Git クライアントのどの操作に対応するか</strong>を中心に紹介します。Git そのものの解説では
+ないので、各コマンドの意味はお手元の入門資料も併せてご覧ください。</p>
 <p><img alt="内蔵 Git クライアント" loading="lazy" src="../../assets/screenshots/git.png" /></p>
+<hr />
+<h2 id="git_1">Git タブについて<a class="headerlink" href="#git_1" title="Permanent link">&para;</a></h2>
+<p>Git クライアントは<strong>専用タブ</strong>として開きます。</p>
+<ul>
+<li><strong>Git → Open Git Tab</strong> でタブを開きます。</li>
+<li>タブには <code>親フォルダー/リポジトリ名</code> が表示され、ほかの編集タブと同じように
+  切り替えられます。</li>
+<li>Git タブを開いている間は、<strong>ファイルパネルがそのリポジトリに固定</strong>されます。</li>
+<li>Git タブは<strong>セッションに保存</strong>され、次回起動時に同じリポジトリが再び開きます。</li>
+</ul>
+<h3 id="_1">画面構成<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>領域</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左ナビゲーター</td>
+<td><strong>Local Changes</strong>（ローカルの変更）と <strong>All Commits</strong>（全コミット）の切り替え。その下にブランチ・リモート・タグ・スタッシュのツリー。現在のブランチにはチェックマーク、追跡ブランチには <code>↑ahead</code> / <code>↓behind</code> のバッジが付きます。</td>
+</tr>
+<tr>
+<td>中央</td>
+<td>選択に応じて、変更ファイルの一覧やコミットグラフ（レーングラフ）を表示。</td>
+</tr>
+<tr>
+<td>右（詳細）</td>
+<td>選択したファイルの差分、またはコミットの情報とファイル一覧。</td>
+</tr>
+<tr>
+<td>ツールバー</td>
+<td>Open / Recent Repositories、Fetch / Pull / Push（件数バッジ付き）。</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">ローカルは libgit2、ネットワークは <code>git</code></p>
+<p>ステージ・コミット・差分などの<strong>ローカル操作は libgit2</strong> で高速に動作します。
+<strong>Fetch / Pull / Push / Clone / Merge / Rebase / worktree / LFS</strong> は、お使いの
+PC にインストール済みの <strong><code>git</code> コマンドを実行</strong>します（認証プロンプトは無効化し、
+出力は結果パネルに表示されます）。そのため、資格情報ヘルパーや SSH 鍵などの
+既存の Git 設定がそのまま活きます。</p>
+</div>
+<hr />
+<h2 id="_2">基本操作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>ここからは、CUI のコマンドと Git クライアントの操作を対応させて見ていきます。</p>
+<h3 id="_3">リポジトリを開く / クローン<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>既存のリポジトリ … ツールバーの <strong>Open</strong> からフォルダーを選択（最近使った
+  リポジトリは <strong>Recent Repositories</strong>）。</li>
+<li>新規クローン … <strong>Git メニュー → Clone…</strong> でクローンダイアログを開き、URL と
+  保存先を指定します（<code>git clone</code> を実行）。</li>
+</ul>
+<h3 id="git-branch-git-checkout-b">ブランチ作成（<code>git branch</code> / <code>git checkout -b</code>）<a class="headerlink" href="#git-branch-git-checkout-b" title="Permanent link">&para;</a></h3>
+<ol>
+<li>左ナビゲーターのブランチを<strong>右クリック</strong>し、<strong>New Branch…</strong> を選びます。
+   （コミットを基点にする場合は、グラフ上のコミットを右クリックして
+   <strong>New Branch Here…</strong>）</li>
+<li>ブランチ名を入力して作成。そのまま新しいブランチへチェックアウトできます。</li>
+</ol>
+<p>ブランチの<strong>ダブルクリックでチェックアウト</strong>（<code>git checkout</code>）です。作業ツリーが
+クリーンなら、開いているファイルとファイルパネルも新しい内容に追従します。</p>
+<h3 id="git-add-git-commit">ステージ / コミット（<code>git add</code> / <code>git commit</code>）<a class="headerlink" href="#git-add-git-commit" title="Permanent link">&para;</a></h3>
+<ol>
+<li>左ナビゲーターで <strong>Local Changes</strong> を選びます。</li>
+<li><strong>Unstaged</strong>（未ステージ）と <strong>Staged</strong>（ステージ済み）のペインが表示されます。
+   チェックボックスで<strong>複数選択</strong>し、<strong>Stage</strong> / <strong>Unstage</strong> でまとめて移動できます。</li>
+<li>ファイルを選ぶと、右側に<strong>差分</strong>が出ます。</li>
+<li>下部のコミットボックスに<strong>件名（subject）</strong>と、必要なら<strong>説明（description）</strong>を
+   入力し、<strong>Commit</strong>（<code>Ctrl+Enter</code>）。</li>
+<li>直前のコミットを修正したいときは <strong>Amend</strong>（<code>git commit --amend</code>）にチェック。</li>
+</ol>
+<h3 id="push-fetch-pullgit-push-git-fetch-git-pull">Push / Fetch / Pull（<code>git push</code> / <code>git fetch</code> / <code>git pull</code>）<a class="headerlink" href="#push-fetch-pullgit-push-git-fetch-git-pull" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ツールバーの <strong>Fetch</strong> / <strong>Pull</strong> / <strong>Push</strong> ボタンで実行します。</li>
+<li><strong>Pull / Push のバッジ</strong>が <code>↓behind</code> / <code>↑ahead</code>（取り込み・送信すべきコミット数）を
+  示します。</li>
+<li>ブランチの右クリックメニューからも <strong>Push</strong> / <strong>Pull</strong> / <strong>Set Tracking…</strong>
+  （上流ブランチの設定）が行えます。</li>
+</ul>
+<h3 id="git-stash">スタッシュ（<code>git stash</code>）<a class="headerlink" href="#git-stash" title="Permanent link">&para;</a></h3>
+<ul>
+<li>作業中の変更を退避したいときは、左ナビゲーターの <strong>Stashes</strong> まわりの操作、または
+  Git メニューから作成します。退避したスタッシュは<strong>ノードとしてコミットグラフ上</strong>
+  （その基点）に表示され、右クリックで適用・削除ができます。</li>
+</ul>
+<h3 id="git-diff-git-log-p">差分の確認（<code>git diff</code> / <code>git log -p</code>）<a class="headerlink" href="#git-diff-git-log-p" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Local Changes</strong> … ファイルを選ぶと作業ツリーの差分が右ペインに出ます。</li>
+<li><strong>All Commits</strong> … コミットグラフでコミットを選ぶと、そのコミットの<strong>ファイル一覧と
+  差分</strong>（Commit / Changes）が表示されます。</li>
+<li>グラフは<strong>全ブランチをまたぐレーングラフ</strong>で、ブランチごとの <strong>eye / filter
+  アイコン</strong>で表示を隠したり絞り込んだりできます。コミットは<strong>メッセージ・作者・
+  SHA で検索</strong>できます。</li>
+</ul>
+<h3 id="git-merge">マージ（<code>git merge</code>）<a class="headerlink" href="#git-merge" title="Permanent link">&para;</a></h3>
+<ol>
+<li>取り込みたいブランチを右クリックし、<strong>Merge into current…</strong>（現在のブランチへ
+   マージ）を選びます。</li>
+<li>競合した場合は後述の<a href="#resolve-conflicts">コンフリクトの解消</a>へ。</li>
+</ol>
+<h3 id="git-rebase">リベース（<code>git rebase</code>）<a class="headerlink" href="#git-rebase" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ブランチを右クリック → <strong>Rebase onto…</strong>（別ブランチの上に付け替え）。</li>
+<li>コミットを右クリック → <strong>Rebase to Here</strong> / <strong>Interactive Rebase</strong>（対話的リベース）。</li>
+<li>リベースやマージの実行中は、<strong>継続バナー</strong>が表示され、<strong>Continue / Skip / Abort</strong>
+  （<code>--continue</code> / <code>--skip</code> / <code>--abort</code>）を選べます。</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">force push はリース付き</p>
+<p>履歴を書き換えた後の送信には、Git メニューの <strong>Force Push (with lease)</strong>
+（<code>git push --force-with-lease</code>）を使います。リモートが想定どおりのときだけ
+上書きするので、他人のコミットを誤って消しにくくなります。</p>
+</div>
+<h3 id="git-revert">取り消し（<code>git revert</code>）<a class="headerlink" href="#git-revert" title="Permanent link">&para;</a></h3>
+<ul>
+<li>コミットを右クリック → <strong>Revert</strong>。そのコミットを打ち消す新しいコミットを作ります
+  （履歴は書き換えません）。</li>
+</ul>
+<h3 id="git-reset">リセット（<code>git reset</code>）<a class="headerlink" href="#git-reset" title="Permanent link">&para;</a></h3>
+<ul>
+<li>コミットを右クリック → <strong>Reset to Here</strong>。現在のブランチの先端を、その
+  コミットまで移動します。</li>
+</ul>
+<h3 id="git-cherry-pick">チェリーピック（<code>git cherry-pick</code>）<a class="headerlink" href="#git-cherry-pick" title="Permanent link">&para;</a></h3>
+<ul>
+<li>別ブランチのコミットを右クリック → <strong>Cherry-pick</strong>。そのコミットの変更だけを
+  現在のブランチに取り込みます。</li>
+</ul>
+<h3 id="git-tag">タグ（<code>git tag</code>）<a class="headerlink" href="#git-tag" title="Permanent link">&para;</a></h3>
+<ul>
+<li>コミットまたはブランチ先端を右クリック → <strong>New Tag Here…</strong>。</li>
+<li>タグは左ナビゲーターの <strong>Tags</strong> に一覧表示されます。</li>
+</ul>
+<hr />
+<h2 id="resolve-conflicts">コンフリクトの解消<a class="headerlink" href="#resolve-conflicts" title="Permanent link">&para;</a></h2>
+<p>マージ・リベース・チェリーピックで競合が起きると、該当ファイルが競合状態になります。</p>
+<ol>
+<li><strong>Local Changes</strong> でそのファイルを選びます。</li>
+<li>差分ペインの上部に <strong>take ours / take theirs / take both</strong>（自分側 / 相手側 /
+   両方を採用）のバーが表示されます。ブロックごとに採用する側を選べます。</li>
+<li>必要に応じてエディターで直接編集し、保存します。</li>
+<li>解消したらファイルを <strong>Stage</strong> し、<strong>Commit</strong>。</li>
+<li>リベース / マージ中のバナーから <strong>Continue</strong> で処理を続行します（やり直したい
+   ときは <strong>Abort</strong>）。</li>
+</ol>
+<hr />
+<h2 id="git_2">便利なショートカット（Git タブ）<a class="headerlink" href="#git_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F5</code></td>
+<td>再読み込み（リフレッシュ）</td>
+</tr>
+<tr>
+<td><code>Ctrl+Enter</code></td>
+<td>コミット</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+N</code></td>
+<td>新規ブランチ</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+B</code></td>
+<td>ブランチ一覧</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+L</code></td>
+<td>ログ（All Commits）</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+P</code></td>
+<td>Push</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+F</code></td>
+<td>Fetch</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+H</code></td>
+<td>スタッシュ</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+T</code></td>
+<td>タグ</td>
+</tr>
+<tr>
+<td><code>Ctrl+F</code></td>
+<td>検索（ブランチ / コミット）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">まとめ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Zume Editor の Git クライアントは、<code>add</code> / <code>commit</code> / <code>push</code> / <code>pull</code> /
+<code>merge</code> / <code>rebase</code> / <code>cherry-pick</code> / <code>revert</code> といった日常の操作を、<strong>エディターの
+中でそのまま</strong>マウス操作で行えます。ローカル操作は libgit2 で高速に、ネットワークや
+リベースは<strong>お使いの <code>git</code></strong> を呼ぶので、既存の設定や認証をそのまま活かせます。</p>
+<p>差分やコミットグラフを見ながら作業したい場面、コンフリクトを落ち着いて解消したい
+場面で、コマンドラインと行き来せずに完結できます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Fetch / Pull / Push / Clone / Merge / Rebase / worktree / LFS はシステムの <code>git</code>
+を使用します。Git 本体がインストールされている必要があります。</p>
+</div>
 
 
 

@@ -742,7 +742,7 @@
   <span class="md-ellipsis">
     
   
-    Git
+    Git クライアント
   
 
     
@@ -1166,6 +1166,17 @@
     <span class="md-ellipsis">
       
         シークレットの検出
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外部セキュリティアナライザー
       
     </span>
   </a>
@@ -1719,6 +1730,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外部セキュリティアナライザー
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2251,6 +2273,47 @@ MCP ツール <code>entropy</code> も同じ系列を返します。</p>
 <p><strong>コード → シークレットを検出</strong> は、文書内の疑わしいシークレット（API キー、
 トークン、秘密鍵、資格情報）を行番号付きで一覧し、行をクリックするとジャンプします。
 <strong>編集 → 選択範囲をマスク</strong> は選択テキストを伏せ字にします。</p>
+<h2 id="_13">外部セキュリティアナライザー<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>Zume Editor は、<strong>外部のペネトレーションテスト／解析ツールを実行して所見を表示</strong>でき、
+対象ファイルの隣で結果を確認できます。エディタ本体には<strong>攻撃コードは一切含まれません</strong>。
+あなたが導入・設定したツールを起動し、その構造化出力を解析するだけです。</p>
+<div class="admonition warning">
+<p class="admonition-title">許可された利用のみ</p>
+<p><strong>明示的に許可された</strong>システム（自分の資産、許可を得た顧客案件、CTF / ラボ）に
+対してのみ使用してください。スコープ・認可・ログの責任は、Zume Editor ではなく
+外部ツール側にあります。所有していない、または許可のないシステムへのセキュリティ
+ツールの実行は違法となる場合があります。</p>
+</div>
+<p><strong>アナライザーの設定。</strong> <code>settings.json</code> の <code>analyzer_tools</code> に、1 つ以上の
+<code>name = command</code> 行を設定します。コマンドでは 2 つのプレースホルダが使えます：</p>
+<ul>
+<li><code>{target}</code> — 実行時に入力するスコープ文字列（ホスト / URL / CIDR など）。</li>
+<li><code>{out}</code> — エディタが渡すパス。ツールは JSON 結果をここへ書き出します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = my-recon --scope \"{target}\" --json \"{out}\""</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>実行。</strong> <strong>ツール → セキュリティアナライザーを実行…</strong>（<code>analyzer_tools</code> 未設定の間は
+無効）で設定済みアナライザを一覧し、1 つ選んで許可済みの<strong>スコープ</strong>を入力すると、
+バックグラウンドスレッドで実行されます。所見は結果パネルに 1 行ずつ（深刻度・種別・
+対象・タイトル・詳細）表示されます。<strong>根拠ファイル</strong>を指す所見は、行をクリックすると
+そのファイルを開きます（行番号があればその行へ）。それ以外の行は内容をコピーします。</p>
+<p><strong>結果フォーマット。</strong> ツールは <code>{out}</code> に小さな JSON を書き出します：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-recon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.0.2.0/24"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"findings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service"</span><span class="p">,</span><span class="w"> </span><span class="nt">"severity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"low"</span><span class="p">,</span><span class="w"> </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.0.2.10:22"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OpenSSH 9.6"</span><span class="p">,</span><span class="w"> </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banner"</span><span class="p">,</span><span class="w"> </span><span class="nt">"evidence_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>未知のフィールドは無視され、欠けたフィールドは既定値になるため、出力は容易です。
+<code>{out}</code> ファイルが真実の源なので、非ゼロ終了でも結果を書き出していれば正常に読まれます。</p>
+<p><strong>AI エージェントから。</strong> <a href="../mcp/#tools">MCP サーバー</a> は同じ機能を <code>analyze_run</code>
+ツールとして提供します。<code>ZUME_ANALYZER_TOOLS</code> 環境変数に同じ <code>name = command</code> 形式で
+アナライザを設定するまでは無効です。</p>
 
 
 
