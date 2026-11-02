@@ -491,3 +491,58 @@ encrypted data — often a packer. The MCP tool `entropy` returns the same serie
 **Code → Scan for Secrets** lists likely secrets (API keys, tokens, private
 keys, credentials) in the document, each with its line; a row jumps to it.
 **Edit → Redact Selection** masks the selected text.
+
+## External security analyzer
+
+Zume Editor can **run an external penetration-testing / analysis tool and show
+its findings**, so you can triage results next to the files they refer to. The
+editor ships **no attack code**: it only launches a tool *you* install and
+configure, and parses its structured output.
+
+!!! warning "Authorized use only"
+    Use this only against systems you are **explicitly authorized** to test
+    (your own, a client engagement with permission, or a CTF / lab). The
+    external tool — not Zume Editor — is responsible for scope, authorization
+    and logging. Running security tools against systems you do not own or have
+    permission to test may be illegal.
+
+**Configure an analyzer.** In `settings.json`, set `analyzer_tools` to one or
+more `name = command` lines. The command may use two placeholders:
+
+- `{target}` — the scope string you enter when you run it (a host, URL, CIDR…).
+- `{out}` — a path the editor supplies; your tool writes its JSON result there.
+
+```json
+{
+  "analyzer_tools": "recon = my-recon --scope \"{target}\" --json \"{out}\""
+}
+```
+
+**Run it.** **Tools → Run Security Analyzer…** (it is disabled until
+`analyzer_tools` is set) lists the configured analyzers; pick one, enter the
+authorized **scope**, and the tool runs on a background thread. Its findings
+appear in the results panel — one row per finding (severity, kind, target,
+title, detail). A finding that points at an **evidence file** opens it when you
+click the row (at a line if the finding gives one); any other row copies its
+text.
+
+**Result format.** Your tool must write a small JSON document to `{out}`:
+
+```json
+{
+  "tool": "my-recon", "scope": "192.0.2.0/24",
+  "findings": [
+    { "kind": "service", "severity": "low", "target": "192.0.2.10:22",
+      "title": "OpenSSH 9.6", "detail": "banner", "evidence_path": "", "address": "" }
+  ],
+  "warnings": []
+}
+```
+
+Unknown fields are ignored and missing ones default, so the format is easy to
+emit. The `{out}` file is the source of truth, so a tool that exits non-zero but
+still wrote results is read normally.
+
+**From an AI agent.** The [MCP server](mcp.md#tools) exposes the same as the
+`analyze_run` tool, off unless the `ZUME_ANALYZER_TOOLS` environment variable
+configures an analyzer in the same `name = command` form.
