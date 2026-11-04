@@ -1181,6 +1181,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="外部セキュリティアナライザー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コンパニオンツール: sanctum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1739,6 +1756,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="外部セキュリティアナライザー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コンパニオンツール: sanctum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2294,11 +2328,19 @@ MCP ツール <code>entropy</code> も同じ系列を返します。</p>
 <span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = my-recon --scope \"{target}\" --json \"{out}\""</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>実行。</strong> <strong>ツール → セキュリティアナライザーを実行…</strong>（<code>analyzer_tools</code> 未設定の間は
-無効）で設定済みアナライザを一覧し、1 つ選んで許可済みの<strong>スコープ</strong>を入力すると、
-バックグラウンドスレッドで実行されます。所見は結果パネルに 1 行ずつ（深刻度・種別・
-対象・タイトル・詳細）表示されます。<strong>根拠ファイル</strong>を指す所見は、行をクリックすると
-そのファイルを開きます（行番号があればその行へ）。それ以外の行は内容をコピーします。</p>
+<p>JSON を直接編集せずに設定することもできます。<strong>ツール → 設定…</strong> の
+<strong>セキュリティアナライザー</strong>セクションでは、各アナライザが編集可能な
+<code>name = command</code> 行になっており（Ghidra / ILSpy のパスも編集可能なテキストボックス
+です）。長い値は折り返さずに 1 行で横スクロールし、<strong>クリア</strong>は消去前に確認を求めます。
+編集内容は <code>settings.json</code> に保存されます。</p>
+<p><strong>実行。</strong> <strong>ツール → セキュリティアナライザーを実行…</strong>（アナライザ未設定の間は無効）で
+一覧し、1 つ選んで許可済みの<strong>スコープ</strong>を入力します。あるいは、アクティブなタブが
+ローカルファイルのときは、その<strong>ファイル</strong>に対して実行できます（パスが <code>{target}</code> になり、
+エディタはそのファイルの SHA-256 を記録するので、所見が正確なバイト列に紐づきます）。
+ツールはバックグラウンドスレッドで実行され、所見は結果パネルに<strong>深刻度ごとにグループ化</strong>
+され、色付きバッジ付きで 1 行ずつ（深刻度・種別・対象・タイトル・詳細）表示されます。
+<strong>根拠ファイル</strong>を指す所見は、行をクリックするとそのファイルを開きます（行番号があれば
+その行へ）。それ以外の行は内容をコピーします。</p>
 <p><strong>結果フォーマット。</strong> ツールは <code>{out}</code> に小さな JSON を書き出します：</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-recon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.0.2.0/24"</span><span class="p">,</span>
@@ -2314,6 +2356,35 @@ MCP ツール <code>entropy</code> も同じ系列を返します。</p>
 <p><strong>AI エージェントから。</strong> <a href="../mcp/#tools">MCP サーバー</a> は同じ機能を <code>analyze_run</code>
 ツールとして提供します。<code>ZUME_ANALYZER_TOOLS</code> 環境変数に同じ <code>name = command</code> 形式で
 アナライザを設定するまでは無効です。</p>
+<h3 id="sanctum">コンパニオンツール: sanctum<a class="headerlink" href="#sanctum" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/zume-editor-dev/sanctum"><strong>sanctum</strong></a> は、別個・任意・
+オープンソースのコンパニオンツールで、まさにこの結果フォーマットを出力するため、
+<code>analyzer_tools</code> にそのまま組み込めます。<strong>許可されたスコープ内・非破壊</strong>で動作し、
+エクスプロイト・データ抽出・認証バイパス・サービス妨害は一切行いません。能動的な実行は
+<code>--i-am-authorized</code> を付けない限り拒否されます。3 つのモードがあります：</p>
+<ul>
+<li><strong>偵察</strong>（<code>--scope</code>）: TCP <strong>コネクト</strong>によるホスト探索とポート列挙、バナー取得。
+  raw ソケットや SYN スキャン、エクスプロイトは行いません。</li>
+<li><strong>オフラインファイル解析</strong>（<code>--file</code>、ネットワーク不要）: ファイル種別、CRC32 / MD5 /
+  SHA-1 / SHA-256、エントロピー、文字列、および <code>.pcap</code> / <code>.pcapng</code> の要約（エンドポイント、
+  サービス、平文の資格情報、TLS / QUIC の SNI）。</li>
+<li><strong>Web 診断</strong>（<code>--web</code>、非破壊）: 欠落・脆弱なセキュリティヘッダ、Cookie フラグ、
+  ソフトウェア情報の露出、トランスポートの状態。任意の同一オリジン<strong>クロール</strong>。
+  <strong>存在確認のみ</strong>の能動チェック（反射型 XSS、SQL / OS コマンドインジェクション、
+  パストラバーサル、CRLF / レスポンスヘッダインジェクション、オープンリダイレクト、
+  メソッド・機微パス列挙）。限定的で非破壊な<strong>ファジング</strong>。そして、利用者が渡した
+  セッションでの<strong>認証付き</strong>スキャン。脆弱性は武器化せずに確認します（時間ベースの
+  チェックは測定された遅延で存在を示すだけで、データは読みません）。</li>
+</ul>
+<p>1 つ以上のアナライザを sanctum に向けます：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>file</code> アナライザは受動的（ローカルファイルを読むだけで何も送信しません）なので認可フラグは
+不要です。<code>recon</code> と <code>web</code> は能動的なリクエストを行うため、<code>--i-am-authorized</code> がないと
+拒否されます。全オプションと安全設計は
+<a href="https://github.com/zume-editor-dev/sanctum">sanctum の README</a> を参照してください。</p>
 
 
 

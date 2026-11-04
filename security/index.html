@@ -1181,6 +1181,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="External security analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#companion-tool-sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Companion tool: sanctum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1738,6 +1755,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="External security analyzer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#companion-tool-sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Companion tool: sanctum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2331,13 +2365,20 @@ more <code>name = command</code> lines. The command may use two placeholders:</p
 <span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = my-recon --scope \"{target}\" --json \"{out}\""</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>Run it.</strong> <strong>Tools → Run Security Analyzer…</strong> (it is disabled until
-<code>analyzer_tools</code> is set) lists the configured analyzers; pick one, enter the
-authorized <strong>scope</strong>, and the tool runs on a background thread. Its findings
-appear in the results panel — one row per finding (severity, kind, target,
-title, detail). A finding that points at an <strong>evidence file</strong> opens it when you
-click the row (at a line if the finding gives one); any other row copies its
-text.</p>
+<p>Or configure them without editing JSON by hand: <strong>Tools → Settings…</strong> has a
+<strong>Security analyzers</strong> section where each analyzer is an editable
+<code>name = command</code> row (and the Ghidra / ILSpy paths are editable boxes there
+too). A long value scrolls on one line instead of wrapping, and <strong>Clear</strong> asks
+for confirmation before erasing. Your edits are saved back to <code>settings.json</code>.</p>
+<p><strong>Run it.</strong> <strong>Tools → Run Security Analyzer…</strong> (it is disabled until an analyzer
+is configured) lists them; pick one and enter the authorized <strong>scope</strong> — or,
+when the active tab is a local file, run the analyzer on <strong>that file</strong> (its path
+becomes <code>{target}</code>, and the editor records the file's SHA-256 so the findings
+are tied to the exact bytes). The tool runs on a background thread, and its
+findings appear in the results panel <strong>grouped by severity</strong> with colour
+badges — one row per finding (severity, kind, target, title, detail). A finding
+that points at an <strong>evidence file</strong> opens it when you click the row (at a line if
+the finding gives one); any other row copies its text.</p>
 <p><strong>Result format.</strong> Your tool must write a small JSON document to <code>{out}</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-recon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.0.2.0/24"</span><span class="p">,</span>
@@ -2354,6 +2395,38 @@ still wrote results is read normally.</p>
 <p><strong>From an AI agent.</strong> The <a href="../mcp/#tools">MCP server</a> exposes the same as the
 <code>analyze_run</code> tool, off unless the <code>ZUME_ANALYZER_TOOLS</code> environment variable
 configures an analyzer in the same <code>name = command</code> form.</p>
+<h3 id="companion-tool-sanctum">Companion tool: sanctum<a class="headerlink" href="#companion-tool-sanctum" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/zume-editor-dev/sanctum"><strong>sanctum</strong></a> is a separate,
+optional, open-source companion that emits exactly this result format, so it
+drops into <code>analyzer_tools</code> with no glue. It is <strong>authorized-scope and
+non-destructive</strong> — it never exploits, extracts data, bypasses authentication or
+causes a denial of service — and every active run is refused unless you pass
+<code>--i-am-authorized</code>. It offers three modes:</p>
+<ul>
+<li><strong>Recon</strong> (<code>--scope</code>): TCP <strong>connect</strong> host discovery and port enumeration
+  with a banner grab — no raw sockets, no SYN scan, no exploitation.</li>
+<li><strong>Offline file analysis</strong> (<code>--file</code>, no network): file type, CRC32 / MD5 /
+  SHA-1 / SHA-256, entropy and strings, plus a <code>.pcap</code> / <code>.pcapng</code> summary
+  (endpoints, services, plaintext credentials, TLS / QUIC SNI).</li>
+<li><strong>Web diagnostics</strong> (<code>--web</code>, non-destructive): missing / weak security
+  headers, cookie flags, software disclosure and transport posture; an optional
+  same-origin <strong>crawl</strong>; <strong>existence-only</strong> active checks (reflected XSS, SQL and
+  OS-command injection, path traversal, CRLF / response-header injection, open
+  redirect, method and sensitive-path enumeration); bounded, non-destructive
+  <strong>fuzzing</strong>; and <strong>authenticated</strong> scanning with a session you supply. It
+  confirms a weakness without weaponising it — a time-based check proves a flaw
+  exists via a measured delay; it never reads data.</li>
+</ul>
+<p>Point one or more analyzers at it:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>file</code> analyzer is passive (it reads a local file and sends nothing), so it
+needs no authorization flag; <code>recon</code> and <code>web</code> make active requests and are
+refused without <code>--i-am-authorized</code>. See the
+<a href="https://github.com/zume-editor-dev/sanctum">sanctum README</a> for the full option
+set and its safety design.</p>
 
 
 
