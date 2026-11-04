@@ -55,8 +55,53 @@ MCP クライアントはサーバーを「コマンド」として起動しま�
     }
     ```
 
-サーバー項目に `env` ブロックを足すと、触れる範囲を制限できます。下記
+サーバー項目に `env` ブロックを足すと、任意ツールを有効化したり、サーバーが触れる
+範囲を制限したりできます。下記 [環境変数](#env) と
 [AI が触れる範囲を制限する](#sandbox) を参照。
+
+## 環境変数 {#env}
+
+各種の任意機能は、サーバーの `env` ブロックに環境変数を設定するまで**すべて無効**です。
+これらの外部ツールは同梱していません。ご自身で導入し、変数にそのパスを指定してください。
+
+| 変数 | 有効になる機能 | 値の例 |
+| --- | --- | --- |
+| `ZUME_GHIDRA_HOME` | `decompile` ツール — ローカルの [Ghidra](https://ghidra-sre.org/)（ヘッドレス）によるネイティブ（C）逆コンパイル。JDK（`JAVA_HOME`）が必要。 | `C:\ghidra_12.1.4_PUBLIC` |
+| `JAVA_HOME` | Ghidra（および CFR）が使う JDK。自動検出できないときに設定。 | `C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot` |
+| `ZUME_ILSPY` | `il_types` / `il_decompile`（.NET / managed）。`ilspycmd` のパス、または `PATH` から探す `1`。 | `1` |
+| `ZUME_ILSPY_CACHE` | ILSpy の結果キャッシュ先（任意。再実行を高速化）。 | `C:\Tools\zume\ilspy-cache` |
+| `ZUME_CFR` | `java_decompile`（Java → ソース）— ダウンロードした CFR の `.jar` のパス。（`javap` バイトコードモードは CFR 不要） | `C:\Tools\cfr\cfr-0.152.jar` |
+| `ZUME_CFR_CACHE` | CFR の結果キャッシュ先（任意）。 | `C:\Tools\zume\cfr-cache` |
+| `ZUME_ANALYZER_TOOLS` | `analyze_run` ツール — 外部セキュリティアナライザを `name = command` 行で設定（[外部セキュリティアナライザー](security.md#external-security-analyzer)参照）。 | 下記参照 |
+| `ZUME_MCP_ROOTS` / `ZUME_MCP_READONLY` | サーバーのサンドボックス — [AI が触れる範囲を制限する](#sandbox)。 | — |
+
+`ZUME_ANALYZER_TOOLS` は **1 行につき 1 エントリ**（`name = command`。JSON では改行を
+`\n` で表記）。`{target}` は渡すスコープ／ファイル、`{out}` はツールが JSON 結果を書き出す
+パスです。Ghidra・ILSpy・CFR と [sanctum](security.md#companion-tool-sanctum) アナライザ
+を有効化した `env` ブロックの例（パスはご自身の環境に置き換えてください）：
+
+```json
+{
+  "mcpServers": {
+    "zume": {
+      "type": "stdio",
+      "command": "C:\\Tools\\zume\\zume-mcp.exe",
+      "args": [],
+      "env": {
+        "ZUME_GHIDRA_HOME": "C:\\ghidra_12.1.4_PUBLIC",
+        "JAVA_HOME": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.4.101-hotspot",
+        "ZUME_ILSPY": "1",
+        "ZUME_ILSPY_CACHE": "C:\\Tools\\zume\\ilspy-cache",
+        "ZUME_CFR": "C:\\Tools\\cfr\\cfr-0.152.jar",
+        "ZUME_ANALYZER_TOOLS": "recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\""
+      }
+    }
+  }
+}
+```
+
+各実行ファイルは `PATH` になければフルパス（例 `C:\\Tools\\sanctum\\sanctum.exe`）で
+指定します。macOS / Linux でも同じキーを POSIX パスで使えます。
 
 ## ツール一覧 {#tools}
 

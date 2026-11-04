@@ -59,8 +59,56 @@ An MCP client launches the server as a command. Point it at `zume-mcp`:
     }
     ```
 
-Add an `env` block to the server entry to scope what it can touch — see
+Add an `env` block to the server entry to turn on the optional tools and to
+scope what the server can touch — see [Environment variables](#env) and
 [Restrict what the AI can touch](#sandbox) below.
+
+## Environment variables {#env}
+
+Every optional capability is **off** until you turn it on with an environment
+variable in the server's `env` block. None of these external tools is bundled —
+you install them yourself and point the variable at them.
+
+| Variable | What it enables | Example value |
+| --- | --- | --- |
+| `ZUME_GHIDRA_HOME` | The `decompile` tool — native (C) decompilation via a local [Ghidra](https://ghidra-sre.org/) headless install. Needs a JDK (`JAVA_HOME`). | `C:\ghidra_12.1.4_PUBLIC` |
+| `JAVA_HOME` | The JDK that Ghidra (and CFR) run on. Set it when a JDK is not found automatically. | `C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot` |
+| `ZUME_ILSPY` | The `il_types` / `il_decompile` tools (.NET / managed). The path of `ilspycmd`, or `1` to find it on `PATH`. | `1` |
+| `ZUME_ILSPY_CACHE` | Where ILSpy results are cached (optional; speeds up repeat decompiles). | `C:\Tools\zume\ilspy-cache` |
+| `ZUME_CFR` | The `java_decompile` tool (Java → source) — the path of a CFR `.jar` you downloaded. (`javap` bytecode mode needs no CFR.) | `C:\Tools\cfr\cfr-0.152.jar` |
+| `ZUME_CFR_CACHE` | Where CFR results are cached (optional). | `C:\Tools\zume\cfr-cache` |
+| `ZUME_ANALYZER_TOOLS` | The `analyze_run` tool — external security analyzers, as `name = command` lines (see [External security analyzer](security.md#external-security-analyzer)). | see below |
+| `ZUME_MCP_ROOTS` / `ZUME_MCP_READONLY` | Sandbox the server — [Restrict what the AI can touch](#sandbox). | — |
+
+`ZUME_ANALYZER_TOOLS` takes one `name = command` entry **per line** (a newline is
+written `\n` in JSON); `{target}` is the scope or file you pass, and `{out}` is a
+path the tool writes its JSON result to. A full `env` block — here enabling
+Ghidra, ILSpy, CFR and the [sanctum](security.md#companion-tool-sanctum)
+analyzer (replace the paths with your own):
+
+```json
+{
+  "mcpServers": {
+    "zume": {
+      "type": "stdio",
+      "command": "C:\\Tools\\zume\\zume-mcp.exe",
+      "args": [],
+      "env": {
+        "ZUME_GHIDRA_HOME": "C:\\ghidra_12.1.4_PUBLIC",
+        "JAVA_HOME": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.4.101-hotspot",
+        "ZUME_ILSPY": "1",
+        "ZUME_ILSPY_CACHE": "C:\\Tools\\zume\\ilspy-cache",
+        "ZUME_CFR": "C:\\Tools\\cfr\\cfr-0.152.jar",
+        "ZUME_ANALYZER_TOOLS": "recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\""
+      }
+    }
+  }
+}
+```
+
+Use the full path to each executable (e.g. `C:\\Tools\\sanctum\\sanctum.exe`)
+unless it is on your `PATH`. On macOS / Linux the same keys apply with POSIX
+paths.
 
 ## Tools {#tools}
 

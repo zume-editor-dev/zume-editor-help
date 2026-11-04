@@ -552,8 +552,17 @@ emit. The `{out}` file is the source of truth, so a tool that exits non-zero but
 still wrote results is read normally.
 
 **From an AI agent.** The [MCP server](mcp.md#tools) exposes the same as the
-`analyze_run` tool, off unless the `ZUME_ANALYZER_TOOLS` environment variable
-configures an analyzer in the same `name = command` form.
+`analyze_run` tool. It is off until the `ZUME_ANALYZER_TOOLS` environment
+variable configures an analyzer, in the same `name = command` form — one entry
+per line, with each newline written `\n` in JSON. Set it in the MCP server's
+`env` block, for example:
+
+```json
+"ZUME_ANALYZER_TOOLS": "web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""
+```
+
+See [Environment variables](mcp.md#env) for the full `env` block and the other
+optional-tool variables.
 
 ### Companion tool: sanctum
 
@@ -578,16 +587,27 @@ causes a denial of service — and every active run is refused unless you pass
   confirms a weakness without weaponising it — a time-based check proves a flaw
   exists via a measured delay; it never reads data.
 
-Point one or more analyzers at it:
+Point one or more analyzers at it. In **Tools → Settings…** (the **Security
+analyzers** section) add one `name = command` per row:
+
+```text
+web   = sanctum --web "{target}" --crawl --active --i-am-authorized --json "{out}"
+recon = sanctum --scope "{target}" --json "{out}" --i-am-authorized
+file  = sanctum --file "{target}" --json "{out}"
+```
+
+The same thing written directly in `settings.json` (each newline becomes `\n`):
 
 ```json
 {
-  "analyzer_tools": "recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"
+  "analyzer_tools": "web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""
 }
 ```
 
-The `file` analyzer is passive (it reads a local file and sends nothing), so it
-needs no authorization flag; `recon` and `web` make active requests and are
-refused without `--i-am-authorized`. See the
+Use the bare name `sanctum` when it is on your `PATH`, or the full path to the
+executable (e.g. `C:\Tools\sanctum\sanctum.exe`). The `file` analyzer is passive
+(it reads a local file and sends nothing), so it needs no authorization flag;
+`recon` and `web` make active requests and are refused without
+`--i-am-authorized`. See the
 [sanctum README](https://github.com/zume-editor-dev/sanctum) for the full option
 set and its safety design.

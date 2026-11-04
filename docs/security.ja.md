@@ -513,8 +513,16 @@ JSON を直接編集せずに設定することもできます。**ツール →
 `{out}` ファイルが真実の源なので、非ゼロ終了でも結果を書き出していれば正常に読まれます。
 
 **AI エージェントから。** [MCP サーバー](mcp.md#tools) は同じ機能を `analyze_run`
-ツールとして提供します。`ZUME_ANALYZER_TOOLS` 環境変数に同じ `name = command` 形式で
-アナライザを設定するまでは無効です。
+ツールとして提供します。`ZUME_ANALYZER_TOOLS` 環境変数に同じ `name = command` 形式
+（1 行につき 1 エントリ、JSON では改行を `\n` で表記）でアナライザを設定するまでは
+無効です。MCP サーバーの `env` ブロックに、例えば次のように設定します：
+
+```json
+"ZUME_ANALYZER_TOOLS": "web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""
+```
+
+`env` ブロック全体と他の任意ツール用の変数は
+[環境変数](mcp.md#env) を参照してください。
 
 ### コンパニオンツール: sanctum
 
@@ -537,15 +545,25 @@ JSON を直接編集せずに設定することもできます。**ツール →
   セッションでの**認証付き**スキャン。脆弱性は武器化せずに確認します（時間ベースの
   チェックは測定された遅延で存在を示すだけで、データは読みません）。
 
-1 つ以上のアナライザを sanctum に向けます：
+1 つ以上のアナライザを sanctum に向けます。**ツール → 設定…**（**セキュリティ
+アナライザー**セクション）に 1 行＝ 1 エントリ（`name = command`）で追加します：
+
+```text
+web   = sanctum --web "{target}" --crawl --active --i-am-authorized --json "{out}"
+recon = sanctum --scope "{target}" --json "{out}" --i-am-authorized
+file  = sanctum --file "{target}" --json "{out}"
+```
+
+`settings.json` に直接書く場合（改行は `\n`）：
 
 ```json
 {
-  "analyzer_tools": "recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"
+  "analyzer_tools": "web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""
 }
 ```
 
-`file` アナライザは受動的（ローカルファイルを読むだけで何も送信しません）なので認可フラグは
-不要です。`recon` と `web` は能動的なリクエストを行うため、`--i-am-authorized` がないと
-拒否されます。全オプションと安全設計は
-[sanctum の README](https://github.com/zume-editor-dev/sanctum) を参照してください。
+`sanctum` が `PATH` にあれば名前だけ、なければ実行ファイルのフルパス
+（例 `C:\Tools\sanctum\sanctum.exe`）を指定します。`file` アナライザは受動的
+（ローカルファイルを読むだけで何も送信しません）なので認可フラグは不要です。`recon` と
+`web` は能動的なリクエストを行うため、`--i-am-authorized` がないと拒否されます。全オプション
+と安全設計は [sanctum の README](https://github.com/zume-editor-dev/sanctum) を参照してください。
