@@ -1022,6 +1022,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境変数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1432,6 +1443,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        環境変数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1624,8 +1646,87 @@ HTTPS 到達を、すべてエディター本体の実績あるエンジン経�
 </div>
 </div>
 </div>
-<p>サーバー項目に <code>env</code> ブロックを足すと、触れる範囲を制限できます。下記
+<p>サーバー項目に <code>env</code> ブロックを足すと、任意ツールを有効化したり、サーバーが触れる
+範囲を制限したりできます。下記 <a href="#env">環境変数</a> と
 <a href="#sandbox">AI が触れる範囲を制限する</a> を参照。</p>
+<h2 id="env">環境変数<a class="headerlink" href="#env" title="Permanent link">&para;</a></h2>
+<p>各種の任意機能は、サーバーの <code>env</code> ブロックに環境変数を設定するまで<strong>すべて無効</strong>です。
+これらの外部ツールは同梱していません。ご自身で導入し、変数にそのパスを指定してください。</p>
+<table>
+<thead>
+<tr>
+<th>変数</th>
+<th>有効になる機能</th>
+<th>値の例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZUME_GHIDRA_HOME</code></td>
+<td><code>decompile</code> ツール — ローカルの <a href="https://ghidra-sre.org/">Ghidra</a>（ヘッドレス）によるネイティブ（C）逆コンパイル。JDK（<code>JAVA_HOME</code>）が必要。</td>
+<td><code>C:\ghidra_12.1.4_PUBLIC</code></td>
+</tr>
+<tr>
+<td><code>JAVA_HOME</code></td>
+<td>Ghidra（および CFR）が使う JDK。自動検出できないときに設定。</td>
+<td><code>C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ILSPY</code></td>
+<td><code>il_types</code> / <code>il_decompile</code>（.NET / managed）。<code>ilspycmd</code> のパス、または <code>PATH</code> から探す <code>1</code>。</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ILSPY_CACHE</code></td>
+<td>ILSpy の結果キャッシュ先（任意。再実行を高速化）。</td>
+<td><code>C:\Tools\zume\ilspy-cache</code></td>
+</tr>
+<tr>
+<td><code>ZUME_CFR</code></td>
+<td><code>java_decompile</code>（Java → ソース）— ダウンロードした CFR の <code>.jar</code> のパス。（<code>javap</code> バイトコードモードは CFR 不要）</td>
+<td><code>C:\Tools\cfr\cfr-0.152.jar</code></td>
+</tr>
+<tr>
+<td><code>ZUME_CFR_CACHE</code></td>
+<td>CFR の結果キャッシュ先（任意）。</td>
+<td><code>C:\Tools\zume\cfr-cache</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ANALYZER_TOOLS</code></td>
+<td><code>analyze_run</code> ツール — 外部セキュリティアナライザを <code>name = command</code> 行で設定（<a href="../security/#external-security-analyzer">外部セキュリティアナライザー</a>参照）。</td>
+<td>下記参照</td>
+</tr>
+<tr>
+<td><code>ZUME_MCP_ROOTS</code> / <code>ZUME_MCP_READONLY</code></td>
+<td>サーバーのサンドボックス — <a href="#sandbox">AI が触れる範囲を制限する</a>。</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>ZUME_ANALYZER_TOOLS</code> は <strong>1 行につき 1 エントリ</strong>（<code>name = command</code>。JSON では改行を
+<code>\n</code> で表記）。<code>{target}</code> は渡すスコープ／ファイル、<code>{out}</code> はツールが JSON 結果を書き出す
+パスです。Ghidra・ILSpy・CFR と <a href="../security/#companion-tool-sanctum">sanctum</a> アナライザ
+を有効化した <code>env</code> ブロックの例（パスはご自身の環境に置き換えてください）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stdio"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\zume\\zume-mcp.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"ZUME_GHIDRA_HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\ghidra_12.1.4_PUBLIC"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"JAVA_HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.4.101-hotspot"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ILSPY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ILSPY_CACHE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\zume\\ilspy-cache"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_CFR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\cfr\\cfr-0.152.jar"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ANALYZER_TOOLS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\""</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>各実行ファイルは <code>PATH</code> になければフルパス（例 <code>C:\\Tools\\sanctum\\sanctum.exe</code>）で
+指定します。macOS / Linux でも同じキーを POSIX パスで使えます。</p>
 <h2 id="tools">ツール一覧<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
 <p><strong>ファイル / テキスト / Hex / 検索 / 差分</strong>（ローカルディスク）:</p>
 <table>

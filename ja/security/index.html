@@ -2354,8 +2354,13 @@ MCP ツール <code>entropy</code> も同じ系列を返します。</p>
 <p>未知のフィールドは無視され、欠けたフィールドは既定値になるため、出力は容易です。
 <code>{out}</code> ファイルが真実の源なので、非ゼロ終了でも結果を書き出していれば正常に読まれます。</p>
 <p><strong>AI エージェントから。</strong> <a href="../mcp/#tools">MCP サーバー</a> は同じ機能を <code>analyze_run</code>
-ツールとして提供します。<code>ZUME_ANALYZER_TOOLS</code> 環境変数に同じ <code>name = command</code> 形式で
-アナライザを設定するまでは無効です。</p>
+ツールとして提供します。<code>ZUME_ANALYZER_TOOLS</code> 環境変数に同じ <code>name = command</code> 形式
+（1 行につき 1 エントリ、JSON では改行を <code>\n</code> で表記）でアナライザを設定するまでは
+無効です。MCP サーバーの <code>env</code> ブロックに、例えば次のように設定します：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"ZUME_ANALYZER_TOOLS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""</span>
+</code></pre></div>
+<p><code>env</code> ブロック全体と他の任意ツール用の変数は
+<a href="../mcp/#env">環境変数</a> を参照してください。</p>
 <h3 id="sanctum">コンパニオンツール: sanctum<a class="headerlink" href="#sanctum" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/zume-editor-dev/sanctum"><strong>sanctum</strong></a> は、別個・任意・
 オープンソースのコンパニオンツールで、まさにこの結果フォーマットを出力するため、
@@ -2376,15 +2381,22 @@ MCP ツール <code>entropy</code> も同じ系列を返します。</p>
   セッションでの<strong>認証付き</strong>スキャン。脆弱性は武器化せずに確認します（時間ベースの
   チェックは測定された遅延で存在を示すだけで、データは読みません）。</li>
 </ul>
-<p>1 つ以上のアナライザを sanctum に向けます：</p>
+<p>1 つ以上のアナライザを sanctum に向けます。<strong>ツール → 設定…</strong>（<strong>セキュリティ
+アナライザー</strong>セクション）に 1 行＝ 1 エントリ（<code>name = command</code>）で追加します：</p>
+<div class="highlight"><pre><span></span><code>web   = sanctum --web "{target}" --crawl --active --i-am-authorized --json "{out}"
+recon = sanctum --scope "{target}" --json "{out}" --i-am-authorized
+file  = sanctum --file "{target}" --json "{out}"
+</code></pre></div>
+<p><code>settings.json</code> に直接書く場合（改行は <code>\n</code>）：</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"</span>
+<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>file</code> アナライザは受動的（ローカルファイルを読むだけで何も送信しません）なので認可フラグは
-不要です。<code>recon</code> と <code>web</code> は能動的なリクエストを行うため、<code>--i-am-authorized</code> がないと
-拒否されます。全オプションと安全設計は
-<a href="https://github.com/zume-editor-dev/sanctum">sanctum の README</a> を参照してください。</p>
+<p><code>sanctum</code> が <code>PATH</code> にあれば名前だけ、なければ実行ファイルのフルパス
+（例 <code>C:\Tools\sanctum\sanctum.exe</code>）を指定します。<code>file</code> アナライザは受動的
+（ローカルファイルを読むだけで何も送信しません）なので認可フラグは不要です。<code>recon</code> と
+<code>web</code> は能動的なリクエストを行うため、<code>--i-am-authorized</code> がないと拒否されます。全オプション
+と安全設計は <a href="https://github.com/zume-editor-dev/sanctum">sanctum の README</a> を参照してください。</p>
 
 
 

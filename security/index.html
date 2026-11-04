@@ -2393,8 +2393,14 @@ the finding gives one); any other row copies its text.</p>
 emit. The <code>{out}</code> file is the source of truth, so a tool that exits non-zero but
 still wrote results is read normally.</p>
 <p><strong>From an AI agent.</strong> The <a href="../mcp/#tools">MCP server</a> exposes the same as the
-<code>analyze_run</code> tool, off unless the <code>ZUME_ANALYZER_TOOLS</code> environment variable
-configures an analyzer in the same <code>name = command</code> form.</p>
+<code>analyze_run</code> tool. It is off until the <code>ZUME_ANALYZER_TOOLS</code> environment
+variable configures an analyzer, in the same <code>name = command</code> form — one entry
+per line, with each newline written <code>\n</code> in JSON. Set it in the MCP server's
+<code>env</code> block, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"ZUME_ANALYZER_TOOLS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""</span>
+</code></pre></div>
+<p>See <a href="../mcp/#env">Environment variables</a> for the full <code>env</code> block and the other
+optional-tool variables.</p>
 <h3 id="companion-tool-sanctum">Companion tool: sanctum<a class="headerlink" href="#companion-tool-sanctum" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/zume-editor-dev/sanctum"><strong>sanctum</strong></a> is a separate,
 optional, open-source companion that emits exactly this result format, so it
@@ -2417,14 +2423,22 @@ causes a denial of service — and every active run is refused unless you pass
   confirms a weakness without weaponising it — a time-based check proves a flaw
   exists via a measured delay; it never reads data.</li>
 </ul>
-<p>Point one or more analyzers at it:</p>
+<p>Point one or more analyzers at it. In <strong>Tools → Settings…</strong> (the <strong>Security
+analyzers</strong> section) add one <code>name = command</code> per row:</p>
+<div class="highlight"><pre><span></span><code>web   = sanctum --web "{target}" --crawl --active --i-am-authorized --json "{out}"
+recon = sanctum --scope "{target}" --json "{out}" --i-am-authorized
+file  = sanctum --file "{target}" --json "{out}"
+</code></pre></div>
+<p>The same thing written directly in <code>settings.json</code> (each newline becomes <code>\n</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"</span>
+<span class="w">  </span><span class="nt">"analyzer_tools"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\"\nrecon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\""</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>The <code>file</code> analyzer is passive (it reads a local file and sends nothing), so it
-needs no authorization flag; <code>recon</code> and <code>web</code> make active requests and are
-refused without <code>--i-am-authorized</code>. See the
+<p>Use the bare name <code>sanctum</code> when it is on your <code>PATH</code>, or the full path to the
+executable (e.g. <code>C:\Tools\sanctum\sanctum.exe</code>). The <code>file</code> analyzer is passive
+(it reads a local file and sends nothing), so it needs no authorization flag;
+<code>recon</code> and <code>web</code> make active requests and are refused without
+<code>--i-am-authorized</code>. See the
 <a href="https://github.com/zume-editor-dev/sanctum">sanctum README</a> for the full option
 set and its safety design.</p>
 
