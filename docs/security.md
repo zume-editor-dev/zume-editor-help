@@ -518,13 +518,21 @@ more `name = command` lines. The command may use two placeholders:
 }
 ```
 
-**Run it.** **Tools → Run Security Analyzer…** (it is disabled until
-`analyzer_tools` is set) lists the configured analyzers; pick one, enter the
-authorized **scope**, and the tool runs on a background thread. Its findings
-appear in the results panel — one row per finding (severity, kind, target,
-title, detail). A finding that points at an **evidence file** opens it when you
-click the row (at a line if the finding gives one); any other row copies its
-text.
+Or configure them without editing JSON by hand: **Tools → Settings…** has a
+**Security analyzers** section where each analyzer is an editable
+`name = command` row (and the Ghidra / ILSpy paths are editable boxes there
+too). A long value scrolls on one line instead of wrapping, and **Clear** asks
+for confirmation before erasing. Your edits are saved back to `settings.json`.
+
+**Run it.** **Tools → Run Security Analyzer…** (it is disabled until an analyzer
+is configured) lists them; pick one and enter the authorized **scope** — or,
+when the active tab is a local file, run the analyzer on **that file** (its path
+becomes `{target}`, and the editor records the file's SHA-256 so the findings
+are tied to the exact bytes). The tool runs on a background thread, and its
+findings appear in the results panel **grouped by severity** with colour
+badges — one row per finding (severity, kind, target, title, detail). A finding
+that points at an **evidence file** opens it when you click the row (at a line if
+the finding gives one); any other row copies its text.
 
 **Result format.** Your tool must write a small JSON document to `{out}`:
 
@@ -546,3 +554,40 @@ still wrote results is read normally.
 **From an AI agent.** The [MCP server](mcp.md#tools) exposes the same as the
 `analyze_run` tool, off unless the `ZUME_ANALYZER_TOOLS` environment variable
 configures an analyzer in the same `name = command` form.
+
+### Companion tool: sanctum
+
+[**sanctum**](https://github.com/zume-editor-dev/sanctum) is a separate,
+optional, open-source companion that emits exactly this result format, so it
+drops into `analyzer_tools` with no glue. It is **authorized-scope and
+non-destructive** — it never exploits, extracts data, bypasses authentication or
+causes a denial of service — and every active run is refused unless you pass
+`--i-am-authorized`. It offers three modes:
+
+- **Recon** (`--scope`): TCP **connect** host discovery and port enumeration
+  with a banner grab — no raw sockets, no SYN scan, no exploitation.
+- **Offline file analysis** (`--file`, no network): file type, CRC32 / MD5 /
+  SHA-1 / SHA-256, entropy and strings, plus a `.pcap` / `.pcapng` summary
+  (endpoints, services, plaintext credentials, TLS / QUIC SNI).
+- **Web diagnostics** (`--web`, non-destructive): missing / weak security
+  headers, cookie flags, software disclosure and transport posture; an optional
+  same-origin **crawl**; **existence-only** active checks (reflected XSS, SQL and
+  OS-command injection, path traversal, CRLF / response-header injection, open
+  redirect, method and sensitive-path enumeration); bounded, non-destructive
+  **fuzzing**; and **authenticated** scanning with a session you supply. It
+  confirms a weakness without weaponising it — a time-based check proves a flaw
+  exists via a measured delay; it never reads data.
+
+Point one or more analyzers at it:
+
+```json
+{
+  "analyzer_tools": "recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --active --json \"{out}\" --i-am-authorized"
+}
+```
+
+The `file` analyzer is passive (it reads a local file and sends nothing), so it
+needs no authorization flag; `recon` and `web` make active requests and are
+refused without `--i-am-authorized`. See the
+[sanctum README](https://github.com/zume-editor-dev/sanctum) for the full option
+set and its safety design.
