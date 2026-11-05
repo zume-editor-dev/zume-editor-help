@@ -73,6 +73,11 @@ plugins:
           build: true
           nav_translations:
             Editing: 編集
+        - locale: zh
+          name: 简体中文
+          build: true
+          nav_translations:
+            Editing: 编辑
 
 nav:
   - index.md
