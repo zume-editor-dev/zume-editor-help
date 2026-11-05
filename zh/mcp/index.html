@@ -1,0 +1,2422 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation and help for Zume Editor - a fast, native text, code and hex editor for Windows, macOS and Linux, built for very large files.">
+      
+      
+      
+        <link rel="canonical" href="https://zume-editor-dev.github.io/zume-editor-help/zh/mcp/">
+      
+      
+        <link rel="prev" href="../automation/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+        
+          <link rel="alternate" href="../../mcp/" hreflang="en">
+        
+          <link rel="alternate" href="../../ja/mcp/" hreflang="ja">
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>MCP（AI 集成） - Zume Editor Help</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mcpai" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Zume Editor Help" class="md-header__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zume Editor Help
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MCP（AI 集成）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../mcp/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/mcp/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zume-editor-dev/zume-editor-help
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Zume Editor Help" class="md-nav__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Zume Editor Help
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zume-editor-dev/zume-editor-help
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zume Editor 帮助
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../activation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    激活与许可
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编辑
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    编辑
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编辑
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搜索与替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/multi-cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多光标与列模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/encodings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码与行尾
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/large-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    十六进制 / 二进制编辑器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    比较与合并
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV 与数据网格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件转换与归档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    终端与 SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    远程文件（SFTP / FTP / FTPS）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clouddrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    云盘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAP（地理数据转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安全分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动化（宏与 Lua）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP（AI 集成）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP（AI 集成）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境变量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工具
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        限制 AI 可触及的范围（沙箱）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 能做什么、不能做什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        业务工作流示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="业务工作流示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        让 AI 编写 Lua 脚本（定制编辑器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为应用开发做逆向工程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="为应用开发做逆向工程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各部分如何协同
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向 Claude Code 的示例提示词
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用注意事项与警示
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI (zume-cli)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    键盘快捷键
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    隐私与安全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../updating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发行说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境变量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工具
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        限制 AI 可触及的范围（沙箱）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 能做什么、不能做什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        业务工作流示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="业务工作流示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        让 AI 编写 Lua 脚本（定制编辑器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-app-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为应用开发做逆向工程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="为应用开发做逆向工程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各部分如何协同
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向 Claude Code 的示例提示词
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用注意事项与警示
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/zume-editor-dev/zume-editor-help/edit/main/docs/mcp.zh.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="mcpai">MCP（AI 集成）<a class="headerlink" href="#mcpai" title="Permanent link">&para;</a></h1>
+<p>Zume Editor 附带一个独立的程序 <strong><code>zume-mcp</code></strong>，它充当
+<strong>MCP（Model Context Protocol）服务器</strong>。兼容的 AI 客户端（例如 Claude
+Desktop 或 Claude Code）会启动它，随后便可读取、创建和编辑文件，
+查询你在应用中配置的数据库，并使用你保存在应用内的 API 密钥通过 HTTPS
+访问外部服务——全部都经由编辑器自身的、经过测试的引擎完成。</p>
+<p><code>zume-mcp</code> 通过 stdio（标准输入 / 输出）使用 JSON-RPC 2.0 通信——它没有
+窗口，也不会自行开放任何网络端口。它随应用一同安装（在 Windows 上位于
+可执行文件旁边，在 Linux 上位于 <code>bin/</code>，在 macOS 上位于应用文件夹内部）。</p>
+<h2 id="setup">设置方法<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>MCP 客户端以命令的形式启动服务器。将其指向 <code>zume-mcp</code>：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows — 便携版 ZIP</label><label for="__tabbed_1_2">Windows — Microsoft Store / MSIX</label><label for="__tabbed_1_3">macOS / Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>将 ZIP 解压到一个你会保留的文件夹，并使用
+<code>zume-mcp.exe</code> 的完整路径作为命令：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Store（MSIX）软件包会注册一个<strong>应用执行别名</strong>，因此安装后
+你可以直接使用裸名称 <code>zume-mcp</code> —— 无需路径：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>（该别名位于你的 <code>PATH</code> 中的
+<code>%LOCALAPPDATA%\Microsoft\WindowsApps</code> 下，因此它在多次更新后依然有效。
+<code>zume-cli</code> 也以同样的方式设置了别名。）</p>
+</div>
+<div class="tabbed-block">
+<p>使用应用文件夹内部 <code>zume-mcp</code> 的完整路径（macOS），或已安装的
+<code>bin/zume-mcp</code>（Linux）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Applications/Zume Editor.app/Contents/MacOS/zume-mcp"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>在服务器条目中添加一个 <code>env</code> 块以开启可选工具，并限定服务器可触及的范围
+——参见下文的<a href="#env">环境变量</a>和
+<a href="#sandbox">限制 AI 可触及的范围</a>。</p>
+<h2 id="env">环境变量<a class="headerlink" href="#env" title="Permanent link">&para;</a></h2>
+<p>每一项可选能力在你用服务器 <code>env</code> 块中的环境变量开启之前都是<strong>关闭</strong>的。
+这些外部工具均未捆绑——你需自行安装并让变量指向它们。</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>它开启什么</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZUME_GHIDRA_HOME</code></td>
+<td><code>decompile</code> 工具——通过本地 <a href="https://ghidra-sre.org/">Ghidra</a> headless 安装进行原生（C）反编译。需要 JDK（<code>JAVA_HOME</code>）。</td>
+<td><code>C:\ghidra_12.1.4_PUBLIC</code></td>
+</tr>
+<tr>
+<td><code>JAVA_HOME</code></td>
+<td>Ghidra（及 CFR）运行所依赖的 JDK。当无法自动找到 JDK 时设置它。</td>
+<td><code>C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ILSPY</code></td>
+<td><code>il_types</code> / <code>il_decompile</code> 工具（.NET / 托管）。<code>ilspycmd</code> 的路径，或填 <code>1</code> 让其在 <code>PATH</code> 中查找。</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ILSPY_CACHE</code></td>
+<td>ILSpy 结果的缓存位置（可选；加快重复反编译）。</td>
+<td><code>C:\Tools\zume\ilspy-cache</code></td>
+</tr>
+<tr>
+<td><code>ZUME_CFR</code></td>
+<td><code>java_decompile</code> 工具（Java → 源代码）——你下载的 CFR <code>.jar</code> 的路径。（<code>javap</code> 字节码模式不需要 CFR。）</td>
+<td><code>C:\Tools\cfr\cfr-0.152.jar</code></td>
+</tr>
+<tr>
+<td><code>ZUME_CFR_CACHE</code></td>
+<td>CFR 结果的缓存位置（可选）。</td>
+<td><code>C:\Tools\zume\cfr-cache</code></td>
+</tr>
+<tr>
+<td><code>ZUME_ANALYZER_TOOLS</code></td>
+<td><code>analyze_run</code> 工具——外部安全分析器，以 <code>name = command</code> 行的形式（参见<a href="../security/#external-security-analyzer">外部安全分析器</a>）。</td>
+<td>见下文</td>
+</tr>
+<tr>
+<td><code>ZUME_MCP_ROOTS</code> / <code>ZUME_MCP_READONLY</code></td>
+<td>为服务器设置沙箱——<a href="#sandbox">限制 AI 可触及的范围</a>。</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><code>ZUME_ANALYZER_TOOLS</code> <strong>每行</strong>接受一个 <code>name = command</code> 条目（在 JSON 中换行
+写作 <code>\n</code>）；<code>{target}</code> 是你传入的范围或文件，<code>{out}</code> 是工具写入其 JSON
+结果的路径。一个完整的 <code>env</code> 块——此处开启了
+Ghidra、ILSpy、CFR 和 <a href="../security/#companion-tool-sanctum">sanctum</a>
+分析器（请将路径替换为你自己的）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stdio"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\zume\\zume-mcp.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"ZUME_GHIDRA_HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\ghidra_12.1.4_PUBLIC"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"JAVA_HOME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.4.101-hotspot"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ILSPY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ILSPY_CACHE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\zume\\ilspy-cache"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_CFR"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\cfr\\cfr-0.152.jar"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ZUME_ANALYZER_TOOLS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recon = sanctum --scope \"{target}\" --json \"{out}\" --i-am-authorized\nfile = sanctum --file \"{target}\" --json \"{out}\"\nweb = sanctum --web \"{target}\" --crawl --active --i-am-authorized --json \"{out}\""</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>对每个可执行文件使用完整路径（例如 <code>C:\\Tools\\sanctum\\sanctum.exe</code>），
+除非它已在你的 <code>PATH</code> 中。在 macOS / Linux 上同样的键适用于 POSIX 路径。</p>
+<h2 id="tools">工具<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<p><strong>文件、文本、十六进制、搜索、差异比较</strong>（本地磁盘）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_file_range</code></td>
+<td>读取文件的有界字节范围（可用于超大文件）</td>
+</tr>
+<tr>
+<td><code>file_info</code></td>
+<td>文件是否存在、其字节大小，以及识别出的类型（格式、MIME、类别）</td>
+</tr>
+<tr>
+<td><code>identify</code></td>
+<td>从文件内容（魔数签名）识别其类型：格式、MIME、类别、置信度、容器（docx / epub / jar / apk …），以及对于文档 / 图像的 <code>creator</code>（从 PDF / EXIF / PNG / OOXML / ODF 元数据读取的生产者 / 创建者）。有界读取；接受 <code>path</code> 或内联 <code>text</code></td>
+</tr>
+<tr>
+<td><code>write_file</code></td>
+<td>创建新文件，或覆盖 / 追加已有文件（文本或十六进制）</td>
+</tr>
+<tr>
+<td><code>search_in_file</code></td>
+<td>字面量或正则搜索；返回带偏移 / 行号的匹配项</td>
+</tr>
+<tr>
+<td><code>extract_strings</code></td>
+<td>可打印 ASCII 串及其字节偏移</td>
+</tr>
+<tr>
+<td><code>hex_dump</code></td>
+<td>字节范围的十六进制 + ASCII 转储</td>
+</tr>
+<tr>
+<td><code>find_bytes</code></td>
+<td>十六进制字节模式的每个偏移（前 64 MiB）</td>
+</tr>
+<tr>
+<td><code>patch_bytes</code></td>
+<td>在已有文件的某偏移处覆写字节</td>
+</tr>
+<tr>
+<td><code>replace_in_file</code></td>
+<td>替换已有文件中的所有字面量 / 正则匹配并保存</td>
+</tr>
+<tr>
+<td><code>detect_encoding</code></td>
+<td>文件的文本编码和行尾</td>
+</tr>
+<tr>
+<td><code>diff_files</code></td>
+<td>两个文件的行差异（每个 hunk 的添加 / 删除行）</td>
+</tr>
+<tr>
+<td><code>search_in_files</code></td>
+<td>对某目录下的每个文本文件进行字面量或正则搜索</td>
+</tr>
+<tr>
+<td><code>replace_in_files</code></td>
+<td>跨目录替换；默认预览，在一个事务中应用</td>
+</tr>
+<tr>
+<td><code>search_large_file</code></td>
+<td>对任意大小的文件进行流式搜索（字节偏移 + 预览）</td>
+</tr>
+<tr>
+<td><code>compare_folders</code></td>
+<td>比较两个目录树（相同 / 不同 / 仅左侧 / 仅右侧）</td>
+</tr>
+<tr>
+<td><code>list_symbols</code></td>
+<td>源文件的定义（函数、类型……）及其行号</td>
+</tr>
+<tr>
+<td><code>markdown_to_html</code></td>
+<td>将 Markdown（GFM 表格、内联格式）渲染为 HTML 文档</td>
+</tr>
+</tbody>
+</table>
+<p><strong>地图数据、转换、归档、补丁、脚本：</strong></p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geo_convert</code></td>
+<td>在 GeoJSON / WKT / KML / GPX / CSV 之间转换地图数据</td>
+</tr>
+<tr>
+<td><code>geo_measure</code></td>
+<td>GeoJSON 或 WKT 文档的大地测量长度（m）/ 面积（m²）</td>
+</tr>
+<tr>
+<td><code>geo_point</code></td>
+<td>geohash、地图瓦片 + quadkey + bbox、日本平面直角坐标系、DMS ⇄ 十进制</td>
+</tr>
+<tr>
+<td><code>geo_reproject</code></td>
+<td>在 EPSG CRS 之间重新投影 GeoJSON（PROJ）</td>
+</tr>
+<tr>
+<td><code>convert_list</code> / <code>convert_run</code></td>
+<td>列出 / 运行文件转换工具箱（base64、JSON ⇄ CSV、时间戳……）</td>
+</tr>
+<tr>
+<td><code>archive_list</code> / <code>archive_extract</code> / <code>archive_create</code></td>
+<td>列出、提取或创建 zip / tar / 7z 归档</td>
+</tr>
+<tr>
+<td><code>patch_bin</code></td>
+<td>应用或创建二进制补丁（IPS / BPS / UPS / bsdiff / VCDIFF）</td>
+</tr>
+<tr>
+<td><code>run_script</code></td>
+<td>对文件运行沙箱化的 Lua 脚本（预览，或以 <code>save</code> 写回）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>安全分析</strong>（二进制分流 / 变换 / 签名）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entropy</code></td>
+<td>香农熵（总体 + 滑动窗口 sparkline）和字节直方图——发现打包 / 加密区域</td>
+</tr>
+<tr>
+<td><code>transform</code></td>
+<td>CyberChef 风格的配方：XOR / ROT / RC4 / base58·85 / hex + 转换工具箱，在一条流水线中组合（对含糊的裸 <code>xor:</code>/<code>rc4:</code> 密钥返回 <code>warnings</code>；<code>strict: true</code> 则拒绝此类密钥）</td>
+</tr>
+<tr>
+<td><code>yara_scan</code></td>
+<td>使用实用的 YARA 规则子集扫描文件、目录或内联字节</td>
+</tr>
+<tr>
+<td><code>pe_info</code></td>
+<td>Windows EXE / DLL（PE32 / PE32+）的结构：机器类型、子系统、时间戳、链接器、ASLR / DEP / CFG 标志、.NET 和 Authenticode 的存在情况、带熵的节、导入（含延迟加载）和导出（含转发器）、带版本字符串的资源树、字符串表、对话框标题 + 控件、菜单项和清单、PDB 路径、MSVC Rich header（带校验和标志的构建来源 <code>@comp.id</code> 条目），以及任何 overlay。仅结构——不含反汇编</td>
+</tr>
+<tr>
+<td><code>elf_info</code></td>
+<td>ELF 可执行文件 / 共享对象（ELF32 / ELF64，任一字节序）的结构：类型、机器类型、入口、解释器、带熵的段和节、动态节（所需库、soname、rpath / runpath）、带版本的导入 / 导出符号、GNU build id 和加固措施（PIE、NX stack、RELRO、栈金丝雀、FORTIFY）</td>
+</tr>
+<tr>
+<td><code>macho_info</code></td>
+<td>Mach-O 映像或 fat / universal 二进制（列出每个 slice，<code>slice</code> 选取其一）的结构：CPU、文件类型、header 标志、每条 load command、带熵的段 / 节、带版本的 dylib、rpath、UUID、平台 / 最低 OS / SDK、入口、导入 / 导出符号、代码签名和加密的存在情况</td>
+</tr>
+<tr>
+<td><code>decompile</code></td>
+<td>使用本地 Ghidra 通过其 headless 运行器，将 PE / ELF / Mach-O 的某个函数（或整个文件，有上限）反编译为 C。除非 <code>ZUME_GHIDRA_HOME</code> 指向某个 Ghidra 安装，否则关闭（Ghidra 未捆绑且需要 JDK）。返回每个函数的名称、地址、签名和 C；<code>address</code> / <code>symbol</code> 选取其一（传入来自 <code>functions</code> / <code>xrefs</code> 的偏移）。结果会被缓存。Ghidra 对目标做静态分析；生成的 C 是衍生物，因此只复用许可证允许的部分。<strong>托管（.NET）</strong> 目标会被路由到 <code>il_decompile</code></td>
+</tr>
+<tr>
+<td><code>il_types</code></td>
+<td>通过本地 <a href="https://github.com/icsharpcode/ILSpy">ILSpy</a>（<code>ilspycmd</code>）给出 .NET / 托管程序集的类型清单（命名空间、类型名、种类）——<code>functions</code> 的托管对应物。除非设置了 <code>ZUME_ILSPY</code>（<code>ilspycmd</code> 的路径，或填 <code>1</code> 让其在 <code>PATH</code> 中查找），否则关闭。仅静态；反编译出的 IL 接近源代码，因此只复用许可证允许的部分</td>
+</tr>
+<tr>
+<td><code>il_decompile</code></td>
+<td>将单个 .NET 类型反编译为 C#（或用 <code>il</code> 反编译为 IL），或用 <code>out_dir</code> 将整个程序集展开为 <code>.csproj</code> 项目，通过 ILSpy 完成。除非设置了 <code>ZUME_ILSPY</code>，否则关闭。传入 <code>type</code>（来自 <code>il_types</code>）或 <code>out_dir</code>；过长的结果会溢出到文件中。结果会被缓存（<code>ZUME_ILSPY_CACHE</code>）</td>
+</tr>
+<tr>
+<td><code>java_types</code></td>
+<td>通过 JDK 的 <code>jar</code> / <code>javap</code> 给出 Java <code>.class</code> / <code>.jar</code> 的类清单——<code>functions</code> 的 Java 对应物。需要 JDK（<code>JAVA_HOME</code> / <code>PATH</code>）。仅读取类文件</td>
+</tr>
+<tr>
+<td><code>java_decompile</code></td>
+<td>通过用户提供的 <strong>CFR</strong>（将 <code>ZUME_CFR</code> 设为某个 cfr.jar）将单个 Java 类反编译为源代码，或通过 <code>javap</code> 反编译为 JVM 字节码（<code>bytecode: true</code>，不需要 CFR），或用 <code>out_dir</code> 将整个 jar 展开为源代码树。对 <code>.jar</code> 传入 <code>class</code>（来自 <code>java_types</code>）。<code>decompile</code> 会将 Java 目标指向此处。结果会被缓存（<code>ZUME_CFR_CACHE</code>）</td>
+</tr>
+<tr>
+<td><code>functions</code></td>
+<td>PE / ELF / Mach-O 的函数边界和调用图：每个函数的地址 / 文件偏移 / 大小及其发现方式、它调用的导入 / 符号 / 函数（带计数）、它加载的字符串、数据引用以及调用它的函数；可用 <code>target</code>（名称、<code>sub_&lt;hex&gt;</code>、<code>entry</code> 或地址）缩小范围。静态且基于启发式</td>
+</tr>
+<tr>
+<td><code>xrefs</code></td>
+<td>PE / ELF / Mach-O 的静态交叉引用：解码每个可执行节，并将指令使用的每个地址分类为导入（PE IAT 槽，<code>dll!function</code>）、导出 / 命名符号、PLT / stub、字符串（含其文本）、另一个代码地址或数据；给出每个目标的汇总以及引用指令，可用 <code>target</code>（名称、字符串片段或地址）缩小范围。仅静态</td>
+</tr>
+<tr>
+<td><code>disassemble</code></td>
+<td>对文件的某字节范围或内联十六进制字节生成 Capstone 列表（x86 16/32/64、ARM、Thumb、AArch64）。对 PE / ELF / Mach-O，其架构、起点（入口点，或 <code>symbol</code> 命名的导出）和虚拟地址取自 header，因此 <code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code> 报告的偏移可直接传入；原始字节需要 <code>arch</code>。仅解码器：不加载、不执行、不反编译任何内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>数据库</strong>（在应用中配置的连接，或一个 SQLite 文件）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db_list_connections</code></td>
+<td>列出已保存的 SQL 连接（仅名称；不含密码）</td>
+</tr>
+<tr>
+<td><code>db_schema</code></td>
+<td>列出某连接的表 / 视图及其列</td>
+</tr>
+<tr>
+<td><code>db_query</code></td>
+<td>在某连接上运行 SQL 并返回结果行</td>
+</tr>
+<tr>
+<td><code>nosql_list_connections</code></td>
+<td>列出已保存的 Redis / MongoDB 连接（按名称）</td>
+</tr>
+<tr>
+<td><code>nosql_command</code></td>
+<td>运行 Redis / MongoDB 命令并以 JSON 返回结果</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Git</strong>（本地仓库，只读）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git_status</code></td>
+<td>当前分支以及已暂存 / 未暂存的更改</td>
+</tr>
+<tr>
+<td><code>git_log</code></td>
+<td>提交历史（id、摘要、作者、时间），最新在前</td>
+</tr>
+<tr>
+<td><code>git_branches</code></td>
+<td>本地分支，含当前分支以及领先 / 落后情况</td>
+</tr>
+<tr>
+<td><code>git_diff</code></td>
+<td>单个文件的差异（已暂存或未暂存的那一半）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>远程文件（FTP / FTPS / SFTP）</strong>（在应用中配置的连接）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>remote_list_connections</code></td>
+<td>列出已保存的 FTP / FTPS / SFTP 连接（按名称）</td>
+</tr>
+<tr>
+<td><code>remote_ls</code></td>
+<td>列出远程目录</td>
+</tr>
+<tr>
+<td><code>remote_get</code></td>
+<td>下载远程文件（到本地文件，或返回其内容）</td>
+</tr>
+<tr>
+<td><code>remote_put</code></td>
+<td>将本地文件或内联文本上传到远程路径</td>
+</tr>
+<tr>
+<td><code>remote_delete</code></td>
+<td>删除远程文件或空目录</td>
+</tr>
+<tr>
+<td><code>remote_rename</code></td>
+<td>重命名 / 移动远程文件</td>
+</tr>
+<tr>
+<td><code>remote_mkdir</code></td>
+<td>创建远程目录</td>
+</tr>
+</tbody>
+</table>
+<p><strong>云存储</strong>（你在应用中或通过 <code>zume-cli</code> 登录的账户）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cloud_ls</code></td>
+<td>列出 Dropbox / Google Drive / OneDrive / Box 上的某个文件夹</td>
+</tr>
+<tr>
+<td><code>cloud_get</code></td>
+<td>从已连接的云账户下载文件</td>
+</tr>
+<tr>
+<td><code>cloud_put</code></td>
+<td>将本地文件或内联文本上传到云账户</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gen-AI 枢纽：</strong></p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>它的作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list_credentials</code></td>
+<td>列出本地存储的 API 密钥的<strong>名称</strong></td>
+</tr>
+<tr>
+<td><code>http_request</code></td>
+<td>向任意 API 发起 HTTPS 请求，可选择用存储的密钥进行认证</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sandbox">限制 AI 可触及的范围（沙箱）<a class="headerlink" href="#sandbox" title="Permanent link">&para;</a></h2>
+<p>在 <code>zume-mcp</code> 进程上设置的两个环境变量，可限定文件工具的可操作范围。
+两者皆可选——如果都不设置，工具拥有完全访问权限（默认）。在你的 MCP
+客户端的服务器配置（一个 <code>env</code> 块）中设置它们，以约束某个代理。</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZUME_MCP_ROOTS</code></td>
+<td>允许的目录列表（Windows 上以 <code>;</code> 分隔，其他平台以 <code>:</code> 分隔）。除非工具的路径位于其中某个文件夹内，否则该工具会被拒绝。符号链接和 <code>..</code> 会先被解析，因此路径无法逃逸。</td>
+</tr>
+<tr>
+<td><code>ZUME_MCP_READONLY</code></td>
+<td><code>1</code> / <code>true</code> / <code>yes</code> / <code>on</code> 会使服务器变为只读：凡是会更改文件的工具（write、patch、replace、extract、create、upload，以及带 <code>save</code> 的 <code>run_script</code>）都会被拒绝。读取仍然有效。</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"ZUME_MCP_ROOTS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\work\\project"</span><span class="p">,</span><span class="w"> </span><span class="nt">"ZUME_MCP_READONLY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>被拒绝的请求会以普通的工具错误形式返回，而非崩溃。沙箱涵盖本地文件工具；
+数据库、远程文件、云和 <code>http_request</code> 工具各有其自身规则（已保存的连接、
+只读数据库配置、仅 HTTPS）。</p>
+<h2 id="ai">AI 能做什么、不能做什么<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h2>
+<p>AI <strong>仅</strong>通过上述工具行动。</p>
+<p><strong>它能够：</strong></p>
+<ul>
+<li><strong>读取和检查</strong>你的账户可以读取的任何文件——文本、日志、二进制。</li>
+<li><strong>创建、覆盖、追加和按字节打补丁文件</strong>（<code>write_file</code>、
+  <code>replace_in_file</code>、<code>patch_bytes</code>）。这些是真实的写入操作。</li>
+<li><strong>查询你的数据库。</strong> 它可以列出你在应用中配置的 SQL 连接
+  （<code>db_list_connections</code>）、检查某个 schema（<code>db_schema</code>）并运行 SQL
+  （<code>db_query</code>）——针对已保存的按名称指定的连接，或按路径指定的 SQLite 文件。
+  密码来自操作系统凭据存储，绝不会展示给 AI。</li>
+<li><strong>通过 FTP / FTPS / SFTP 操作远程文件</strong>，使用你在应用中配置的连接
+  （<code>remote_ls</code> / <code>remote_get</code> / <code>remote_put</code> /
+  <code>remote_delete</code> / <code>remote_rename</code> / <code>remote_mkdir</code>）。密码来自操作系统
+  凭据存储。对于 <strong>SFTP</strong>，服务器的主机密钥必须已被信任
+  （在编辑器中连接一次）；未知或已更改的密钥会被拒绝，因为无法在无界面
+  的情况下确认指纹。</li>
+<li><strong>通过 HTTPS 发送和获取数据</strong>（<code>http_request</code>，
+  GET/POST/PUT/PATCH/DELETE/HEAD），<strong>使用你在本地存储的 API 密钥进行认证</strong>，
+  <strong>按名称</strong>引用（密钥由 <code>zume-mcp</code> 注入，绝不会返回给 AI）。</li>
+</ul>
+<p><strong>它不能（这是设计使然）：</strong></p>
+<ul>
+<li><strong>打开一个应用未曾配置过的直接数据库连接</strong>——
+  <code>db_query</code> 只使用你已保存的连接或你提供的 SQLite 路径。</li>
+<li><strong>通过非 SQL 路径访问数据库</strong>——<code>http_request</code> 用于 HTTPS API；
+  数据库工具使用编辑器的 SQL 引擎（SQLite、MySQL / MariaDB、PostgreSQL、
+  SQL Server）。</li>
+<li><strong>使用专门的云盘工具</strong>——云端上传 / 下载通过
+  <a href="../cli/#cloud"><code>zume-cli cloud</code></a> 命令或编辑器的
+  <a href="../clouddrive/">CloudDrive</a> 浏览器完成，或通过 <code>http_request</code> 调用
+  提供商的 HTTPS API。</li>
+<li><strong>访问 <code>http://</code>、回环或本地网络 URL</strong>——仅允许 <code>https://</code>。</li>
+</ul>
+<h2 id="_1">设置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>将你的 MCP 客户端指向 <code>zume-mcp</code> 命令。对于使用 JSON 配置的客户端
+（例如 Claude Desktop）：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"zume-editor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zume-mcp"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>在 Windows 上，如果 <code>zume-mcp</code> 不在你的 <code>PATH</code> 中，请使用完整路径，例如
+<code>"command": "C:\\Program Files\\Zume Editor\\zume-mcp.exe"</code>。</p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store（MSIX）构建</p>
+<p><strong>Microsoft Store</strong> 构建无法用作 MCP 服务器。它的
+<code>zume-mcp</code> 安装在受保护的
+<code>C:\Program Files\WindowsApps\…</code> 文件夹下——这是一个随每次更新而变化、
+且不在你 <code>PATH</code> 中的版本专属路径——因此 MCP 客户端无法启动它。
+要在 Windows 上运行 MCP 服务器（或 <a href="../cli/">CLI</a>），
+请安装<strong>便携版 ZIP</strong>（或安装程序构建），将其解压到一个稳定的文件夹，
+并将你的客户端指向那个 <code>zume-mcp.exe</code>，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"zume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Tools\\Zume\\zume-mcp.exe"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>使用 Claude Code CLI：</p>
+<div class="highlight"><pre><span></span><code>claude mcp add zume -s user -- "C:\Tools\Zume\zume-mcp.exe"
+</code></pre></div>
+</div>
+<p>数据库工具读取你在应用的 <a href="../database/">Database</a> 工作区中设置的连接。
+用 <code>zume-cli aikey set &lt;name&gt;</code> 存储用于 <code>http_request</code> 的 API 密钥
+（参见 <a href="../cli/#aikey">CLI</a>）；AI 用 <code>list_credentials</code> 列出它们。</p>
+<h2 id="business-workflow">业务工作流示例<a class="headerlink" href="#business-workflow" title="Permanent link">&para;</a></h2>
+<p>每个示例都是你向 AI 发出的一个请求；它会自行串联各工具。</p>
+<p><strong>1. 跨代码库查找并修复</strong></p>
+<blockquote>
+<p>“找出 <code>src</code> 下仍然调用 <code>legacy_init(</code> 的每个文件，并将其改为
+<code>init(</code>。”</p>
+</blockquote>
+<p>使用 <code>search_in_file</code> + <code>replace_in_file</code>。</p>
+<p><strong>2. 将数据库表导出为 CSV</strong></p>
+<blockquote>
+<p>“连接到 <code>reporting</code> 数据库，并将本月的 <code>orders</code> 导出到
+<code>orders.csv</code>。”</p>
+</blockquote>
+<p>AI 在你已保存的 <code>reporting</code> 连接上调用 <code>db_query</code>（密码取自
+凭据存储），然后用 <code>write_file</code> 创建含这些行的 <code>orders.csv</code>。
+你在应用中标记为<strong>只读</strong>的连接会拒绝读取查询以外的任何操作。</p>
+<p><strong>3. 用 Web API 丰富文件</strong></p>
+<blockquote>
+<p>“对 <code>orders.csv</code> 中的每一行，从我们的 REST API 查询状态并将结果写入
+<code>orders_enriched.csv</code>。”</p>
+</blockquote>
+<p>AI 读取文件，用 <code>http_request</code> 调用你的 API（使用存储的密钥认证），
+并用 <code>write_file</code> 写入一个新文件。</p>
+<p><strong>4. 将文件上传到云盘</strong></p>
+<blockquote>
+<p>“将 <code>report.pdf</code> 上传到我的 Dropbox <code>/reports</code> 文件夹。”</p>
+</blockquote>
+<p>AI 读取文件，并用存储的令牌对 Dropbox 内容 API 发起 <code>http_request</code>。
+（如需交互式浏览，请使用 <a href="../cli/#cloud"><code>zume-cli cloud</code></a>
+或编辑器的 <a href="../clouddrive/">CloudDrive</a>。）</p>
+<p><strong>5. 使用托管密钥调用外部 LLM / API</strong></p>
+<blockquote>
+<p>“用 OpenAI 总结 <code>notes.md</code>，并将摘要保存为 <code>summary.md</code>。”</p>
+</blockquote>
+<p>一次性存储密钥（<code>zume-cli aikey set openai</code>）；AI 用
+<code>http_request</code> 调用 LLM 并用 <code>write_file</code> 写入结果。密钥值保留在
+你的本地凭据存储中，绝不会展示给 AI。</p>
+<p><strong>6. 在服务器上处理文件</strong></p>
+<blockquote>
+<p>“从 <code>staging</code> SFTP 连接下载 <code>/var/log/app.log</code>，找出其中的
+错误，并将清理后的副本作为 <code>/var/log/app.clean.log</code> 上传回去。”</p>
+</blockquote>
+<p>AI 用 <code>remote_get</code> 下载（通过你已保存的 <code>staging</code> 连接），
+处理文本，再用 <code>remote_put</code> 上传结果。<code>staging</code> 主机
+必须已在编辑器中被信任（SFTP）。</p>
+<h3 id="ai-lua">让 AI 编写 Lua 脚本（定制编辑器）<a class="headerlink" href="#ai-lua" title="Permanent link">&para;</a></h3>
+<p>一个强大的模式：让 AI 为重复性编辑<strong>编写一个 Zume <a href="../automation/">Lua 脚本</a></strong>，
+然后在编辑器中运行它。</p>
+<blockquote>
+<p>“编写一个 Zume Lua 脚本，用于对齐选中行中的 <code>=</code> 号，并将其
+保存为 <code>align_equals.lua</code>。”</p>
+</blockquote>
+<p>AI 用 <code>zume</code> API 起草脚本，并用 <code>write_file</code> 创建 <code>align_equals.lua</code>。
+随后你用 <strong>Script → Run Lua File</strong> 运行它，并与 AI 迭代
+直到它完全符合你的期望。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>zume-mcp</code> <strong>不</strong>执行 Lua——执行由编辑器完成，在那里每次编辑
+都可撤销——因此你自己审查并运行脚本。这让你保持掌控，
+同时仍然让 AI 为你扩展编辑器。</p>
+</div>
+<h2 id="re-app-dev">为应用开发做逆向工程<a class="headerlink" href="#re-app-dev" title="Permanent link">&para;</a></h2>
+<p>静态分析工具（<code>pe_info</code> / <code>elf_info</code> / <code>macho_info</code>、
+<code>extract_strings</code>、<code>functions</code>、<code>xrefs</code>、<code>disassemble</code>，以及可选的
+<code>decompile</code> / <code>il_types</code> / <code>il_decompile</code>）让 AI 代理能够研究现有
+程序，并帮助你构建具有类似行为的<strong>你自己的</strong>应用——
+这正是人类逆向工程师采用的同一套 <em>清点 → 定位 → 阅读 → 规约 → 重实现</em> 工作流。</p>
+<div class="admonition danger">
+<p class="admonition-title">仅对你有权分析的软件使用——你对自己的成果负责</p>
+<p><strong>仅</strong>对那些其许可证 / EULA 允许逆向工程<strong>并且</strong>你有权分析的
+可执行文件运行这些工具——你自己的构建、开源二进制，
+或条款明确允许的软件。许多商业 EULA <strong>禁止</strong>逆向工程；
+分析此类软件可能违反该合同或适用法律。确认你拥有该权利
+是<strong>你的</strong>责任。</p>
+<p>反编译和反汇编的输出是原件的<strong>衍生物</strong>。请以<strong>净室（clean-room）</strong>
+方式构建你的应用：依据你自己产出的书面<em>行为规约</em>工作，
+<strong>而不是</strong>把生成的 C / C# / IL / 汇编复制到你的代码中。</p>
+<p><strong>免责。</strong> 你用此功能创建的任何东西完全由你自己负责。
+在法律允许的最大范围内，Zume 的作者和分发者对此功能的
+使用方式或由其产出的任何东西<strong>概不承担任何责任</strong>。</p>
+</div>
+<h3 id="_2">各部分如何协同<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><img alt="你、Claude Code、zume MCP 服务器、Ghidra / ilspycmd、目标可执行文件和你的新净室应用之间的关系" loading="lazy" src="../../assets/re-app-dev.png" /></p>
+<p>Zume、Ghidra 和 ilspycmd 只对目标做静态<strong>读取</strong>——它绝不会被执行
+或加载。Ghidra 和 ilspycmd 未捆绑；只有在你安装它们并设置
+<code>ZUME_GHIDRA_HOME</code> / <code>ZUME_ILSPY</code> 后它们才会运行。</p>
+<h3 id="claude-code">面向 Claude Code 的示例提示词<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h3>
+<p>将此粘贴到已连接 zume MCP 服务器的 Claude Code 会话中，
+替换目标路径和你想要的功能：</p>
+<div class="highlight"><pre><span></span><code>You have the zume MCP server connected (static binary-analysis tools). 
+Target: C:\path\to\target.exe — I confirm I have the right to analyse this
+binary (my own build / OSS / a licence that permits reverse engineering).
+Work clean-room: produce a behavioural specification and reimplement from it;
+do NOT copy decompiled C/C#/IL or disassembly into the new code.
+
+Do this step by step, reporting findings at each stage:
+1. Inventory: run pe_info (or elf_info / macho_info) and extract_strings.
+   Summarise the feature set, the OS/library APIs it uses, the file formats,
+   URLs and error messages, and the UI (dialogs / menus). If pe_info reports
+   managed: true, it is a .NET assembly — use il_types instead of functions.
+2. Locate: I want to reimplement this feature: &lt;describe the feature&gt;. Use
+   extract_strings / search_in_file to find related strings, then functions
+   and xrefs (or il_types) to find the functions/types that use them.
+3. Read: for the key functions, use disassemble at the offsets functions /
+   xrefs reported; optionally decompile (native) or il_decompile (.NET) a
+   specific function/type. Explain inputs, outputs, side effects and errors.
+4. Specify: write a precise behavioural specification (inputs, outputs,
+   formats, edge cases, error conditions) — observed behaviour only.
+5. Reimplement: from that specification alone, implement the feature as new
+   code in &lt;your language/project&gt;, clean-room. Note anything you could not
+   determine statically (it may need runtime observation, which these tools
+   do not do).
+
+Keep everything static — never run or load the target. Flag any licensing
+concern if the binary embeds third-party libraries whose reimplementation
+their licence restricts.
+</code></pre></div>
+<p>代理在每一步都会报告；你保留<strong>行为规约</strong>和
+<strong>新代码</strong>，并丢弃原始的反编译器 / 反汇编器输出。</p>
+<h2 id="_3">使用注意事项与警示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">部分工具会更改磁盘上的文件</p>
+<p><code>write_file</code>、<code>patch_bytes</code> 和 <code>replace_in_file</code> 会<strong>创建、覆盖或
+修改文件</strong>，而且这些写入从 MCP 一侧是<strong>不可撤销</strong>的
+（不同于在编辑器窗口中所做的编辑）。只让 AI 在你信任的文件夹中工作，
+并保留备份或使用版本控制。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">数据库、远程和网络访问以你的身份代为行事</p>
+<p><code>db_query</code> 可以读取、并（除非该连接为只读）<strong>写入</strong>你
+配置的数据库；<code>remote_*</code> 工具可以读取、<strong>上传、删除和
+重命名</strong>你配置的 FTP / SFTP 服务器上的文件；<code>http_request</code> 可以向
+任意 HTTPS 端点发送数据并从中获取数据，使用你存储的密钥。
+密码和密钥值绝不会到达 AI，但这些操作以你的凭据运行。
+只配置你希望可被触及的连接和密钥，仅将 MCP 连接到你信任的客户端，
+并审查 AI 的所作所为。</p>
+</div>
+<ul>
+<li><strong>它以你的权限运行。</strong> <code>zume-mcp</code> 能读写你的用户账户所能读写的
+  任何文件，并能访问你配置的任何数据库。</li>
+<li><strong>仅 HTTPS，响应体有上限。</strong> <code>http_request</code> 拒绝非 <code>https://</code> 的 URL，
+  且响应体在 1 MiB 处被截断（通过 <code>body_truncated</code> 报告）。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../automation/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 自动化（宏与 Lua）">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                自动化（宏与 Lua）
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="下一页: CLI (zume-cli)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                CLI (zume-cli)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; SMOLT STAGE, K.K.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

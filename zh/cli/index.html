@@ -1,0 +1,2033 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation and help for Zume Editor - a fast, native text, code and hex editor for Windows, macOS and Linux, built for very large files.">
+      
+      
+      
+        <link rel="canonical" href="https://zume-editor-dev.github.io/zume-editor-help/zh/cli/">
+      
+      
+        <link rel="prev" href="../mcp/">
+      
+      
+        <link rel="next" href="../customization/">
+      
+      
+        
+          <link rel="alternate" href="../../cli/" hreflang="en">
+        
+          <link rel="alternate" href="../../ja/cli/" hreflang="ja">
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>CLI (zume-cli) - Zume Editor Help</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-zume-cli" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Zume Editor Help" class="md-header__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zume Editor Help
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI (zume-cli)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../cli/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/cli/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zume-editor-dev/zume-editor-help
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Zume Editor Help" class="md-nav__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Zume Editor Help
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zume-editor-dev/zume-editor-help
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zume Editor 帮助
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../activation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    激活与许可
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编辑
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    编辑
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编辑
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搜索与替换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/multi-cursor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多光标与列模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/vim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/encodings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码与行尾
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editing/large-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    十六进制 / 二进制编辑器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    比较与合并
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV 与数据网格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convert/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件转换与归档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal-ssh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    终端与 SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    远程文件（SFTP / FTP / FTPS）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clouddrive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    云盘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAP（地理数据转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安全分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自动化（宏与 Lua）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP（AI 集成）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI (zume-cli)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI (zume-cli)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局标志
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        退出代码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文本命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文本命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        find - 搜索单个文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search - 在多个文件中递归查找
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        replace - 在单个文件中全部替换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - 文件类型与创建者
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aikey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aikey - 生成式 AI API 密钥（用于 MCP 枢纽）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cloud - 云端网盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geo-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        geo - 地图 / 地理空间数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="geo - 地图 / 地理空间数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        格式转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - 文件转换
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z 归档
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    键盘快捷键
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    隐私与安全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../updating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发行说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全局标志
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        退出代码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文本命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文本命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        find - 搜索单个文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        search - 在多个文件中递归查找
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        replace - 在单个文件中全部替换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identify - 文件类型与创建者
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aikey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aikey - 生成式 AI API 密钥（用于 MCP 枢纽）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cloud - 云端网盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geo-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        geo - 地图 / 地理空间数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="geo - 地图 / 地理空间数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        格式转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        convert - 文件转换
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-zip-tar-7z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive - zip / tar / 7z 归档
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/zume-editor-dev/zume-editor-help/edit/main/docs/cli.zh.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="cli-zume-cli">CLI (zume-cli)<a class="headerlink" href="#cli-zume-cli" title="Permanent link">&para;</a></h1>
+<p>一个命令行伴侣程序 <code>zume-cli</code> 随应用一同发布（在 Windows 上位于可执行文件
+旁边，在 Linux 上位于 <code>bin/</code> 中，在 macOS 上位于应用文件夹中）。它复用编辑器
+自身的引擎，因此结果与图形界面一致。</p>
+<div class="admonition warning">
+<p class="admonition-title">Microsoft Store (MSIX) 版本</p>
+<p><strong>Microsoft Store</strong> 版本<strong>不</strong>支持从命令行使用 <code>zume-cli</code>。它的文件安装
+在受保护的 <code>C:\Program Files\WindowsApps\…</code> 文件夹下（一个随每次更新而
+改变、且不在你的 <code>PATH</code> 中的版本专属路径），因此 <code>zume-cli</code> 无法直接运行
+或编写脚本。要在 Windows 上使用 CLI——或
+<a href="../mcp/">MCP 服务器</a>——请改为安装<strong>便携版 ZIP</strong>（或安装程序版本），将其
+解压到一个稳定的文件夹，并从那里运行 <code>zume-cli.exe</code>。</p>
+</div>
+<div class="highlight"><pre><span></span><code>zume-cli &lt;command&gt; [arguments] [flags]
+</code></pre></div>
+<p>下列命令是<strong>完整</strong>集合。<code>zume-cli</code> 是编辑器刻意精简的无界面子集（完整工具就是
+应用本身）；它没有 <code>--version</code>，不带参数或以未知命令运行时会打印用法并以代码
+<code>2</code> 退出。</p>
+<h2 id="_1">全局标志<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>作用</th>
+<th>适用于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--regex</code></td>
+<td>将模式视为正则表达式（默认：字面量）</td>
+<td><code>find</code>、<code>search</code>、<code>replace</code></td>
+</tr>
+<tr>
+<td><code>--ignore-case</code></td>
+<td>不区分大小写匹配（默认：区分大小写）</td>
+<td><code>find</code>、<code>search</code>、<code>replace</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">退出代码<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>成功</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>运行时错误（向 stderr 打印 <code>error: &lt;message&gt;</code>——例如文件未找到、正则表达式错误）</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>用法错误（参数错误；打印用法）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">文本命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="find-"><code>find</code> - 搜索单个文件<a class="headerlink" href="#find-" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>zume-cli find &lt;pattern&gt; &lt;file&gt; [--regex] [--ignore-case]
+</code></pre></div>
+每个匹配打印一行，格式为 <code>file:line:column</code>（从 1 开始），然后是汇总
+<code>N match(es)</code>。</p>
+<h3 id="search-"><code>search</code> - 在多个文件中递归查找<a class="headerlink" href="#search-" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>zume-cli search &lt;pattern&gt; &lt;dir&gt; [glob] [--regex] [--ignore-case]
+</code></pre></div>
+递归搜索 <code>dir</code>。<code>glob</code> 可选地限制文件名（例如 <code>*.cpp</code>）。
+<code>.git</code>、<code>build</code> 和 <code>node_modules</code> 始终被跳过。每个匹配打印
+<code>file:line:column: preview</code>，然后是 <code>N match(es) in M file(s)</code>（如果达到结果
+上限则带 <code>(truncated)</code>）。</p>
+<h3 id="replace-"><code>replace</code> - 在单个文件中全部替换<a class="headerlink" href="#replace-" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>zume-cli replace &lt;pattern&gt; &lt;replacement&gt; &lt;file&gt; [--regex] [--ignore-case]
+</code></pre></div>
+替换每个匹配并就地保存文件（在 <code>--regex</code> 模式下，像 <code>$1</code> 这样的正则反向引用
+有效）。打印 <code>N replacement(s)</code>。仅当至少进行了一次替换时才会写入文件。</p>
+<h2 id="identify"><code>identify</code> - 文件类型与创建者<a class="headerlink" href="#identify" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code>zume-cli identify &lt;file&gt;
+</code></pre></div>
+根据文件内容（魔数签名，而非扩展名）识别其类型，并打印 <code>format</code>、
+<code>description</code>、<code>category</code>、<code>confidence</code>、<code>mime</code>、<code>extensions</code>、<code>container</code> 和
+<code>detail</code> 行。对于文档或图像，它还会打印 <code>producer</code> / <code>creator</code>——即写入该文件
+的软件——读取自 PDF（<code>/Producer</code>、<code>/Creator</code>）、EXIF（Software / Make / Model …）、
+PNG（<code>Software</code>）或 OOXML / ODF（<code>&lt;Application&gt;</code> / <code>&lt;meta:generator&gt;</code>）的元数据。
+只读取有限的前缀（对于 PDF，还包括其尾部）。与编辑器的
+<strong>Code → Identify File…</strong> 以及 MCP <a href="../mcp/#tools"><code>identify</code></a> 工具使用相同的引擎。</p>
+<div class="highlight"><pre><span></span><code>$ zume-cli identify report.pdf
+format: pdf
+description: PDF document
+category: document
+mime: application/pdf
+producer: Microsoft: Print To PDF
+creator: Microsoft Word
+</code></pre></div>
+<h2 id="aikey"><code>aikey</code> - 生成式 AI API 密钥（用于 MCP 枢纽）<a class="headerlink" href="#aikey" title="Permanent link">&para;</a></h2>
+<p>管理 <a href="../mcp/">MCP</a> <code>http_request</code> 工具注入的命名 API 密钥。密钥保存在操作系统的
+凭据存储中，绝不存入文件。</p>
+<p><div class="highlight"><pre><span></span><code>zume-cli aikey set &lt;name&gt; [value]     # 存储一个密钥（打印：stored '&lt;name&gt;'）
+zume-cli aikey list                   # 列出密钥名称，每行一个
+zume-cli aikey remove &lt;name&gt;          # 删除一个密钥（打印：removed '&lt;name&gt;'）
+</code></pre></div>
+如果 <code>set</code> 时省略 <code>value</code>，密钥将从标准输入读取，这样它就不会留在你的 shell
+历史记录中。</p>
+<h2 id="cloud"><code>cloud</code> - 云端网盘<a class="headerlink" href="#cloud" title="Permanent link">&para;</a></h2>
+<p>操作 <strong>Dropbox、Google Drive、OneDrive 和 Box</strong> 上的文件。刷新令牌保存在操作
+系统的凭据存储中（绝不存入文件），并与编辑器共享——在此处或在应用中登录，两边
+都生效。</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud &lt;provider&gt; login ...          # 授权并保存令牌
+zume-cli cloud &lt;provider&gt; ls [path]          # 列出一个文件夹（默认为根目录）
+zume-cli cloud &lt;provider&gt; get &lt;remote&gt; &lt;local&gt;   # 下载一个文件
+zume-cli cloud &lt;provider&gt; put &lt;local&gt; &lt;remote&gt;   # 上传一个文件
+zume-cli cloud &lt;provider&gt; logout             # 遗忘已保存的令牌
+</code></pre></div>
+<p><code>&lt;provider&gt;</code> 为 <code>dropbox</code>、<code>googledrive</code>、<code>onedrive</code> 或 <code>box</code>。<code>login</code>
+参数因提供商而异（你需要提供自己的 OAuth 应用凭据）：</p>
+<div class="highlight"><pre><span></span><code>zume-cli cloud dropbox     login &lt;app_key&gt;
+zume-cli cloud googledrive login &lt;client_id&gt; &lt;client_secret&gt;
+zume-cli cloud onedrive    login &lt;client_id&gt;
+zume-cli cloud box         login &lt;client_id&gt; &lt;client_secret&gt;
+</code></pre></div>
+<p>Dropbox 会显示一个供你粘贴回来的代码；Google / OneDrive / Box 会打开浏览器并在
+本地端口上捕获重定向（请在你的 OAuth 应用中将
+<code>http://localhost:53682/callback</code> 注册为重定向 URI）。<code>zume-cli dropbox ...</code>
+仍可作为 <code>zume-cli cloud dropbox ...</code> 的别名使用。</p>
+<h2 id="geo-"><code>geo</code> - 地图 / 地理空间数据<a class="headerlink" href="#geo-" title="Permanent link">&para;</a></h2>
+<p>复用编辑器的地理引擎（参见 <a href="../map/">MAP</a>）。文件转换会读取一个文件并将结果打印
+到 <strong>stdout</strong>；坐标可以给出为十进制度数或 DMS（例如 <code>35°41'N</code>）。</p>
+<h3 id="_4">格式转换<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>zume-cli geo geojson2wkt &lt;file&gt;
+zume-cli geo wkt2geojson &lt;file&gt;
+zume-cli geo geojson2kml &lt;file&gt;
+zume-cli geo kml2geojson &lt;file&gt;
+zume-cli geo geojson2gpx &lt;file&gt;
+zume-cli geo gpx2geojson &lt;file&gt;
+zume-cli geo geojson2csv &lt;file&gt;
+zume-cli geo csv2geojson &lt;file&gt; [lonCol latCol]
+</code></pre></div>
+<code>csv2geojson</code> 会自动检测经度/纬度表头列；如果无法检测，则传入两个<strong>从 0 开始</strong>
+的列索引（<code>lonCol latCol</code>）。</p>
+<h3 id="_5">测量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>zume-cli geo length &lt;file&gt;     # 测地线长度，单位米（输入为 GeoJSON 或 WKT）
+zume-cli geo area   &lt;file&gt;     # 测地线面积，单位平方米
+</code></pre></div>
+<h3 id="_6">坐标运算<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geohash</code></td>
+<td><code>&lt;lat&gt; &lt;lon&gt; [precision=9]</code></td>
+<td>geohash 字符串</td>
+</tr>
+<tr>
+<td><code>unhash</code></td>
+<td><code>&lt;geohash&gt;</code></td>
+<td><code>lat, lon</code></td>
+</tr>
+<tr>
+<td><code>jpr</code></td>
+<td><code>&lt;lat&gt; &lt;lon&gt; &lt;zone&gt;</code></td>
+<td><code>northing, easting</code>（日本平面直角坐标系，带 1-19 号）</td>
+</tr>
+<tr>
+<td><code>unjpr</code></td>
+<td><code>&lt;X&gt; &lt;Y&gt; &lt;zone&gt;</code></td>
+<td><code>lat, lon</code></td>
+</tr>
+<tr>
+<td><code>tile</code></td>
+<td><code>&lt;lat&gt; &lt;lon&gt; &lt;zoom&gt;</code></td>
+<td><code>z/x/y  quadkey=…  bbox=west,south,east,north</code></td>
+</tr>
+<tr>
+<td><code>dms</code></td>
+<td><code>&lt;lat&gt; &lt;lon&gt;</code></td>
+<td>十进制 <code>lat, lon</code></td>
+</tr>
+<tr>
+<td><code>reproject</code></td>
+<td><code>--from &lt;epsg&gt; --to &lt;epsg&gt; &lt;file.geojson&gt;</code></td>
+<td>重投影后的 GeoJSON（通过 PROJ）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="convert-"><code>convert</code> - 文件转换<a class="headerlink" href="#convert-" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli convert                      # 列出每个转换器 id
+zume-cli convert &lt;id&gt; &lt;in&gt; [out]      # 转换一个文件（省略 out 时输出到 stdout）
+</code></pre></div>
+<p><code>&lt;id&gt;</code> 是一个转换器，例如 <code>base64.encode</code>、<code>csv.toJson</code>、<code>json.toYaml</code>、
+<code>gzip.compress</code>、<code>bzip2.compress</code>、<code>html.toMarkdown</code>。Markdown / HTML 转 PDF
+有其自己的 id，并且总是需要一个输出文件：</p>
+<div class="highlight"><pre><span></span><code>zume-cli convert md.toPdf   notes.md   notes.pdf
+zume-cli convert html.toPdf page.html  page.pdf
+</code></pre></div>
+<p>完整列表及在编辑器内的对应功能，请参见
+<a href="../convert/">文件转换与归档</a>。</p>
+<h2 id="archive-zip-tar-7z"><code>archive</code> - zip / tar / 7z 归档<a class="headerlink" href="#archive-zip-tar-7z" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli archive list    &lt;archive&gt;                 # 列出条目
+zume-cli archive extract &lt;archive&gt; [dest-dir]      # 解压（默认：当前目录）
+zume-cli archive create  &lt;archive&gt; &lt;path&gt;...       # 从文件 / 文件夹创建
+</code></pre></div>
+<p><code>create</code> 根据扩展名选择格式：<code>.zip</code>、<code>.tar</code>、<code>.tar.gz</code> / <code>.tgz</code>、
+<code>.tar.bz2</code> / <code>.tbz2</code>、<code>.tar.xz</code> / <code>.txz</code>、<code>.7z</code>。<code>extract</code> 还可读取 <code>.rar</code> 和
+<code>.xz</code>（只读）。不支持加密归档。</p>
+<h2 id="_7">示例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>zume-cli find TODO src/main.cpp
+zume-cli search "fn\s+\w+" src --regex --ignore-case
+zume-cli replace http:// https:// config.ini
+zume-cli aikey set openai            # 然后在提示符处粘贴密钥
+zume-cli geo csv2geojson points.csv
+zume-cli geo geohash 35.68 139.76 8
+zume-cli geo reproject --from 4326 --to 3857 area.geojson
+zume-cli convert json.toYaml config.json config.yaml
+zume-cli convert md.toPdf README.md README.pdf
+zume-cli archive create site.tar.gz public/
+zume-cli archive extract bundle.7z out/
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../mcp/" class="md-footer__link md-footer__link--prev" aria-label="上一页: MCP（AI 集成）">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                MCP（AI 集成）
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../customization/" class="md-footer__link md-footer__link--next" aria-label="下一页: 自定义">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                自定义
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; SMOLT STAGE, K.K.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

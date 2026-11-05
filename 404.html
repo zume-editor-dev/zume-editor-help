@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="ja" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -17,6 +17,8 @@
           <link rel="alternate" href="/zume-editor-help/editing/vim/" hreflang="en">
         
           <link rel="alternate" href="/zume-editor-help/ja/editing/vim/" hreflang="ja">
+        
+          <link rel="alternate" href="/zume-editor-help/zh/editing/vim/" hreflang="zh">
         
       
       
@@ -88,8 +90,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="/zume-editor-help/ja/" title="Zume Editor Help" class="md-header__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="/zume-editor-help/zh/" title="Zume Editor Help" class="md-header__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
       
   <img src="/zume-editor-help/assets/logo.png" alt="logo">
 
@@ -148,7 +150,7 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="言語切り替え">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
@@ -163,6 +165,12 @@
           <li class="md-select__item">
             <a href="/zume-editor-help/ja/editing/vim/" hreflang="ja" class="md-select__link">
               日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/zume-editor-help/zh/editing/vim/" hreflang="zh" class="md-select__link">
+              简体中文
             </a>
           </li>
         
@@ -182,16 +190,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="検索">
+      <nav class="md-search__options" aria-label="查找">
         
-        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -204,7 +212,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            検索を初期化
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -216,7 +224,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/zume-editor-dev/zume-editor-help" title="リポジトリへ" class="md-source" data-md-component="source">
+        <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -250,9 +258,9 @@
 
 
 
-<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/zume-editor-help/ja/" title="Zume Editor Help" class="md-nav__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
+    <a href="/zume-editor-help/zh/" title="Zume Editor Help" class="md-nav__button md-logo" aria-label="Zume Editor Help" data-md-component="logo">
       
   <img src="/zume-editor-help/assets/logo.png" alt="logo">
 
@@ -261,7 +269,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/zume-editor-dev/zume-editor-help" title="リポジトリへ" class="md-source" data-md-component="source">
+      <a href="https://github.com/zume-editor-dev/zume-editor-help" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -281,14 +289,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Zume Editor ヘルプ
+    Zume Editor 帮助
   
 
     
@@ -308,14 +316,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/getting-started/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/getting-started/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    はじめに
+    入门
   
 
     
@@ -335,14 +343,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/installation/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    インストール
+    安装
   
 
     
@@ -362,14 +370,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/activation/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/activation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ライセンス認証
+    激活与许可
   
 
     
@@ -412,7 +420,7 @@
   <span class="md-ellipsis">
     
   
-    編集
+    编辑
   
 
     
@@ -428,7 +436,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    編集
+    编辑
   
 
           </label>
@@ -441,14 +449,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    編集
+    编辑
   
 
     
@@ -469,14 +477,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/search/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/search/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    検索と置換
+    搜索与替换
   
 
     
@@ -497,14 +505,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/multi-cursor/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/multi-cursor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    マルチカーソル &amp; カラムモード
+    多光标与列模式
   
 
     
@@ -525,14 +533,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/vim/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/vim/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Vim モード
+    Vim 模式
   
 
     
@@ -553,14 +561,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/encodings/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/encodings/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    文字コードと改行
+    编码与行尾
   
 
     
@@ -581,14 +589,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/editing/large-files/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/editing/large-files/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    大容量ファイル
+    大文件
   
 
     
@@ -616,14 +624,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/hex/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/hex/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Hex / バイナリエディター
+    十六进制 / 二进制编辑器
   
 
     
@@ -643,14 +651,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/compare/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/compare/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    比較 &amp; マージ
+    比较与合并
   
 
     
@@ -670,14 +678,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/csv/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/csv/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSV &amp; データグリッド
+    CSV 与数据网格
   
 
     
@@ -697,14 +705,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/convert/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/convert/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ファイル変換・アーカイブ
+    文件转换与归档
   
 
     
@@ -724,14 +732,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/git/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/git/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Git クライアント
+    Git 客户端
   
 
     
@@ -751,14 +759,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/terminal-ssh/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/terminal-ssh/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ターミナル &amp; SSH
+    终端与 SSH
   
 
     
@@ -778,14 +786,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/remote/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/remote/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    リモートファイル（SFTP / FTP / FTPS）
+    远程文件（SFTP / FTP / FTPS）
   
 
     
@@ -805,14 +813,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/clouddrive/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/clouddrive/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    クラウドドライブ
+    云盘
   
 
     
@@ -832,14 +840,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/database/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    データベース
+    数据库
   
 
     
@@ -859,14 +867,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/map/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/map/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    地図（地理データ変換）
+    MAP（地理数据转换）
   
 
     
@@ -886,14 +894,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/security/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/security/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    セキュリティ解析
+    安全分析
   
 
     
@@ -913,14 +921,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/automation/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/automation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    自動化（マクロ &amp; Lua）
+    自动化（宏与 Lua）
   
 
     
@@ -940,14 +948,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/mcp/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/mcp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    MCP（AI連携）
+    MCP（AI 集成）
   
 
     
@@ -967,14 +975,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/cli/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/cli/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CLI（zume-cli）
+    CLI (zume-cli)
   
 
     
@@ -994,14 +1002,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/customization/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/customization/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    カスタマイズ
+    自定义
   
 
     
@@ -1021,14 +1029,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/shortcuts/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/shortcuts/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    キーボードショートカット
+    键盘快捷键
   
 
     
@@ -1048,14 +1056,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/privacy/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/privacy/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    プライバシー &amp; セキュリティ
+    隐私与安全
   
 
     
@@ -1075,14 +1083,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/updating/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/updating/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    更新（アップデート）
+    更新
   
 
     
@@ -1102,14 +1110,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/faq/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/faq/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    よくある質問（FAQ）
+    常见问题
   
 
     
@@ -1129,14 +1137,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/troubleshooting/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/troubleshooting/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    トラブルシューティング
+    故障排查
   
 
     
@@ -1156,14 +1164,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/support/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/support/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    サポート
+    支持
   
 
     
@@ -1183,14 +1191,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/zume-editor-help/ja/release-notes/" class="md-nav__link">
+      <a href="/zume-editor-help/zh/release-notes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    リリースノート
+    发行说明
   
 
     
@@ -1216,7 +1224,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目次">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -1244,7 +1252,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  ページトップへ戻る
+  回到页面顶部
 </button>
         
       </main>
@@ -1282,7 +1290,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/zume-editor-help/", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "/zume-editor-help/assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "/zume-editor-help/", "features": ["navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.action.edit", "content.code.copy", "toc.follow"], "search": "/zume-editor-help/assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="/zume-editor-help/assets/javascripts/bundle.c21346df.min.js"></script>
