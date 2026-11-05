@@ -4,6 +4,9 @@ Welcome to the help for **Zume Editor** - a fast, native text, code and hex
 editor for **Windows, macOS and Linux**, built for very large files (10&nbsp;GB+)
 and real developer workflows.
 
+Looking for the feature overview, screenshots and downloads? Visit the official
+**[Zume Editor website](https://smolt-stage.com/home/en/zume-editor.html)**.
+
 <div class="zume-cards" markdown>
 [**Getting Started** <span>Take a quick tour</span>](getting-started.md)
 [**Installation** <span>Install on your OS</span>](installation.md)

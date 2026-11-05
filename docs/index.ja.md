@@ -4,6 +4,9 @@
 対応の高速ネイティブなテキスト・コード・バイナリエディターで、超大容量ファイル
 （10&nbsp;GB 超）や実務の開発ワークフローを想定して作られています。
 
+機能の概要・スクリーンショット・ダウンロードは、公式サイトの
+**[Zume Editor 製品ページ](https://smolt-stage.com/home/ja/zume-editor.html)** をご覧ください。
+
 <div class="zume-cards" markdown>
 [**はじめに** <span>かんたんツアー</span>](getting-started.md)
 [**インストール** <span>お使いのOSへ</span>](installation.md)
