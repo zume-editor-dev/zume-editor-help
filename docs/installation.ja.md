@@ -2,14 +2,22 @@
 
 Zume Editor は **Windows 10/11・macOS・Linux** で動作します。
 
+[Zume Editor をダウンロード](https://smolt-stage.com/home/ja/download.html){ .md-button .md-button--primary }
+
+各種ダウンロード（Windows のポータブル ZIP / インストーラー、macOS の `.dmg`、
+Linux の AppImage / DEB / RPM）は
+[ダウンロードページ](https://smolt-stage.com/home/ja/download.html) にあります。
+
 ## Windows
 
 - **Microsoft Store**（推奨） - *Zume Editor* を検索してインストール。更新は自動。
-- **スタンドアロン** - ポータブルZIPとインストーラーも公式サイトで配布しています。
+- **スタンドアロン** - ポータブルZIPとインストーラーも
+  [ダウンロードページ](https://smolt-stage.com/home/ja/download.html) で配布しています。
 
 ## macOS
 
-- 公式サイトから **`.dmg`** をダウンロードし、開いて *アプリケーション* へドラッグ。
+- [ダウンロードページ](https://smolt-stage.com/home/ja/download.html) から
+  **`.dmg`** をダウンロードし、開いて *アプリケーション* へドラッグ。
   署名・公証（notarize）済みです。
 
 ## Linux

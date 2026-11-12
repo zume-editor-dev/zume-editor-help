@@ -2,6 +2,10 @@
 
 快速浏览一遍，帮你熟悉界面。
 
+!!! tip "还没有安装 Zume Editor？"
+    请从**[下载页面](https://smolt-stage.com/home/en/download.html)**获取，
+    然后按照[安装](installation.md)的步骤操作。
+
 ## 窗口
 
 - **标签页** - 每个打开的文件都是一个标签页。拖动可重新排序；++ctrl+t++ 新建标签页，

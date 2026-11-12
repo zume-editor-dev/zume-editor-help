@@ -2,15 +2,21 @@
 
 Zume Editor 可在 **Windows 10/11、macOS 和 Linux** 上运行。
 
+[下载 Zume Editor](https://smolt-stage.com/home/en/download.html){ .md-button .md-button--primary }
+
+所有下载文件（Windows 便携式 ZIP 和安装程序、macOS 的 `.dmg`、
+Linux 的 AppImage / DEB / RPM）都在
+[下载页面](https://smolt-stage.com/home/en/download.html)。
+
 ## Windows
 
 - **Microsoft Store**（推荐）—— 搜索 *Zume Editor* 并安装。
   更新会自动推送。
-- **独立版** —— 网站上也提供便携式 ZIP 和安装程序。
+- **独立版** —— [下载页面](https://smolt-stage.com/home/en/download.html)上也提供便携式 ZIP 和安装程序。
 
 ## macOS
 
-- 从网站下载 **`.dmg`**，打开它并将 Zume Editor 拖到
+- 从[下载页面](https://smolt-stage.com/home/en/download.html)下载 **`.dmg`**，打开它并将 Zume Editor 拖到
   *Applications* 中。该应用已签名并经过公证。
 
 ## Linux

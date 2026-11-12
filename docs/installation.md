@@ -2,17 +2,24 @@
 
 Zume Editor runs on **Windows 10/11, macOS and Linux**.
 
+[Download Zume Editor](https://smolt-stage.com/home/en/download.html){ .md-button .md-button--primary }
+
+All downloads — the Windows portable ZIP and installer, the macOS `.dmg`, and the
+Linux AppImage / DEB / RPM — are on the
+[download page](https://smolt-stage.com/home/en/download.html).
+
 ## Windows
 
 - **Microsoft Store** (recommended) - search for *Zume Editor* and install.
   Updates are delivered automatically.
 - **Standalone** - a portable ZIP and an installer are also available from the
-  website.
+  [download page](https://smolt-stage.com/home/en/download.html).
 
 ## macOS
 
-- Download the **`.dmg`** from the website, open it and drag Zume Editor to
-  *Applications*. The app is signed and notarized.
+- Download the **`.dmg`** from the
+  [download page](https://smolt-stage.com/home/en/download.html), open it and
+  drag Zume Editor to *Applications*. The app is signed and notarized.
 
 ## Linux
 

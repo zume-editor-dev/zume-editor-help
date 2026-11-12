@@ -2,6 +2,11 @@
 
 A quick tour so you can find your way around.
 
+!!! tip "Don't have Zume Editor yet?"
+    Get it from the
+    **[download page](https://smolt-stage.com/home/en/download.html)**, then
+    follow [Installation](installation.md).
+
 ## The window
 
 - **Tabs** - each open file is a tab. Drag to reorder; ++ctrl+t++ opens a new tab,
