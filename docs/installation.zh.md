@@ -14,6 +14,17 @@ Linux 的 AppImage / DEB / RPM）都在
   更新会自动推送。
 - **独立版** —— [下载页面](https://smolt-stage.com/home/en/download.html)上也提供便携式 ZIP 和安装程序。
 
+### 便携模式（从 U 盘直接运行）
+
+便携式 ZIP 无需安装——解压到任意位置（包括 U 盘），直接运行
+`zume-editor.exe` 即可。不过在默认情况下，设置和会话数据仍会保存到所运行
+电脑的用户配置文件中。
+
+如果想随身携带所有数据，请在 `zume-editor.exe` 旁边创建一个名为
+**`portable.txt`** 的空文件。此后，设置、会话、恢复检查点、最近文件、
+known hosts、日志和许可证都会保存到可执行文件旁边的 **`data`** 文件夹中，
+编辑器即可随 U 盘一起移动。删除 `portable.txt` 即可恢复为按电脑保存。
+
 ## macOS
 
 - 从[下载页面](https://smolt-stage.com/home/en/download.html)下载 **`.dmg`**，打开它并将 Zume Editor 拖到

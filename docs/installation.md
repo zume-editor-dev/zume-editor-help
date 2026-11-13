@@ -15,6 +15,18 @@ Linux AppImage / DEB / RPM — are on the
 - **Standalone** - a portable ZIP and an installer are also available from the
   [download page](https://smolt-stage.com/home/en/download.html).
 
+### Portable mode (run from a USB drive)
+
+The portable ZIP needs no installation — extract it anywhere, a USB drive
+included, and run `zume-editor.exe`. By default, settings and session data are
+still stored in the user profile of the PC it runs on.
+
+To carry everything with you, create an empty file named **`portable.txt`**
+next to `zume-editor.exe`. Settings, sessions, recovery checkpoints, recent
+files, known hosts, logs and the license are then kept in a **`data`** folder
+beside the executable instead, so the editor travels with the drive. Delete
+`portable.txt` to go back to per-PC storage.
+
 ## macOS
 
 - Download the **`.dmg`** from the

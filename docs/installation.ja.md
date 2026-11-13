@@ -14,6 +14,18 @@ Linux の AppImage / DEB / RPM）は
 - **スタンドアロン** - ポータブルZIPとインストーラーも
   [ダウンロードページ](https://smolt-stage.com/home/ja/download.html) で配布しています。
 
+### ポータブルモード（USB メモリから実行）
+
+ポータブル ZIP はインストール不要です。USB メモリを含む任意の場所に展開して、
+`zume-editor.exe` を実行するだけで動きます。ただし既定では、設定やセッションは
+起動した PC 側のユーザープロファイルに保存されます。
+
+設定ごと持ち歩きたい場合は、`zume-editor.exe` の隣に **`portable.txt`** という
+名前の空ファイルを作成してください。設定・セッション・回復チェックポイント・
+最近使ったファイル・known hosts・ログ・ライセンスがすべて exe の隣の
+**`data`** フォルダーに保存されるようになり、USB メモリごと持ち運べます。
+`portable.txt` を削除すると、PC ごとの保存に戻ります。
+
 ## macOS
 
 - [ダウンロードページ](https://smolt-stage.com/home/ja/download.html) から
