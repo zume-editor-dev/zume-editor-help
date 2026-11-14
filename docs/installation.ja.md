@@ -26,6 +26,18 @@ Linux の AppImage / DEB / RPM）は
 **`data`** フォルダーに保存されるようになり、USB メモリごと持ち運べます。
 `portable.txt` を削除すると、PC ごとの保存に戻ります。
 
+!!! warning "ポータブル運用時の注意: 外部ソフトが必要な機能（未インストールだと実行不可）"
+
+    次の機能は Zume Editor 本体に同梱されておらず、**実行先の PC に別途ソフトがインストールされていないと動作しません**。USB メモリで素の PC から起動する場合は特に注意してください。なお、エディタ機能・検索・比較 (diff)・SFTP/FTP・逆アセンブル / バイナリ解析・スクリプト (Lua) などは USB だけで動作します。
+
+    | 機能 | 必要な外部ソフト | 備考 |
+    | --- | --- | --- |
+    | Git のネットワーク/高度操作: fetch / pull / push / clone / merge / rebase / interactive rebase / worktree / LFS | PC 上の `git` コマンド (ADR 0020) | status / diff / log / branch / stage / commit / checkout は libgit2 内蔵なのでオフラインで動作 |
+    | デコンパイル (Ghidra): `Code: Decompile` / MCP `decompile` | Ghidra 本体 + JDK (Java 17+)。`ghidra_home` 設定が必要 | 未設定 / 未検出ならコマンドが無効化される（off） |
+    | .NET (IL) デコンパイル: MCP `il_decompile` / `il_types` | ILSpy の `ilspycmd`（`dotnet tool install -g ilspycmd`）+ `ZUME_ILSPY` | |
+    | Java デコンパイル: MCP `java_decompile` / `java_types` | JDK の `javap`（バイトコード）、ソース出力には CFR jar (`ZUME_CFR`) | |
+    | セキュリティアナライザ実行: `Tools: Run Security Analyzer` / MCP `analyze_run` | ユーザー設定の外部解析ツール（sanctum 等）(ADR 0048) | 本体に攻撃コードは同梱されない。ツール未設定なら off |
+
 ## macOS
 
 - [ダウンロードページ](https://smolt-stage.com/home/ja/download.html) から

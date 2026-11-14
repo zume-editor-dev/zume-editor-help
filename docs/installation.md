@@ -27,6 +27,18 @@ files, known hosts, logs and the license are then kept in a **`data`** folder
 beside the executable instead, so the editor travels with the drive. Delete
 `portable.txt` to go back to per-PC storage.
 
+!!! warning "Portable use: features that need external software (won't run if it isn't installed)"
+
+    The following features are **not** bundled with Zume Editor and **do not work unless the required software is installed on the PC you run it on**. Take note when launching from a USB drive on an arbitrary machine. Everything else — the editor itself, search, compare (diff), SFTP/FTP, disassembly / binary analysis and scripting (Lua) — works from the drive alone.
+
+    | Feature | External software required | Notes |
+    | --- | --- | --- |
+    | Git network / advanced operations: fetch / pull / push / clone / merge / rebase / interactive rebase / worktree / LFS | A `git` command on the PC (ADR 0020) | status / diff / log / branch / stage / commit / checkout are built in via libgit2 and work offline |
+    | Decompile (Ghidra): `Code: Decompile` / MCP `decompile` | Ghidra itself + a JDK (Java 17+). The `ghidra_home` setting is required | The command is disabled (off) when unset / not detected |
+    | .NET (IL) decompilation: MCP `il_decompile` / `il_types` | ILSpy's `ilspycmd` (`dotnet tool install -g ilspycmd`) + `ZUME_ILSPY` | |
+    | Java decompilation: MCP `java_decompile` / `java_types` | The JDK's `javap` (bytecode); for source output a CFR jar (`ZUME_CFR`) | |
+    | Run Security Analyzer: `Tools: Run Security Analyzer` / MCP `analyze_run` | A user-configured external analysis tool (e.g. sanctum) (ADR 0048) | No attack code ships with the product; off until a tool is configured |
+
 ## macOS
 
 - Download the **`.dmg`** from the
