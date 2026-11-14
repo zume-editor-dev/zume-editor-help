@@ -1337,6 +1337,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-29-refreshed-builds-030160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-29 (refreshed builds, 0.30.16.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-04-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-04 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-13-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-13 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-14-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-14 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1448,6 +1492,50 @@
     <span class="md-ellipsis">
       
         Beta update — 2026-10-29 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-10-29-refreshed-builds-030160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-10-29 (refreshed builds, 0.30.16.0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-04-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-04 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-13-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-13 (refreshed builds)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beta-update-2026-11-14-refreshed-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta update — 2026-11-14 (refreshed builds)
       
     </span>
   </a>
@@ -1634,6 +1722,76 @@ page to pick them up. The Microsoft Store (<code>.msix</code>) build is now vers
 <li><strong>macOS whitespace marks</strong> — the macOS editor now draws whitespace marks
   (space dots, tab arrows, the line-end pilcrow and the full-width-space box)
   like Windows and Linux; before, macOS showed none.</li>
+<li>All platforms were rebuilt from the same commit.</li>
+</ul>
+<h3 id="beta-update-2026-10-29-refreshed-builds-030160">Beta update — 2026-10-29 (refreshed builds, 0.30.16.0)<a class="headerlink" href="#beta-update-2026-10-29-refreshed-builds-030160" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (<code>.msix</code>) build is now version
+<strong>0.30.16.0</strong>.</p>
+<ul>
+<li><strong>Security-learning layer in the Code menu</strong> — a set of tools for studying
+  executables.</li>
+<li><strong>Explainable Executable Info</strong> — turn on Explanations ("Show <em>what this
+  means</em> notes in the Executable Info report") in <strong>Tools → Settings…</strong> and each
+  PE / ELF / Mach-O section flag, hardening bit (ASLR / DEP / CFG, PIE / NX /
+  RELRO / stack canary), entropy figure and entry / import / export / overlay
+  line gets a short plain-language note beneath it.</li>
+<li><strong>Control-Flow Graph</strong> — <strong>Code → Control-Flow Graph…</strong> breaks a function
+  (the entry point) into its basic blocks and shows the branches between them.</li>
+<li><strong>Entropy Map</strong> — <strong>Code → Entropy Map…</strong> lists a file's overall entropy, a
+  block sparkline and the per-window series, so packed or high-entropy regions
+  stand out.</li>
+<li>The bundled MCP server gained a matching <code>cfg</code> tool.</li>
+<li>All platforms were rebuilt from the same commit.</li>
+</ul>
+<h3 id="beta-update-2026-11-04-refreshed-builds">Beta update — 2026-11-04 (refreshed builds)<a class="headerlink" href="#beta-update-2026-11-04-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (<code>.msix</code>) build is now version
+<strong>0.30.18.0</strong>.</p>
+<ul>
+<li><strong>Optional security-analyzer integration</strong> — <strong>Tools → Run Security Analyzer…</strong>
+  runs an external, authorized-scope analyzer you configure — for example the
+  companion tool <em>sanctum</em>, a separate and optional download (nothing
+  attack-related ships inside the editor) — and lists its findings in a panel
+  grouped by severity with colour badges. It can analyze the file in the active
+  tab (verifying the analyzed file's hash) or a target you pick. Analyzers are
+  configured in <strong>Tools → Settings…</strong> as <code>name = command</code> lines.</li>
+<li><strong>Editable path / analyzer boxes in Settings</strong> — the path settings (the
+  Ghidra / ILSpy install folders and the ILSpy cache) and the analyzer entries
+  are now editable one-line text boxes; a long value scrolls horizontally
+  instead of wrapping and being clipped, and the Clear buttons ask for
+  confirmation before erasing a value.</li>
+<li>The bundled MCP server gained a matching <code>analyze_run</code> tool.</li>
+<li>All platforms were rebuilt from the same commit.</li>
+</ul>
+<h3 id="beta-update-2026-11-13-refreshed-builds">Beta update — 2026-11-13 (refreshed builds)<a class="headerlink" href="#beta-update-2026-11-13-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (<code>.msix</code>) build is now version
+<strong>0.30.21.0</strong>.</p>
+<ul>
+<li><strong>Simplified Chinese (简体中文)</strong> — the whole UI is now available in Simplified
+  Chinese, selectable in <strong>Tools → Settings…</strong> under <strong>Language</strong>, and the help
+  links lead Chinese users to the Chinese help site.</li>
+<li><strong>Portable mode</strong> — create an empty file named <code>portable.txt</code> next to
+  <code>zume-editor.exe</code> (the portable ZIP) and settings, sessions, recovery
+  checkpoints, recent files, known hosts, logs and the license are kept in a
+  <code>data</code> folder beside the executable, so the editor runs entirely from a USB
+  drive; delete the marker to return to per-PC storage. See
+  <a href="../installation/#portable-mode-run-from-a-usb-drive">Installation</a>.</li>
+<li>All platforms were rebuilt from the same commit.</li>
+</ul>
+<h3 id="beta-update-2026-11-14-refreshed-builds">Beta update — 2026-11-14 (refreshed builds)<a class="headerlink" href="#beta-update-2026-11-14-refreshed-builds" title="Permanent link">&para;</a></h3>
+<p>Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (<code>.msix</code>) build is now version
+<strong>0.30.22.0</strong>.</p>
+<ul>
+<li><strong>Terminal keyboard fix</strong> — when a compare / diff view was open in the editor
+  area, the Terminal panel (and the SSH / results panels) could not take the
+  keyboard: clicking the panel focused it, but keystrokes were still swallowed
+  by the compare view, so you could not move the caret into the terminal or
+  type. The panel now receives typing and caret movement as soon as it is
+  focused, and clicking back in the editor returns the keyboard to the compare
+  view.</li>
 <li>All platforms were rebuilt from the same commit.</li>
 </ul>
 <hr />

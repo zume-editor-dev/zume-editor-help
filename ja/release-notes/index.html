@@ -1337,6 +1337,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#20261029030160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月29日（ビルド更新、0.30.16.0）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2026114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月4日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月13日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月14日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1448,6 +1492,50 @@
     <span class="md-ellipsis">
       
         ベータ版の更新 — 2026年10月29日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261029030160" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年10月29日（ビルド更新、0.30.16.0）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2026114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月4日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月13日（ビルド更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20261114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ベータ版の更新 — 2026年11月14日（ビルド更新）
       
     </span>
   </a>
@@ -1630,6 +1718,66 @@
 <li><strong>macOS の空白可視化</strong> — macOS のエディターでも空白マーク（スペースのドット、タブの矢印、
   行末の改行記号、全角スペースのボックス）を描画するようになりました。以前は macOS では
   表示されていませんでした。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="20261029030160">ベータ版の更新 — 2026年10月29日（ビルド更新、0.30.16.0）<a class="headerlink" href="#20261029030160" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.16.0</strong> になりました。</p>
+<ul>
+<li><strong>コードメニューのセキュリティ学習レイヤー</strong> — 実行ファイルを学習するためのツール群。</li>
+<li><strong>Executable Info に解説表示</strong> — <strong>ツール → 設定…</strong> で解説（「Executable Info レポートに
+  <em>これは何か</em> の注記を表示」）をオンにすると、PE / ELF / Mach-O の各セクションフラグ、
+  ハードニングビット（ASLR / DEP / CFG、PIE / NX / RELRO / スタックカナリア）、エントロピー値、
+  エントリ／インポート／エクスポート／オーバーレイの各行の下に、平易な説明が付きます。</li>
+<li><strong>制御フローグラフ</strong> — <strong>コード → 制御フローグラフ…</strong> が関数（エントリポイント）を
+  基本ブロックに分解し、それらの間の分岐を表示します。</li>
+<li><strong>エントロピーマップ</strong> — <strong>コード → エントロピーマップ…</strong> がファイル全体のエントロピー、
+  ブロックのスパークライン、ウィンドウごとの系列を一覧し、パックされた／高エントロピーの
+  領域が分かります。</li>
+<li>同梱の MCP サーバーに対応する <code>cfg</code> ツールを追加しました。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="2026114">ベータ版の更新 — 2026年11月4日（ビルド更新）<a class="headerlink" href="#2026114" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.18.0</strong> になりました。</p>
+<ul>
+<li><strong>オプションのセキュリティアナライザ連携</strong> — <strong>ツール → セキュリティアナライザを実行…</strong> が、
+  設定した外部の認可スコープ型アナライザ（例: コンパニオンツール <em>sanctum</em>。別配布の
+  オプションで、攻撃的な処理はエディターに同梱されません）を実行し、重大度ごとに色バッジ付きで
+  パネルに所見を一覧します。アクティブタブのファイル（解析対象のハッシュを検証）または任意の
+  ターゲットを解析できます。アナライザは <strong>ツール → 設定…</strong> で <code>name = command</code> 形式で設定します。</li>
+<li><strong>設定のパス／アナライザ欄を編集可能に</strong> — パス設定（Ghidra / ILSpy のインストールフォルダー、
+  ILSpy キャッシュ）とアナライザの各行が 1 行テキストボックスになりました。長い値は折り返して
+  見切れる代わりに横スクロールし、Clear ボタンは消去前に確認を求めます。</li>
+<li>同梱の MCP サーバーに対応する <code>analyze_run</code> ツールを追加しました。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="20261113">ベータ版の更新 — 2026年11月13日（ビルド更新）<a class="headerlink" href="#20261113" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.21.0</strong> になりました。</p>
+<ul>
+<li><strong>簡体字中国語（简体中文）</strong> — UI 全体が簡体字中国語に対応しました。<strong>ツール → 設定…</strong> の
+  <strong>言語</strong> で選択でき、ヘルプのリンクも中国語ユーザーを中国語ヘルプサイトへ誘導します。</li>
+<li><strong>ポータブルモード</strong> — <code>zume-editor.exe</code>（ポータブル ZIP）の隣に <code>portable.txt</code> という
+  空ファイルを作成すると、設定・セッション・回復チェックポイント・最近使ったファイル・
+  known hosts・ログ・ライセンスが実行ファイル隣の <code>data</code> フォルダーに保存され、USB メモリ
+  だけでエディターが動作します。削除すると PC ごとの保存に戻ります。
+  <a href="../installation/">インストール</a> を参照。</li>
+<li>全プラットフォームを同じコミットから再ビルドしました。</li>
+</ul>
+<h3 id="20261114">ベータ版の更新 — 2026年11月14日（ビルド更新）<a class="headerlink" href="#20261114" title="Permanent link">&para;</a></h3>
+<p>同じツリーから再ビルド（バージョンは 0.30.0 のまま）。インストールページから
+再ダウンロードしてください。Microsoft Store 版（<code>.msix</code>）はバージョン
+<strong>0.30.22.0</strong> になりました。</p>
+<ul>
+<li><strong>ターミナルのキーボード修正</strong> — エディター領域で比較（diff）ビューを開いているとき、
+  ターミナルパネル（および SSH／結果パネル）にキーボードを移せませんでした。パネルを
+  クリックするとフォーカスは当たるものの、入力は比較ビューに吸われてしまい、ターミナルに
+  カーソルを移したり入力したりできませんでした。パネルにフォーカスすると直ちに入力と
+  カーソル移動を受け付け、エディターをクリックすると比較ビューにキーボードが戻ります。</li>
 <li>全プラットフォームを同じコミットから再ビルドしました。</li>
 </ul>
 <hr />
