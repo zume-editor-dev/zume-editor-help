@@ -1485,6 +1485,46 @@ Linux の AppImage / DEB / RPM）は
 最近使ったファイル・known hosts・ログ・ライセンスがすべて exe の隣の
 <strong><code>data</code></strong> フォルダーに保存されるようになり、USB メモリごと持ち運べます。
 <code>portable.txt</code> を削除すると、PC ごとの保存に戻ります。</p>
+<div class="admonition warning">
+<p class="admonition-title">ポータブル運用時の注意: 外部ソフトが必要な機能（未インストールだと実行不可）</p>
+<p>次の機能は Zume Editor 本体に同梱されておらず、<strong>実行先の PC に別途ソフトがインストールされていないと動作しません</strong>。USB メモリで素の PC から起動する場合は特に注意してください。なお、エディタ機能・検索・比較 (diff)・SFTP/FTP・逆アセンブル / バイナリ解析・スクリプト (Lua) などは USB だけで動作します。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>必要な外部ソフト</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git のネットワーク/高度操作: fetch / pull / push / clone / merge / rebase / interactive rebase / worktree / LFS</td>
+<td>PC 上の <code>git</code> コマンド (ADR 0020)</td>
+<td>status / diff / log / branch / stage / commit / checkout は libgit2 内蔵なのでオフラインで動作</td>
+</tr>
+<tr>
+<td>デコンパイル (Ghidra): <code>Code: Decompile</code> / MCP <code>decompile</code></td>
+<td>Ghidra 本体 + JDK (Java 17+)。<code>ghidra_home</code> 設定が必要</td>
+<td>未設定 / 未検出ならコマンドが無効化される（off）</td>
+</tr>
+<tr>
+<td>.NET (IL) デコンパイル: MCP <code>il_decompile</code> / <code>il_types</code></td>
+<td>ILSpy の <code>ilspycmd</code>（<code>dotnet tool install -g ilspycmd</code>）+ <code>ZUME_ILSPY</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Java デコンパイル: MCP <code>java_decompile</code> / <code>java_types</code></td>
+<td>JDK の <code>javap</code>（バイトコード）、ソース出力には CFR jar (<code>ZUME_CFR</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>セキュリティアナライザ実行: <code>Tools: Run Security Analyzer</code> / MCP <code>analyze_run</code></td>
+<td>ユーザー設定の外部解析ツール（sanctum 等）(ADR 0048)</td>
+<td>本体に攻撃コードは同梱されない。ツール未設定なら off</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://smolt-stage.com/home/ja/download.html">ダウンロードページ</a> から

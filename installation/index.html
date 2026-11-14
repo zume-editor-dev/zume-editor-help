@@ -1486,6 +1486,46 @@ next to <code>zume-editor.exe</code>. Settings, sessions, recovery checkpoints, 
 files, known hosts, logs and the license are then kept in a <strong><code>data</code></strong> folder
 beside the executable instead, so the editor travels with the drive. Delete
 <code>portable.txt</code> to go back to per-PC storage.</p>
+<div class="admonition warning">
+<p class="admonition-title">Portable use: features that need external software (won't run if it isn't installed)</p>
+<p>The following features are <strong>not</strong> bundled with Zume Editor and <strong>do not work unless the required software is installed on the PC you run it on</strong>. Take note when launching from a USB drive on an arbitrary machine. Everything else — the editor itself, search, compare (diff), SFTP/FTP, disassembly / binary analysis and scripting (Lua) — works from the drive alone.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>External software required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git network / advanced operations: fetch / pull / push / clone / merge / rebase / interactive rebase / worktree / LFS</td>
+<td>A <code>git</code> command on the PC (ADR 0020)</td>
+<td>status / diff / log / branch / stage / commit / checkout are built in via libgit2 and work offline</td>
+</tr>
+<tr>
+<td>Decompile (Ghidra): <code>Code: Decompile</code> / MCP <code>decompile</code></td>
+<td>Ghidra itself + a JDK (Java 17+). The <code>ghidra_home</code> setting is required</td>
+<td>The command is disabled (off) when unset / not detected</td>
+</tr>
+<tr>
+<td>.NET (IL) decompilation: MCP <code>il_decompile</code> / <code>il_types</code></td>
+<td>ILSpy's <code>ilspycmd</code> (<code>dotnet tool install -g ilspycmd</code>) + <code>ZUME_ILSPY</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Java decompilation: MCP <code>java_decompile</code> / <code>java_types</code></td>
+<td>The JDK's <code>javap</code> (bytecode); for source output a CFR jar (<code>ZUME_CFR</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>Run Security Analyzer: <code>Tools: Run Security Analyzer</code> / MCP <code>analyze_run</code></td>
+<td>A user-configured external analysis tool (e.g. sanctum) (ADR 0048)</td>
+<td>No attack code ships with the product; off until a tool is configured</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Download the <strong><code>.dmg</code></strong> from the
