@@ -161,6 +161,80 @@ page to pick them up. The Microsoft Store (`.msix`) build is now version
   like Windows and Linux; before, macOS showed none.
 - All platforms were rebuilt from the same commit.
 
+### Beta update — 2026-10-29 (refreshed builds, 0.30.16.0)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.16.0**.
+
+- **Security-learning layer in the Code menu** — a set of tools for studying
+  executables.
+- **Explainable Executable Info** — turn on Explanations ("Show *what this
+  means* notes in the Executable Info report") in **Tools → Settings…** and each
+  PE / ELF / Mach-O section flag, hardening bit (ASLR / DEP / CFG, PIE / NX /
+  RELRO / stack canary), entropy figure and entry / import / export / overlay
+  line gets a short plain-language note beneath it.
+- **Control-Flow Graph** — **Code → Control-Flow Graph…** breaks a function
+  (the entry point) into its basic blocks and shows the branches between them.
+- **Entropy Map** — **Code → Entropy Map…** lists a file's overall entropy, a
+  block sparkline and the per-window series, so packed or high-entropy regions
+  stand out.
+- The bundled MCP server gained a matching `cfg` tool.
+- All platforms were rebuilt from the same commit.
+
+### Beta update — 2026-11-04 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.18.0**.
+
+- **Optional security-analyzer integration** — **Tools → Run Security Analyzer…**
+  runs an external, authorized-scope analyzer you configure — for example the
+  companion tool *sanctum*, a separate and optional download (nothing
+  attack-related ships inside the editor) — and lists its findings in a panel
+  grouped by severity with colour badges. It can analyze the file in the active
+  tab (verifying the analyzed file's hash) or a target you pick. Analyzers are
+  configured in **Tools → Settings…** as `name = command` lines.
+- **Editable path / analyzer boxes in Settings** — the path settings (the
+  Ghidra / ILSpy install folders and the ILSpy cache) and the analyzer entries
+  are now editable one-line text boxes; a long value scrolls horizontally
+  instead of wrapping and being clipped, and the Clear buttons ask for
+  confirmation before erasing a value.
+- The bundled MCP server gained a matching `analyze_run` tool.
+- All platforms were rebuilt from the same commit.
+
+### Beta update — 2026-11-13 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.21.0**.
+
+- **Simplified Chinese (简体中文)** — the whole UI is now available in Simplified
+  Chinese, selectable in **Tools → Settings…** under **Language**, and the help
+  links lead Chinese users to the Chinese help site.
+- **Portable mode** — create an empty file named `portable.txt` next to
+  `zume-editor.exe` (the portable ZIP) and settings, sessions, recovery
+  checkpoints, recent files, known hosts, logs and the license are kept in a
+  `data` folder beside the executable, so the editor runs entirely from a USB
+  drive; delete the marker to return to per-PC storage. See
+  [Installation](installation.md#portable-mode-run-from-a-usb-drive).
+- All platforms were rebuilt from the same commit.
+
+### Beta update — 2026-11-14 (refreshed builds)
+
+Rebuilt from the same tree (still 0.30.0). Re-download from the Installation
+page to pick them up. The Microsoft Store (`.msix`) build is now version
+**0.30.22.0**.
+
+- **Terminal keyboard fix** — when a compare / diff view was open in the editor
+  area, the Terminal panel (and the SSH / results panels) could not take the
+  keyboard: clicking the panel focused it, but keystrokes were still swallowed
+  by the compare view, so you could not move the caret into the terminal or
+  type. The panel now receives typing and caret movement as soon as it is
+  focused, and clicking back in the editor returns the keyboard to the compare
+  view.
+- All platforms were rebuilt from the same commit.
+
 ---
 
 A subscription is planned for the stable (1.0) release. Your feedback shapes the
